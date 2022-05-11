@@ -1,7 +1,10 @@
 <template>
-    <div>
 
+    <div>
+      
         <div class="content-child" data-v-02b3c3b7 data-v-02b3c3b7>
+
+     
 <!--            <h1 class="h1"></h1>-->
             <h2 class="h2">
                 	{{$t('Index.h2')}}</h2>
@@ -9,14 +12,17 @@
                 <div class="page-network">
                     <div class="count_down"><!----></div>
 
-<!--                                最新爆块 开始  -->
+<!--                                block pc start -->
                     <div>
+                        <div class="latest_block item1" data-v-135e9942>
+                            <div id="chart" style="width:95%;height:400px;"></div>
+                        </div>
                         <div class="latest_block item1" data-v-135e9942>
                             <div class="header" data-v-135e9942>
                                 <div class="title" data-v-135e9942><h2 class="txt" data-v-135e9942>{{$t('BlockList.newBlock')}}</h2></div>
                             </div>
                             <div data-v-ce118d7e="" data-v-135e9942="">
-    <!--                                最新爆块列表  开始  -->
+    <!--                               block pc start -->
                                 <div data-v-ce118d7e="" class="block_list">
                                     <ul data-v-ce118d7e="" class="item title">
                                         <li data-v-ce118d7e="" class="inner_item miner">{{$t('BlockList.height')}}</li>
@@ -49,10 +55,10 @@
                                             </li>
                                         </ul></span>
                                 </div>
-    <!--                                最新爆块列表  结束  -->
+    <!--                               block pc end  -->
 
 
-    <!--                                最新爆块手机端列表  开始  -->
+    <!--                               block mobile start -->
                                 <div data-v-ce118d7e="" class="mobileList">
                                     <div data-v-ce118d7e="" class="items" v-for="(item,index) in BlocklistDatas" :key="index">
                                         <div data-v-ce118d7e="" class="item">
@@ -74,19 +80,19 @@
                                             <div data-v-ce118d7e="" class="value">{{ item.reward_money }}</div>
                                         </div>
                                         <div data-v-ce118d7e="" class="item">
-                                            <div data-v-ce118d7e="" class="key">交易数量</div>
+                                            <div data-v-ce118d7e="" class="key">{{$t('BlockList.amount')}}</div>
                                             <div data-v-ce118d7e="" class="value"><a data-v-ce118d7e=""
                                                                                      href="javascript:void(0)">{{ item.txs }}</a>
                                             </div>
                                         </div><!---->
                                         <div data-v-ce118d7e="" class="item">
-                                            <div data-v-ce118d7e="" class="key">上一区块</div>
+                                            <div data-v-ce118d7e="" class="key">{{$t('BlockList.previousBlock')}}</div>
                                             <div data-v-ce118d7e="" class="value"><a data-v-ce118d7e=""
                                                                                      href="javascript:void(0)">{{ item.prev_hash }}</a>
                                             </div>
                                         </div><!---->
                                         <div data-v-ce118d7e="" class="item">
-                                            <div data-v-ce118d7e="" class="key">时间</div>
+                                            <div data-v-ce118d7e="" class="key">{{$t('BlockList.time')}}</div>
                                             <div data-v-ce118d7e="" class="value">
                                                 <div data-v-ce118d7e=""><span class="el-tooltip"
                                                                               aria-describedby="el-tooltip-4340"
@@ -97,7 +103,7 @@
 
                                     </div>
                                 </div>
-    <!--                                最新爆块手机端列表  结束  -->
+    <!--                                block mobile end   -->
 
                             </div>
                             <a href="blocklist" class="more" data-v-135e9942>
@@ -106,17 +112,17 @@
                                 </div>
                             </a></div>
                     </div>
-<!--                                最新爆块 结束  -->
+<!--                                block  end  -->
 
 
 
-<!--                                最新交易 开始  -->
+ 
                     <div class="pending_wrap" data-v-a7eb4120>
                         <div class="header" data-v-a7eb4120>
                             <div class="title" data-v-a7eb4120><h2 class="txt" data-v-a7eb4120>{{$t('Pending.tx')}}</h2></div>
                         </div>
                         <div data-v-603f4bbb="" data-v-a7eb4120="">
-    <!--                                最新交易列表 开始  -->
+    <!--                              pc start  -->
                             <div data-v-603f4bbb="" class="pending_list pc btc">
                                 <ul data-v-603f4bbb="" class="item title">
                                     <li data-v-603f4bbb="" class="inner_item hash">{{$t('Pending.hash')}}</li>
@@ -142,9 +148,9 @@
                                 </ul>
 
                             </div>
-    <!--                                最新交易列表 结束  -->
+    <!--                                pc end -->
 
-    <!--                                最新交易列表-手机端 开始  -->
+    <!--                                mobile start  -->
                             <div data-v-603f4bbb="" class="mobileList"><!---->
                                 <ul data-v-603f4bbb="" class="items" v-for="(item,index) in TxlistDatas" :key="index">
                                     <div data-v-603f4bbb="" class="item">
@@ -161,7 +167,7 @@
                                                                                     tabindex="0">{{ timeformat(item.transtime) }}</span></div>
                                     </div>
                                     <div data-v-603f4bbb="" class="item">
-                                        <div data-v-603f4bbb="" class="key">{{$t('Pending.Amount')}}</div>
+                                        <div data-v-603f4bbb="" class="key">{{$t('Pending.amount')}}</div>
                                         <div data-v-603f4bbb="" class="value">
                                             {{ item.amount }}
                                         </div>
@@ -178,7 +184,7 @@
                                     </div>
                                 </ul>
                             </div>
-    <!--                                最新交易列表-手机端 结束  -->
+
                         </div>
 
                         <div class="more" data-v-a7eb4120>
@@ -189,7 +195,7 @@
                             </a>
                         </div>
                     </div>
-<!--                                最新交易 结束  -->
+<!--                                mobile end -->
 
 
                 </div>
@@ -208,7 +214,11 @@
             return {
                 BlocklistDatas: [],
                 TxlistDatas: [],
-                timer: null  // 定时器
+                timer: null,  // timer
+                chartInfo:[],
+                legend:"",
+                xAxis:"",
+                series:"",
             }
         },
         methods: {
@@ -223,7 +233,61 @@
                     that.TxlistDatas = res
                 });
             },
-
+            drawChart() { 
+                let myChart = this.$echarts.init(document.getElementById("chart"));
+                
+                let option = {
+                    grid: {
+                        left: '10%',
+                        right: '5%',
+                        bottom: '5%',
+                        top: '5%'
+                     },
+                    title: {
+                    text: ""
+                    },
+                    tooltip: {},
+                    legend: {
+            
+                    data:this.legend
+                    },
+                    xAxis: {
+                
+                    data: this.xAxis
+                
+                    },
+                    yAxis: {},
+                    series:this.series
+                };
+                
+                myChart.setOption(option);
+                console.log("option",option);
+            },
+            getChartData(days) {
+                let params = {
+                     days:days,
+                };
+                let that = this
+                this.$api.blockstatistics(params).then(res => {
+                    that.ranklistDatas = res;
+                    that.legend=res.legend;
+                    that.xAxis=res.xAxis;        
+                    let series= [];
+                    for(let serieIndex =0; serieIndex<res.series.length; serieIndex++){               
+                        let serie=
+                         {
+                          name: res.series[serieIndex].name,
+                          type: "line",
+                          data: res.series[serieIndex].data
+                        }
+                       series.push(serie)
+                    }
+                    that.series =series;
+       
+                   that.drawChart();
+          
+                });
+            },
             timeformat(obj){
                 if (obj == null) {
                     return null
@@ -236,12 +300,25 @@
                 let mm = "0" + date.getMinutes();
                 let s = date.getSeconds();
                 return y + "-" + m.substring(m.length - 2, m.length) + "-" + d.substring(d.length - 2, d.length) + " " + h.substring(h.length - 2, h.length) + ":" + mm.substring(mm.length - 2, mm.length) + ":" + s;
+            },
+            _isMobile() {
+                let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+                return flag;
             }
         },
         created() {
+          
+        },
+        mounted(){
             this.getList()
+            let days=31;
+            if (this._isMobile()){
+                days=8;
+            }
+            this.getChartData(days)
             this.timer = setInterval(() =>{
                 this.getList()
+                this.getChartData(days)
             },1000 * 10)
         }
     }

@@ -34,5 +34,13 @@ export default {
     },
     listdelegatedetail(params) {
         return baseGet("/listdelegatedetail/", params);
+    },
+    blockstatistics(params) {
+        return baseGet("/blockstatistics/", params);
+    },
+    balance(params){
+        return baseGet("/balance",params);
     }
+  
+
 }

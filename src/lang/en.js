@@ -35,6 +35,7 @@ module.exports = {
     time:"Time",
     block:"Block",
     txFee:"Transaction fee",
+    locked:"Locked",
   },
   Block:{
     blockInfo:"Block information",
@@ -113,6 +114,10 @@ module.exports = {
     to:"To",
     txAmount:"Transaction amount",
     txFee:"Transaction fee",
+    dpos_in:"Vote node address",
+    dpos_out:"Withdrawal node address",
+    client_in:"Vote customer address",
+    client_out:"Withdrawal customer address",
   },
   el:{
     pagination:{
@@ -134,5 +139,6 @@ module.exports = {
     rank:"Blockchain browser-Ranking",
     dpos:"Blockchain browser-dpos",
     dposDetail:"Blockchain browser-dposDetail",
+    main:"Blockchain browser-main",
   }
 }

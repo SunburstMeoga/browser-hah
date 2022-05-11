@@ -32,6 +32,7 @@ module.exports = {
       time:"时间",
       block:"所在块",
       txFee:"交易费",
+      locked:"锁定余额",
     },
     Block:{
       blockInfo:"区块信息",
@@ -47,8 +48,8 @@ module.exports = {
       hash:"交易哈希",
     },
     BlockList:{
-      h1:"HAH浏览器查询链上最新爆块，爆块时间，区块大小，播报方。",
-    	h2:"HAH浏览器展示最新爆块，包括最新爆块时间，tps, 平均出块时间，区块高度，播报方，大小，奖励，交易笔数，交易总额。",
+      h1:"浏览器查询链上最新爆块，爆块时间，区块大小，播报方。",
+    	h2:"浏览器展示最新爆块，包括最新爆块时间，tps, 平均出块时间，区块高度，播报方，大小，奖励，交易笔数，交易总额。",
       newBlock:"最新暴块",
       height:"区块高度",
       address:"播报方",
@@ -110,6 +111,10 @@ module.exports = {
       to:"to地址",
       txAmount:"转账金额",
       txFee:"交易费",
+      dpos_in:"投票节点地址",
+      dpos_out:"撤投节点地址",
+      client_in:"投票客户地址",
+      client_out:"撤投客户地址",
     }, 
     el:{  
       pagination:{
@@ -130,5 +135,6 @@ module.exports = {
       rank:"区块链浏览器-排行",
       dpos:"区块链浏览器-dpos",
       dposDetail:"区块链浏览器-dposDetail",
+      main:"区块链浏览器-main",
     }
   }

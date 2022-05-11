@@ -1,4 +1,3 @@
-//import routesChild from "./routes_child";
 import i18n from "../lang/index"
 
 const routes = [
@@ -107,13 +106,14 @@ const routes = [
                 path: "/main",
                 name: "main",
                 meta: {
-                    parent: "home",
+                    parent: "",
                     needLogin: false,
-                    title: "区块链浏览器-main"
+                    title: i18n.t('routes.main')
                 },
                 component: () => import("../views/Home/main.vue")
             }
-           
+            
+            
           
         ]
     }

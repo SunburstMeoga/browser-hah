@@ -8,16 +8,22 @@ const router = new VueRouter({
     mode: "history",
     routes
 })
+const originalPush = VueRouter.prototype.push
 
-//设置全局守卫处理
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
+
+
 router.beforeEach((to, from, next) => {
     let isLogin = localStorage.getItem("token");
 
-    // 如果访问的是登录界面则直接放行
+    // 
     /*if (to.path === '/login')
         return next()
 
-    // 如果访问的是登录界面则直接放行
+    // 
     if (to.path === '/stafflogin')
         return next()*/
 

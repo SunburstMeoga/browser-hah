@@ -14,11 +14,10 @@
 
         <div class="header_wrap btc">
             <div class="box"><a href="/" data-tracking="coins-header-home"
-                                alt="$t('eTopBar.alt')" title="$t('common.browser')">
+                                :alt="$t('eTopBar.alt')" :title="$t('common.browser')">
                 <div class="order">
-                    <div class="menu icon-menu"></div>
-                    <!--<img src="../../assets/images/icon/hah.png" alt="$t('common.browser')" class="coinlogo">-->
-                    <img src="../../assets/images/custom/logo.jpg" alt="$t('common.browser')" class="coinlogo">
+                    <div class="menu icon-menu"></div>                
+                    <img src="../../assets/images/custom/logo.png" alt="$t('common.browser')" class="coinlogo">
                     <div class="coin_name">{{$t('common.browser')}}</div><!----></div>
             </a>
                 <div class="inner_header">
@@ -53,9 +52,7 @@
 
         <div class="mobile_header">
             <div class="head_menu"><a href="/" data-tracking="coins-header-home">
-                <!--<div class="coin_name"><img src="../../assets/images/icon/hah.png" alt="" class="icon">-->
-                   <div class="coin_name"><img src="../../assets/images/custom/logo.jpg" alt="" class="icon">          
-                    
+                    <div class="coin_name"><img src="../../assets/images/custom/logo.png" alt="" class="icon"> 
                     {{$t('common.browser')}}
                     <!----></div>
             </a>
@@ -143,8 +140,9 @@
 
         methods: {
             search(){
+                        console.log("111111" , this.value, '222222',this.search_text)
                 if(this.value == 1){
-                    this.$router.push({ path: "address", query: { address: this.search_text } });
+                    this.$router.push({ path: "address", query: { hash: this.search_text } });
                 }else if(this.value == 2){
                     this.$router.push({ path: "block", query: { hash: this.search_text } });
                 }else{
@@ -170,8 +168,8 @@
                 localStorage.setItem('virtualCurrencyLocale', this.langFlag)
                 this.$i18n.locale = localStorage.getItem('virtualCurrencyLocale')
 
-                //console.log(this.$i18n.locale)//显示当前的语言
-                //this.$i18n.locale = this.langFlag;//将所选语言应用于页面
+                //console.log(this.$i18n.locale)
+                //this.$i18n.locale = this.langFlag;
             },
             getDefaultLanguage(){
                 var virtualCurrencyLocale=localStorage.getItem('virtualCurrencyLocale')
