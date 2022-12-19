@@ -91,6 +91,16 @@ const routes = [
                     title: i18n.t('routes.dpos')
                 },
                 component: () => import("../views/Home/dpos.vue")
+            },
+            {
+                path: "/HRC20",
+                name: "HRC20",
+                meta: {
+                    parent: "home",
+                    needLogin: false,
+                    title: i18n.t('routes.HRC20')
+                },
+                component: () => import("../views/Home/HRC20.vue")
             },           
             {
                 path: "/dposDetail",

@@ -29,6 +29,8 @@
                             </li>
                               <li class="item active"><a href="dpos" alt="" title="$t('common.browser')" data-tracking="coins-header-home">dpos</a>
                             </li>
+                            <li class="item active"><a href="HRC20" alt="" title="$t('common.browser')" data-tracking="coins-header-home">HRC20</a>
+                            </li>
                             <el-select v-model="langFlag" @change="changeLanguages" class="language-select"
                                      :filterable="true"
                                     style="width: 130px;" placeholder="please choose language">
@@ -42,7 +44,6 @@
                                 <div @click="chooseLanguage('en-US')">English</div>
                             </div>-->
                         </ul>
-                       
                     </div>
                 </div>
 
