@@ -103,6 +103,16 @@ const routes = [
                 component: () => import("../views/Home/HRC20.vue")
             },           
             {
+                path: "/HRC20Details",
+                name: "HRC20Details",
+                meta: {
+                    parent: "home",
+                    needLogin: false,
+                    title: i18n.t('routes.HRC20Details')
+                },
+                component: () => import("../views/Home/HRC20Details.vue")
+            },      
+            {
                 path: "/dposDetail",
                 name: "dposDetail",
                 meta: {

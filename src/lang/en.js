@@ -140,5 +140,13 @@ module.exports = {
     dpos:"Blockchain browser-dpos",
     dposDetail:"Blockchain browser-dposDetail",
     main:"Blockchain browser-main",
+  },
+  hrc20: {
+    hrc20: "HRC20",
+    owner: "Owner",
+    name: "Name",
+    symbol: "Symbol",
+    decimals: "Decimals",
+    totalSupply: "totalSupply"
   }
 }

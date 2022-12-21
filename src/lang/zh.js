@@ -136,5 +136,14 @@ module.exports = {
       dpos:"区块链浏览器-dpos",
       dposDetail:"区块链浏览器-dposDetail",
       main:"区块链浏览器-main",
+    },
+    hrc20: {
+    hrc20: "HRC20",
+
+      owner: "合约作者",
+      name: "合约名称",
+      symbol: "合约符号",
+      decimals: "货币小数位",
+      totalSupply: "发行总量"
     }
   }

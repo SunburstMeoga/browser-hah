@@ -40,7 +40,14 @@ export default {
     },
     balance(params){
         return baseGet("/balance",params);
+    },
+    hrc20(params) {
+        return baseGet("/listhrc20/", params)
+    },
+    hrc20Details(params) {
+        // return baseGet("/hrc20_tx/", params)
+        return baseGet("/hrc20_tx/", params)
+
     }
-  
 
 }
