@@ -23,8 +23,13 @@ export default {
     data() {
         return {
             dataList: [],
-            dataDetails: {}
+            dataDetails: {},
+            txid: 0
         }
+    },
+    created() {
+        this.txid = this.$route.query.txid
+
     },
     mounted() {
         this.getList()
