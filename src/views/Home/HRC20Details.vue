@@ -2,16 +2,17 @@
     <div class="all">
         <div class="container">
             <div class="details-content">
-                <div class="content-title">Overview</div>
-                <div class="content-item">Address: {{ address }}</div>
-                <div class="content-item">Decimals: {{ decimals }}</div>
-                <div class="content-item">Name: {{ name }}</div>
+                <div class="content-title">{{ $t('hrc20.overview') }}</div>
+                <div class="content-item"><span class="title">{{ $t('dpos.address') }}:</span> {{ address }}</div>
+                <div class="content-item"><span class="title">{{ $t('hrc20.decimals') }}: </span>{{ decimals }}</div>
+                <div class="content-item"><span class="title">{{ $t('hrc20.name') }}:</span> {{ name }}</div>
             </div>
             <div class="details-content">
-                <div class="content-title">Profile Summary</div>
-                <div class="content-item">Owner: {{ owner }}</div>
-                <div class="content-item">Symbol: {{ symbol }}</div>
-                <div class="content-item">TotalSupply: {{ totalSupply }}</div>
+                <div class="content-title">{{ $t('hrc20.profileSummary') }}</div>
+                <div class="content-item"><span class="title">{{ $t('hrc20.owner') }}:</span> {{ owner }}</div>
+                <div class="content-item"><span class="title">{{ $t('hrc20.symbol') }}:</span> {{ symbol }}</div>
+                <div class="content-item"><span class="title">{{ $t('hrc20.totalSupply') }}: </span>{{ totalSupply }}
+                </div>
             </div>
         </div>
         <div data-v-18b505e9="" data-v-92014c5c="" style="background: #fff;  width: 76vw; margin: 0 auto;">
@@ -22,22 +23,31 @@
                             <div data-v-18b505e9="" class="rich_list">
                                 <li data-v-18b505e9="" class="item">
 
-                                    <div data-v-18b505e9="" class="votes"><b data-v-18b505e9="">Txn Hash</b></div>
-                                    <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">Method</b></div>
-                                    <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">Age</b></div>
-                                    <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">From</b></div>
-                                    <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">To</b></div>
-                                    <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">Quantity</b></div>
+                                    <div data-v-18b505e9="" class="votes"><b data-v-18b505e9="">{{ $t("Pending.hash")
+                                    }}</b></div>
+                                    <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">{{ $t("hrc20.method")
+                                    }}</b></div>
+                                    <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">{{ $t("Address.time")
+                                    }}</b></div>
+                                    <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">{{ $t("Pending.from")
+                                    }}</b></div>
+                                    <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">{{ $t("Pending.to")
+                                    }}</b></div>
+                                    <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">{{ $t("hrc20.quantity")
+                                    }}</b></div>
 
                                 </li>
                                 <li data-v-18b505e9="" class="item" v-for="(item, index) in dataList" :key="index">
 
-                                    <div class="first-item" style="color: #612591;">{{ item.txHash }}</div>
+                                    <div class="first-item" style="color: #612591;" @click="toDetails(item)">{{
+                                            item.txHash
+                                    }}</div>
                                     <div style="color: #612591;"> {{ item.methodid }} </div>
                                     <div style="color: #f1b434;">{{ getTime(item.ts) }}</div>
                                     <div class="first-item" style="color: #f1b434;">{{ item.fromaddr }}</div>
                                     <div class="first-item" style="color: #f1b434;">{{ item.toaddr }}</div>
-                                    <div style="color: #f1b434;">{{ item.quantity }}</div>
+                                    <div style="color: #f1b434;">{{ getNumber(item.quantity) }}
+                                    </div>
                                 </li>
                             </div>
                         </div>
@@ -79,6 +89,20 @@ export default {
 
     },
     methods: {
+        toDetails(item) {
+            this.$router.push({
+                path: '/tx',
+                query: {
+                    txid: item.txHash
+                }
+            })
+        },
+        getNumber(str) {
+            let target = Math.pow(10, 18)
+            let num = Number(str);//将字符串转换为Number类型
+            let result = (num / target).toFixed(4);//将Number类型转换为保留四位数的字符串数据
+            return result
+        },
         getTime(time) {
             var now = new Date(time * 1000),
                 y = now.getFullYear(),
@@ -104,6 +128,12 @@ export default {
 </script>
 
 <style scoped>
+.title {
+    color: #9b9b9b;
+    font-weight: bold;
+    min-width: 100px;
+}
+
 .first-item {
     overflow: hidden;
     text-overflow: ellipsis;

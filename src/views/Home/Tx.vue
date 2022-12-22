@@ -41,8 +41,9 @@
                             <div class="item" data-v-57312e58="" v-if="dataDetails.length !== 0">
                                 <div class="key" data-v-57312e58="">token Transferred</div>
                                 <div class="value" data-v-57312e58="" v-for="(item, index) in dataDetails" :key="index">
-                                    <div>From {{ item.fromaddr }} To {{ item.toaddr }} For {{ item.quantity.toFixed(4)
-                                    }}</div>
+                                    <div><span class="word">From</span> {{ item.fromaddr }} <span class="word">To</span>
+                                        {{ item.toaddr }} <span class="word">For</span> {{ getNumber(item.quantity)
+                                        }}</div>
                                 </div>
                             </div>
                             <div class="item" data-v-57312e58="">
@@ -112,6 +113,12 @@ export default {
         }
     },
     methods: {
+        getNumber(str) {
+            let target = Math.pow(10, 18)
+            let num = Number(str);//将字符串转换为Number类型
+            let result = (num / target).toFixed(4);//将Number类型转换为保留四位数的字符串数据
+            return result
+        },
         getList() {
             let params = {
                 txid: this.txid
@@ -164,4 +171,9 @@ export default {
 
 <style>
 @import url("../../assets/css/tx.css");
+
+.word {
+    color: #612591;
+
+}
 </style>
