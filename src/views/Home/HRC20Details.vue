@@ -3,18 +3,15 @@
         <div class="container">
             <div class="details-content">
                 <div class="content-title">Overview</div>
-                <div class="content-item">Age: {{ dataDetails.age }}</div>
-                <div class="content-item">Contractaddr: {{ dataDetails.contractaddr }}</div>
-                <div class="content-item">Fromaddr: {{ dataDetails.fromaddr }}</div>
-                <div class="content-item">id: {{ dataDetails.id }}</div>
-
+                <div class="content-item">Address: {{ address }}</div>
+                <div class="content-item">Decimals: {{ decimals }}</div>
+                <div class="content-item">Name: {{ name }}</div>
             </div>
             <div class="details-content">
                 <div class="content-title">Profile Summary</div>
-                <div class="content-item">Methodid: {{ dataDetails.methodid }}</div>
-                <div class="content-item">Quantity: {{ dataDetails.quantity }}</div>
-                <div class="content-item">Toaddr: {{ dataDetails.toaddr }}</div>
-                <div class="content-item">txHash: {{ dataDetails.txHash }}</div>
+                <div class="content-item">Owner: {{ owner }}</div>
+                <div class="content-item">Symbol: {{ symbol }}</div>
+                <div class="content-item">TotalSupply: {{ totalSupply }}</div>
             </div>
         </div>
         <div data-v-18b505e9="" data-v-92014c5c="" style="background: #fff;  width: 76vw; margin: 0 auto;">
@@ -37,7 +34,7 @@
 
                                     <div class="first-item" style="color: #612591;">{{ item.txHash }}</div>
                                     <div style="color: #612591;"> {{ item.methodid }} </div>
-                                    <div style="color: #f1b434;">{{ item.age }}</div>
+                                    <div style="color: #f1b434;">{{ getTime(item.ts) }}</div>
                                     <div class="first-item" style="color: #f1b434;">{{ item.fromaddr }}</div>
                                     <div class="first-item" style="color: #f1b434;">{{ item.toaddr }}</div>
                                     <div style="color: #f1b434;">{{ item.quantity }}</div>
@@ -60,17 +57,36 @@ export default {
         return {
             dataList: [],
             dataDetails: {},
-            address: ''
+            address: '',
+            decimals: '',
+            name: '',
+            owner: '',
+            symbol: '',
+            totalSupply: ''
         }
     },
     created() {
-        this.address = this.$route.query.address
+
 
     },
     mounted() {
         this.getList()
+        this.address = this.$route.query.address
+        this.decimals = this.$route.query.decimals
+        this.name = this.$route.query.name
+        this.owner = this.$route.query.owner
+        this.symbol = this.$route.query.symbol
+        this.totalSupply = this.$route.query.totalSupply
     },
     methods: {
+        getTime(time) {
+            var now = new Date(time * 1000),
+                y = now.getFullYear(),
+                m = now.getMonth() + 1,
+                d = now.getDate(),
+                x = y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 8);
+            return x
+        },
         getList() {
             let params = {
                 address: this.address,
@@ -79,7 +95,6 @@ export default {
             };
             this.$api.detailsData(params).then(res => {
                 console.log(res)
-                this.dataDetails = res.data[0]
                 this.dataList = res.data
             });
             console.log('dataList', this.dataList);

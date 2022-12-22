@@ -76,7 +76,14 @@ export default {
     toDetails(item) {
       this.$router.push({
         path: "/HRC20Details",
-        query: { address: item.address }
+        query: {
+          address: item.address,
+          decimals: item.decimals,
+          name: item.name,
+          owner: item.owner,
+          symbol: item.symbol,
+          totalSupply: item.totalSupply
+        }
       })
     }
   }
