@@ -43,50 +43,6 @@
             </div>
 
 
-            <div data-v-18b505e9="" class="mobile">
-              <div data-v-18b505e9="" class="items" v-for="(item, index) in dataList" :key="index">
-                <div data-v-18b505e9="" class="item hash">
-                  <div data-v-18b505e9="" class="key">{{ $t('dpos.address') }}</div>
-                  <div data-v-18b505e9="" class="value">
-                    <div data-v-18b505e9="" class="address"><a data-v-18b505e9="" href="javascript:void(0)"
-                        @click="handleWindow(item.address)" class="hash">{{ item.address }}</a>
-                    </div>
-                  </div>
-                </div>
-                <div data-v-18b505e9="" class="item">
-                  <div data-v-18b505e9="" class="key">{{ $t('hrc20.owner') }}</div>
-                  <div data-v-18b505e9="" class="value">
-                    <div data-v-18b505e9="" class="amount">{{ item.owner }}</div>
-                  </div>
-                </div>
-                <div data-v-18b505e9="" class="item">
-                  <div data-v-18b505e9="" class="key">{{ $t('hrc20.name') }}</div>
-                  <div data-v-18b505e9="" class="value">{{ item.name }}</div>
-                </div>
-
-                <div data-v-18b505e9="" class="item hash">
-                  <div data-v-18b505e9="" class="key">{{ $t('hrc20.symbol') }}</div>
-                  <div data-v-18b505e9="" class="value">
-                    <div data-v-18b505e9="" class="address"><a data-v-18b505e9="" href="javascript:void(0)"
-                        @click="handleWindow(item.address)" class="hash">{{ item.symbol }}</a>
-                    </div>
-                  </div>
-                </div>
-                <div data-v-18b505e9="" class="item">
-                  <div data-v-18b505e9="" class="key">{{ $t('hrc20.decimals') }}</div>
-                  <div data-v-18b505e9="" class="value">
-                    <div data-v-18b505e9="" class="amount">{{ item.decimals }}</div>
-                  </div>
-                </div>
-                <div data-v-18b505e9="" class="item">
-                  <div data-v-18b505e9="" class="key">{{ $t('hrc20.totalSupply') }}</div>
-                  <div data-v-18b505e9="" class="value">{{ item.totalSupply }}</div>
-                </div>
-
-              </div>
-            </div>
-
-
 
           </div>
         </div><!---->
