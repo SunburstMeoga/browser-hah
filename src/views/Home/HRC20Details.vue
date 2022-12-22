@@ -67,16 +67,16 @@ export default {
     },
     created() {
 
-
-    },
-    mounted() {
-        this.getList()
         this.address = this.$route.query.address
         this.decimals = this.$route.query.decimals
         this.name = this.$route.query.name
         this.owner = this.$route.query.owner
         this.symbol = this.$route.query.symbol
         this.totalSupply = this.$route.query.totalSupply
+    },
+    mounted() {
+        this.getList()
+
     },
     methods: {
         getTime(time) {
