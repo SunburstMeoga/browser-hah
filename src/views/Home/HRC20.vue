@@ -92,7 +92,7 @@
         </div><!---->
       </div>
     </div>
-    <alert-tip v-if="showa" @closeTip="closeTip" :address="address"></alert-tip>
+    <!-- <alert-tip v-if="showa" @closeTip="closeTip" :address="address"></alert-tip> -->
   </div>
 
 </template>
@@ -120,7 +120,7 @@ export default {
     toDetails(item) {
       this.$router.push({
         path: "/HRC20Details",
-        // query: { txid: item.}
+        query: { address: item.address }
       })
     }
   }

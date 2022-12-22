@@ -24,11 +24,11 @@ export default {
         return {
             dataList: [],
             dataDetails: {},
-            txid: 0
+            address: ''
         }
     },
     created() {
-        this.txid = this.$route.query.txid
+        this.address = this.$route.query.address
 
     },
     mounted() {
@@ -37,11 +37,11 @@ export default {
     methods: {
         getList() {
             let params = {
-                txid: 'fa946399720bde50312219ed3b34d139047ab6b9c8a203d8c822dc92438b37bc'
+                address: this.address
             };
-            this.$api.hrc20Details(params).then(res => {
+            this.$api.detailsData(params).then(res => {
                 console.log(res)
-                this.dataDetails = res[0]
+                this.dataDetails = res
             });
             console.log('dataList', this.dataList);
         },

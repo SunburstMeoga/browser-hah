@@ -38,8 +38,8 @@ export default {
     blockstatistics(params) {
         return baseGet("/blockstatistics/", params);
     },
-    balance(params){
-        return baseGet("/balance",params);
+    balance(params) {
+        return baseGet("/balance", params);
     },
     hrc20(params) {
         return baseGet("/listhrc20/", params)
@@ -47,7 +47,8 @@ export default {
     hrc20Details(params) {
         // return baseGet("/hrc20_tx/", params)
         return baseGet("/hrc20_tx/", params)
-
+    },
+    detailsData(params) {
+        return baseGet("/contract_tx/", params)
     }
-
 }
