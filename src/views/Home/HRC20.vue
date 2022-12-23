@@ -27,7 +27,7 @@
                       </div>
 
                     </li>
-                    <li data-v-18b505e9="" class="item-all" v-for="(item, index) in dataList" :key="index"
+                    <li data-v-18b505e9="" class="item-all target-item" v-for="(item, index) in dataList" :key="index"
                       @click="toDetails(item)">
                       <div class="first-item" style="color: #612591; width: 300px;">{{ item.address }}</div>
                       <div class="first-item" style="color: #612591; width: 230px;">{{
@@ -92,6 +92,10 @@ export default {
 </script>
 
 <style>
+.target-item {
+  cursor: pointer;
+}
+
 .first-item {
   overflow: hidden;
   text-overflow: ellipsis;

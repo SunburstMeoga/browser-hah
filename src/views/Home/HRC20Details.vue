@@ -133,7 +133,8 @@ export default {
 .title {
     color: #9b9b9b;
     font-weight: bold;
-    min-width: 100px;
+    text-align: right;
+    min-width: 80px;
 }
 
 .first-item {
@@ -173,7 +174,6 @@ export default {
     line-height: 50px;
     color: #f1b434;
     max-width: 800px;
-    justify-content: space-between;
 }
 
 .content-title {
