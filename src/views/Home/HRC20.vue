@@ -18,23 +18,24 @@
                 <div data-v-18b505e9="" class="inner">
                   <div data-v-18b505e9="" class="rich_list">
                     <li data-v-18b505e9="" class="item">
-                      <div><b data-v-18b505e9="">{{ $t('dpos.address') }}</b></div>
-                      <div><b data-v-18b505e9="">{{ $t('hrc20.owner') }}</b></div>
+                      <div><b data-v-18b505e9="" class="big-item">{{ $t('dpos.address') }}</b></div>
+                      <div><b data-v-18b505e9="" class="big-item owner">{{ $t('hrc20.owner') }}</b></div>
                       <div data-v-18b505e9="" class="votes"><b data-v-18b505e9="">{{ $t('hrc20.name') }}</b></div>
-                      <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">{{ $t('hrc20.symbol') }}</b></div>
-                      <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">{{ $t('hrc20.decimals') }}</b></div>
-                      <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">{{ $t('hrc20.totalSupply') }}</b></div>
+                      <div data-v-18b505e9="" class="votes"><b data-v-18b505e9="">{{ $t('hrc20.symbol') }}</b></div>
+                      <div data-v-18b505e9="" class="votes"><b data-v-18b505e9="">{{ $t('hrc20.decimals') }}</b></div>
+                      <div data-v-18b505e9="" class="votes"><b data-v-18b505e9="">{{ $t('hrc20.totalSupply') }}</b>
+                      </div>
 
                     </li>
-                    <li data-v-18b505e9="" class="item" v-for="(item, index) in dataList" :key="index"
+                    <li data-v-18b505e9="" class="item-all" v-for="(item, index) in dataList" :key="index"
                       @click="toDetails(item)">
-                      <div class="first-item" style="color: #612591; ">{{ item.address }}</div>
-                      <div class="first-item" style="color: #612591;">{{
+                      <div class="first-item" style="color: #612591; width: 300px;">{{ item.address }}</div>
+                      <div class="first-item" style="color: #612591; width: 230px;">{{
                           item.owner
                       }}</div>
-                      <div style="color: #f1b434;">{{ item.name }}</div>
-                      <div style="color: #f1b434;"> {{ item.symbol }}</div>
-                      <div style="color: #f1b434;">{{ item.decimals }}</div>
+                      <div style="color: #f1b434; padding-right: 110px;">{{ item.name }}</div>
+                      <div style="color: #f1b434; padding-right: 136px;"> {{ item.symbol }}</div>
+                      <div style="color: #f1b434;  padding-right: 136px;">{{ item.decimals }}</div>
                       <div style="color: #f1b434;">{{ item.totalSupply }}</div>
                     </li>
                   </div>
@@ -95,5 +96,28 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.item {
+  display: inline-block;
+}
+
+.big-item {
+  display: inline-block;
+  width: 500px;
+}
+
+.owner {
+  margin-left: 80px;
+}
+
+.votes {
+  margin-left: 80px;
+}
+
+.item-all {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 </style>

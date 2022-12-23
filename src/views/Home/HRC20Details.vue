@@ -25,8 +25,9 @@
 
                                     <div data-v-18b505e9="" class="votes"><b data-v-18b505e9="">{{ $t("Pending.hash")
                                     }}</b></div>
-                                    <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">{{ $t("hrc20.method")
-                                    }}</b></div>
+                                    <div data-v-18b505e9="" class="name" style="margin-left: 200px;"><b
+                                            data-v-18b505e9="">{{ $t("hrc20.method")
+                                            }}</b></div>
                                     <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">{{ $t("Address.time")
                                     }}</b></div>
                                     <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">{{ $t("Pending.from")
@@ -39,9 +40,10 @@
                                 </li>
                                 <li data-v-18b505e9="" class="item" v-for="(item, index) in dataList" :key="index">
 
-                                    <div class="first-item" style="color: #612591;" @click="toDetails(item)">{{
-                                            item.txHash
-                                    }}</div>
+                                    <div class="first-item" style="color: #612591; width: 500px;"
+                                        @click="toDetails(item)">{{
+                                                item.txHash
+                                        }}</div>
                                     <div style="color: #612591;"> {{ item.methodid }} </div>
                                     <div style="color: #f1b434;">{{ getTime(item.ts) }}</div>
                                     <div class="first-item" style="color: #f1b434;">{{ item.fromaddr }}</div>
@@ -171,6 +173,7 @@ export default {
     line-height: 50px;
     color: #f1b434;
     max-width: 800px;
+    justify-content: space-between;
 }
 
 .content-title {

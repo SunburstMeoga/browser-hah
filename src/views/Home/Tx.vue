@@ -39,9 +39,10 @@
                             </div>
 
                             <div class="item" data-v-57312e58="" v-if="dataDetails.length !== 0">
-                                <div class="key" data-v-57312e58="">token Transferred</div>
+                                <div class="key" data-v-57312e58="">Transferred</div>
                                 <div class="value" data-v-57312e58="" v-for="(item, index) in dataDetails" :key="index">
-                                    <div><span class="word">From</span> {{ item.fromaddr }} <span class="word">To</span>
+                                    <div><span class="word">From</span> {{ item.fromaddr }} <span class="word"> <br>
+                                            To</span>
                                         {{ item.toaddr }} <span class="word">For</span> {{ getNumber(item.quantity)
                                         }}</div>
                                 </div>
