@@ -3,9 +3,9 @@
         <div class="container">
             <div class="details-content">
                 <div class="content-title">{{ $t('hrc20.overview') }}</div>
-                <div class="content-item"><span class="title">{{ $t('dpos.address') }}:</span> {{ address }}</div>
-                <div class="content-item"><span class="title">{{ $t('hrc20.decimals') }}: </span>{{ decimals }}</div>
-                <div class="content-item"><span class="title">{{ $t('hrc20.name') }}:</span> {{ name }}</div>
+                <div class="content-item"><span class="title">{{ $t('dpos.address') }}：</span> {{ address }}</div>
+                <div class="content-item"><span class="title">{{ $t('hrc20.decimals') }}： </span>{{ decimals }}</div>
+                <div class="content-item"><span class="title">{{ $t('hrc20.name') }}：</span> {{ name }}</div>
             </div>
             <div class="details-content">
                 <div class="content-title">{{ $t('hrc20.profileSummary') }}</div>
@@ -25,7 +25,7 @@
 
                                     <div data-v-18b505e9="" class="votes"><b data-v-18b505e9="">{{ $t("Pending.hash")
                                     }}</b></div>
-                                    <div data-v-18b505e9="" class="name" style="margin-left: 200px;"><b
+                                    <div data-v-18b505e9="" class="name" style="margin-left: 400px;"><b
                                             data-v-18b505e9="">{{ $t("hrc20.method")
                                             }}</b></div>
                                     <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">{{ $t("Address.time")
@@ -40,7 +40,7 @@
                                 </li>
                                 <li data-v-18b505e9="" class="item" v-for="(item, index) in dataList" :key="index">
 
-                                    <div class="first-item" style="color: #612591; width: 500px;"
+                                    <div class="first-item" style="cursor: pointer;color: #612591; width: 1000px;"
                                         @click="toDetails(item)">{{
                                                 item.txHash
                                         }}</div>
@@ -134,7 +134,7 @@ export default {
     color: #9b9b9b;
     font-weight: bold;
     text-align: right;
-    min-width: 80px;
+    min-width: 100px;
 }
 
 .first-item {
