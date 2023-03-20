@@ -9,9 +9,9 @@
             </div>
             <div class="details-content">
                 <div class="content-title">{{ $t('hrc20.profileSummary') }}</div>
-                <div class="content-item"><span class="title">{{ $t('hrc20.owner') }}:</span> {{ owner }}</div>
-                <div class="content-item"><span class="title">{{ $t('hrc20.symbol') }}:</span> {{ symbol }}</div>
-                <div class="content-item"><span class="title">{{ $t('hrc20.totalSupply') }}: </span>{{ totalSupply }}
+                <div class="content-item"><span class="title">{{ $t('hrc20.owner') }}：</span> {{ owner }}</div>
+                <div class="content-item"><span class="title">{{ $t('hrc20.symbol') }}：</span> {{ symbol }}</div>
+                <div class="content-item"><span class="title">{{ $t('hrc20.totalSupply') }}：</span>{{ totalSupply }}
                 </div>
             </div>
         </div>
@@ -42,13 +42,13 @@
 
                                     <div class="first-item" style="cursor: pointer;color: #612591; width: 1000px;"
                                         @click="toDetails(item)">{{
-                                                item.txHash
+                                            item.txid
                                         }}</div>
-                                    <div style="color: #612591;"> {{ item.methodid }} </div>
+                                    <div style="color: #612591;"> {{ item.fun }} </div>
                                     <div style="color: #f1b434;">{{ getTime(item.ts) }}</div>
-                                    <div class="first-item" style="color: #f1b434;">{{ item.fromaddr }}</div>
-                                    <div class="first-item" style="color: #f1b434;">{{ item.toaddr }}</div>
-                                    <div style="color: #f1b434;">{{ getNumber(item.quantity) }}
+                                    <div class="first-item" style="color: #f1b434;">{{ item.topics1 }}</div>
+                                    <div class="first-item" style="color: #f1b434;">{{ item.topics2 }}</div>
+                                    <div style="color: #f1b434;">{{ getNumber(item.data) }}
                                     </div>
                                 </li>
                             </div>
@@ -85,17 +85,17 @@ export default {
         this.owner = this.$route.query.owner
         this.symbol = this.$route.query.symbol
         this.totalSupply = this.$route.query.totalSupply
+        console.log('this.$route.query', this.$route.query)
     },
     mounted() {
         this.getList()
-
     },
     methods: {
         toDetails(item) {
             this.$router.push({
                 path: '/tx',
                 query: {
-                    txid: item.txHash
+                    txid: item.txid
                 }
             })
         },

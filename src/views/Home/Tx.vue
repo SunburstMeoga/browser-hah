@@ -13,7 +13,7 @@
                                 <div class="val" data-v-57312e58="">
                                     {{ txid }}
                                 </div>
-                            </div><!----><!---->
+                            </div>
                             <div class="item" data-v-57312e58="">
                                 <div class="key" data-v-57312e58="">{{ $t('Tx.block') }}</div>
                                 <div class="value" data-v-57312e58="">
@@ -27,7 +27,7 @@
                             </div>
                             <div class="item" data-v-57312e58="">
                                 <div class="key" data-v-57312e58="">{{ $t('Tx.from') }}</div>
-                                <div class="value" data-v-57312e58="">{{ form }}</div>
+                                <div class="value" data-v-57312e58="">{{ from }}</div>
                             </div>
                             <div class="item" data-v-57312e58="">
                                 <div class="key" data-v-57312e58="">{{ $t('Tx.to') }}</div>
@@ -41,9 +41,11 @@
                             <div class="item" data-v-57312e58="" v-if="dataDetails.length !== 0">
                                 <div class="key" data-v-57312e58="">Transferred</div>
                                 <div class="value" data-v-57312e58="" v-for="(item, index) in dataDetails" :key="index">
-                                    <div><span class="word">From</span> {{ item.fromaddr }} <span class="word"> <br>
+                                    <div><span class="word">From</span> {{ addressformat(item.topics1) }} <span
+                                            class="word"> <br>
                                             To</span>
-                                        {{ item.toaddr }} <span class="word">For</span> {{ getNumber(item.quantity)
+                                        {{ addressformat(item.topics2) }} <span class="word">For</span> {{
+                                            getNumber(item.data)
                                         }}</div>
                                 </div>
                             </div>
@@ -99,7 +101,7 @@ export default {
         return {
             txid: '',
             block_hash: '',
-            form: '',
+            from: '',
             to: '',
             amount: '',
             free: '',
@@ -113,7 +115,15 @@ export default {
             dataDetails: []
         }
     },
+    created() {
+        console.log('this.$route.query', this.$route.query)
+        this.txid = this.$route.query.txid
+        this.getTxinfo()
+        this.getList()
+    },
     methods: {
+
+
         getNumber(str) {
             let target = Math.pow(10, 18)
             let num = Number(str);//将字符串转换为Number类型
@@ -125,18 +135,19 @@ export default {
                 txid: this.txid
             };
             this.$api.hrc20Details(params).then(res => {
-                console.log(res)
                 this.dataDetails = res
+                // console.log('hrc20Details', res)
             });
         },
-        gettxinfo() {
+        getTxinfo() {
             let params = {
                 txid: this.txid,
             };
             let that = this
             this.$api.tx(params).then(res => {
+                // console.log('tx', res)
                 that.block_hash = res[0].block_hash
-                that.form = res[0].from
+                that.from = res[0].from
                 that.to = res[0].to
                 that.amount = res[0].amount
                 that.free = res[0].fee
@@ -147,6 +158,17 @@ export default {
                 that.client_out = res[0].client_out
                 that.transtime = that.timeformat(res[0].transtime)
             });
+        },
+        addressformat(str) {
+            let arr = []
+            arr = str.split('')
+            let arrTarget = []
+            arr.map((item, index) => {
+                if (index <= 1 || index > 25) {
+                    arrTarget.push(item)
+                }
+            })
+            return arrTarget.join('')
         },
         timeformat(obj) {
             if (obj == null) {
@@ -162,11 +184,6 @@ export default {
             return y + "-" + m.substring(m.length - 2, m.length) + "-" + d.substring(d.length - 2, d.length) + " " + h.substring(h.length - 2, h.length) + ":" + mm.substring(mm.length - 2, mm.length) + ":" + s;
         }
     },
-    created() {
-        this.txid = this.$route.query.txid
-        this.gettxinfo()
-        this.getList()
-    }
 }
 </script>
 

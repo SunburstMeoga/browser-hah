@@ -30,7 +30,7 @@ axios.interceptors.request.use(request => {
 
 
 }, error => {
-    Message.error("请求错误");
+    Message.error("请求错误", error);
 });
 
 //request interceptor 
@@ -61,7 +61,7 @@ const basePost = (url, params, config) => {
                         router.replace("/login");
                     }
                 });
-            } else if (res.code == -2) { 
+            } else if (res.code == -2) {
                 localStorage.removeItem("token");
                 MessageBox({
                     title: "Tips",
@@ -98,7 +98,7 @@ const baseGet = (url, params) => {
                         router.replace("/login");
                     }
                 });
-            } else if (res.code == -2) { 
+            } else if (res.code == -2) {
                 localStorage.removeItem("token");
                 MessageBox({
                     title: "Tips",

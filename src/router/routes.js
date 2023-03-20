@@ -101,7 +101,7 @@ const routes = [
                     title: i18n.t('routes.HRC20')
                 },
                 component: () => import("../views/Home/HRC20.vue")
-            },           
+            },
             {
                 path: "/HRC20Details",
                 name: "HRC20Details",
@@ -111,7 +111,7 @@ const routes = [
                     title: i18n.t('routes.HRC20Details')
                 },
                 component: () => import("../views/Home/HRC20Details.vue")
-            },      
+            },
             {
                 path: "/dposDetail",
                 name: "dposDetail",
@@ -121,7 +121,7 @@ const routes = [
                     title: i18n.t('routes.dposDetail')
                 },
                 component: () => import("../views/Home/dposDetail.vue")
-            },           
+            },
             {
                 path: "/main",
                 name: "main",
@@ -131,10 +131,21 @@ const routes = [
                     title: i18n.t('routes.main')
                 },
                 component: () => import("../views/Home/main.vue")
+            },
+            {
+                path: "/faucet-smart",
+                name: "faucet-smart",
+                meta: {
+                    parent: "",
+                    needLogin: false,
+                    title: i18n.t('routes.faucet-smart')
+                },
+                component: () => import("../views/Home/FaucetSmart.vue")
             }
-            
-            
-          
+
+
+
+
         ]
     }
 ]

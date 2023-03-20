@@ -50,5 +50,8 @@ export default {
     },
     detailsData(params) {
         return baseGet("/contract_tx/", params)
+    },
+    getTestHAHChain(params) {
+        return baseGet("/faucet/", params)
     }
 }

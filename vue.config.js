@@ -1,20 +1,20 @@
 module.exports = {
-    publicPath:"./",
-    devServer:{
-        proxy:{
-            "/api":{
-               // target:"http://119.8.55.78:7711/",
-                target:"http://119.8.52.235/api",
-                changeOrigin:true,
+    publicPath: "./",
+    devServer: {
+        proxy: {
+            "/api": {
+                target: "http://192.168.3.9:7711/",
+                // target:"http://119.8.52.235/api",
+                changeOrigin: true,
                 secure: false,
-                ws:true,
-                pathRewrite:{
-                    "^/api":""
+                ws: true,
+                pathRewrite: {
+                    "^/api": ""
                 }
             }
         },
-        open:true,
-        https:false
+        open: true,
+        https: false
     },
     lintOnSave: false,
     chainWebpack: config => {
