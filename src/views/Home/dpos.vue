@@ -18,14 +18,14 @@
                                 <div data-v-18b505e9="" class="inner">
                                     <div data-v-18b505e9="" class="rich_list">
                                         <li data-v-18b505e9="" class="item">
-                                            <div data-v-18b505e9="" class="index dposeindex"><b
-                                                    data-v-18b505e9="">{{ $t('dpos.serialNumber') }}</b></div>
-                                            <div data-v-18b505e9="" class="address"><b
-                                                    data-v-18b505e9="">{{ $t('dpos.address') }}</b></div>
-                                            <div data-v-18b505e9="" class="votes"><b
-                                                    data-v-18b505e9="">{{ $t('dpos.vote') }}</b></div>
-                                            <div data-v-18b505e9="" class="name"><b
-                                                    data-v-18b505e9="">{{ $t('dpos.name') }}</b></div>
+                                            <div data-v-18b505e9="" class="index dposeindex"><b data-v-18b505e9="">{{
+                                                $t('dpos.serialNumber') }}</b></div>
+                                            <div data-v-18b505e9="" class="address"><b data-v-18b505e9="">{{
+                                                $t('dpos.address') }}</b></div>
+                                            <div data-v-18b505e9="" class="votes"><b data-v-18b505e9="">{{ $t('dpos.vote')
+                                            }}</b></div>
+                                            <div data-v-18b505e9="" class="name"><b data-v-18b505e9="">{{ $t('dpos.name')
+                                            }}</b></div>
                                         </li>
                                         <li data-v-18b505e9="" class="item" v-for="(item, index) in dposlistDatas"
                                             :key="index">
@@ -102,6 +102,9 @@ export default {
             address: ''
         }
     },
+    created() {
+        this.getList()
+    },
     methods: {
         getList() {
             let params = {
@@ -132,11 +135,8 @@ export default {
 
 
         },
-        created() {
-            this.getList()
-        },
-
     }
+}
 </script>
 
 <style>
@@ -158,4 +158,5 @@ li {}
 
 a {
     color: #2d8cf0;
-}</style>
+}
+</style>
