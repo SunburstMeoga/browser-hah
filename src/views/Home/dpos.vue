@@ -126,16 +126,15 @@ export default {
             console.log(this.showa);
         },
         handleWindow(dposAddress) {
-            // var route = this.$router.resolve({
-            //     name: 'dposDetail',
-            // })               
-            // sessionStorage.setItem("dposAddress", dposAddress);                
-            // window.open(route.href, '_blank')
-            // } 
+            var route = this.$router.resolve({
+                name: 'dposDetail',
+            })
+            sessionStorage.setItem("dposAddress", dposAddress);
+            window.open(route.href, '_blank')
+        }
 
 
-        },
-    }
+    },
 }
 </script>
 
