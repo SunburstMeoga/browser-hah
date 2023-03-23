@@ -1,5 +1,4 @@
 <template>
-
     <div>
 
         <div class="content-child" data-v-02b3c3b7 data-v-02b3c3b7>
@@ -40,18 +39,18 @@
                                         <li data-v-ce118d7e="" class="inner_item time">{{ $t('BlockList.time') }}</li>
                                     </ul>
                                     <span data-v-ce118d7e="">
-                                        <ul data-v-ce118d7e="" class="item content"
-                                            v-for="(item, index) in BlocklistDatas" :key="index">
+                                        <ul data-v-ce118d7e="" class="item content" v-for="(item, index) in BlocklistDatas"
+                                            :key="index">
                                             <li data-v-ce118d7e="" class="inner_item height">
                                                 <router-link :to="{ name: 'block', query: { hash: item.height } }">{{
-                                                        item.height
+                                                    item.height
                                                 }}</router-link>
                                             </li>
 
                                             <li data-v-ce118d7e="" class="inner_item miner">
                                                 <router-link
                                                     :to="{ name: 'address', query: { hash: item.reward_address } }">{{
-                                                            item.reward_address
+                                                        item.reward_address
                                                     }}</router-link>
                                             </li>
                                             <li data-v-ce118d7e="" class="inner_item prize">{{ item.reward_money }}</li>
@@ -84,7 +83,7 @@
                                             {{ $t('BlockList.height') }}
                                             <div data-v-ce118d7e="" class="value">
                                                 <router-link :to="{ name: 'block', query: { height: item.height } }">{{
-                                                        item.height
+                                                    item.height
                                                 }}</router-link>
                                             </div>
                                         </div>
@@ -118,7 +117,7 @@
                                             <div data-v-ce118d7e="" class="value">
                                                 <div data-v-ce118d7e=""><span class="el-tooltip"
                                                         aria-describedby="el-tooltip-4340" tabindex="0">{{
-                                                                timeformat(item.time)
+                                                            timeformat(item.time)
                                                         }}</span></div>
                                             </div>
                                         </div><!----><!---->
@@ -166,16 +165,16 @@
                                     </li>
                                     <li data-v-603f4bbb="" class="inner_item time"><span data-v-603f4bbb=""
                                             class="el-tooltip" aria-describedby="el-tooltip-9935" tabindex="0">{{
-                                                    timeformat(item.transtime)
+                                                timeformat(item.transtime)
                                             }}</span></li>
                                     <li data-v-603f4bbb="" class="inner_item fee">{{ item.amount }}</li>
                                     <li data-v-603f4bbb="" class="inner_item from"><!----><span data-v-603f4bbb="">{{
-                                            item.from
+                                        item.from
                                     }}</span>
                                         <!---->
                                     </li>
                                     <li data-v-603f4bbb="" class="inner_item to"><!----><span data-v-603f4bbb="">{{
-                                            item.to
+                                        item.to
                                     }}</span>
                                         <!---->
                                     </li>
@@ -196,9 +195,9 @@
                                     </div>
                                     <div data-v-603f4bbb="" class="item">
                                         <div data-v-603f4bbb="" class="key">{{ $t('Pending.time') }}</div>
-                                        <div data-v-603f4bbb="" class="value"><span data-v-603f4bbb=""
-                                                class="el-tooltip" aria-describedby="el-tooltip-6781" tabindex="0">{{
-                                                        timeformat(item.transtime)
+                                        <div data-v-603f4bbb="" class="value"><span data-v-603f4bbb="" class="el-tooltip"
+                                                aria-describedby="el-tooltip-6781" tabindex="0">{{
+                                                    timeformat(item.transtime)
                                                 }}</span></div>
                                     </div>
                                     <div data-v-603f4bbb="" class="item">
@@ -210,7 +209,7 @@
                                     <div data-v-603f4bbb="" class="item">
                                         <div data-v-603f4bbb="" class="key">{{ $t('Pending.from') }}</div>
                                         <div data-v-603f4bbb="" class="value"><!----><span data-v-603f4bbb="">{{
-                                                item.from
+                                            item.from
                                         }}</span>
                                             <!---->
                                         </div>

@@ -1,34 +1,15 @@
 <template>
   <div id="app">
-    <router-view v-if="isRouterAlive" :key="$route.fullPath"/>
+    top
+    <router-view></router-view>
+    bottom
   </div>
 </template>
 
 <script>
 export default {
-  data(){
-    return {
-      isRouterAlive:true
-    }
-  },
-  methods: {
-    reload () {
-      console.log("Refresh");
-      this.isRouterAlive = false
-      this.$nextTick(function() {
-         this.isRouterAlive = true
-      })
-    }
-  },
-  provide()
-  {
-    return {
-      reload:this.reload
-    }
-  }
+  name: 'App'
 }
 </script>
 
-<style>
-
-</style>
+<style></style>
