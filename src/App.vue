@@ -1,14 +1,23 @@
 <template>
   <div id="app">
-    <router-view v-if="isRouterAlive" :key="$route.fullPath" />
+    <e-top-bar></e-top-bar>
+    <router-view></router-view>
+    <e-footer-bar></e-footer-bar>
   </div>
 </template>
 
 <script>
+import eTopBar from '@/components/public/eTopBar.vue'
+import eFooterBar from "@/components/public/eFooterBar.vue"
 export default {
+  components: {
+    eTopBar,
+    eFooterBar
+  },
   data() {
     return {
-      isRouterAlive: true
+      isRouterAlive: true,
+      list: []
     }
   },
   methods: {

@@ -95,6 +95,7 @@
 </template>
 
 <script>
+import { txDetails } from '@/api/home'
 export default {
     name: "Tx",
     data() {
@@ -119,7 +120,7 @@ export default {
         console.log('this.$route.query', this.$route.query)
         this.txid = this.$route.query.txid
         this.getTxinfo()
-        this.getList()
+        this.getTXDetails()
     },
     methods: {
 
@@ -130,33 +131,31 @@ export default {
             let result = (num / target).toFixed(4);//将Number类型转换为保留四位数的字符串数据
             return result
         },
-        getList() {
+        getTXDetails() {
             let params = {
                 txid: this.txid
             };
-            this.$api.hrc20Details(params).then(res => {
+            txDetails(params).then(res => {
                 this.dataDetails = res
-                // console.log('hrc20Details', res)
             });
         },
         getTxinfo() {
             let params = {
                 txid: this.txid,
             };
-            let that = this
             this.$api.tx(params).then(res => {
                 // console.log('tx', res)
-                that.block_hash = res[0].block_hash
-                that.from = res[0].from
-                that.to = res[0].to
-                that.amount = res[0].amount
-                that.free = res[0].fee
-                that.nonce = res[0].nonce
-                that.dpos_in = res[0].dpos_in
-                that.dpos_out = res[0].dpos_out
-                that.client_in = res[0].client_in
-                that.client_out = res[0].client_out
-                that.transtime = that.timeformat(res[0].transtime)
+                this.block_hash = res[0].block_hash
+                this.from = res[0].from
+                this.to = res[0].to
+                this.amount = res[0].amount
+                this.free = res[0].fee
+                this.nonce = res[0].nonce
+                this.dpos_in = res[0].dpos_in
+                this.dpos_out = res[0].dpos_out
+                this.client_in = res[0].client_in
+                this.client_out = res[0].client_out
+                this.transtime = this.timeformat(res[0].transtime)
             });
         },
         addressformat(str) {

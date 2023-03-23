@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <div class="content-child" data-v-02b3c3b7 data-v-02b3c3b7>
+        <div class="content-child" data-v-02b3c3b7>
 
 
             <!--            <h1 class="h1"></h1>-->
@@ -41,17 +41,15 @@
                                     <span data-v-ce118d7e="">
                                         <ul data-v-ce118d7e="" class="item content" v-for="(item, index) in BlocklistDatas"
                                             :key="index">
-                                            <li data-v-ce118d7e="" class="inner_item height">
-                                                <router-link :to="{ name: 'block', query: { hash: item.height } }">{{
-                                                    item.height
-                                                }}</router-link>
+                                            <li data-v-ce118d7e="" class="inner_item height" @click="toHeight(item.height)">
+                                                {{ item.height }}
                                             </li>
 
-                                            <li data-v-ce118d7e="" class="inner_item miner">
-                                                <router-link
-                                                    :to="{ name: 'address', query: { hash: item.reward_address } }">{{
-                                                        item.reward_address
-                                                    }}</router-link>
+                                            <li data-v-ce118d7e="" class="inner_item miner"
+                                                @click="toAddress(item.reward_address)">
+
+                                                {{ item.reward_address
+                                                }}
                                             </li>
                                             <li data-v-ce118d7e="" class="inner_item prize">{{ item.reward_money }}</li>
                                             <li data-v-ce118d7e="" class="inner_item miner">
@@ -81,10 +79,8 @@
                                         :key="index">
                                         <div data-v-ce118d7e="" class="item">
                                             {{ $t('BlockList.height') }}
-                                            <div data-v-ce118d7e="" class="value">
-                                                <router-link :to="{ name: 'block', query: { height: item.height } }">{{
-                                                    item.height
-                                                }}</router-link>
+                                            <div data-v-ce118d7e="" class="value" @click="toHeight(item.height)">
+                                                {{ item.height }}
                                             </div>
                                         </div>
                                         <div data-v-ce118d7e="" class="item">
@@ -159,9 +155,8 @@
 
                                 <ul data-v-603f4bbb="" class="item content" v-for="(item, index) in TxlistDatas"
                                     :key="index">
-                                    <li data-v-603f4bbb="" class="inner_item hash">
-                                        <router-link :to="{ name: 'tx', query: { txid: item.txid } }">{{ item.txid
-                                        }}</router-link>
+                                    <li data-v-603f4bbb="" class="inner_item hash" @click="toTX(item.txid)">
+                                        {{ item.txid }}
                                     </li>
                                     <li data-v-603f4bbb="" class="inner_item time"><span data-v-603f4bbb=""
                                             class="el-tooltip" aria-describedby="el-tooltip-9935" tabindex="0">{{
@@ -188,9 +183,8 @@
                                 <ul data-v-603f4bbb="" class="items" v-for="(item, index) in TxlistDatas" :key="index">
                                     <div data-v-603f4bbb="" class="item">
                                         <div data-v-603f4bbb="" class="key">{{ $t('Pending.hash') }}</div>
-                                        <div data-v-603f4bbb="" class="value">
-                                            <router-link :to="{ name: 'tx', query: { txid: item.txid } }">{{ item.txid
-                                            }}</router-link>
+                                        <div data-v-603f4bbb="" class="value" @click="toTX(item.txid)">
+                                            {{ item.txid }}
                                         </div>
                                     </div>
                                     <div data-v-603f4bbb="" class="item">
@@ -246,6 +240,7 @@
 </template>
 
 <script>
+import { newBlock, newTX, blockStatistics } from '../../api/home';
 export default {
     name: "index",
     inject: ['reload'],
@@ -260,21 +255,60 @@ export default {
             series: "",
         }
     },
+    mounted() {
+        this.getNewBlock()
+        this.getNewTX()
+        let days = 31;
+        if (this._isMobile()) {
+            days = 8;
+        }
+        this.getChartData(days)
+        // this.timer = setInterval(() => {
+        //     this.getNewBlock()
+        //     this.getNewTX()
+        //     this.getChartData(days)
+        // }, 1000 * 10)
+    },
     methods: {
-        getList() {
-            let params = {};
-            let that = this
-            this.$api.newblock(params).then(res => {
-                that.BlocklistDatas = res
-            });
-
-            this.$api.newtx(params).then(res => {
-                that.TxlistDatas = res
-            });
+        //to address info 
+        toAddress(address) {
+            this.$router.push({
+                path: '/address',
+                query: {
+                    address: address
+                }
+            })
+        },
+        toHeight(height) {
+            this.$router.push({
+                path: '/block',
+                query: {
+                    height: height
+                }
+            })
+        },
+        toTX(txid) {
+            this.$router.push({
+                path: '/tx',
+                query: {
+                    txid: txid
+                }
+            })
+        },
+        getNewTX() {
+            newTX().then(res => {
+                console.log('newTX', res)
+                this.TxlistDatas = res
+            })
+        },
+        getNewBlock() {
+            newBlock().then(response => {
+                console.log('getNewBlock', response)
+                this.BlocklistDatas = response
+            })
         },
         drawChart() {
             let myChart = this.$echarts.init(document.getElementById("chart"));
-
             let option = {
                 grid: {
                     left: '10%',
@@ -287,30 +321,27 @@ export default {
                 },
                 tooltip: {},
                 legend: {
-
                     data: this.legend
                 },
                 xAxis: {
-
                     data: this.xAxis
-
                 },
                 yAxis: {},
                 series: this.series
             };
 
             myChart.setOption(option);
-            console.log("option", option);
         },
         getChartData(days) {
             let params = {
                 days: days,
             };
-            let that = this
-            this.$api.blockstatistics(params).then(res => {
-                that.ranklistDatas = res;
-                that.legend = res.legend;
-                that.xAxis = res.xAxis;
+            blockStatistics(params).then(res => {
+                console.log('blockStatistics', res)
+
+                this.ranklistDatas = res
+                this.legend = res.length
+                this.xAxis = res.xAxis;
                 let series = [];
                 for (let serieIndex = 0; serieIndex < res.series.length; serieIndex++) {
                     let serie =
@@ -321,11 +352,9 @@ export default {
                     }
                     series.push(serie)
                 }
-                that.series = series;
-
-                that.drawChart();
-
-            });
+                this.series = series;
+                this.drawChart();
+            })
         },
         timeformat(obj) {
             if (obj == null) {
@@ -344,24 +373,16 @@ export default {
             let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
             return flag;
         }
-    },
-    created() {
-
-    },
-    mounted() {
-        this.getList()
-        let days = 31;
-        if (this._isMobile()) {
-            days = 8;
-        }
-        this.getChartData(days)
-        this.timer = setInterval(() => {
-            this.getList()
-            this.getChartData(days)
-        }, 1000 * 10)
     }
 }
 </script>
+<style>
+@import url("../../assets/css/home.css");
+@import url("../../assets/css/index.css");
+@import url("../../assets/css/iview.css");
+@import url("../../assets/css/custom.css");
+</style>
+
 
 
 
