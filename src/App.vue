@@ -13,26 +13,6 @@ export default {
   components: {
     eTopBar,
     eFooterBar
-  },
-  data() {
-    return {
-      isRouterAlive: true,
-      list: []
-    }
-  },
-  methods: {
-    reload() {
-      console.log("Refresh");
-      this.isRouterAlive = false
-      this.$nextTick(function () {
-        this.isRouterAlive = true
-      })
-    }
-  },
-  provide() {
-    return {
-      reload: this.reload
-    }
   }
 }
 </script>

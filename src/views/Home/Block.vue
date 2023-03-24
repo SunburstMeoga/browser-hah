@@ -31,10 +31,8 @@
                         <div data-v-4d10a54f="" class="item">
                             <div data-v-4d10a54f="" class="key">{{ $t('Block.previousBlock') }}</div>
                             <div data-v-4d10a54f="" class="value">
-                                <!--                                {{ prev_hash  }}-->
-                                <router-link :to="{ name: 'block', query: { hash: prev_hash } }">{{ prev_hash
-                                }}</router-link>
-                                <!---->
+                                {{ prev_hash
+                                }}
                             </div>
                         </div>
                         <div data-v-4d10a54f="" class="item">
@@ -59,12 +57,11 @@
 
                     <div data-v-bfa74ae2="" data-v-1a6f007e="" class="txs_box">
                         <ul data-v-bfa74ae2="" class="tx-ul ">
-                            <li data-v-bfa74ae2="" v-for="(item, index) in TxListDatas" :key="index"><!---->
+                            <li data-v-bfa74ae2="" v-for="(item, index) in TxListDatas" :key="index">
                                 <div data-v-bfa74ae2="" class="tx_baseinfo">
-                                    <div data-v-bfa74ae2="" class="left">
-                                        <div data-v-bfa74ae2="" class="title">{{ $t('Block.hash') }}</div><!---->
-                                        <router-link :to="{ name: 'tx', query: { txid: item.txid } }">{{ item.txid
-                                        }}</router-link>
+                                    <div data-v-bfa74ae2="" class="left" @click="toTX(item.txid)">
+                                        <div data-v-bfa74ae2="" class="title">{{ $t('Block.hash') }}</div>
+                                        {{ item.txid }}
                                     </div>
                                     <div data-v-bfa74ae2="" class="right">
                                         <div data-v-bfa74ae2=""><span data-v-bfa74ae2="" class="title">{{ $t('Block.time')
@@ -182,6 +179,12 @@ export default {
     },
     methods: {
         timeFormat,
+        toTX(txid) {
+            console.log('sfadfs')
+            this.$router.push({
+                path: '/tx/' + txid
+            })
+        },
         getTXList() {
             let param = {
                 page: this.pagenum,

@@ -136,7 +136,7 @@ export default {
         }
     },
     created() {
-        this.dposAddress = this.$route.query.dposAddress
+        this.dposAddress = this.$route.params.dposAddress
         this.getDelegateDetails()
     },
     methods: {

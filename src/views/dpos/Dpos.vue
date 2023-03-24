@@ -127,10 +127,7 @@ export default {
         },
         handleWindow(dposAddress) {
             this.$router.push({
-                path: '/dpos/details',
-                query: {
-                    dposAddress: dposAddress
-                }
+                path: '/dpos/details/' + dposAddress
             })
         }
 

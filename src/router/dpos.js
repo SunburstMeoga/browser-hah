@@ -5,7 +5,7 @@ export default [
         component: () => import('@/views/dpos/Dpos')
     },
     {
-        path: '/dpos/details',
+        path: '/dpos/details/:dposAddress',
         name: 'dpos',
         component: () => import('@/views/dpos/DposDetail')
     }

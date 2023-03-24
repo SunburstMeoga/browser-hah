@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div>
         <div class="layout-header" data-v-02b3c3b7>
             <div class="head cn">
@@ -17,12 +17,12 @@
                         <div class="order">
                             <div class="menu icon-menu"></div>
                             <img src="../../assets/images/custom/logo.png" alt="$t('common.browser')" class="coinlogo">
-                            <div class="coin_name">{{ $t('common.browser') }}</div><!---->
+                            <div class="coin_name">{{ $t('common.browser') }}</div>
                         </div>
                     </a>
                     <div class="inner_header">
                         <div class="rt" style="min-width:500px;">
-                            <ul class="bottom"><!---->
+                            <ul class="bottom">
                                 <li class="item active" @click="toHome">{{ $t('eTopBar.home') }}
                                 </li>
                                 <li class="item active" @click="toRank">{{ $t('eTopBar.rich') }}
@@ -39,11 +39,6 @@
                                         :value="item.value">
                                     </el-option>
                                 </el-select>
-                                <!-- <li class="item active"   title="$t('common.browser')" @mouseover="showLanguage()" >language</li>
-                            <div v-show="openLanguage" class="language-menu"  @mouseleave="hideLanguage()">
-                                <div @click="chooseLanguage('zh-CN')">中文</div>
-                                <div @click="chooseLanguage('en-US')">English</div>
-                            </div>-->
                             </ul>
                         </div>
                     </div>
@@ -56,11 +51,10 @@
                 <div class="head_menu"><a href="/" data-tracking="coins-header-home">
                         <div class="coin_name"><img src="../../assets/images/custom/logo.png" alt="" class="icon">
                             {{ $t('common.browser') }}
-                            <!---->
                         </div>
                     </a>
                     <div :class="{ 'menu': true, 'openmenu': !openFlag, 'closemenu': openFlag }" @click="toggleMenu"></div>
-                </div><!---->
+                </div>
 
                 <ul class="smallUl menu-card" v-if="openFlag">
                     <li class="item active"><a href="/" alt="" title="$t('common.browser')"
@@ -94,20 +88,18 @@
                 </div>
                 <input type="text" :placeholder="$t('common.placeholder')" value="" class="search" data-v-4196e052
                     v-model="search_text">
-                <div class="search_btn" data-v-4196e052 @click="search()">{{ $t('common.search') }}</div><!---->
+                <div class="search_btn" data-v-4196e052 @click="search()">{{ $t('common.search') }}</div>
             </div>
-            <div class="header_tips" data-v-4196e052></div><!----><!---->
+            <div class="header_tips" data-v-4196e052></div>
         </div>
 
 
-
     </div>
-</template>
-
+</template> -->
+<template></template>
 
 <script>
 export default {
-    name: "eTopBar",
     data() {
         return {
             options: [{

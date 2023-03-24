@@ -58,9 +58,10 @@
                                 <li data-v-bfa74ae2="" v-for="(item, index) in TxListDatas" :key="index"><!---->
                                     <div data-v-bfa74ae2="" class="tx_baseinfo">
                                         <div data-v-bfa74ae2="" class="left">
-                                            <div data-v-bfa74ae2="" class="title">{{ $t('Address.hash') }}</div><!---->
-                                            <router-link :to="{ name: 'tx', query: { txid: item.txid } }">{{ item.txid
-                                            }}</router-link>
+                                            <div data-v-bfa74ae2="" @click="toTX(item.txid)" class="title">{{
+                                                $t('Address.hash') }}</div><!---->
+                                            {{ item.txid
+                                            }}
                                         </div>
                                         <div data-v-bfa74ae2="" class="right">
                                             <div data-v-bfa74ae2=""><span data-v-bfa74ae2="" class="title">{{
@@ -182,6 +183,11 @@ export default {
     },
     methods: {
         timeFormat,
+        toTX(txid) {
+            this.$router.push({
+                path: '/tx/' + txid
+            })
+        },
         getAddressInfo() {
             let params = {
                 address: this.address,

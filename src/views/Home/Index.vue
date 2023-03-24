@@ -244,7 +244,6 @@ import { newBlock, newTX, blockStatistics } from '@/request/home'
 import { timeFormat } from '@/utils/format'
 export default {
     name: "index",
-    inject: ['reload'],
     data() {
         return {
             BlocklistDatas: [],

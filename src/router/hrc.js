@@ -2,11 +2,11 @@ export default [
     {
         path: '/hrc',
         name: 'HRC',
-        component: () => import('@/views/hrc/HRC')
+        component: () => import('@/views/HRC/HRC')
     },
     {
         path: '/hrc/details',
         name: 'HRC',
-        component: () => import('@/views/hrc/HRCDetails')
+        component: () => import('@/views/HRC/HRCDetails')
     }
 ]

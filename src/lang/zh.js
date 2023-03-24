@@ -55,7 +55,7 @@ module.exports = {
     address: "播报方",
     reward: "爆块奖励",
     amount: "交易数量",
-    previousBlock: "上一区块",
+    previousBlock: "上一哈希",
     time: "时间",
 
   },

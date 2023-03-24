@@ -12,7 +12,7 @@ export function timeFormat(obj) {
     return y + "-" + m.substring(m.length - 2, m.length) + "-" + d.substring(d.length - 2, d.length) + " " + h.substring(h.length - 2, h.length) + ":" + mm.substring(mm.length - 2, mm.length) + ":" + s;
 }
 
-export function addressFormat() {
+export function addressFormat(str) {
     let arr = []
     arr = str.split('')
     let arrTarget = []

@@ -14,12 +14,6 @@ Vue.use(ElementUI)
 Vue.config.productionTip = false
 
 
-
-
-import api from './request/api';
-Vue.prototype.$api = api;
-
-
 import globalString from './lang/global';
 Vue.prototype.globalString = globalString
 // import staffapi from './request/staffapi';
