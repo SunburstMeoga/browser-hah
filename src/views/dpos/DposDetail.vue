@@ -119,7 +119,7 @@
 </template>
 
 <script>
-import { listDelegateDetails } from '@/server/dpos'
+import { listDelegateDetails } from '@/request/dpos'
 import { timeFormat, addressFormat, amountFormat } from '@/utils/format'
 export default {
     name: "dpos",

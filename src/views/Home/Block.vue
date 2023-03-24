@@ -153,7 +153,7 @@
 </template>
 
 <script>
-import { blockInfo, TXList } from '@/server/home'
+import { blockInfo, TXList } from '@/request/home'
 import { timeFormat } from '@/utils/format'
 
 export default {

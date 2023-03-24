@@ -152,7 +152,7 @@
 </template>
 
 <script>
-import { addressInfo, balanceInfo } from '@/server/home'
+import { addressInfo, balanceInfo } from '@/request/home'
 import { timeFormat } from '@/utils/format'
 
 export default {

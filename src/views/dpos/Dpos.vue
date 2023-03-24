@@ -92,7 +92,7 @@
 
 
 <script>
-import { listDelegate } from '@/server/dpos'
+import { listDelegate } from '@/request/dpos'
 export default {
     name: "dpos",
     data() {

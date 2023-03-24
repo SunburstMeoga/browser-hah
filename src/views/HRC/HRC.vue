@@ -53,7 +53,7 @@
 
 
 <script>
-import { listHRC20 } from '@/server/hrc';
+import { listHRC20 } from '@/request/hrc';
 export default {
   data() {
     return {

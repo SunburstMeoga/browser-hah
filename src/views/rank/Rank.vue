@@ -97,7 +97,7 @@
 
 
 <script>
-import { rankList } from '@/server/rank';
+import { rankList } from '@/request/rank';
 export default {
     name: "Rank",
     data() {

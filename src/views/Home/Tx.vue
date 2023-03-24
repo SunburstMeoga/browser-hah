@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import { txDetails, txInfo } from '@/server/home'
+import { txDetails, txInfo } from '@/request/home'
 import { timeFormat, addressFormat, amountFormat } from '@/utils/format'
 
 export default {

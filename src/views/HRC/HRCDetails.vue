@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { contractTX } from '@/server/hrc'
+import { contractTX } from '@/request/hrc'
 import { amountFormat, timeFormat } from '@/utils/format'
 export default {
     data() {
