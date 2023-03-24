@@ -176,7 +176,7 @@ export default {
         }
     },
     created() {
-        this.param = this.$route.query.height
+        this.param = this.$route.params.height
         this.getBlockInfo()
 
     },

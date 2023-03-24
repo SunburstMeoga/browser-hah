@@ -176,10 +176,7 @@ export default {
     },
 
     created() {
-        console.log("11111111111", this.$route.query)
-        this.address = this.$route.query.address
-
-        //alert(this.address)
+        this.address = this.$route.params.address
         this.getAddressInfo()
         this.getBalanceInfo()
     },

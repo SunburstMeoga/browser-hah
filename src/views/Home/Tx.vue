@@ -119,8 +119,7 @@ export default {
         }
     },
     created() {
-        console.log('this.$route.query', this.$route.query)
-        this.txid = this.$route.query.txid
+        this.txid = this.$route.params.txid
         this.getTxinfo()
         this.getTXDetails()
     },

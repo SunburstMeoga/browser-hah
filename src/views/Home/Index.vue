@@ -275,26 +275,17 @@ export default {
         timeFormat,
         toAddress(address) {
             this.$router.push({
-                path: '/address',
-                query: {
-                    address: address
-                }
+                path: '/address/' + address
             })
         },
         toHeight(height) {
             this.$router.push({
-                path: '/block',
-                query: {
-                    height: height
-                }
+                path: '/block/' + height
             })
         },
         toTX(txid) {
             this.$router.push({
-                path: '/tx',
-                query: {
-                    txid: txid
-                }
+                path: '/tx/' + txid
             })
         },
         getNewTX() {
@@ -340,7 +331,6 @@ export default {
             };
             blockStatistics(params).then(res => {
                 console.log('blockStatistics', res)
-
                 this.ranklistDatas = res
                 this.legend = res.length
                 this.xAxis = res.xAxis;
