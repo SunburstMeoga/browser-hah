@@ -53,6 +53,7 @@
 
 
 <script>
+import { listHRC20 } from '@/server/hrc';
 export default {
   data() {
     return {
@@ -60,12 +61,12 @@ export default {
     }
   },
   mounted() {
-    this.getList()
+    this.getListHRC20()
   },
   methods: {
-    getList() {
+    getListHRC20() {
       let params = {};
-      this.$api.hrc20(params).then(res => {
+      listHRC20(params).then(res => {
         console.log(res)
         this.dataList = res
       });
@@ -74,7 +75,7 @@ export default {
     toDetails(item) {
       console.log('item', item)
       this.$router.push({
-        path: "/HRC20Details",
+        path: "/hrc/details",
         query: {
           address: item.addr,
           decimals: item.decimals,

@@ -155,7 +155,7 @@ export default {
         },
         toHRC20() {
             this.$router.push({
-                path: '/erc20'
+                path: '/hrc'
             })
         },
         toHome() {

@@ -45,10 +45,10 @@
                                             item.txid
                                         }}</div>
                                     <div style="color: #612591;"> {{ item.fun }} </div>
-                                    <div style="color: #f1b434;">{{ getTime(item.ts) }}</div>
+                                    <div style="color: #f1b434;">{{ timeFormat(item.ts) }}</div>
                                     <div class="first-item" style="color: #f1b434;">{{ item.topics1 }}</div>
                                     <div class="first-item" style="color: #f1b434;">{{ item.topics2 }}</div>
-                                    <div style="color: #f1b434;">{{ getNumber(item.data) }}
+                                    <div style="color: #f1b434;">{{ amountFormat(item.data) }}
                                     </div>
                                 </li>
                             </div>
@@ -64,6 +64,8 @@
 </template>
 
 <script>
+import { contractTX } from '@/server/hrc'
+import { amountFormat, timeFormat } from '@/utils/format'
 export default {
     data() {
         return {
@@ -78,19 +80,18 @@ export default {
         }
     },
     created() {
-
         this.address = this.$route.query.address
         this.decimals = this.$route.query.decimals
         this.name = this.$route.query.name
         this.owner = this.$route.query.owner
         this.symbol = this.$route.query.symbol
         this.totalSupply = this.$route.query.totalSupply
-        console.log('this.$route.query', this.$route.query)
     },
     mounted() {
-        this.getList()
+        this.getContractTX()
     },
     methods: {
+        amountFormat, timeFormat,
         toDetails(item) {
             this.$router.push({
                 path: '/tx',
@@ -99,27 +100,13 @@ export default {
                 }
             })
         },
-        getNumber(str) {
-            let target = Math.pow(10, 18)
-            let num = Number(str);//将字符串转换为Number类型
-            let result = (num / target).toFixed(4);//将Number类型转换为保留四位数的字符串数据
-            return result
-        },
-        getTime(time) {
-            var now = new Date(time * 1000),
-                y = now.getFullYear(),
-                m = now.getMonth() + 1,
-                d = now.getDate(),
-                x = y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 8);
-            return x
-        },
-        getList() {
+        getContractTX() {
             let params = {
                 address: this.address,
                 pagesize: 100,
                 page: 1
             };
-            this.$api.detailsData(params).then(res => {
+            contractTX(params).then(res => {
                 console.log(res)
                 this.dataList = res.data
             });
