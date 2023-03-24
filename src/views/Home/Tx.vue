@@ -23,7 +23,7 @@
                             </div>
                             <div class="item" data-v-57312e58="">
                                 <div class="key" data-v-57312e58="">{{ $t('Tx.time') }}</div>
-                                <div class="value" data-v-57312e58="">{{ transtime }}</div>
+                                <div class="value" data-v-57312e58="">{{ timeFormat(transtime) }}</div>
                             </div>
                             <div class="item" data-v-57312e58="">
                                 <div class="key" data-v-57312e58="">{{ $t('Tx.from') }}</div>
@@ -35,17 +35,17 @@
                             </div>
                             <div class="item" data-v-57312e58="">
                                 <div class="key" data-v-57312e58="">{{ $t('Tx.txAmount') }}</div>
-                                <div class="value" data-v-57312e58="">{{ amount }} {{ virtualCurrencyUnit }}</div>
+                                <div class="value" data-v-57312e58="">{{ (amount) }} {{ virtualCurrencyUnit }}</div>
                             </div>
 
                             <div class="item" data-v-57312e58="" v-if="dataDetails.length !== 0">
                                 <div class="key" data-v-57312e58="">Transferred</div>
                                 <div class="value" data-v-57312e58="" v-for="(item, index) in dataDetails" :key="index">
-                                    <div><span class="word">From</span> {{ addressformat(item.topics1) }} <span
+                                    <div><span class="word">From</span> {{ addressFormat(item.topics1) }} <span
                                             class="word"> <br>
                                             To</span>
-                                        {{ addressformat(item.topics2) }} <span class="word">For</span> {{
-                                            getNumber(item.data)
+                                        {{ addressFormat(item.topics2) }} <span class="word">For</span> {{
+                                            amountFormat(item.data)
                                         }}</div>
                                 </div>
                             </div>
@@ -95,7 +95,9 @@
 </template>
 
 <script>
-import { txDetails } from '@/api/home'
+import { txDetails, txInfo } from '@/server/home'
+import { timeFormat, addressFormat, amountFormat } from '@/utils/format'
+
 export default {
     name: "Tx",
     data() {
@@ -123,14 +125,7 @@ export default {
         this.getTXDetails()
     },
     methods: {
-
-
-        getNumber(str) {
-            let target = Math.pow(10, 18)
-            let num = Number(str);//将字符串转换为Number类型
-            let result = (num / target).toFixed(4);//将Number类型转换为保留四位数的字符串数据
-            return result
-        },
+        timeFormat, addressFormat, amountFormat,
         getTXDetails() {
             let params = {
                 txid: this.txid
@@ -143,8 +138,8 @@ export default {
             let params = {
                 txid: this.txid,
             };
-            this.$api.tx(params).then(res => {
-                // console.log('tx', res)
+            txInfo(params).then(res => {
+                console.log('tx', res)
                 this.block_hash = res[0].block_hash
                 this.from = res[0].from
                 this.to = res[0].to
@@ -155,32 +150,8 @@ export default {
                 this.dpos_out = res[0].dpos_out
                 this.client_in = res[0].client_in
                 this.client_out = res[0].client_out
-                this.transtime = this.timeformat(res[0].transtime)
+                this.transtime = res[0].transtime
             });
-        },
-        addressformat(str) {
-            let arr = []
-            arr = str.split('')
-            let arrTarget = []
-            arr.map((item, index) => {
-                if (index <= 1 || index > 25) {
-                    arrTarget.push(item)
-                }
-            })
-            return arrTarget.join('')
-        },
-        timeformat(obj) {
-            if (obj == null) {
-                return null
-            }
-            let date = new Date(obj * 1000);
-            let y = 1900 + date.getYear();
-            let m = "0" + (date.getMonth() + 1);
-            let d = "0" + date.getDate();
-            let h = "0" + date.getHours();
-            let mm = "0" + date.getMinutes();
-            let s = date.getSeconds();
-            return y + "-" + m.substring(m.length - 2, m.length) + "-" + d.substring(d.length - 2, d.length) + " " + h.substring(h.length - 2, h.length) + ":" + mm.substring(mm.length - 2, mm.length) + ":" + s;
         }
     },
 }

@@ -1,4 +1,4 @@
-import request from '@/utils/request'
+import request from './request'
 
 export function newBlock(params) {
     return request({
@@ -60,6 +60,14 @@ export function TXList(params) {
 export function txDetails(params) {
     return request({
         url: '/api/hrc20_tx/',
+        method: 'get',
+        params
+    })
+}
+
+export function txInfo(params) {
+    return request({
+        url: '/api/tx/',
         method: 'get',
         params
     })

@@ -22,7 +22,7 @@
                         </div>
                         <div data-v-4d10a54f="" class="item">
                             <div data-v-4d10a54f="" class="key">{{ $t('Block.time') }}</div>
-                            <div data-v-4d10a54f="" class="value">{{ time }}</div>
+                            <div data-v-4d10a54f="" class="value">{{ timeFormat(time) }}</div>
                         </div>
                         <div data-v-4d10a54f="" class="item">
                             <div data-v-4d10a54f="" class="key">{{ $t('Block.transactions') }}</div>
@@ -68,7 +68,7 @@
                                     </div>
                                     <div data-v-bfa74ae2="" class="right">
                                         <div data-v-bfa74ae2=""><span data-v-bfa74ae2="" class="title">{{ $t('Block.time')
-                                        }}</span>{{ timeformat(item.transtime) }}
+                                        }}</span>{{ timeFormat(item.transtime) }}
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +153,9 @@
 </template>
 
 <script>
-import { blockInfo, TXList } from '@/api/home'
+import { blockInfo, TXList } from '@/server/home'
+import { timeFormat } from '@/utils/format'
+
 export default {
     name: "Block",
     data() {
@@ -179,6 +181,7 @@ export default {
 
     },
     methods: {
+        timeFormat,
         getTXList() {
             let param = {
                 page: this.pagenum,
@@ -203,7 +206,7 @@ export default {
                 console.log('getBlockInfo', res)
                 this.height = res[0].height
                 this.hash = res[0].hash
-                this.time = this.timeformat(res[0].time)
+                this.time = res[0].time
                 this.txs = res[0].txs
                 this.prev_hash = res[0].prev_hash
                 this.reward_address = res[0].reward_address
@@ -221,19 +224,7 @@ export default {
             this.getList()
         },
 
-        timeformat(obj) {
-            if (obj == null) {
-                return null
-            }
-            let date = new Date(obj * 1000);
-            let y = 1900 + date.getYear();
-            let m = "0" + (date.getMonth() + 1);
-            let d = "0" + date.getDate();
-            let h = "0" + date.getHours();
-            let mm = "0" + date.getMinutes();
-            let s = date.getSeconds();
-            return y + "-" + m.substring(m.length - 2, m.length) + "-" + d.substring(d.length - 2, d.length) + " " + h.substring(h.length - 2, h.length) + ":" + mm.substring(mm.length - 2, mm.length) + ":" + s;
-        }
+
     },
 
 }

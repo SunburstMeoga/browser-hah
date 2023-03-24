@@ -64,7 +64,7 @@
                                             <li data-v-ce118d7e="" class="inner_item time">
                                                 <div data-v-ce118d7e="">
                                                     <span class="el-tooltip" aria-describedby="el-tooltip-5279"
-                                                        tabindex="0">{{ timeformat(item.time) }}</span>
+                                                        tabindex="0">{{ timeFormat(item.time) }}</span>
                                                 </div>
                                             </li>
                                         </ul>
@@ -113,7 +113,7 @@
                                             <div data-v-ce118d7e="" class="value">
                                                 <div data-v-ce118d7e=""><span class="el-tooltip"
                                                         aria-describedby="el-tooltip-4340" tabindex="0">{{
-                                                            timeformat(item.time)
+                                                            timeFormat(item.time)
                                                         }}</span></div>
                                             </div>
                                         </div><!----><!---->
@@ -160,7 +160,7 @@
                                     </li>
                                     <li data-v-603f4bbb="" class="inner_item time"><span data-v-603f4bbb=""
                                             class="el-tooltip" aria-describedby="el-tooltip-9935" tabindex="0">{{
-                                                timeformat(item.transtime)
+                                                timeFormat(item.transtime)
                                             }}</span></li>
                                     <li data-v-603f4bbb="" class="inner_item fee">{{ item.amount }}</li>
                                     <li data-v-603f4bbb="" class="inner_item from"><!----><span data-v-603f4bbb="">{{
@@ -191,7 +191,7 @@
                                         <div data-v-603f4bbb="" class="key">{{ $t('Pending.time') }}</div>
                                         <div data-v-603f4bbb="" class="value"><span data-v-603f4bbb="" class="el-tooltip"
                                                 aria-describedby="el-tooltip-6781" tabindex="0">{{
-                                                    timeformat(item.transtime)
+                                                    timeFormat(item.transtime)
                                                 }}</span></div>
                                     </div>
                                     <div data-v-603f4bbb="" class="item">
@@ -240,7 +240,8 @@
 </template>
 
 <script>
-import { newBlock, newTX, blockStatistics } from '../../api/home';
+import { newBlock, newTX, blockStatistics } from '@/server/home'
+import { timeFormat } from '@/utils/format'
 export default {
     name: "index",
     inject: ['reload'],
@@ -271,6 +272,7 @@ export default {
     },
     methods: {
         //to address info 
+        timeFormat,
         toAddress(address) {
             this.$router.push({
                 path: '/address',
@@ -356,19 +358,7 @@ export default {
                 this.drawChart();
             })
         },
-        timeformat(obj) {
-            if (obj == null) {
-                return null
-            }
-            let date = new Date(obj * 1000);
-            let y = 1900 + date.getYear();
-            let m = "0" + (date.getMonth() + 1);
-            let d = "0" + date.getDate();
-            let h = "0" + date.getHours();
-            let mm = "0" + date.getMinutes();
-            let s = date.getSeconds();
-            return y + "-" + m.substring(m.length - 2, m.length) + "-" + d.substring(d.length - 2, d.length) + " " + h.substring(h.length - 2, h.length) + ":" + mm.substring(mm.length - 2, mm.length) + ":" + s;
-        },
+
         _isMobile() {
             let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
             return flag;
