@@ -92,7 +92,7 @@
 
 
 <script>
-
+import { listDelegate } from '@/server/dpos'
 export default {
     name: "dpos",
     data() {
@@ -103,16 +103,16 @@ export default {
         }
     },
     created() {
-        this.getList()
+        this.getListDelegate()
     },
     methods: {
-        getList() {
+        getListDelegate() {
             let params = {
                 page: this.pagenum,
                 pagesize: this.pageSize
             };
             let that = this
-            this.$api.listdelegate(params).then(res => {
+            listDelegate(params).then(res => {
                 that.dposlistDatas = res
 
             });
@@ -126,11 +126,12 @@ export default {
             console.log(this.showa);
         },
         handleWindow(dposAddress) {
-            var route = this.$router.resolve({
-                name: 'dposDetail',
+            this.$router.push({
+                path: '/dpos/details',
+                query: {
+                    dposAddress: dposAddress
+                }
             })
-            sessionStorage.setItem("dposAddress", dposAddress);
-            window.open(route.href, '_blank')
         }
 
 

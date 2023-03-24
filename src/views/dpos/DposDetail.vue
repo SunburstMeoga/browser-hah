@@ -40,13 +40,13 @@
                                                 <a data-v-18b505e9="" href="javascript:void(0)" class="hash">
                                                     <span data-v-18b505e9="" class="el-tooltip"
                                                         aria-describedby="el-tooltip-6004" tabindex="0">
-                                                        {{ addressformat(item.addr) }}
+                                                        {{ addressFormat(item.addr) }}
                                                     </span></a>
 
                                             </div>
-                                            <div data-v-18b505e9="" class="type">{{ getNumber(item.vote) }}</div>
+                                            <div data-v-18b505e9="" class="type">{{ amountFormat(item.vote) }}</div>
 
-                                            <div data-v-18b505e9="" class="time">{{ getTime(item.ts) }}</div>
+                                            <div data-v-18b505e9="" class="time">{{ timeFormat(item.ts) }}</div>
                                             <div data-v-18b505e9="" class="height">{{ item.height }}</div>
                                             <div data-v-18b505e9="" class="voteState">{{
                                                 getVoteType(item.vote_type, item.type) }}</div>
@@ -72,14 +72,14 @@
                                     <div data-v-18b505e9="" class="key">{{ $t('dposDetail.address') }}</div>
                                     <div data-v-18b505e9="" class="value">
                                         <div data-v-18b505e9="" class="client_address"><a data-v-18b505e9=""
-                                                href="javascript:void(0)" class="hash">{{ addressformat(item.addr) }}</a>
+                                                href="javascript:void(0)" class="hash">{{ addressFormat(item.addr) }}</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div data-v-18b505e9="" class="item">
                                     <div data-v-18b505e9="" class="key">{{ $t('dposDetail.amount') }}</div>
                                     <div data-v-18b505e9="" class="value">
-                                        <div data-v-18b505e9="" class="amount">{{ getNumber(item.vote) }}</div>
+                                        <div data-v-18b505e9="" class="amount">{{ amountFormat(item.vote) }}</div>
                                     </div>
                                 </div>
 
@@ -119,7 +119,8 @@
 </template>
 
 <script>
-
+import { listDelegateDetails } from '@/server/dpos'
+import { timeFormat, addressFormat, amountFormat } from '@/utils/format'
 export default {
     name: "dpos",
     data() {
@@ -135,35 +136,11 @@ export default {
         }
     },
     created() {
-        this.dposAddress = sessionStorage.getItem("dposAddress")
-        this.getList()
+        this.dposAddress = this.$route.query.dposAddress
+        this.getDelegateDetails()
     },
     methods: {
-        addressformat(str) {
-            let arr = []
-            arr = str.split('')
-            let arrTarget = []
-            arr.map((item, index) => {
-                if (index <= 1 || index > 25) {
-                    arrTarget.push(item)
-                }
-            })
-            return arrTarget.join('')
-        },
-        getNumber(str) {
-            let target = Math.pow(10, 18)
-            let num = Number(str);//将字符串转换为Number类型
-            let result = (num / target).toFixed(4);//将Number类型转换为保留四位数的字符串数据
-            return result
-        },
-        getTime(time) {
-            var now = new Date(time * 1000),
-                y = now.getFullYear(),
-                m = now.getMonth() + 1,
-                d = now.getDate(),
-                x = y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 8);
-            return x
-        },
+        timeFormat, addressFormat, amountFormat,
         getVoteType(value, type) {
             if (value === 1) {
                 switch (type) {
@@ -178,20 +155,18 @@ export default {
             }
 
         },
-        getList() {
+        getDelegateDetails() {
             let params = {
                 page: this.pagenum,
                 pagesize: this.pageSize,
                 dposAddress: this.dposAddress,
             };
-            // console.log(params);
-            let that = this
-            this.$api.listdelegatedetail(params).then(res => {
-                that.res = res
-                that.dposlistDetailDatas = res.data
-                that.page = res.pagenum
-                that.pageSize = parseInt(res.pagesize)
-                that.total = res.total
+            listDelegateDetails(params).then(res => {
+                this.res = res
+                this.dposlistDetailDatas = res.data
+                this.page = res.pagenum
+                this.pageSize = parseInt(res.pagesize)
+                this.total = res.total
                 console.log('res', res);
             });
         },
@@ -205,11 +180,11 @@ export default {
         },
         handleSizeChange(newSzie) {
             this.pageSize = newSzie
-            this.getList()
+            this.getDelegateDetails()
         },
         handleCurrentChange(newPage) {
             this.pagenum = newPage
-            this.getList()
+            this.getDelegateDetails()
         }
     },
 }

@@ -1,12 +1,12 @@
 export default [
     {
-        path: '/HRC',
-        name: 'HRC',
-        component: () => import('@/views/hrc/HRC')
+        path: '/dpos',
+        name: 'dpos',
+        component: () => import('@/views/dpos/Dpos')
     },
     {
-        path: '/HRC/details',
-        name: 'HRC',
-        component: () => import('@/views/hrc/HRCDetails')
+        path: '/dpos/details',
+        name: 'dpos',
+        component: () => import('@/views/dpos/DposDetail')
     }
 ]

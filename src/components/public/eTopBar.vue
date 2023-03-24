@@ -23,16 +23,15 @@
                     <div class="inner_header">
                         <div class="rt" style="min-width:500px;">
                             <ul class="bottom"><!---->
-                                <li class="item active"><a href="/" alt="" title="$t('common.browser')"
-                                        data-tracking="coins-header-home">{{ $t('eTopBar.home') }}</a>
+                                <li class="item active" @click="toHome">{{ $t('eTopBar.home') }}
                                 </li>
                                 <li class="item active" @click="toRank">{{ $t('eTopBar.rich') }}
                                 </li>
-                                <li class="item active"><a href="dpos" alt="" title="$t('common.browser')"
-                                        data-tracking="coins-header-home">dpos</a>
+                                <li class="item active" @click="toDpos">
+                                    dpos
                                 </li>
-                                <li class="item active"><a href="HRC20" alt="" title="$t('common.browser')"
-                                        data-tracking="coins-header-home">HRC20</a>
+                                <li class="item active" @click="toHRC20">
+                                    HRC20
                                 </li>
                                 <el-select v-model="langFlag" @change="changeLanguages" class="language-select"
                                     :filterable="true" style="width: 130px;" placeholder="please choose language">
@@ -147,6 +146,21 @@ export default {
         toRank() {
             this.$router.push({
                 path: '/rank'
+            })
+        },
+        toDpos() {
+            this.$router.push({
+                path: '/dpos'
+            })
+        },
+        toHRC20() {
+            this.$router.push({
+                path: '/erc20'
+            })
+        },
+        toHome() {
+            this.$router.push({
+                path: '/'
             })
         },
         search() {
