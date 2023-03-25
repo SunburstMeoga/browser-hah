@@ -247,7 +247,7 @@ export default {
 .page-list {
     opacity: 0;
     animation-name: show-easy;
-    animation-duration: 0.8s;
+    animation-duration: 0.3s;
     animation-delay: 0.2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
