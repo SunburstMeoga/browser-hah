@@ -355,12 +355,7 @@ export default {
     }
 }
 </script>
-<style>
-@import url("../../assets/css/home.css");
-@import url("../../assets/css/index.css");
-@import url("../../assets/css/iview.css");
-@import url("../../assets/css/custom.css");
-</style>
+<style></style>
 
 
 

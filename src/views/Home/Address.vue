@@ -235,5 +235,4 @@ export default {
 </script>
 
 <style>
-@import url("../../assets/css/block.css");
 </style>

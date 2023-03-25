@@ -6,7 +6,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import i18n from './lang/index'
 import * as echarts from 'echarts';
-// import * as te from 'tw-elements';
+import '@/assets/css/iconfont.css';
 import "tailwindcss/tailwind.css"
 
 Vue.prototype.$echarts = echarts

@@ -137,10 +137,6 @@ export default {
 </script>
 
 <style>
-@import url("../../assets/css/app.css");
-@import url("../../assets/css/rank.css");
-@import url("../../assets/css/dpos.css");
-
 h1,
 h2 {
     font-weight: normal;

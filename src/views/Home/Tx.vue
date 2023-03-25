@@ -157,8 +157,6 @@ export default {
 </script>
 
 <style>
-@import url("../../assets/css/tx.css");
-
 .word {
     color: #612591;
 
