@@ -2,7 +2,7 @@
   <div id="app">
     <e-top-bar></e-top-bar>
     <router-view></router-view>
-    <e-footer-bar></e-footer-bar>
+    <!--<e-footer-bar></e-footer-bar> -->
   </div>
 </template>
 
@@ -17,4 +17,9 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+body {
+  height: 100vh;
+  background: #ebf0f6;
+}
+</style>

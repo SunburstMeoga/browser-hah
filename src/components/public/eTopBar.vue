@@ -98,6 +98,24 @@
 </template> -->
 <template>
     <div class="bg-gray300">
+        <div class="pt-3">
+            <div class="flex bg-gray100 rounded-lg justify-start items-center w-11/12 mr-auto ml-auto h-9 overflow-hidden"
+                :class="isFocus ? 'focused' : ''">
+                <div class="icon iconfont icon-search pr-2 pl-3 text-gray" />
+                <div class="flex-1 h-full">
+                    <input type="text" :placeholder="$t('common.placeholder')" @focus="focusSearch" @blur="blurSearch"
+                        class="search w-full h-full bg-gray100 rounded-sm" />
+                </div>
+            </div>
+            <div class="w-11/12 mr-auto ml-auto mt-4 flex justify-start flex-wrap show-easy" v-show="showSearchCriteria">
+                <div class="text-gray100 flex justify-start items-center text-sm bg-gray200 py-1 px-2 mr-6 rounded-sm mb-2"
+                    v-for="(item, index) in searchCriteriaList" :key="index">
+                    <div class="icon iconfont text-lg" :class="item.icon"></div>
+                    <div class="pl-1">{{ item.title }}</div>
+
+                </div>
+            </div>
+        </div>
         <div class="flex justify-between items-center w-11/12 py-3 ml-auto mr-auto">
             <div class="flex items-center">
                 <div class="w-32">
@@ -105,12 +123,13 @@
                 </div>
             </div>
             <div>
-                <div class="icon iconfont icon-menu text-gray100 text-3xl" @click="clickMenu" />
+                <div class="icon iconfont text-gray100 text-3xl" :class="!showMenu ? 'icon-menu' : 'icon-close'"
+                    @click="clickMenu" />
             </div>
         </div>
         <div v-show="showMenu" class="menu bg-transparent">
             <div class="divide-y divide-gray-700">
-                <div class="page-list flex justify-between w-10/12 mr-auto ml-auto py-3 text-gray100"
+                <div class="show-easy flex justify-between w-11/12 mr-auto ml-auto py-3 text-gray100"
                     v-for="(item, index) in pagesList" :key="index" @click="toPage(item.path)">
                     <div class="text-sm"> {{ item.title }}</div>
                     <div class="icon iconfont icon-arrow-right text-sm"></div>
@@ -159,17 +178,48 @@ export default {
                 { title: 'HRC20', path: '/hrc20' }
             ],
             showMenu: false,
+            showSearchCriteria: false,
+            isFocus: false,
+            searchCriteriaList: [
+                {
+                    title: this.$t('common.address'),
+                    icon: 'icon-shouhuodizhi'
+                },
+                {
+                    title: this.$t('common.block'),
+                    icon: 'icon-qukuai'
+                },
+                {
+                    title: this.$t('common.tx'),
+                    icon: 'icon-jiaoyiguanli'
+                },
+            ]
         }
     },
     created() { this.getDefaultLanguage() },
     methods: {
-        clickMenu() {
+        focusSearch() {
+            console.log('获取焦点')
+            this.showSearchCriteria = true
+            this.showMenu = false
+            this.isFocus = true
+        },
+        blurSearch() {
+            console.log('失去焦点')
+            this.showSearchCriteria = false
+            this.isFocus = false
+        },
+        toggleMenu() {
             this.showMenu = !this.showMenu
+        },
+        clickMenu() {
+            this.toggleMenu()
         },
         toPage(path) {
             this.$router.push({
                 path: path
             })
+            this.toggleMenu()
         },
         // toRank() {
         //     this.$router.push({
@@ -201,10 +251,7 @@ export default {
                 this.$router.push({ path: "tx", query: { txid: this.search_text } });
             }
         },
-        toggleMenu() {
-            this.openFlag = !this.openFlag
 
-        },
         chooseLanguage(value) {
             this.openLanguage = false
             this.$i18n.locale = value
@@ -244,14 +291,30 @@ export default {
     animation-timing-function: linear;
 }
 
-.page-list {
+.show-easy {
     opacity: 0;
     animation-name: show-easy;
     animation-duration: 0.2s;
     animation-delay: 0.2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-    animation-timing-function: linear;
+    animation-timing-function: ease-in;
+}
+
+input[type=text]:focus {
+    outline: none;
+}
+
+.focused {
+    border: 1px solid #f1b434;
+}
+
+.search {
+    caret-color: #f1b434;
+}
+
+.search::placeholder {
+    color: #202a2b;
 }
 
 @keyframes show-easy {
@@ -274,11 +337,11 @@ export default {
     }
 
     50% {
-        height: 100px;
+        min-height: 100px;
     }
 
     100% {
-        height: 200px;
+        min-height: 200px;
     }
 }
 
