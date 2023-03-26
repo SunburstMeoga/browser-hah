@@ -109,11 +109,11 @@
             </div>
         </div>
         <div v-show="showMenu" class="menu bg-transparent">
-            <div>
-                <div class="page-list flex justify-between w-10/12 mr-auto ml-auto py-2 text-gray100 text-lg"
+            <div class="divide-y divide-gray-700">
+                <div class="page-list flex justify-between w-10/12 mr-auto ml-auto py-3 text-gray100"
                     v-for="(item, index) in pagesList" :key="index" @click="toPage(item.path)">
-                    <div class="text-lg"> {{ item.title }}</div>
-                    <div class="icon iconfont icon-right"></div>
+                    <div class="text-sm"> {{ item.title }}</div>
+                    <div class="icon iconfont icon-arrow-right text-sm"></div>
                 </div>
             </div>
         </div>
@@ -247,7 +247,7 @@ export default {
 .page-list {
     opacity: 0;
     animation-name: show-easy;
-    animation-duration: 0.3s;
+    animation-duration: 0.2s;
     animation-delay: 0.2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;

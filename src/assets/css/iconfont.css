@@ -1,10 +1,10 @@
 @font-face {
     font-family: "iconfont";
     /* Project id 3976864 */
-    src: url('//at.alicdn.com/t/c/font_3976864_0bubjt83md59.woff2?t=1679763566919') format('woff2'),
-        url('//at.alicdn.com/t/c/font_3976864_0bubjt83md59.woff?t=1679763566919') format('woff'),
-        url('//at.alicdn.com/t/c/font_3976864_0bubjt83md59.ttf?t=1679763566919') format('truetype'),
-        url('//at.alicdn.com/t/c/font_3976864_0bubjt83md59.svg?t=1679763566919#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/c/font_3976864_ohyoxki9a9.woff2?t=1679804410206') format('woff2'),
+        url('//at.alicdn.com/t/c/font_3976864_ohyoxki9a9.woff?t=1679804410206') format('woff'),
+        url('//at.alicdn.com/t/c/font_3976864_ohyoxki9a9.ttf?t=1679804410206') format('truetype'),
+        url('//at.alicdn.com/t/c/font_3976864_ohyoxki9a9.svg?t=1679804410206#iconfont') format('svg');
 }
 
 .iconfont {
@@ -13,6 +13,10 @@
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-right:before {
+    content: "\e665";
 }
 
 .icon-right:before {
