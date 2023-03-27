@@ -24,6 +24,21 @@ export function addressFormat(str) {
     return arrTarget.join('')
 }
 
+export function addressFilter(value) {
+    if (value === undefined) return
+    let arr = value.split('')
+    let targetStr
+    let targetArr = []
+    arr.map((item, index) => {
+        if (index <= 6 || index >= arr.length - 7) {
+            targetArr.push(item)
+        }
+    })
+    targetArr.splice(7, 0, '...')
+    targetStr = targetArr.join('')
+    return targetStr
+}
+
 export function amountFormat(str) {
     let target = Math.pow(10, 18)
     let num = Number(str);// string => number

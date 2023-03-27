@@ -10,15 +10,13 @@ module.exports = {
         'gray300': '#202a2b',
         'white100': '#ebf0f6'
       },
-      animation: {
-        wiggle: 'wiggle 1s linear infinite',
+      spacing: {
+        '100': '100rem'
       },
-      keyframes: {
-        wiggle: {
-          '0%': { transform: 'height: 0' },
-          '50%': { transform: 'height: 50px' },
-          '0%': { transform: 'height: 50px' },
-        }
+      minWidth: {
+        '100': '100rem',
+        '70': '70rem',
+
       }
     },
   },

@@ -33,7 +33,7 @@
                                         <li data-v-ce118d7e="" class="inner_item time">{{ $t('BlockList.time') }}</li>
                                     </ul>
                                     <span data-v-ce118d7e="">
-                                        <ul data-v-ce118d7e="" class="item content" v-for="(item, index) in BlocklistDatas"
+                                        <ul data-v-ce118d7e="" class="item content" v-for="(item, index) in blockListDatas"
                                             :key="index">
                                             <li data-v-ce118d7e="" class="inner_item height" @click="toHeight(item.height)">
                                                 {{ item.height }}
@@ -65,7 +65,7 @@
                                     </span>
                                 </div>
                                 <div data-v-ce118d7e="" class="mobileList">
-                                    <div data-v-ce118d7e="" class="items" v-for="(item, index) in BlocklistDatas"
+                                    <div data-v-ce118d7e="" class="items" v-for="(item, index) in blockListDatas"
                                         :key="index">
                                         <div data-v-ce118d7e="" class="item">
                                             {{ $t('BlockList.height') }}
@@ -140,7 +140,7 @@
                                     <li data-v-603f4bbb="" class="inner_item to">{{ $t('Pending.to') }}</li>
                                 </ul>
 
-                                <ul data-v-603f4bbb="" class="item content" v-for="(item, index) in TxlistDatas"
+                                <ul data-v-603f4bbb="" class="item content" v-for="(item, index) in TXListDatas"
                                     :key="index">
                                     <li data-v-603f4bbb="" class="inner_item hash" @click="toTX(item.txid)">
                                         {{ item.txid }}
@@ -162,7 +162,7 @@
 
                             </div>
                             <div data-v-603f4bbb="" class="mobileList">
-                                <ul data-v-603f4bbb="" class="items" v-for="(item, index) in TxlistDatas" :key="index">
+                                <ul data-v-603f4bbb="" class="items" v-for="(item, index) in TXListDatas" :key="index">
                                     <div data-v-603f4bbb="" class="item">
                                         <div data-v-603f4bbb="" class="key">{{ $t('Pending.hash') }}</div>
                                         <div data-v-603f4bbb="" class="value" @click="toTX(item.txid)">
@@ -217,19 +217,48 @@
         <div data-zone="C-10160c9c251398bf842" class="coinzilla" data-v-02b3c3b7></div>
     </div> -->
     <div>
-        <div id="chart" style="width:95%;height:400px;"></div>
+        <div class="mb-2 w-11/12 mr-auto ml-auto">
+            <module-title title="区块统计"></module-title>
+        </div>
+        <div class="w-11/12 mr-auto ml-auto bg-gray200 rounded-lg h-auto pt-4 flex justify-center items-center mb-4">
+            <div id="chart" style="width: 400px; height: 300px;"></div>
+        </div>
+        <div class="mb-2 w-11/12 mr-auto ml-auto">
+            <module-title :title="$t('BlockList.newBlock')"></module-title>
+        </div>
+        <div class="bg-gray200 mb-4 w-11/12 mr-auto ml-auto rounded-lg">
+            <new-block-table :dataList="blockListDatas" />
+            <div class="">
+                <h-pagination></h-pagination>
+            </div>
+        </div>
+        <div class="mb-2 w-11/12 mr-auto ml-auto">
+            <module-title :title="$t('Pending.tx')"></module-title>
+        </div>
+        <div class="bg-gray200 mb-4 w-11/12 mr-auto ml-auto rounded-lg">
+            <trade-table :dataList="TXListDatas" />
+            <div class="">
+                <h-pagination></h-pagination>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import ModuleTitle from '@/components/public/ModuleTitle'
+import NewBlockTable from '@/components/child/NewBlockTable'
+import TradeTable from '@/components/child/TradeTable'
+import HPagination from '@/components/public/HPagination'
+
 import { newBlock, newTX, blockStatistics } from '@/request/home'
 import { timeFormat } from '@/utils/format'
 export default {
     name: "index",
+    components: { ModuleTitle, NewBlockTable, HPagination, TradeTable },
     data() {
         return {
-            BlocklistDatas: [],
-            TxlistDatas: [],
+            blockListDatas: [],
+            TXListDatas: [],
             timer: null,  // timer
             chartInfo: [],
             legend: "",
@@ -272,31 +301,27 @@ export default {
         getNewTX() {
             newTX().then(res => {
                 console.log('newTX', res)
-                this.TxlistDatas = res
+                this.TXListDatas = res
             })
         },
         getNewBlock() {
             newBlock().then(response => {
                 console.log('getNewBlock', response)
-                this.BlocklistDatas = response
+                this.blockListDatas = response
             })
         },
         drawChart() {
             let myChart = this.$echarts.init(document.getElementById("chart"));
             let option = {
                 grid: {
-                    left: '10%',
-                    right: '5%',
-                    bottom: '5%',
-                    top: '5%'
+                    left: '18%',
+                    top: '6%',
+                    bottom: '12%'
                 },
                 title: {
                     text: ""
                 },
                 tooltip: {},
-                legend: {
-                    data: this.legend
-                },
                 xAxis: {
                     data: this.xAxis
                 },
@@ -304,7 +329,7 @@ export default {
                 series: this.series
             };
 
-            myChart.setOption(option);
+            option && myChart.setOption(option);
         },
         getChartData(days) {
             let params = {
@@ -321,7 +346,8 @@ export default {
                     {
                         name: res.series[serieIndex].name,
                         type: "line",
-                        data: res.series[serieIndex].data
+                        data: res.series[serieIndex].data,
+                        smooth: true
                     }
                     series.push(serie)
                 }

@@ -21,5 +21,6 @@ export default {
 body {
   height: 100vh;
   background: #202a2b;
+  padding-bottom: 30px;
 }
 </style>
