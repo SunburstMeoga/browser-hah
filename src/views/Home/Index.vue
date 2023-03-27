@@ -1,17 +1,12 @@
 <template>
-    <div>
+    <!-- <div>
 
         <div class="content-child" data-v-02b3c3b7>
-
-
-            <!--            <h1 class="h1"></h1>-->
             <h2 class="h2">
                 {{ $t('Index.h2') }}</h2>
             <div class="p-home">
                 <div class="page-network">
-                    <div class="count_down"><!----></div>
-
-                    <!--                                block pc start -->
+                    <div class="count_down"></div>
                     <div>
                         <div class="latest_block item1" data-v-135e9942>
                             <div id="chart" style="width:95%;height:400px;"></div>
@@ -23,7 +18,6 @@
                                 </div>
                             </div>
                             <div data-v-ce118d7e="" data-v-135e9942="">
-                                <!--                               block pc start -->
                                 <div data-v-ce118d7e="" class="block_list">
                                     <ul data-v-ce118d7e="" class="item title">
                                         <li data-v-ce118d7e="" class="inner_item miner">{{ $t('BlockList.height') }}
@@ -70,10 +64,6 @@
                                         </ul>
                                     </span>
                                 </div>
-                                <!--                               block pc end  -->
-
-
-                                <!--                               block mobile start -->
                                 <div data-v-ce118d7e="" class="mobileList">
                                     <div data-v-ce118d7e="" class="items" v-for="(item, index) in BlocklistDatas"
                                         :key="index">
@@ -88,7 +78,7 @@
                                             <div data-v-ce118d7e="" class="value"><a data-v-ce118d7e=""
                                                     href="javascript:void(0)">{{ item.reward_address }}</a>
                                             </div>
-                                        </div><!---->
+                                        </div>
                                         <div data-v-ce118d7e="" class="item">
                                             <div data-v-ce118d7e="" class="key">
                                                 {{ $t('BlockList.reward') }}
@@ -100,14 +90,14 @@
                                             <div data-v-ce118d7e="" class="value"><a data-v-ce118d7e=""
                                                     href="javascript:void(0)">{{ item.txs }}</a>
                                             </div>
-                                        </div><!---->
+                                        </div>
                                         <div data-v-ce118d7e="" class="item">
                                             <div data-v-ce118d7e="" class="key">{{ $t('BlockList.previousBlock') }}
                                             </div>
                                             <div data-v-ce118d7e="" class="value"><a data-v-ce118d7e=""
                                                     href="javascript:void(0)">{{ item.prev_hash }}</a>
                                             </div>
-                                        </div><!---->
+                                        </div>
                                         <div data-v-ce118d7e="" class="item">
                                             <div data-v-ce118d7e="" class="key">{{ $t('BlockList.time') }}</div>
                                             <div data-v-ce118d7e="" class="value">
@@ -116,12 +106,11 @@
                                                             timeFormat(item.time)
                                                         }}</span></div>
                                             </div>
-                                        </div><!----><!---->
+                                        </div>
 
 
                                     </div>
                                 </div>
-                                <!--                                block mobile end   -->
 
                             </div>
                             <a href="blocklist" class="more" data-v-135e9942>
@@ -131,7 +120,6 @@
                             </a>
                         </div>
                     </div>
-                    <!--                                block  end  -->
 
 
 
@@ -143,7 +131,6 @@
                             </div>
                         </div>
                         <div data-v-603f4bbb="" data-v-a7eb4120="">
-                            <!--                              pc start  -->
                             <div data-v-603f4bbb="" class="pending_list pc btc">
                                 <ul data-v-603f4bbb="" class="item title">
                                     <li data-v-603f4bbb="" class="inner_item hash">{{ $t('Pending.hash') }}</li>
@@ -151,7 +138,7 @@
                                     <li data-v-603f4bbb="" class="inner_item fee">{{ $t('Pending.amount') }}</li>
                                     <li data-v-603f4bbb="" class="inner_item from">{{ $t('Pending.from') }}</li>
                                     <li data-v-603f4bbb="" class="inner_item to">{{ $t('Pending.to') }}</li>
-                                </ul><!---->
+                                </ul>
 
                                 <ul data-v-603f4bbb="" class="item content" v-for="(item, index) in TxlistDatas"
                                     :key="index">
@@ -163,23 +150,18 @@
                                                 timeFormat(item.transtime)
                                             }}</span></li>
                                     <li data-v-603f4bbb="" class="inner_item fee">{{ item.amount }}</li>
-                                    <li data-v-603f4bbb="" class="inner_item from"><!----><span data-v-603f4bbb="">{{
+                                    <li data-v-603f4bbb="" class="inner_item from"><span data-v-603f4bbb="">{{
                                         item.from
                                     }}</span>
-                                        <!---->
                                     </li>
-                                    <li data-v-603f4bbb="" class="inner_item to"><!----><span data-v-603f4bbb="">{{
+                                    <li data-v-603f4bbb="" class="inner_item to"><span data-v-603f4bbb="">{{
                                         item.to
                                     }}</span>
-                                        <!---->
                                     </li>
                                 </ul>
 
                             </div>
-                            <!--                                pc end -->
-
-                            <!--                                mobile start  -->
-                            <div data-v-603f4bbb="" class="mobileList"><!---->
+                            <div data-v-603f4bbb="" class="mobileList">
                                 <ul data-v-603f4bbb="" class="items" v-for="(item, index) in TxlistDatas" :key="index">
                                     <div data-v-603f4bbb="" class="item">
                                         <div data-v-603f4bbb="" class="key">{{ $t('Pending.hash') }}</div>
@@ -202,17 +184,15 @@
                                     </div>
                                     <div data-v-603f4bbb="" class="item">
                                         <div data-v-603f4bbb="" class="key">{{ $t('Pending.from') }}</div>
-                                        <div data-v-603f4bbb="" class="value"><!----><span data-v-603f4bbb="">{{
+                                        <div data-v-603f4bbb="" class="value"><span data-v-603f4bbb="">{{
                                             item.from
                                         }}</span>
-                                            <!---->
                                         </div>
                                     </div>
                                     <div data-v-603f4bbb="" class="item">
                                         <div data-v-603f4bbb="" class="key">{{ $t('Pending.to') }}</div>
-                                        <div data-v-603f4bbb="" class="value"><!----><span data-v-603f4bbb="">{{ item.to
+                                        <div data-v-603f4bbb="" class="value"><span data-v-603f4bbb="">{{ item.to
                                         }}</span>
-                                            <!---->
                                         </div>
                                     </div>
                                 </ul>
@@ -228,7 +208,6 @@
                             </a>
                         </div>
                     </div>
-                    <!--                                mobile end -->
 
 
                 </div>
@@ -236,6 +215,9 @@
             </div>
         </div>
         <div data-zone="C-10160c9c251398bf842" class="coinzilla" data-v-02b3c3b7></div>
+    </div> -->
+    <div>
+        <div id="chart" style="width:95%;height:400px;"></div>
     </div>
 </template>
 

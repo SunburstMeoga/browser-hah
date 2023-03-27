@@ -20,6 +20,6 @@ export default {
 <style>
 body {
   height: 100vh;
-  background: #ebf0f6;
+  background: #202a2b;
 }
 </style>

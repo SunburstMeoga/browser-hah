@@ -127,10 +127,10 @@
                     @click="clickMenu" />
             </div>
         </div>
-        <div v-show="showMenu" class="menu bg-transparent">
-            <div class="divide-y divide-gray-700">
-                <div class="show-easy flex justify-between w-11/12 mr-auto ml-auto py-3 text-gray100"
-                    v-for="(item, index) in pagesList" :key="index" @click="toPage(item.path)">
+        <div v-show="showMenu" class="menu bg-transparent w-full">
+            <div class="divide-y divide-gray-700 w-11/12 mr-auto ml-auto bg-gray200 rounded-lg">
+                <div class="show-easy flex justify-between text-gray100 px-4 py-3" v-for="(item, index) in pagesList"
+                    :key="index" @click="toPage(item.path)">
                     <div class="text-sm"> {{ item.title }}</div>
                     <div class="icon iconfont icon-arrow-right text-sm"></div>
                 </div>
@@ -311,6 +311,7 @@ input[type=text]:focus {
 
 .search {
     caret-color: #f1b434;
+    text-indent: 4px;
 }
 
 .search::placeholder {
