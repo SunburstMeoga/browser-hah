@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full text-gray100 text-base font-bold">
+    <div class="w-full text-white300 text-base font-bold">
         {{ title }}
     </div>
 </template>

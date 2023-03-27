@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="bg-black500">
     <e-top-bar></e-top-bar>
     <router-view></router-view>
     <!--<e-footer-bar></e-footer-bar> -->
@@ -20,7 +20,6 @@ export default {
 <style>
 body {
   height: 100vh;
-  background: #202a2b;
   padding-bottom: 30px;
 }
 </style>

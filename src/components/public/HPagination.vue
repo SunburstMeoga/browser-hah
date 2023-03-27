@@ -1,31 +1,31 @@
 <template>
     <div>
-        <div class="py-2 px-4 text-gray100 text-sm">
+        <div class="pt-2 pb-3 px-4 text-black100 text-sm">
             <div class="flex justify-start mb-2 items-center">
                 <div class="pr-2">Show:</div>
-                <div class="mr-2 w-16">
-                    <!-- <input type="text"
-                        class="search bg-gray100 w-full h-full rounded-sm"> -->
-                    <select v-model="selectedPageSize" class="bg-gray100 text-gray-300 w-full h-6 rounded-sm"
-                        @change="getValue">
+                <div class="mr-2 w-16 border border-border100">
+                    <select v-model="selectedPageSize"
+                        class="bg-black200 border-border100 text-white200 w-full h-6 rounded-lg" @change="getValue">
                         <option v-for="(item, index) in pageSizeList" :value="item.pageSize" v-text="item.pageSize"
                             :key="index" />
                     </select>
                 </div>
                 <div>Records</div>
             </div>
-
             <div>
-                <div class="flex justify-start">
-                    <div class="pr-2">First:</div>
-                    <div class="mr-2"> pre </div>
-
-                    <div class="mr-2" :class="isFocus ? 'focused' : 'not-focused'">
-                        <input @focus="focusSearch" @blur="blurSearch" type="text"
-                            class="search bg-gray100 w-full h-full rounded-sm">
+                <div class="flex justify-start items-center">
+                    <div class="mr-1 h-6 border border-border100 px-2 flex justify-center items-center rounded-sm">First
                     </div>
-                    <div class="mr-2"> next </div>
-                    <div class="pr-2">Last:</div>
+                    <div class="mr-1 h-6 rounded-sm w-6 icon iconfont icon-arrow-right flex justify-center items-center border border-border100"
+                        style="transform: rotate(180deg);" />
+                    <div class="mr-1 h-6 rounded-sm" :class="isFocus ? 'focused' : 'not-focused'">
+                        <input @focus="focusSearch" @blur="blurSearch" type="text"
+                            class="search bg-black200 w-full h-full rounded-sm">
+                    </div>
+                    <div
+                        class="mr-1 h-6 w-6 rounded-sm icon iconfont flex justify-center items-center icon-arrow-right border border-border100" />
+                    <div class="h-6 border border-border100 px-2 flex justify-center items-center rounded-sm">Last
+                    </div>
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@ input[type=text]:focus {
 }
 
 .not-focused {
-    border: 1px solid #2a3037;
+    border: 1px solid #222;
 }
 
 .search {
