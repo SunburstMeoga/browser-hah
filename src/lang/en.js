@@ -4,7 +4,7 @@ module.exports = {
     address: "Address",
     block: "Block",
     tx: "Transaction",
-    placeholder: "Search address, block or transaction",
+    placeholder: "Search address / block / transaction",
     search: 'Search',
     more: "More",
 

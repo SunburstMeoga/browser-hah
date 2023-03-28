@@ -98,6 +98,7 @@
 </template> -->
 <template>
     <div class="bg-black200 mb-4">
+        <!-- search -->
         <div class="pt-3">
             <div class="flex bg-black400 rounded-lg justify-start items-center w-11/12 mr-auto ml-auto h-9 overflow-hidden"
                 :class="isFocus ? 'focused' : ''">
@@ -116,6 +117,7 @@
                 </div>
             </div>
         </div>
+        <!-- logo and menu -->
         <div class="flex justify-between items-center w-11/12 py-3 ml-auto mr-auto">
             <div class="flex items-center">
                 <div class="w-32">
@@ -127,6 +129,7 @@
                     @click="clickMenu" />
             </div>
         </div>
+        <!-- menu router -->
         <div v-show="showMenu" class="menu bg-transparent w-full">
             <div class="mr-auto ml-auto bg-black400 rounded-lg">
                 <div class="show-easy flex justify-between text-grayword px-4 py-3 border-b-1 border100"
@@ -306,7 +309,7 @@ input[type=text]:focus {
 }
 
 .focused {
-    border: 1px solid #f1b434;
+    border: 2px solid #222;
 }
 
 .search {

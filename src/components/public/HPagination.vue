@@ -14,17 +14,21 @@
             </div>
             <div>
                 <div class="flex justify-start items-center">
-                    <div class="mr-1 h-6 border border-border100 px-2 flex justify-center items-center rounded-sm">First
+                    <div
+                        class="mr-1 h-6 border border-border100 px-2 flex justify-center items-center rounded-sm text-btndisable">
+                        First
                     </div>
-                    <div class="mr-1 h-6 rounded-sm w-6 icon iconfont icon-arrow-right flex justify-center items-center border border-border100"
+                    <div class="mr-1 h-6 rounded-sm w-6 icon iconfont icon-arrow-right flex justify-center items-center border border-border100 text-btndisable"
                         style="transform: rotate(180deg);" />
                     <div class="mr-1 h-6 rounded-sm" :class="isFocus ? 'focused' : 'not-focused'">
                         <input @focus="focusSearch" @blur="blurSearch" type="text"
                             class="search bg-black200 w-full h-full rounded-sm">
                     </div>
                     <div
-                        class="mr-1 h-6 w-6 rounded-sm icon iconfont flex justify-center items-center icon-arrow-right border border-border100" />
-                    <div class="h-6 border border-border100 px-2 flex justify-center items-center rounded-sm">Last
+                        class="mr-1 h-6 w-6 rounded-sm icon iconfont flex justify-center items-center icon-arrow-right border border-border100 text-clickable" />
+                    <div
+                        class="h-6 border border-border100 px-2 flex justify-center items-center rounded-sm text-clickable">
+                        Last
                     </div>
                 </div>
             </div>
@@ -66,7 +70,7 @@ input[type=text]:focus {
 }
 
 .focused {
-    border: 1px solid #f1b434;
+    border: 2px solid #222;
 }
 
 .not-focused {

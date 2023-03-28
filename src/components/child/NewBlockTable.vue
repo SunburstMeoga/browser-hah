@@ -34,27 +34,31 @@
                     </div>
                 </div> -->
 
-                <div v-for="(item, index) in 15" :key="index" class="flex justify-start py-3 border-b border-border100">
+                <div v-for="(item, index) in dataList" :key="index"
+                    class="flex justify-start py-3 border-b border-border100">
                     <div class="w-20 ml-4 text-white200 text-sm">
                         {{ index + 1 }}
                     </div>
-                    <div class="w-60 text-primary text-sm">
-                        测试数据
+                    <div class="w-60 text-clickable text-sm">
+                        {{ item.height }}
                     </div>
                     <div class="w-60 text-white200 text-sm truncate">
-                        测试数据
+                        {{ addressFilter(item.reward_address) }}
                     </div>
                     <div class="w-60 text-white200 text-sm">
-                        测试数据
+                        {{ item.reward_money }}
                     </div>
                     <div class="w-60 text-white200 text-sm">
-                        测试数据
+                        {{ item.txs }}
+
                     </div>
-                    <div class="w-60 text-primary text-sm truncate">
-                        测试数据
+                    <div class="w-60 text-clickable text-sm truncate">
+                        {{ addressFilter(item.prev_hash) }}
+
                     </div>
                     <div class="w-60 text-white200 text-sm truncate">
-                        测试数据
+                        {{ timeFormat(item.time) }}
+
                     </div>
                 </div>
             </div>

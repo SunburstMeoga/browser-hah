@@ -4,7 +4,7 @@ module.exports = {
     address: "地址",
     block: "区块",
     tx: "交易",
-    placeholder: "搜索地址，区块，交易",
+    placeholder: "搜索地址 / 区块 / 交易",
     search: "搜索",
     more: "查看更多",
 

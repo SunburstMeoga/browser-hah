@@ -20,10 +20,13 @@ module.exports = {
 
         'border100': '#222',
 
-
         'white100': '#ebf0f6',
         'white200': '#f5f5f5',
-        'white300': '#fafafa'
+        'white300': '#fafafa',
+
+        'btndisable': '#888',
+
+        'clickable': '#6ab5db'
       },
       spacing: {
         '100': '100rem'
