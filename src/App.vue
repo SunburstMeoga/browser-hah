@@ -2,7 +2,7 @@
   <div id="app" class="bg-white dark:bg-black500">
     <e-top-bar></e-top-bar>
     <router-view></router-view>
-    <!--<e-footer-bar></e-footer-bar> -->
+    <e-footer-bar></e-footer-bar>
   </div>
 </template>
 

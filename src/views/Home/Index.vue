@@ -222,7 +222,7 @@
         </div>
         <div
             class="w-11/12 mr-auto ml-auto rounded-lg h-auto pt-4 flex justify-center items-center shadow-lg mb-4 border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
-            <div id="chart" style="width: 400px; height: 300px;"></div>
+            <div id="chart" style="width: 500px; height: 300px;"></div>
         </div>
         <div class="mb-2 w-11/12 mr-auto ml-auto">
             <module-title :title="$t('BlockList.newBlock')"></module-title>

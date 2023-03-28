@@ -1,6 +1,5 @@
 <template>
-
-    <div isHome="true" class="footer_wrap cn" data-v-35696748 data-v-02b3c3b7>
+    <!-- <div isHome="true" class="footer_wrap cn" data-v-35696748 data-v-02b3c3b7>
 
         <el-row :gutter="20">
 
@@ -39,12 +38,14 @@
             </el-col>
           
         </el-row>
+    </div> -->
+    <div>
+        this is bottom bar
     </div>
-
 </template>
 
 <script>
-    export default {
-        name: "eFooterBar"
-    }
+export default {
+    name: "eFooterBar"
+}
 </script>
