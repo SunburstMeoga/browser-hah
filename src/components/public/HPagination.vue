@@ -1,11 +1,12 @@
 <template>
     <div>
-        <div class="pt-2 pb-3 px-4 text-black100 text-sm">
+        <div class="pt-2 pb-3 px-4 text-sm text-ligthword dark:text-black100">
             <div class="flex justify-start mb-2 items-center">
                 <div class="pr-2">Show:</div>
-                <div class="mr-2 w-16 border border-border100">
+                <div class="mr-2 w-16 border border-ligthborder dark:border-border100">
                     <select v-model="selectedPageSize"
-                        class="bg-black200 border-border100 text-white200 w-full h-6 rounded-lg" @change="getValue">
+                        class="w-full h-6 rounded-lg bg-white border-ligthborder dark:text-white200 dark:bg-black200 dark:border-border100"
+                        @change="getValue">
                         <option v-for="(item, index) in pageSizeList" :value="item.pageSize" v-text="item.pageSize"
                             :key="index" />
                     </select>
@@ -15,19 +16,20 @@
             <div>
                 <div class="flex justify-start items-center">
                     <div
-                        class="mr-1 h-6 border border-border100 px-2 flex justify-center items-center rounded-sm text-btndisable">
+                        class="mr-1 h-6 border px-2 flex justify-center items-center rounded-sm border-ligthborder text-ligthword dark:border-border100 dark:text-btndisable">
                         First
                     </div>
-                    <div class="mr-1 h-6 rounded-sm w-6 icon iconfont icon-arrow-right flex justify-center items-center border border-border100 text-btndisable"
+                    <div class="mr-1 h-6 rounded-sm w-6 icon iconfont icon-arrow-right flex justify-center items-center border border-ligthborder text-ligthword dark:border-border100 dark:text-btndisable"
                         style="transform: rotate(180deg);" />
-                    <div class="mr-1 h-6 rounded-sm" :class="isFocus ? 'focused' : 'not-focused'">
+                    <div
+                        class="mr-1 h-6 flex items-center rounded-sm border border-ligthborder text-ligthword dark:border-border100 dark:text-btndisable">
                         <input @focus="focusSearch" @blur="blurSearch" type="text"
-                            class="search bg-black200 w-full h-full rounded-sm">
+                            class="search w-full h-5/6 dark:bg-black200">
                     </div>
                     <div
-                        class="mr-1 h-6 w-6 rounded-sm icon iconfont flex justify-center items-center icon-arrow-right border border-border100 text-clickable" />
+                        class="mr-1 h-6 w-6 rounded-sm icon iconfont flex justify-center items-center icon-arrow-right border border-ligthborder dark:border-border100 text-clickable" />
                     <div
-                        class="h-6 border border-border100 px-2 flex justify-center items-center rounded-sm text-clickable">
+                        class="h-6 border px-2 flex justify-center items-center rounded-sm text-clickable border-ligthborder dark:border-border100">
                         Last
                     </div>
                 </div>
@@ -70,7 +72,7 @@ input[type=text]:focus {
 }
 
 .focused {
-    border: 2px solid #222;
+    border: 2px;
 }
 
 .not-focused {
