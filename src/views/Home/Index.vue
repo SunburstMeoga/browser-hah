@@ -221,13 +221,13 @@
             <module-title title="区块统计"></module-title>
         </div>
         <div
-            class="w-11/12 mr-auto ml-auto bg-black200 rounded-lg h-auto pt-4 flex justify-center items-center mb-4 shadow-md border-border100">
+            class="w-11/12 mr-auto ml-auto bg-black200 rounded-lg h-auto pt-4 flex justify-center items-center mb-4 shadow-md border border-border100">
             <div id="chart" style="width: 400px; height: 300px;"></div>
         </div>
         <div class="mb-2 w-11/12 mr-auto ml-auto">
             <module-title :title="$t('BlockList.newBlock')"></module-title>
         </div>
-        <div class="bg-black200 mb-4 w-11/12 mr-auto ml-auto rounded-lg shadow-md border-border100">
+        <div class="bg-black200 mb-4 w-11/12 mr-auto ml-auto rounded-lg shadow-md border border-border100">
             <new-block-table :dataList="blockListDatas" />
             <div class="">
                 <h-pagination></h-pagination>
@@ -236,7 +236,7 @@
         <div class="mb-2 w-11/12 mr-auto ml-auto">
             <module-title :title="$t('Pending.tx')"></module-title>
         </div>
-        <div class="bg-black200 mb-4 w-11/12 mr-auto ml-auto rounded-lg shadow-md border-border100">
+        <div class="bg-black200 mb-4 w-11/12 mr-auto ml-auto rounded-lg shadow-md border border-border100">
             <trade-table :dataList="TXListDatas" />
             <div class="">
                 <h-pagination></h-pagination>

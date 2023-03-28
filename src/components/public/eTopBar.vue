@@ -97,7 +97,7 @@
     </div>
 </template> -->
 <template>
-    <div class="bg-black200 mb-4">
+    <div class="bg-white dark:bg-black200 mb-4">
         <!-- search -->
         <div class="pt-3">
             <div class="flex bg-black400 rounded-lg justify-start items-center w-11/12 mr-auto ml-auto h-9 overflow-hidden"
@@ -131,7 +131,12 @@
         </div>
         <!-- menu router -->
         <div v-show="showMenu" class="menu bg-transparent w-full">
-            <div class="mr-auto ml-auto bg-black400 rounded-lg">
+            <div class="mr-auto ml-auto bg-black400">
+                <div class="show-easy flex justify-between text-grayword px-4 py-3 border-b-1 border100"
+                    @click="changeTheme">
+                    <div class="text-sm"> 主题 </div>
+                    <div class="icon iconfont icon-daytime-mode text-sm"></div>
+                </div>
                 <div class="show-easy flex justify-between text-grayword px-4 py-3 border-b-1 border100"
                     v-for="(item, index) in pagesList" :key="index" @click="toPage(item.path)">
                     <div class="text-sm"> {{ item.title }}</div>
@@ -201,6 +206,16 @@ export default {
     },
     created() { this.getDefaultLanguage() },
     methods: {
+        changeTheme() {
+            if (!this.$store.state.isDark) {
+                document.documentElement.classList.add('dark');
+                this.$store.commit('changeTheme', true)
+            } else {
+                document.documentElement.classList.remove('dark');
+                this.$store.commit('changeTheme', false)
+            }
+            console.log(this.$store.state.isDark)
+        },
         focusSearch() {
             console.log('获取焦点')
             this.showSearchCriteria = true
