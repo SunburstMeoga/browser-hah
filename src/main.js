@@ -4,7 +4,7 @@ import store from './store'
 import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import i18n from './lang/index'
+import i18n from './lang'
 import * as echarts from 'echarts';
 import '@/assets/css/iconfont.css';
 import 'tailwindcss/tailwind.css'
@@ -16,8 +16,8 @@ Vue.use(ElementUI)
 Vue.config.productionTip = false
 
 
-import globalString from './lang/global';
-Vue.prototype.globalString = globalString
+// import globalString from './lang/global';
+// Vue.prototype.globalString = globalString
 // import staffapi from './request/staffapi';
 // Vue.prototype.$staffapi = staffapi;
 

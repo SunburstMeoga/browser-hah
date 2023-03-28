@@ -11,26 +11,6 @@
                 </div>
             </div>
             <div class="">
-                <!-- <div v-for="(item, index) in dataList" :key="index" class="flex justify-start py-3">
-                    <div class="w-20 ml-4 text-white200 text-sm">
-                        {{ index + 1 }}
-                    </div>
-                    <div class="w-60 text-white200 text-sm">
-                        {{ addressFilter(item.block_hash) }}
-                    </div>
-                    <div class="w-60 text-white200 text-sm truncate">
-                        {{ timeFormat(item.transtime) }}
-                    </div>
-                    <div class="w-60 text-white200 text-sm">
-                        {{ item.amount }}
-                    </div>
-                    <div class="w-60 text-white200 text-sm">
-                        {{ addressFilter(item.from) }}
-                    </div>
-                    <div class="w-60 text-white200 text-sm truncate">
-                        {{ addressFilter(item.to) }}
-                    </div>
-                </div> -->
                 <div v-for="(item, index) in dataList" :key="index"
                     class="flex justify-start py-3 border-b text-sm border-ligthborder text-lighttable dark:text-white200 dark:border-border100">
                     <div class="w-20 ml-4">
@@ -69,9 +49,9 @@ export default {
             default: () => []
         },
     },
-    data() {
-        return {
-            tableTitleList: [
+    computed: {
+        tableTitleList() {
+            return [
                 {
                     title: this.$t('Pending.hash')
                 },

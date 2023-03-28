@@ -132,8 +132,8 @@
                         :class="$store.state.isDark ? 'icon-night-mode' : 'icon-daytime-mode'" @click="changeTheme" />
                 </div>
                 <!-- language -->
-                <div
-                    class="rounded-lg flex items-center justify-center w-7 h-7 border border-ligthborder dark:border-border100 mr-2">
+                <div class="rounded-lg flex items-center justify-center w-7 h-7 border border-ligthborder dark:border-border100 mr-2"
+                    @click="changeLanguages">
                     <div class="icon iconfont icon-language text-2xl text-ligthicon dark:text-grayicon" />
                 </div>
                 <!-- menu -->
@@ -161,44 +161,22 @@
 export default {
     data() {
         return {
-            // options: [{
-            //     value: 1,
-            //     label: 'address',
-            // }, {
-            //     value: '2',
-            //     label: 'block'
-            // }, {
-            //     value: '3',
-            //     label: 'tx'
-            // }],
-            // value: 1,
-            // search_text: '',
-            // openFlag: false,
-            // openLanguage: false,
-            // openLanguageDiv: false,
-            // langFlag: 'zh-CN',
-            // langText: '中文',
-            // language:
-            //     [
-            //         {
-            //             value: 'zh-CN',
-            //             label: '中文'
-            //         },
-            //         {
-            //             value: 'en-US',
-            //             label: 'English'
-            //         }
-            //     ],
-            pagesList: [
+            showMenu: false,
+            showSearchCriteria: false,
+            isFocus: false,
+        }
+    },
+    computed: {
+        pagesList() {
+            return [
                 { title: this.$t('eTopBar.home'), path: '/' },
                 { title: this.$t('eTopBar.rich'), path: '/rich' },
                 { title: 'dpos', path: '/dpos' },
                 { title: 'HRC20', path: '/hrc20' }
-            ],
-            showMenu: false,
-            showSearchCriteria: false,
-            isFocus: false,
-            searchCriteriaList: [
+            ]
+        },
+        searchCriteriaList() {
+            return [
                 {
                     title: this.$t('common.address'),
                     icon: 'icon-shouhuodizhi'
@@ -214,7 +192,6 @@ export default {
             ]
         }
     },
-    created() { this.getDefaultLanguage() },
     methods: {
         changeTheme() {
             if (!this.$store.state.isDark) {
@@ -227,13 +204,11 @@ export default {
             console.log(this.$store.state.isDark)
         },
         focusSearch() {
-            console.log('获取焦点')
             this.showSearchCriteria = true
             this.showMenu = false
             this.isFocus = true
         },
         blurSearch() {
-            console.log('失去焦点')
             this.showSearchCriteria = false
             this.isFocus = false
         },
@@ -249,28 +224,16 @@ export default {
             })
             this.toggleMenu()
         },
-        // toRank() {
-        //     this.$router.push({
-        //         path: '/rank'
-        //     })
-        // },
-        // toDpos() {
-        //     this.$router.push({
-        //         path: '/dpos'
-        //     })
-        // },
-        // toHRC20() {
-        //     this.$router.push({
-        //         path: '/hrc'
-        //     })
-        // },
-        // toHome() {
-        //     this.$router.push({
-        //         path: '/'
-        //     })
-        // },
+        changeLanguages() {
+            if (localStorage.getItem('language') === 'en-US') {
+                localStorage.setItem('language', 'zh-CN')
+            } else {
+                localStorage.setItem('language', 'en-US')
+            }
+            this.$i18n.locale = localStorage.getItem('language')
+            console.log(this.$i18n.locale)
+        },
         search() {
-            console.log("111111", this.value, '222222', this.search_text)
             if (this.value == 1) {
                 this.$router.push({ path: "address", query: { hash: this.search_text } });
             } else if (this.value == 2) {
@@ -278,34 +241,7 @@ export default {
             } else {
                 this.$router.push({ path: "tx", query: { txid: this.search_text } });
             }
-        },
-
-        chooseLanguage(value) {
-            this.openLanguage = false
-            this.$i18n.locale = value
-        },
-        showLanguage() {
-            this.openLanguage = true
-
-        },
-        hideLanguage() {
-            this.openLanguage = false
-        },
-        changeLanguages() {
-            localStorage.setItem('virtualCurrencyLocale', this.langFlag)
-            this.$i18n.locale = localStorage.getItem('virtualCurrencyLocale')
-
-            //console.log(this.$i18n.locale)
-            //this.$i18n.locale = this.langFlag;
-        },
-        getDefaultLanguage() {
-            var virtualCurrencyLocale = localStorage.getItem('virtualCurrencyLocale')
-            if (virtualCurrencyLocale == 'en-US') {
-                this.langFlag = 'en-US'
-                this.langText = 'English'
-            }
         }
-
     },
 }
 </script>

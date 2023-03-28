@@ -15,7 +15,11 @@ export default {
     eFooterBar
   },
   mounted() {
-    console.log(window.matchMedia('(prefers-color-scheme: dark)').matches)
+    // console.log(window.matchMedia('(prefers-color-scheme: dark)').matches)
+    this.$i18n.locale = localStorage.getItem('language') || navigator.language || navigator.userLanguage
+    console.log(localStorage.getItem('language'), navigator.language || navigator.userLanguage, this.$i18n.locale)
+    console.log('this.$i18n.locale', this.$i18n.locale)
+
     // document.documentElement.classList.add('dark');
   }
 }

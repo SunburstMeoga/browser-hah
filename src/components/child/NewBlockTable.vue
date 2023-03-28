@@ -53,26 +53,26 @@ export default {
             default: () => []
         },
     },
-    data() {
-        return {
-            tableTitleList: [
+    computed: {
+        tableTitleList() {
+            return [
                 {
-                    title: '区块高度'
+                    title: this.$t('BlockList.height')
                 },
                 {
-                    title: '播报方'
+                    title: this.$t('BlockList.address')
                 },
                 {
-                    title: '暴块奖励'
+                    title: this.$t('BlockList.reward')
                 },
                 {
-                    title: '交易数量'
+                    title: this.$t('BlockList.amount')
                 },
                 {
-                    title: '上一区块'
+                    title: this.$t('BlockList.previousBlock')
                 },
                 {
-                    title: '时间'
+                    title: this.$t('BlockList.time')
                 },
             ]
         }
