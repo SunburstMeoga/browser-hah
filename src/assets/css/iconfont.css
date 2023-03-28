@@ -1,10 +1,10 @@
 @font-face {
     font-family: "iconfont";
     /* Project id 3976864 */
-    src: url('//at.alicdn.com/t/c/font_3976864_jk4exzjulem.woff2?t=1679845741546') format('woff2'),
-        url('//at.alicdn.com/t/c/font_3976864_jk4exzjulem.woff?t=1679845741546') format('woff'),
-        url('//at.alicdn.com/t/c/font_3976864_jk4exzjulem.ttf?t=1679845741546') format('truetype'),
-        url('//at.alicdn.com/t/c/font_3976864_jk4exzjulem.svg?t=1679845741546#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/c/font_3976864_3rp770wwxdg.woff2?t=1680013464288') format('woff2'),
+        url('//at.alicdn.com/t/c/font_3976864_3rp770wwxdg.woff?t=1680013464288') format('woff'),
+        url('//at.alicdn.com/t/c/font_3976864_3rp770wwxdg.ttf?t=1680013464288') format('truetype'),
+        url('//at.alicdn.com/t/c/font_3976864_3rp770wwxdg.svg?t=1680013464288#iconfont') format('svg');
 }
 
 .iconfont {
@@ -13,6 +13,30 @@
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-facebook:before {
+    content: "\eab7";
+}
+
+.icon-instagram-fill:before {
+    content: "\e88f";
+}
+
+.icon-tuite:before {
+    content: "\e652";
+}
+
+.icon-twitter-fill:before {
+    content: "\e63d";
+}
+
+.icon-zimuH:before {
+    content: "\e692";
+}
+
+.icon-github:before {
+    content: "\e657";
 }
 
 .icon-close:before {

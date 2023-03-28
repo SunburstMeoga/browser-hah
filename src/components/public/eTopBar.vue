@@ -99,7 +99,7 @@
 <template>
     <div class="bg-white dark:bg-black200 mb-4">
         <!-- search -->
-        <div class="py-2 border border-b border-ligthborder dark:border-border100">
+        <div class="static left-0 top-0 py-2 border border-b border-ligthborder dark:border-border100">
             <div class="flex rounded-lg justify-start items-center w-11/12 mr-auto ml-auto h-9 overflow-hidden border border-ligthborder dark:border-border100 dark:bg-black400"
                 :class="isFocus ? 'focused' : ''">
                 <div class="icon iconfont icon-search pr-2 pl-3 text-ligthword dark:text-black100" />

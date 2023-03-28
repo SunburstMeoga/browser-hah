@@ -23,6 +23,7 @@ module.exports = {
         'ligthborder': '#e9ecef',
         'lightprimary': '#f8f9fa',
         'lighttable': '#212529',
+        'lightbottom': '#edeffa',
         // 595c5f
 
         'border100': '#222',
