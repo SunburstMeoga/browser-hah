@@ -18,9 +18,9 @@ module.exports = {
         'black400': '#151515',
         'black500': '#171717',
 
-        'ligthicon': '#aeb5bd',
-        'ligthword': '#6d757d',
-        'ligthborder': '#e9ecef',
+        'lighticon': '#aeb5bd',
+        'lightword': '#6d757d',
+        'lightborder': '#e9ecef',
         'lightprimary': '#f8f9fa',
         'lighttable': '#212529',
         'lightbottom': '#edeffa',
