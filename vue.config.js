@@ -3,7 +3,7 @@ module.exports = {
     devServer: {
         proxy: {
             "/api": {
-                target: "http://192.168.3.9:7711",
+                target: "https://testnet.hashahead.org/api/",
                 changeOrigin: true,
                 secure: false,
                 ws: true,

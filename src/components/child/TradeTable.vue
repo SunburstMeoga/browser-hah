@@ -71,7 +71,8 @@ export default {
         }
     },
     methods: {
-        timeFormat, addressFormat, addressFilter
+        timeFormat, addressFormat, addressFilter,
+
     },
 }
 </script>

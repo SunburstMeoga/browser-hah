@@ -17,7 +17,7 @@
                     <div class="w-20 ml-4">
                         {{ index + 1 }}
                     </div>
-                    <div class="w-60 text-clickable">
+                    <div class="w-60 text-clickable" @click="toBlock(item.height)">
                         {{ item.height }}
                     </div>
                     <div class="w-60 text-sm">
@@ -53,7 +53,15 @@ export default {
             default: () => []
         },
     },
-    computed: {
+    methods: {
+        timeFormat, addressFormat, addressFilter,
+        //to block details
+        toBlock(height) {
+            this.$router.push({
+                path: '/block/' + height
+            })
+        }
+    }, computed: {
         tableTitleList() {
             return [
                 {
@@ -76,9 +84,6 @@ export default {
                 },
             ]
         }
-    },
-    methods: {
-        timeFormat, addressFormat, addressFilter
     },
 }
 </script>
