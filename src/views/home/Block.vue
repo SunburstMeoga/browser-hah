@@ -24,7 +24,7 @@
                 <div>
                     <div v-for="(item, index) in TxListDatas" :key="index"
                         class="w-11/12 mr-auto ml-auto py-2 border-b border-ligthborder">
-                        <block-transaction-card :transactionInfo="item"/>
+                        <block-transaction-card :transactionInfo="item" />
                     </div>
                 </div>
                 <div>
@@ -43,7 +43,6 @@ import BlockTransactionCard from '@/components/child/BlockTransactionCard'
 import ModuleTitle from '@/components/public/ModuleTitle'
 import SecondTitle from '@/components/public/SecondTitle'
 import { blockInfo, TXList } from '@/request/home'
-import { timeFormat } from '@/utils/format'
 
 export default {
     name: "Block",
@@ -64,7 +63,6 @@ export default {
         this.getBlockInfo()
     },
     methods: {
-        timeFormat,
         toTX(txid) {
             console.log('sfadfs')
             this.$router.push({
@@ -101,18 +99,7 @@ export default {
                 this.$store.commit('getBlockInfo', this.blockInfo)
                 this.getTXList()
             });
-        },
-
-        handleSizeChange(newSzie) {
-            this.pageSize = newSzie
-            this.getList()
-        },
-        handleCurrentChange(newPage) {
-            this.pagenum = newPage
-            this.getList()
-        },
-
-
+        }
     },
 
 }

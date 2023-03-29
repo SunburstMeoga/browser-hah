@@ -20,7 +20,7 @@
                     <div class="w-60 text-clickable" @click="toBlock(item.height)">
                         {{ item.height }}
                     </div>
-                    <div class="w-60 text-sm">
+                    <div class="w-60 text-sm text-clickable" @click="toAddress(item.reward_address)">
                         {{ addressFilter(item.reward_address) }}
                     </div>
                     <div class="w-60">
@@ -55,6 +55,11 @@ export default {
     },
     methods: {
         timeFormat, addressFormat, addressFilter,
+        toAddress(address) {
+            this.$router.push({
+                path: '/address/' + address
+            })
+        },
         //to block details
         toBlock(height) {
             this.$router.push({

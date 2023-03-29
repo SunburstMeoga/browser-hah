@@ -1,183 +1,69 @@
 <template>
-    <div>
-        <div data-v-520cdd27="" class="page-address content-child">
-            <div data-v-1a6f007e="" query="[object Object]"><!---->
-                <section data-v-1a6f007e="" class="section">
-                    <div data-v-6f78b530="" data-v-1a6f007e="">
-                        <div data-v-6f78b530="" class="baseInfoCard">
-                            <div data-v-6f78b530="" class="header">
-                                <div data-v-6f78b530="" class="title">{{ $t('Address.addressInfo') }}</div>
-                            </div>
-                            <div data-v-6f78b530="" class="content">
-                                <div data-v-6f78b530="" class="item hash">
-                                    <div data-v-6f78b530="" class="key">{{ $t('Address.address') }}<!----></div>
-                                    <div data-v-6f78b530="" class="val">{{ address }}</div>
-                                </div><!----><!---->
-                                <div data-v-6f78b530="" class="item">
-                                    <div data-v-6f78b530="" class="key">{{ $t('Address.balance') }}</div>
-                                    <div data-v-6f78b530="" class="value">
-                                        {{ balance }} {{ virtualCurrencyUnit }}
-                                    </div>
-                                </div>
-                                <div data-v-6f78b530="" class="item">
-                                    <div data-v-6f78b530="" class="key">{{ $t('Address.locked') }}</div>
-                                    <div data-v-6f78b530="" class="value">
-                                        {{ locked }} {{ virtualCurrencyUnit }}
-                                    </div>
-                                </div>
-                                <div data-v-6f78b530="" class="item">
-                                    <div data-v-6f78b530="" class="key">{{ $t('Address.totalRevenue') }}</div>
-                                    <div data-v-6f78b530="" class="value">
-                                        {{ income }} {{ virtualCurrencyUnit }}
-                                    </div>
-                                </div>
-                                <div data-v-6f78b530="" class="item">
-                                    <div data-v-6f78b530="" class="key">{{ $t('Address.totalTransferOut') }}</div>
-                                    <div data-v-6f78b530="" class="value">
-                                        {{ expend }} {{ virtualCurrencyUnit }}
-                                    </div>
-                                </div>
-                                <div data-v-6f78b530="" class="item">
-                                    <div data-v-6f78b530="" class="key">{{ $t('Address.rank') }}</div>
-                                    <div data-v-6f78b530="" class="value">{{ rank }}</div>
-                                </div>
-                                <div data-v-6f78b530="" class="item">
-                                    <div data-v-6f78b530="" class="key">nonce</div>
-                                    <div data-v-6f78b530="" class="value">{{ nonce }}</div>
-                                </div>
-                                <!----><!----><!---->
-                            </div>
-                        </div>
-                    </div>
-                    <div data-v-1a6f007e="" class="baseInfoCard">
-                        <div data-v-1a6f007e="" class="header">
-                            <div data-v-1a6f007e="" class="title">{{ $t('Address.transactions') }}</div>
-                        </div><!---->
-                        <div data-v-bfa74ae2="" data-v-1a6f007e="" class="txs_box">
-                            <ul data-v-bfa74ae2="" class="tx-ul ">
-                                <li data-v-bfa74ae2="" v-for="(item, index) in TxListDatas" :key="index"><!---->
-                                    <div data-v-bfa74ae2="" class="tx_baseinfo">
-                                        <div data-v-bfa74ae2="" class="left">
-                                            <div data-v-bfa74ae2="" @click="toTX(item.txid)" class="title">{{
-                                                $t('Address.hash') }}</div><!---->
-                                            {{ item.txid
-                                            }}
-                                        </div>
-                                        <div data-v-bfa74ae2="" class="right">
-                                            <div data-v-bfa74ae2=""><span data-v-bfa74ae2="" class="title">{{
-                                                $t('Address.time') }}</span>{{ timeFormat(item.transtime)
-    }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div data-v-4a9378aa="" data-v-bfa74ae2="" class="tx">
-                                        <div data-v-4a9378aa="" class="tx_curt none">
-                                            <div data-v-4a9378aa="" class="input">
-                                                <div data-v-4a9378aa="" class="input_addr">Input</div>
-                                            </div>
-                                            <div data-v-4a9378aa="" class="output">
-                                                <div data-v-4a9378aa="" class="output_addr">Output</div>
-                                            </div>
-                                        </div><!---->
-                                        <div data-v-4a9378aa="" class="tx_detail">
-                                            <div data-v-4a9378aa="" class="input">
-                                                <div data-v-4a9378aa="" class="item start none">
-                                                    <div data-v-4a9378aa="" class="input_addr">Input</div>
-                                                </div>
-                                                <div data-v-4a9378aa="" class="item">
-                                                    <div data-v-4a9378aa="" class="input_addr"><span data-v-4a9378aa=""
-                                                            class="hash coinbase"><span data-v-4a9378aa=""
-                                                                class="el-tooltip" aria-describedby="el-tooltip-2085"
-                                                                tabindex="0">{{ item.from }}</span></span></div>
-                                                    <div data-v-4a9378aa="" class="input_value">{{ item.amount }} {{
-                                                        virtualCurrencyUnit }}</div>
-                                                </div><!---->
-                                            </div>
-                                            <img data-v-4a9378aa=""
-                                                src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMzBweCIgaGVpZ2h0PSIxOHB4IiB2aWV3Qm94PSIwIDAgMzAgMTgiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDU1LjIgKDc4MTgxKSAtIGh0dHBzOi8vc2tldGNoYXBwLmNvbSAtLT4KICAgIDx0aXRsZT5GaWxsIDHlpIfku70gMzwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxnIGlkPSLpobXpnaIxIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBvcGFjaXR5PSIwLjIwMDAwMDAwMyI+CiAgICAgICAgPGcgaWQ9IuW+heehruiupOS6pOaYkyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTYyNy4wMDAwMDAsIC00MjEuMDAwMDAwKSIgZmlsbD0iIzAwMjJBOSI+CiAgICAgICAgICAgIDxwb2x5Z29uIGlkPSJGaWxsLTHlpIfku70tMyIgcG9pbnRzPSI2NTAuNjMxMjgyIDQyOC4zNjM3NjUgNjI3IDQyOC4zNjM3NjUgNjI3IDQzMS42MzY0NzUgNjUwLjYzMTI4MiA0MzEuNjM2NDc1IDY0NS40MzU2MzIgNDM2LjcwOTE2MSA2NDcuNzgyMTEgNDM5IDY1NyA0MzAuMDAwMTIgNjQ3Ljk0OTc0IDQyMSA2NDUuNjAzMjYyIDQyMy4yOTA4MzkiPjwvcG9seWdvbj4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg=="
-                                                alt="" class="jiantou">
-                                            <div data-v-4a9378aa="" class="output">
-                                                <div data-v-4a9378aa="" class="item start none">
-                                                    <div data-v-4a9378aa="" class="output_addr">Output</div>
-                                                </div>
-                                                <div data-v-4a9378aa="" class="item">
-                                                    <div data-v-4a9378aa="" class="output_addr"><span data-v-4a9378aa="">{{
-                                                        item.to }}</span>
-                                                    </div>
-                                                    <div data-v-4a9378aa="" class="output_value">{{ item.amount }} {{
-                                                        virtualCurrencyUnit }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div data-v-4a9378aa="" class="bottom-btn">
-                                            <div data-v-4a9378aa="" class="left"><!----></div>
-                                            <div data-v-4a9378aa="" class="right"><!---->
-                                                <div data-v-4a9378aa=""><span data-v-4a9378aa="" class="title">{{
-                                                    $t('Address.block') }}</span>
-                                                    <router-link
-                                                        :to="{ name: 'block', query: { hash: item.block_hash } }">{{
-                                                            item.block_hash }}</router-link>
-                                                </div>
-                                                <!---->
-                                                <div data-v-4a9378aa=""><span data-v-4a9378aa="" class="title">{{
-                                                    $t('Address.txFee') }}</span>{{ item.fee }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-
-
-                        <div data-v-7b0e1c95="">
-                            <div data-v-5d77fed0="" data-v-7b0e1c95="" class="turn_page">
-                                <div data-v-5d77fed0="" class="page_box">
-                                    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                                        :current-page="pagenum" :page-sizes="[20, 50, 100]" :page-size="pageSize"
-                                        layout="total, sizes, prev, pager, next, jumper" :total="total">
-                                    </el-pagination>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </section>
-            </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+    <div class="w-full pb-4 bg-lightsecond">
+        <div>
+            <div class="w-11/12 mr-auto ml-auto py-5 mb-4 border-b border-ligthborder">
+                <second-title :title="$t('Address.addressInfo')" />
+            </div>
         </div>
 
+        <div class="mb-4">
+            <div
+                class="w-11/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+                <div>
+                    <address-details-card :addressInfo="addressInfo"></address-details-card>
+                </div>
+            </div>
+        </div>
 
+        <div>
+            <div
+                class="w-11/12 mr-auto ml-auto rounded-lg pt-2 shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+                <div class="pb-2 w-11/12 mr-auto ml-auto border-b border-ligthborder">
+                    <module-title :title="$t('Block.tx')" />
+                </div>
+                <div>
+                    <div v-for="(item, index) in TXListDatas" :key="index"
+                        class="w-11/12 mr-auto ml-auto py-2 border-b border-ligthborder">
+                        <address-transaction-card :transactionInfo="item" />
+                    </div>
+                </div>
+                <div>
+                    <h-pagination></h-pagination>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import HPagination from '@/components/public/HPagination'
+import AddressDetailsCard from '@/components/child/AddressDetailsCard'
+import AddressTransactionCard from '@/components/child/AddressTransactionCard'
+
+import ModuleTitle from '@/components/public/ModuleTitle'
+import SecondTitle from '@/components/public/SecondTitle'
 import { addressInfo, balanceInfo } from '@/request/home'
 import { timeFormat } from '@/utils/format'
 
 export default {
+    components: { SecondTitle, HPagination, AddressDetailsCard, ModuleTitle, AddressTransactionCard },
     name: "Address",
     data() {
         return {
             address: '',
-            balance: '',
-            locked: '',
-            nonce: '',
-            income: '',
-            expend: '',
-            rank: '',
-            TxListDatas: [],
-            pageSize: 20,
+            TXListDatas: [],
+            pageSize: 10,
             pagenum: 1,
             total: 0,
-            virtualCurrencyUnit: this.globalString.virtualCurrencyUnit,
+            addressInfo: {}
         }
 
     },
 
     created() {
         this.address = this.$route.params.address
+        console.log('this.$route.params.address', this.$route.params.address)
+        this.addressInfo.address = this.address
         this.getAddressInfo()
         this.getBalanceInfo()
     },
@@ -197,15 +83,14 @@ export default {
 
             addressInfo(params).then(res => {
                 console.log('addressInfo', res)
-                this.balance = res.balance
-                this.income = res.income
-                this.expend = res.expend
-                this.rank = res.rank
-                this.TxListDatas = res.data.data
-                console.log(this.TxListDatas);
+                this.addressInfo.balance = res.balance
+                this.addressInfo.rank = res.rank
+                this.TXListDatas = res.data.data
                 this.pagenum = res.data.pagenum
                 this.pageSize = res.data.pagesize
                 this.total = res.data.total
+
+                console.log(this.TXListDatas);
             })
         },
         getBalanceInfo() {
@@ -215,18 +100,10 @@ export default {
             };
             balanceInfo(params).then(res => {
                 console.log('res', res);
-                this.locked = res.locked
-                this.nonce = res.nonce
+                this.addressInfo.locked = res.locked
+                this.addressInfo.nonce = res.nonce
             });
 
-        },
-        handleSizeChange(newSzie) {
-            this.pageSize = newSzie
-            this.getAddressInfo()
-        },
-        handleCurrentChange(newPage) {
-            this.pagenum = newPage
-            this.getAddressInfo()
         }
     },
 }
@@ -234,5 +111,4 @@ export default {
 
 </script>
 
-<style>
-</style>
+<style></style>

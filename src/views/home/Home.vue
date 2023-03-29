@@ -273,9 +273,6 @@ export default {
         this.getNewBlock()
         this.getNewTX()
         let days = 31;
-        if (this._isMobile()) {
-            days = 8;
-        }
         this.getChartData(days)
         // this.timer = setInterval(() => {
         //     this.getNewBlock()

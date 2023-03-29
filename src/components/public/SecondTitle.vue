@@ -2,7 +2,7 @@
     <div>
         <div class="flex justify-start items-center">
             <div class="font-bold text-lighttable">{{ title }}</div>
-            <div class="pl-2 text-lightword"> {{ details }}</div>
+            <div class="pl-2 text-lightword truncate"> {{ details }}</div>
         </div>
     </div>
 </template>
@@ -12,11 +12,11 @@ export default {
     props: {
         title: {
             type: String,
-            default: 'Block'
+            default: ''
         },
         details: {
             type: String,
-            default: '#34334'
+            default: ''
         }
     }
 }
