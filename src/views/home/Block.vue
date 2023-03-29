@@ -22,9 +22,9 @@
                     <module-title :title="$t('common.block') + ' ' + $t('Block.tx')" />
                 </div>
                 <div>
-                    <div v-for="(item, index) in 3" :key="index"
+                    <div v-for="(item, index) in TxListDatas" :key="index"
                         class="w-11/12 mr-auto ml-auto py-2 border-b border-ligthborder">
-                        <block-transaction-card />
+                        <block-transaction-card :transactionInfo="item"/>
                     </div>
                 </div>
                 <div>
@@ -53,14 +53,15 @@ export default {
             pageSize: 10,
             pagenum: 1,
             height: '',
-            blockInfo: {}
+            blockInfo: {},
+            transactionInfo: {},
+            TxListDatas: []
         }
     },
     created() {
         this.height = this.$route.params.height
         console.log('height', this.height)
         this.getBlockInfo()
-
     },
     methods: {
         timeFormat,
@@ -82,7 +83,6 @@ export default {
                 this.pageSize = res.pagesize * 1
                 this.total = res.total
                 this.blockInfo.total = res.total
-                console.log('TxListDatas', res)
             });
         },
         getBlockInfo() {

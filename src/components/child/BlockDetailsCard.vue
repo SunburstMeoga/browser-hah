@@ -11,7 +11,7 @@
 
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 text-lightitemtitle">{{ $t('Block.time') }}:</div>
-            <div class="text-sm text-lighttable">{{ blockInfo.time }}</div>
+            <div class="text-sm text-lighttable">{{ timeFormat(blockInfo.time) }}</div>
         </div>
 
         <div class="flex justify-start items-center mb-2">
@@ -32,7 +32,7 @@
 
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 text-lightitemtitle">{{ $t('Block.reward') }}:</div>
-            <div class="text-sm text-lighttable">{{ blockInfo.reward_money }} HAH</div>
+            <div class="text-sm text-lighttable">{{ amountFormat(blockInfo.reward_money) }} HAH</div>
         </div>
 
         <div class="flex justify-start items-center mb-2">
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { addressFilter } from '@/utils/format'
+import { addressFilter, amountFormat, timeFormat } from '@/utils/format'
 export default {
     props: {
         blockInfo: {
@@ -54,7 +54,7 @@ export default {
         }
     },
     methods: {
-        addressFilter,
+        addressFilter, amountFormat, timeFormat,
         viewTransacions() {
             this.$emit('viewTransacions')
         }
