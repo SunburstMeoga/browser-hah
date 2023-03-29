@@ -5,11 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isDark: false
+    isDark: false,
+    blockInfo: {}
   },
   mutations: {
     changeTheme(state, newVal) {
       state.isDark = newVal
+    },
+    getBlockInfo(state, newVal) {
+      state.blockInfo = newVal
     }
   },
   actions: {

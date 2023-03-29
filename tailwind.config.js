@@ -24,6 +24,8 @@ module.exports = {
         'lightprimary': '#f8f9fa',
         'lighttable': '#212529',
         'lightbottom': '#edeffa',
+        'lightsecond': '#fbfcfe',
+        'lightitemtitle': '#111B36',
         // 595c5f
 
         'border100': '#222',
