@@ -148,6 +148,7 @@
         <div>
             <div class="w-11/12 mr-auto ml-auto py-2 border-b border-ligthborder">
                 <second-title :title="$t('common.block')" :details="'#' + height" />
+                tedxt
             </div>
         </div>
     </div>
