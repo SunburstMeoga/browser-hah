@@ -2,7 +2,7 @@ export default [
     {
         path: '/',
         name: 'home',
-        component: () => import('../views/home/Index.vue')
+        component: () => import('../views/home/Home')
     },
     {
         path: '/address/:address',
