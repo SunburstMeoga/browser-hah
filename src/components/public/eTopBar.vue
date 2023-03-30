@@ -7,12 +7,12 @@
                 <div class="icon iconfont icon-search pr-2 pl-3 text-lightword dark:text-black100" />
                 <div class="flex-1 h-full ">
                     <input type="text" :placeholder="$t('common.placeholder')" @focus="focusSearch" @blur="blurSearch"
-                        class="search w-full h-full rounded-sm dark:bg-black400" />
+                        class="search w-full h-full rounded-sm dark:bg-black400" v-model="searchContent" />
                 </div>
             </div>
             <div class="w-11/12 mr-auto ml-auto mt-4 flex justify-start flex-wrap show-easy" v-show="showSearchCriteria">
                 <div class="flex justify-start items-center text-sm px-2 mr-6 rounded-lg mb-2 text-lighttable  dark:bg-black300 dark:text-black100"
-                    v-for="(item, index) in searchCriteriaList" :key="index">
+                    v-for="(item, index) in searchCriteriaList" :key="index" @click="handleSearch(item.path)">
                     <div class="icon iconfont text-lg" :class="item.icon"></div>
                     <div class="pl-1">{{ item.title }}</div>
 
@@ -66,6 +66,8 @@ export default {
             showMenu: false,
             showSearchCriteria: false,
             isFocus: false,
+            searchContent: null,
+            timer: null
         }
     },
     computed: {
@@ -81,20 +83,33 @@ export default {
             return [
                 {
                     title: this.$t('common.address'),
-                    icon: 'icon-shouhuodizhi'
+                    icon: 'icon-shouhuodizhi',
+                    path: '/address/'
                 },
                 {
                     title: this.$t('common.block'),
-                    icon: 'icon-qukuai'
+                    icon: 'icon-qukuai',
+                    path: '/block/'
                 },
                 {
                     title: this.$t('common.tx'),
-                    icon: 'icon-jiaoyiguanli'
+                    icon: 'icon-jiaoyiguanli',
+                    path: '/tx/'
                 },
             ]
         }
     },
     methods: {
+        handleSearch(path) {
+            console.log(path + this.searchContent)
+            if (this.searchContent) {
+                this.$router.push({
+                    path: path + this.searchContent
+                })
+            } else {
+                console.log('no data')
+            }
+        },
         changeTheme() {
             if (!this.$store.state.isDark) {
                 document.documentElement.classList.add('dark');
@@ -111,8 +126,10 @@ export default {
             this.isFocus = true
         },
         blurSearch() {
-            this.showSearchCriteria = false
-            this.isFocus = false
+            this.timer = setTimeout(() => {
+                this.showSearchCriteria = false
+                this.isFocus = false
+            }, 1000)
         },
         toggleMenu() {
             this.showMenu = !this.showMenu
@@ -135,15 +152,9 @@ export default {
             this.$i18n.locale = localStorage.getItem('language')
             console.log(this.$i18n.locale)
         },
-        search() {
-            if (this.value == 1) {
-                this.$router.push({ path: "address", query: { hash: this.search_text } });
-            } else if (this.value == 2) {
-                this.$router.push({ path: "block", query: { hash: this.search_text } });
-            } else {
-                this.$router.push({ path: "tx", query: { txid: this.search_text } });
-            }
-        }
+        beforeDestroy() {
+            clearTimeout(this.timer);
+        },
     },
 }
 </script>
