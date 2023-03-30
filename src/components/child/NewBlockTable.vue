@@ -30,7 +30,7 @@
                         {{ item.txs }}
 
                     </div>
-                    <div class="w-60 text-clickable">
+                    <div class="w-60">
                         {{ addressFilter(item.prev_hash) }}
 
                     </div>

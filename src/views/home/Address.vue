@@ -55,17 +55,16 @@ export default {
             pageSize: 10,
             pagenum: 1,
             total: 0,
-            addressInfo: {}
+            addressInfo: {},
+            rank: '',
         }
 
     },
 
     created() {
         this.address = this.$route.params.address
-        console.log('this.$route.params.address', this.$route.params.address)
         this.addressInfo.address = this.address
         this.getAddressInfo()
-        this.getBalanceInfo()
     },
     methods: {
         timeFormat,
@@ -82,15 +81,11 @@ export default {
             };
 
             addressInfo(params).then(res => {
-                console.log('addressInfo', res)
-                this.addressInfo.balance = res.balance
-                this.addressInfo.rank = res.rank
+                this.rank = res.rank
                 this.TXListDatas = res.data.data
-                this.pagenum = res.data.pagenum
-                this.pageSize = res.data.pagesize
                 this.total = res.data.total
-
-                console.log(this.TXListDatas);
+                this.getBalanceInfo()
+                console.log(this.TXListDatas)
             })
         },
         getBalanceInfo() {
@@ -99,9 +94,11 @@ export default {
                 symbol: 'HAH',
             };
             balanceInfo(params).then(res => {
-                console.log('res', res);
+                this.addressInfo.balance = res.balance
                 this.addressInfo.locked = res.locked
                 this.addressInfo.nonce = res.nonce
+                this.addressInfo.rank = this.rank
+                console.log('this.addressInfo', this.addressInfo);
             });
 
         }

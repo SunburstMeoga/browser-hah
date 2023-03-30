@@ -17,7 +17,7 @@
         </div>
 
 
-        <div class="flex justify-start items-center mb-2">
+        <!-- <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 text-lightitemtitle">{{ $t('Address.totalRevenue') }}:</div>
             <div class="text-sm text-lighttable">{{ $store.state.isDark }}</div>
         </div>
@@ -26,7 +26,7 @@
             <div class="font-bold pr-4 text-lightitemtitle">{{ $t('Address.totalTransferOut') }}:</div>
             <div class="text-sm  ">
                 {{ $store.state.isDark }}</div>
-        </div>
+        </div> -->
 
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 text-lightitemtitle">{{ $t('Address.rank') }}:</div>
