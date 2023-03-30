@@ -54,10 +54,9 @@
                 </div>
 
                 <div class="hidden sm:flex sm:order-3 sm:flex-1 sm:justify-end">
-                    <div>sfdaf</div>
-                    <div>sadfasdf</div>
-                    <div>asdfs</div>
-                    <div>asdff</div>
+                    <div v-for="(item, index) in pagesList" :key="index">
+                        {{ item.title }}
+                    </div>
                 </div>
 
                 <div class="flex justify-end items-center mr-4 sm:order-4">
