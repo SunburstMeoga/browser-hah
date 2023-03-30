@@ -24,11 +24,11 @@ module.exports = {
 
   },
   Address: {
-    addressInfo: 'Address information',
+    addressInfo: 'Address Information',
     address: 'Address',
     balance: 'Balance',
-    totalRevenue: 'Total revenue',
-    totalTransferOut: 'Total transfer out',
+    totalRevenue: 'Total Revenue',
+    totalTransferOut: 'Total Transfer Out',
     rank: 'Ranking',
     transactions: 'Transactions',
     hash: 'Hash',
@@ -39,7 +39,7 @@ module.exports = {
   },
   Block: {
     blockInfo: 'Block Information',
-    returnHome: 'Return block home',
+    returnHome: 'Return Block Home',
     time: 'Time',
     transactions: 'Number of transactions ',
     previousBlock: 'Previous Block',

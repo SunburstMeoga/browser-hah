@@ -1,7 +1,7 @@
 <template>
-    <div class="w-full pb-4 bg-lightsecond">
+    <div class="w-full pb-4 bg-lightsecond dark:bg-black300">
         <div>
-            <div class="w-11/12 mr-auto ml-auto py-5 mb-4 border-b border-ligthborder">
+            <div class="w-11/12 mr-auto ml-auto py-5 mb-4 border-b border-ligthborder dark:border-border100">
                 <second-title :title="$t('Tx.txInfo')" />
             </div>
         </div>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="pt-2 px-4">
                     <div v-for="(item, index) in dataDetails" :key="index"
-                        class="text-sm font-bold text-lightitemtitle py-2 border-b border-ligthborder">
+                        class="text-sm font-bold py-2 border-b border-ligthborder  text-lightitemtitle dark:text-btndisable dark:border-border100">
                         <div class="">{{ $t('Tx.from') }}:
                             <span class="font-normal pl-2 text-clickable"> {{
                                 addressFormat(item.topics1)

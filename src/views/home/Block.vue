@@ -1,7 +1,7 @@
 <template>
-    <div class="w-full pb-4 bg-lightsecond">
+    <div class="w-full pb-4 bg-lightsecond dark:bg-black300">
         <div>
-            <div class="w-11/12 mr-auto ml-auto py-5 mb-4 border-b border-ligthborder">
+            <div class="w-11/12 mr-auto ml-auto py-5 mb-4 border-b border-ligthborder dark:border-border100">
                 <second-title :title="$t('common.block')" :details="'#' + height" />
             </div>
         </div>
@@ -18,12 +18,12 @@
         <div>
             <div
                 class="w-11/12 mr-auto ml-auto rounded-lg pt-2 shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
-                <div class="pb-2 w-11/12 mr-auto ml-auto border-b border-ligthborder">
+                <div class="pb-2 w-11/12 mr-auto ml-auto border-b border-ligthborder dark:border-border100 ">
                     <module-title :title="$t('common.block') + ' ' + $t('Block.tx')" />
                 </div>
                 <div>
                     <div v-for="(item, index) in TxListDatas" :key="index"
-                        class="w-11/12 mr-auto ml-auto py-2 border-b border-ligthborder">
+                        class="w-11/12 mr-auto ml-auto py-2 border-b border-ligthborder dark:border-border100 ">
                         <block-transaction-card :transactionInfo="item" />
                     </div>
                 </div>

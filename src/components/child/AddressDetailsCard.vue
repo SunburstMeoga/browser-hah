@@ -1,25 +1,25 @@
 <template>
-    <div class="text-sm pt-2 px-4 text-lightitemtitle">
+    <div class="text-sm pt-2 px-4 text-lightitemtitle dark:text-btndisable">
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('common.address') }}:</div>
-            <div class="text-sm pr-2 text-lighttable">{{ addressFilter(addressInfo.address) }}</div>
+            <div class="text-sm pr-2 text-lighttable dark:text-white200">{{ addressFilter(addressInfo.address) }}</div>
 
         </div>
 
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Address.balance') }}:</div>
-            <div class="text-sm text-lighttable">{{ addressInfo.balance }}</div>
+            <div class="text-sm text-lighttable dark:text-white200">{{ addressInfo.balance }}</div>
         </div>
 
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Address.locked') }}:</div>
-            <div class="text-sm text-lighttable">{{ addressInfo.locked }}</div>
+            <div class="text-sm text-lighttable dark:text-white200">{{ addressInfo.locked }}</div>
         </div>
 
 
         <!-- <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Address.totalRevenue') }}:</div>
-            <div class="text-sm text-lighttable">{{ $store.state.isDark }}</div>
+            <div class="text-sm text-lighttable dark:text-white200">{{ $store.state.isDark }}</div>
         </div>
 
         <div class="flex justify-start items-center mb-2">
@@ -35,7 +35,7 @@
 
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">Nonce:</div>
-            <div class="text-sm text-lighttable">{{ addressInfo.nonce }} </div>
+            <div class="text-sm text-lighttable dark:text-white200">{{ addressInfo.nonce }} </div>
         </div>
     </div>
 </template>

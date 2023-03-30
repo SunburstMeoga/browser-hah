@@ -101,7 +101,6 @@ export default {
     },
     methods: {
         handleSearch(path) {
-            console.log(path + this.searchContent)
             if (this.searchContent) {
                 this.$router.push({
                     path: path + this.searchContent
@@ -129,7 +128,7 @@ export default {
             this.timer = setTimeout(() => {
                 this.showSearchCriteria = false
                 this.isFocus = false
-            }, 1000)
+            }, 300)
         },
         toggleMenu() {
             this.showMenu = !this.showMenu

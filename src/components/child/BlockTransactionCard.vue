@@ -1,5 +1,5 @@
 <template>
-    <div class="text-sm text-lightitemtitle">
+    <div class="text-sm text-lightitemtitle dark:text-btndisable">
         <div class="flex justify-start items-center ">
             <div class="font-bold pr-4 ">Input:</div>
             <div class="  text-clickable">{{ addressFilter(transactionInfo.from) }}</div>
@@ -7,16 +7,16 @@
 
         <div class="flex justify-start items-center ">
             <div class="font-bold pr-4 ">Output:</div>
-            <div class=" text-clickable">{{ addressFilter(transactionInfo.to) }}</div>
+            <div class="text-clickable">{{ addressFilter(transactionInfo.to) }}</div>
         </div>
 
         <div class="flex justify-start items-center ">
-            <div class="font-bold pr-4 text-lightitemtitle">{{ $t('dposDetail.amount') }}:</div>
+            <div class="font-bold pr-4">{{ $t('dposDetail.amount') }}:</div>
             <div class=" ">{{ amountFormat(transactionInfo.amount) }} HAH</div>
         </div>
 
         <div class="flex justify-start items-center ">
-            <div class="font-bold pr-4 text-lightitemtitle">{{ $t('Address.txFee') }}:</div>
+            <div class="font-bold pr-4">{{ $t('Address.txFee') }}:</div>
             <div class=" ">{{ amountFormat(transactionInfo.fee) }} HAH</div>
         </div>
 
