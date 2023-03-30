@@ -20,7 +20,7 @@
                     <div class="w-60 text-clickable" @click="toAddress(item.address)">
                         {{ addressFilter(item.address) }}
                     </div>
-                    <div class="w-60 text-sm">
+                    <div class="w-60">
                         {{ item.votes }}
                     </div>
                     <div class="w-60">
