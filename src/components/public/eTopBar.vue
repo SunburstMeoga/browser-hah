@@ -72,9 +72,9 @@ export default {
         pagesList() {
             return [
                 { title: this.$t('eTopBar.home'), path: '/' },
-                { title: this.$t('eTopBar.rich'), path: '/rich' },
+                { title: this.$t('eTopBar.rich'), path: '/rank' },
                 { title: 'dpos', path: '/dpos' },
-                { title: 'HRC20', path: '/hrc20' }
+                { title: 'HRC20', path: '/hrc' }
             ]
         },
         searchCriteriaList() {

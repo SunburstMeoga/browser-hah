@@ -1,108 +1,31 @@
 <template>
     <div>
-        <div data-v-92014c5c="" data-v-520cdd27="" class="content-child">
-            <h1 data-v-92014c5c="" class="h1">
-                {{ $t('Rank.h1') }}</h1>
-            <h2 data-v-92014c5c="" class="h2">{{ $t('Rank.h2') }}</h2>
-            <div data-v-92014c5c="" class="baseInfoCard">
-                <div data-v-92014c5c="" class="header">
-                    <div data-v-92014c5c="" id="rich_list" class="btns">
-                        <div data-v-92014c5c="" class="title ontitle">{{ $t('Rank.rich') }}</div>
-                    </div>
-
-                </div>
-                <div data-v-18b505e9="" data-v-92014c5c="">
-                    <div data-v-18b505e9="" class="full">
-                        <div data-v-18b505e9="" class="part cp-rich">
-                            <div data-v-18b505e9="" class="content">
-                                <div data-v-18b505e9="" class="inner">
-                                    <div data-v-18b505e9="" class="rich_list">
-                                        <li data-v-18b505e9="" class="item">
-                                            <div data-v-18b505e9="" class="rank"><b data-v-18b505e9="">{{ $t('Rank.rank')
-                                            }}</b></div>
-                                            <!---->
-                                            <div data-v-18b505e9="" class="address"><b data-v-18b505e9="">{{
-                                                $t('Rank.address') }}</b></div>
-                                            <div data-v-18b505e9="" class="amount"><b data-v-18b505e9="">{{
-                                                $t('Rank.balance') }}</b></div>
-                                            <div data-v-18b505e9="" class="percent"><b data-v-18b505e9="">{{
-                                                $t('Rank.yield') }}</b></div>
-                                        </li>
-                                        <li data-v-18b505e9="" class="item" v-for="(item, index) in ranklistDatas"
-                                            :key="index">
-                                            <div data-v-18b505e9="" class="rank">{{ index + 1 }}</div>
-                                            <div data-v-18b505e9="" class="address">
-                                                <a data-v-18b505e9="" href="javascript:void(0)" class="hash">
-                                                    <span data-v-18b505e9="" class="el-tooltip"
-                                                        aria-describedby="el-tooltip-6004" tabindex="0">
-                                                        {{ item.address }}
-                                                    </span></a>
-
-                                            </div>
-                                            <div data-v-18b505e9="" class="amount">{{ item.balance }}</div>
-                                            <div data-v-18b505e9="" class="percent">{{ item.yield }}</div>
-                                        </li>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div data-v-18b505e9="" class="mobile">
-                            <div data-v-18b505e9="" class="items" v-for="(item, index) in ranklistDatas" :key="index">
-                                <div data-v-18b505e9="" class="item hash">
-                                    <div data-v-18b505e9="" class="key">{{ $t('Rank.address') }}</div>
-                                    <div data-v-18b505e9="" class="value">
-                                        <div data-v-18b505e9="" class="address"><a data-v-18b505e9=""
-                                                href="javascript:void(0)" class="hash">{{ item.address }}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div data-v-18b505e9="" class="item">
-                                    <div data-v-18b505e9="" class="key">{{ $t('Rank.balance') }}</div>
-                                    <div data-v-18b505e9="" class="value">
-                                        <div data-v-18b505e9="" class="amount">{{ item.balance }}</div>
-                                    </div>
-                                </div>
-                                <div data-v-18b505e9="" class="item">
-                                    <div data-v-18b505e9="" class="key">{{ $t('Rank.yield') }}</div>
-                                    <div data-v-18b505e9="" class="value">{{ item.yield }}</div>
-                                </div>
-                                <div data-v-18b505e9="" class="item">
-                                    <div data-v-18b505e9="" class="key">{{ $t('Rank.rank') }}</div>
-                                    <div data-v-18b505e9="" class="value">{{ index + 1 }}</div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div data-v-7b0e1c95="">
-                            <div data-v-5d77fed0="" data-v-7b0e1c95="" class="turn_page">
-                                <div data-v-5d77fed0="" class="page_box">
-                                    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                                        :current-page="pagenum" :page-sizes="[20]" :page-size="pageSize"
-                                        layout="total, sizes, prev, pager, next, jumper" :total="total">
-                                    </el-pagination>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div><!---->
+        <div class="mb-2 w-11/12 mr-auto ml-auto">
+            <module-title :title="$t('Rank.rich')"></module-title>
+        </div>
+        <div
+            class=" mb-4 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+            <rank-list-table :dataList="rankListDatas" />
+            <div class="">
+                <h-pagination></h-pagination>
             </div>
         </div>
-
     </div>
 </template>
 
 
 <script>
+
+import ModuleTitle from '@/components/public/ModuleTitle'
+import HPagination from '@/components/public/HPagination'
+import RankListTable from '@/components/child/RankListTable'
 import { rankList } from '@/request/rank';
 export default {
     name: "Rank",
+    components: { RankListTable, ModuleTitle, HPagination, },
     data() {
         return {
-            ranklistDatas: [],
+            rankListDatas: [],
             pageSize: 20,
             pagenum: 1,
             total: 0,
@@ -118,21 +41,12 @@ export default {
                 pagesize: this.pageSize
             };
             rankList(params).then(res => {
-                this.ranklistDatas = res.data
+                console.log(res)
+                this.rankListDatas = res.data
                 this.page = res.pagenum
                 this.pageSize = res.pagesize
                 this.total = res.total
-
             });
-        },
-
-        handleSizeChange(newSzie) {
-            this.pageSize = newSzie
-            this.getRankList()
-        },
-        handleCurrentChange(newPage) {
-            this.pagenum = newPage
-            this.getRankList()
         },
     }
 }

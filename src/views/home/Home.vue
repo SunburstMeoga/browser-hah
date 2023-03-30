@@ -31,9 +31,10 @@
 </template>
 
 <script>
-import ModuleTitle from '@/components/public/ModuleTitle'
+
 import NewBlockTable from '@/components/child/NewBlockTable'
 import TradeTable from '@/components/child/TradeTable'
+import ModuleTitle from '@/components/public/ModuleTitle'
 import HPagination from '@/components/public/HPagination'
 
 import { newBlock, newTX, blockStatistics } from '@/request/home'
