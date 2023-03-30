@@ -16,7 +16,7 @@
                     <div class="w-20 ml-4">
                         {{ index + 1 }}
                     </div>
-                    <div class="w-60 text-clickable">
+                    <div class="w-60 text-clickable" @click="toTX(item.txid)">
                         {{ addressFilter(item.block_hash) }}
                     </div>
                     <div class="w-60">
@@ -72,7 +72,11 @@ export default {
     },
     methods: {
         timeFormat, addressFormat, addressFilter,
-
+        toTX(txid) {
+            this.$router.push({
+                path: '/tx/' + txid
+            })
+        },
     },
 }
 </script>

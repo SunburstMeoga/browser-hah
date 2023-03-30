@@ -1,104 +1,56 @@
 <template>
-    <div>
+    <div class="w-full pb-4 bg-lightsecond">
+        <div>
+            <div class="w-11/12 mr-auto ml-auto py-5 mb-4 border-b border-ligthborder">
+                <second-title :title="$t('Tx.txInfo')" />
+            </div>
+        </div>
 
-        <div class="page-tx content-child" data-v-520cdd27="">
-            <div params="[object Object]" query="[object Object]" data-v-57312e58="">
-                <section class="section" data-v-57312e58="">
-                    <div class="baseInfoCard" data-v-57312e58="">
-                        <div class="header" data-v-57312e58="">
-                            <div class="title" data-v-57312e58="">{{ $t('Tx.txInfo') }}</div>
-                        </div>
-                        <div class="content" data-v-57312e58="">
-                            <div class="item hash" data-v-57312e58="">
-                                <div class="val" data-v-57312e58="">
-                                    {{ txid }}
-                                </div>
-                            </div>
-                            <div class="item" data-v-57312e58="">
-                                <div class="key" data-v-57312e58="">{{ $t('Tx.block') }}</div>
-                                <div class="value" data-v-57312e58="">
-                                    <router-link :to="{ name: 'block', query: { hash: block_hash } }">{{ block_hash
-                                    }}</router-link>
-                                </div>
-                            </div>
-                            <div class="item" data-v-57312e58="">
-                                <div class="key" data-v-57312e58="">{{ $t('Tx.time') }}</div>
-                                <div class="value" data-v-57312e58="">{{ timeFormat(transtime) }}</div>
-                            </div>
-                            <div class="item" data-v-57312e58="">
-                                <div class="key" data-v-57312e58="">{{ $t('Tx.from') }}</div>
-                                <div class="value" data-v-57312e58="">{{ from }}</div>
-                            </div>
-                            <div class="item" data-v-57312e58="">
-                                <div class="key" data-v-57312e58="">{{ $t('Tx.to') }}</div>
-                                <div class="value" data-v-57312e58="">{{ to }}</div>
-                            </div>
-                            <div class="item" data-v-57312e58="">
-                                <div class="key" data-v-57312e58="">{{ $t('Tx.txAmount') }}</div>
-                                <div class="value" data-v-57312e58="">{{ (amount) }} {{ virtualCurrencyUnit }}</div>
-                            </div>
+        <div class="mb-4">
+            <div
+                class="w-11/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+                <div>
+                    <transaction-details :transactionInfo="transactionInfo"></transaction-details>
+                </div>
+            </div>
+        </div>
 
-                            <div class="item" data-v-57312e58="" v-if="dataDetails.length !== 0">
-                                <div class="key" data-v-57312e58="">Transferred</div>
-                                <div class="value" data-v-57312e58="" v-for="(item, index) in dataDetails" :key="index">
-                                    <div><span class="word">From</span> {{ addressFormat(item.topics1) }} <span
-                                            class="word"> <br>
-                                            To</span>
-                                        {{ addressFormat(item.topics2) }} <span class="word">For</span> {{
-                                            amountFormat(item.data)
-                                        }}</div>
-                                </div>
-                            </div>
-                            <div class="item" data-v-57312e58="">
-                                <div class="key" data-v-57312e58="">{{ $t('Tx.txFee') }}</div>
-                                <div class="value" data-v-57312e58="">
-                                    {{ free }}
-                                </div>
-                            </div>
-                            <div class="item" data-v-57312e58="">
-                                <div class="key" data-v-57312e58="">nonce</div>
-                                <div class="value" data-v-57312e58="">
-                                    {{ nonce }}
-                                </div>
-                            </div>
-                            <div class="item" v-if="dpos_in != null && dpos_in.length != 0" data-v-57312e58="">
-                                <div class="key" data-v-57312e58="">{{ $t('Tx.dpos_in') }}</div>
-                                <div class="value" data-v-57312e58="">
-                                    {{ dpos_in }}
-                                </div>
-                            </div>
-                            <div class="item" v-if="dpos_out != null && dpos_out.length != 0" data-v-57312e58="">
-                                <div class="key" data-v-57312e58="">{{ $t('Tx.dpos_out') }}</div>
-                                <div class="value" data-v-57312e58="">
-                                    {{ dpos_out }}
-                                </div>
-                            </div>
-                            <div class="item" v-if="client_in != null && client_in.length != 0" data-v-57312e58="">
-                                <div class="key" data-v-57312e58="">{{ $t('Tx.client_in') }}</div>
-                                <div class="value" data-v-57312e58="">
-                                    {{ client_in }}
-                                </div>
-                            </div>
-                            <div class="item" v-if="client_out != null && client_out.length != 0" data-v-57312e58="">
-                                <div class="key" data-v-57312e58="">{{ $t('Tx.client_out') }}</div>
-                                <div class="value" data-v-57312e58="">
-                                    {{ client_out }}
-                                </div>
-                            </div>
+        <div class="mb-4" v-if="dataDetails.length !== 0">
+
+            <div
+                class="w-11/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+                <div class="px-4 pt-4">
+                    <second-title title="内部转账" />
+                </div>
+                <div class="pt-2 px-4">
+                    <div v-for="(item, index) in dataDetails" :key="index"
+                        class="text-sm font-bold text-lightitemtitle py-2 border-b border-ligthborder">
+                        <div class="">{{ $t('Tx.from') }}:
+                            <span class="font-normal pl-2 text-clickable"> {{
+                                addressFormat(item.topics1)
+                            }}</span>
                         </div>
+                        <div class="">{{ $t('Tx.to') }}: <span class="font-normal pl-2 text-clickable"> {{
+                            addressFormat(item.topics2) }}</span>
+                        </div>
+                        <div class="">For: {{ amountFormat(item.data) }}</div>
                     </div>
-                </section>
-
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import HPagination from '@/components/public/HPagination'
+import ModuleTitle from '@/components/public/ModuleTitle'
+import SecondTitle from '@/components/public/SecondTitle'
+import TransactionDetails from '@/components/child/TransactionDetails'
 import { txDetails, txInfo } from '@/request/home'
 import { timeFormat, addressFormat, amountFormat } from '@/utils/format'
 
 export default {
+    components: { SecondTitle, HPagination, ModuleTitle, TransactionDetails },
     name: "Tx",
     data() {
         return {
@@ -114,8 +66,8 @@ export default {
             dpos_out: '',
             client_in: '',
             client_out: '',
-            virtualCurrencyUnit: this.globalString.virtualCurrencyUnit,
-            dataDetails: []
+            dataDetails: [],
+            transactionInfo: {}
         }
     },
     created() {
@@ -130,7 +82,9 @@ export default {
                 txid: this.txid
             };
             txDetails(params).then(res => {
+                console.log(res)
                 this.dataDetails = res
+                this.transactionInfo.transTotal = res.length
             });
         },
         getTxinfo() {
@@ -139,17 +93,17 @@ export default {
             };
             txInfo(params).then(res => {
                 console.log('tx', res)
-                this.block_hash = res[0].block_hash
-                this.from = res[0].from
-                this.to = res[0].to
-                this.amount = res[0].amount
-                this.free = res[0].fee
-                this.nonce = res[0].nonce
+                this.transactionInfo.block_hash = res[0].block_hash
+                this.transactionInfo.from = res[0].from
+                this.transactionInfo.to = res[0].to
+                this.transactionInfo.amount = res[0].amount
+                this.transactionInfo.free = res[0].fee
+                this.transactionInfo.nonce = res[0].nonce
                 this.dpos_in = res[0].dpos_in
                 this.dpos_out = res[0].dpos_out
                 this.client_in = res[0].client_in
                 this.client_out = res[0].client_out
-                this.transtime = res[0].transtime
+                this.transactionInfo.transtime = res[0].transtime
             });
         }
     },

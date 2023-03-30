@@ -76,11 +76,7 @@ export default {
                 path: '/block/' + height
             })
         },
-        toTX(txid) {
-            this.$router.push({
-                path: '/tx/' + txid
-            })
-        },
+
         getNewTX() {
             newTX().then(res => {
                 console.log('newTX', res)
