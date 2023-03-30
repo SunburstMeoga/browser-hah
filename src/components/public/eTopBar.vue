@@ -1,58 +1,94 @@
 <template>
-    <div class="bg-white border-b border-lightborder dark:border-border100 dark:bg-black400">
-        <!-- search -->
-        <div class="py-2 border-b border-lightborder dark:border-border100">
-            <div class="flex rounded-lg justify-start items-center w-11/12 mr-auto ml-auto h-9 overflow-hidden border border-b border-lightborder dark:border-border100 dark:bg-black400"
-                :class="isFocus ? 'focused' : ''">
-                <div class="icon iconfont icon-search pr-2 pl-3 text-lightword dark:text-black100" />
-                <div class="flex-1 h-full ">
-                    <input type="text" :placeholder="$t('common.placeholder')" @focus="focusSearch" @blur="blurSearch"
-                        class="search w-full h-full rounded-sm dark:bg-black400" v-model="searchContent" />
-                </div>
-            </div>
-            <div class="w-11/12 mr-auto ml-auto mt-4 flex justify-start flex-wrap show-easy" v-show="showSearchCriteria">
-                <div class="flex justify-start items-center text-sm px-2 mr-6 rounded-lg mb-2 text-lighttable  dark:bg-black300 dark:text-black100"
-                    v-for="(item, index) in searchCriteriaList" :key="index" @click="handleSearch(item.path)">
-                    <div class="icon iconfont text-lg" :class="item.icon"></div>
-                    <div class="pl-1">{{ item.title }}</div>
+    <div class="w-full mb-2 sm:mb-4 sm:py-3 bg-white border-b border-lightborder dark:border-border100 dark:bg-black400"
+        style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
+        <div class="w-full sm:w-10/12 sm:mr-auto sm:ml-auto sm:flex sm:justify-between sm:items-center">
 
+            <!-- <div class="py-2 border-b sm:order-1 sm:border-none border-lightborder dark:border-border100">
+                <div class="flex rounded-lg justify-start items-center w-11/12 mr-auto ml-auto h-9 overflow-hidden border border-b border-lightborder dark:border-border100 dark:bg-black400"
+                    :class="isFocus ? 'focused' : ''">
+                    <div class="icon iconfont icon-search pr-2 pl-3 text-lightword dark:text-black100" />
+                    <div class="flex-1 h-full ">
+                        <input type="text" :placeholder="$t('common.placeholder')" @focus="focusSearch" @blur="blurSearch"
+                            class="search w-full h-full rounded-sm dark:bg-black400" v-model="searchContent" />
+                    </div>
                 </div>
-            </div>
-        </div>
-        <!-- logo and theme language menu -->
-        <div class="flex justify-between items-center w-11/12 py-3 ml-auto mr-auto">
-            <div class="flex items-center">
-                <div class="w-32">
-                    <img class="object-contain" src="../../assets/images/custom/logo.png" alt="$t('common.browser')">
+                <div class="w-11/12 mr-auto ml-auto mt-4 flex justify-start flex-wrap show-easy"
+                    v-show="showSearchCriteria">
+                    <div class="flex justify-start items-center text-sm px-2 mr-6 rounded-lg mb-2 text-lighttable  dark:bg-black300 dark:text-black100"
+                        v-for="(item, index) in searchCriteriaList" :key="index" @click="handleSearch(item.path)">
+                        <div class="icon iconfont text-lg" :class="item.icon"></div>
+                        <div class="pl-1">{{ item.title }}</div>
+
+                    </div>
                 </div>
-            </div>
-            <div class="flex justify-end items-center">
-                <!-- theme -->
+            </div> -->
+            <!--  logo and theme language menu -->
+            <div class="flex w-full justify-between items-center flex-wrap py-3 ml-auto mr-auto sm:flex-nowrap ">
+                <!-- search -->
                 <div
-                    class="rounded-lg flex items-center justify-center w-7 h-7 border border-lightborder dark:border-border100 mr-2">
-                    <div class="icon iconfont text-2xl text-lighticon dark:text-grayicon"
-                        :class="$store.state.isDark ? 'icon-night-mode' : 'icon-daytime-mode'" @click="changeTheme" />
+                    class="pb-3 mb-2 w-full border-b sm:border-none sm:mb-0 sm:pb-0 sm:order-2 sm:w-1/3 border-lightborder dark:border-border100">
+                    <div class="flex rounded-lg justify-start items-center w-11/12 mr-auto ml-auto h-9 overflow-hidden border border-b border-lightborder dark:border-border100 dark:bg-black400"
+                        :class="isFocus ? 'focused' : ''">
+                        <div class="icon iconfont icon-search pr-2 pl-3 text-lightword dark:text-black100" />
+                        <div class="flex-1 h-full ">
+                            <input type="text" :placeholder="$t('common.placeholder')" @focus="focusSearch"
+                                @blur="blurSearch" class="search w-full h-full rounded-sm dark:bg-black400"
+                                v-model="searchContent" />
+                        </div>
+                    </div>
+                    <div class="w-11/12 mr-auto ml-auto mt-4 flex justify-start flex-wrap show-easy"
+                        v-show="showSearchCriteria">
+                        <div class="flex justify-start items-center text-sm px-2 mr-6 rounded-lg mb-2 text-lighttable border border-lightborder dark:border-border100 dark:bg-black300 dark:text-black100"
+                            v-for="(item, index) in searchCriteriaList" :key="index" @click="handleSearch(item.path)">
+                            <div class="icon iconfont text-lg" :class="item.icon"></div>
+                            <div class="pl-1">{{ item.title }}</div>
+
+                        </div>
+                    </div>
                 </div>
-                <!-- language -->
-                <div class="rounded-lg flex items-center justify-center w-7 h-7 border border-lightborder dark:border-border100 mr-2"
-                    @click="changeLanguages">
-                    <div class="icon iconfont icon-language text-2xl text-lighticon dark:text-grayicon" />
+
+                <div class="flex items-center ml-3 sm:order-1">
+                    <div class="w-32">
+                        <img class="object-contain" src="../../assets/images/custom/logo.png" alt="$t('common.browser')">
+                    </div>
                 </div>
-                <!-- menu -->
-                <div
-                    class="rounded-lg flex items-center justify-center w-7 h-7 border border-lightborder dark:border-border100">
-                    <div class="icon iconfont text-lighticon text-2xl dark:text-grayicon"
-                        :class="!showMenu ? 'icon-menu' : 'icon-close'" @click="clickMenu" />
+
+                <div class="hidden sm:flex sm:order-3 sm:flex-1 sm:justify-end">
+                    <div>sfdaf</div>
+                    <div>sadfasdf</div>
+                    <div>asdfs</div>
+                    <div>asdff</div>
+                </div>
+
+                <div class="flex justify-end items-center mr-4 sm:order-4">
+                    <!-- theme -->
+                    <div
+                        class="rounded-lg flex items-center justify-center w-7 h-7 border border-lightborder dark:border-border100 mr-2">
+                        <div class="icon iconfont text-2xl text-lighticon dark:text-grayicon"
+                            :class="$store.state.isDark ? 'icon-night-mode' : 'icon-daytime-mode'" @click="changeTheme" />
+                    </div>
+                    <!-- language -->
+                    <div class="rounded-lg flex items-center justify-center w-7 h-7 border border-lightborder dark:border-border100 mr-2"
+                        @click="changeLanguages">
+                        <div class="icon iconfont icon-language text-2xl text-lighticon dark:text-grayicon" />
+                    </div>
+                    <!-- mobile menu -->
+                    <div
+                        class="rounded-lg flex items-center justify-center w-7 h-7 border sm:hidden border-lightborder dark:border-border100">
+                        <div class="icon iconfont text-lighticon text-2xl dark:text-grayicon"
+                            :class="!showMenu ? 'icon-menu' : 'icon-close'" @click="clickMenu" />
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- menu router -->
-        <div v-show="showMenu" class="menu bg-transparent w-full">
-            <div class="mr-auto ml-auto bg-white dark:bg-black400">
-                <div class="show-easy flex justify-between text-lighttable dark:text-grayword px-4 py-3 border-b-1 border100"
-                    v-for="(item, index) in pagesList" :key="index" @click="toPage(item.path)">
-                    <div class="text-sm"> {{ item.title }}</div>
-                    <div class="icon iconfont icon-arrow-right text-sm"></div>
+
+            <!--mobile menu router -->
+            <div v-show="showMenu" class="menu bg-transparent w-full">
+                <div class="mr-auto ml-auto bg-white dark:bg-black400">
+                    <div class="show-easy flex justify-between text-lighttable dark:text-grayword px-4 py-3 border-b-1 border100"
+                        v-for="(item, index) in pagesList" :key="index" @click="toPage(item.path)">
+                        <div class="text-sm"> {{ item.title }}</div>
+                        <div class="icon iconfont icon-arrow-right text-sm"></div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <template>
-    <div class="border-transparent mb-2 mr-auto ml-auto overflow-x-scroll">
-        <div class="border-b min-w-100 border-lightborder dark:border-border100">
+    <div class="border-transparent mr-auto ml-auto overflow-x-scroll">
+        <div class="border-b h-full min-w-100 border-lightborder dark:border-border100">
             <div class="py-2 flex w-full justify-start">
                 <div class="w-20 ml-4 text-sm font-black text-lighttable dark:text-white200">
                     #
@@ -11,7 +11,6 @@
                 </div>
             </div>
             <div class="">
-
                 <div v-for="(item, index) in dataList" :key="index"
                     class="flex justify-start py-3 border-b text-sm border-lightborder text-lighttable dark:text-white200 dark:border-border100">
                     <div class="w-20 ml-4">
@@ -28,15 +27,12 @@
                     </div>
                     <div class="w-60">
                         {{ item.txs }}
-
                     </div>
                     <div class="w-60">
                         {{ addressFilter(item.prev_hash) }}
-
                     </div>
                     <div class="w-60">
                         {{ timeFormat(item.time) }}
-
                     </div>
                 </div>
             </div>

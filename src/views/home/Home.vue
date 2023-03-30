@@ -3,15 +3,15 @@
         <div class="mb-2 w-11/12 mr-auto ml-auto">
             <module-title :title="$t('Block.blockStatistics')"></module-title>
         </div>
-        <div
-            class="w-11/12 mr-auto ml-auto rounded-lg h-auto pt-4 flex justify-center items-center shadow-lg mb-4 border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+        <div class="w-11/12 mr-auto ml-auto rounded-lg h-auto pt-4 flex justify-center items-center shadow-lg mb-4 border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
+            style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
             <div id="chart" style="width: 500px; height: 300px;"></div>
         </div>
         <div class="mb-2 w-11/12 mr-auto ml-auto">
             <module-title :title="$t('BlockList.newBlock')"></module-title>
         </div>
-        <div
-            class=" mb-4 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+        <div class="mb-4 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
+            style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
             <new-block-table :dataList="blockListDatas" />
             <div class="">
                 <h-pagination></h-pagination>
@@ -20,8 +20,8 @@
         <div class="mb-2 w-11/12 mr-auto ml-auto">
             <module-title :title="$t('Pending.tx')"></module-title>
         </div>
-        <div
-            class="mb-4 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+        <div class="mb-4 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
+            style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
             <trade-table :dataList="TXListDatas" />
             <div class="">
                 <h-pagination></h-pagination>
