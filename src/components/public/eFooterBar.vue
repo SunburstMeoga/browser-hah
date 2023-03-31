@@ -28,7 +28,8 @@
                 <div class="w-6/12 text-sm sm:w-1/4 mb-6 text-lighttable dark:text-white300"
                     v-for="(item, index) in tankList" :key="index">
                     <div class="font-bold text-sm mb-4">{{ item.title }}</div>
-                    <div class="font-normal mb-4" v-for="(_item, _index) in item.details" :key="_index">
+                    <div class="font-normal mb-4 cursor-pointer transition duration-300 ease-in-out transform hover:text-clickable hover:-translate-y-0.5 hover:scale-110"
+                        v-for="(_item, _index) in item.details" :key="_index">
                         {{ _item.title }}
                     </div>
                 </div>
@@ -54,19 +55,19 @@ export default {
                             title: 'About Us'
                         },
                         {
-                            title: 'About Us'
+                            title: 'Brand Assets'
                         },
                         {
-                            title: 'About Us'
+                            title: 'Contact Us'
                         },
                         {
-                            title: 'About Us'
+                            title: 'Careers'
                         },
                         {
-                            title: 'About Us'
+                            title: 'Terms of Service'
                         },
                         {
-                            title: 'About Us'
+                            title: 'Bug Bounty'
                         },
                     ]
                 },
@@ -77,16 +78,16 @@ export default {
                             title: 'API Documentation'
                         },
                         {
-                            title: 'API Documentation'
+                            title: 'Knowledge Base'
                         },
                         {
-                            title: 'API Documentation'
+                            title: 'Network Status'
                         },
                         {
-                            title: 'API Documentation'
+                            title: 'Newsletters'
                         },
                         {
-                            title: 'API Documentation'
+                            title: 'Disqus Comments'
                         }
                     ]
                 },
@@ -97,22 +98,19 @@ export default {
                             title: 'Advertise'
                         },
                         {
-                            title: 'Advertise'
+                            title: 'Explorer-as-aService(EaaS)'
                         },
                         {
-                            title: 'Advertise'
+                            title: 'API Plans'
                         },
                         {
-                            title: 'Advertise'
+                            title: 'Priority Support'
                         },
                         {
-                            title: 'Advertise'
+                            title: 'HAH Browser'
                         },
                         {
-                            title: 'Advertise'
-                        },
-                        {
-                            title: 'Advertise'
+                            title: 'HAH Browser Chat'
                         }
                     ]
                 }

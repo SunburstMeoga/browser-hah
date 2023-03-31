@@ -2,7 +2,9 @@
     <div class="text-sm pt-2 px-4 text-lightitemtitle dark:text-btndisable">
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4">{{ $t('common.address') }}:</div>
-            <div class="text-sm pr-2 text-clickable">{{ addressFilter(addressInfo.address) }}</div>
+            <div
+                class="text-sm pr-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                {{ addressFilter(addressInfo.address) }}</div>
 
         </div>
 

@@ -16,7 +16,8 @@
                     <div class="w-20 ml-4">
                         {{ item.ranking }}
                     </div>
-                    <div class="w-60 text-clickable" @click="toAddress(item.address)">
+                    <div class="w-60 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        @click="toAddress(item.address)">
                         {{ addressFilter(item.address) }}
                     </div>
                     <div class="w-60 text-sm">

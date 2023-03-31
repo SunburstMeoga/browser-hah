@@ -26,12 +26,16 @@
                     <div v-for="(item, index) in dataDetails" :key="index"
                         class="text-sm font-bold py-2 border-b border-ligthborder  text-lightitemtitle dark:text-btndisable dark:border-border100">
                         <div class="">{{ $t('Tx.from') }}:
-                            <span class="font-normal pl-2 text-clickable"> {{
-                                addressFormat(item.topics1)
-                            }}</span>
+                            <span
+                                class="font-normal pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                                {{
+                                    addressFormat(item.topics1)
+                                }}</span>
                         </div>
-                        <div class="">{{ $t('Tx.to') }}: <span class="font-normal pl-2 text-clickable"> {{
-                            addressFormat(item.topics2) }}</span>
+                        <div class="">{{ $t('Tx.to') }}: <span
+                                class="font-normal pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                                {{
+                                    addressFormat(item.topics2) }}</span>
                         </div>
                         <div class="">For: {{ amountFormat(item.data) }}</div>
                     </div>
@@ -115,5 +119,4 @@ export default {
 .word {
     color: #612591;
 
-}
-</style>
+}</style>

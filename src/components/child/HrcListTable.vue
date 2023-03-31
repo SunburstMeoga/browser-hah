@@ -10,7 +10,8 @@
             <div class="">
                 <div v-for="(item, index) in dataList" :key="index"
                     class="flex justify-start py-3 border-b text-sm border-lightborder text-lighttable dark:text-white200 dark:border-border100">
-                    <div class="w-60 text-clickable" @click="toAddress(item.addr)">
+                    <div class="w-60 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        @click="toAddress(item.addr)">
                         {{ addressFilter(item.addr) }}
                     </div>
                     <div class="w-60">

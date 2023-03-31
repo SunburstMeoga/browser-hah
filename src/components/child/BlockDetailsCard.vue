@@ -28,8 +28,9 @@
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.address') }}:</div>
-            <div class="text-sm cursor-pointer text-clickable" @click="toAddress(blockInfo.reward_address)">{{
-                addressFilter(blockInfo.reward_address) }}</div>
+            <div class="text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                @click="toAddress(blockInfo.reward_address)">{{
+                    addressFilter(blockInfo.reward_address) }}</div>
         </div>
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
@@ -40,7 +41,7 @@
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.tx') }}:</div>
             <div class="text-sm text-lighttable dark:text-white200 pr-4 sm:w-1/4"><span
-                    class="text-clickable cursor-pointer">{{
+                    class="text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 cursor-pointer">{{
                         blockInfo.txs }}
                     transacions</span> in this block
             </div>

@@ -1,10 +1,10 @@
 @font-face {
     font-family: "iconfont";
     /* Project id 3976864 */
-    src: url('//at.alicdn.com/t/c/font_3976864_dq6voi0k1o.woff2?t=1680235489134') format('woff2'),
-        url('//at.alicdn.com/t/c/font_3976864_dq6voi0k1o.woff?t=1680235489134') format('woff'),
-        url('//at.alicdn.com/t/c/font_3976864_dq6voi0k1o.ttf?t=1680235489134') format('truetype'),
-        url('//at.alicdn.com/t/c/font_3976864_dq6voi0k1o.svg?t=1680235489134#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/c/font_3976864_ra6uc08btr.woff2?t=1680254945760') format('woff2'),
+        url('//at.alicdn.com/t/c/font_3976864_ra6uc08btr.woff?t=1680254945760') format('woff'),
+        url('//at.alicdn.com/t/c/font_3976864_ra6uc08btr.ttf?t=1680254945760') format('truetype'),
+        url('//at.alicdn.com/t/c/font_3976864_ra6uc08btr.svg?t=1680254945760#iconfont') format('svg');
 }
 
 .iconfont {
@@ -13,6 +13,14 @@
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-jiazailoading-A:before {
+    content: "\e8fc";
+}
+
+.icon-Loading:before {
+    content: "\e65d";
 }
 
 .icon-down:before {

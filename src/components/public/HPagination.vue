@@ -27,9 +27,9 @@
                             class="search w-full h-5/6 dark:bg-black200">
                     </div>
                     <div
-                        class="mr-1 h-6 w-6 rounded-sm icon iconfont flex justify-center items-center icon-arrow-right border border-ligthborder dark:border-border100 text-clickable" />
+                        class="mr-1 h-6 w-6 rounded-sm icon iconfont flex justify-center items-center icon-arrow-right border border-ligthborder dark:border-border100 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110" />
                     <div
-                        class="h-6 border px-2 flex justify-center items-center rounded-sm text-clickable border-ligthborder dark:border-border100">
+                        class="h-6 border px-2 flex justify-center items-center rounded-sm text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 border-ligthborder dark:border-border100">
                         Last
                     </div>
                 </div>

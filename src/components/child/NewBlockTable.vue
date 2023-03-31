@@ -16,10 +16,11 @@
                     <div class="w-20 ml-4">
                         {{ index + 1 }}
                     </div>
-                    <div class="w-60 cursor-pointer hover:font-extrabold text-clickable " @click="toBlock(item.height)">
+                    <div class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 "
+                        @click="toBlock(item.height)">
                         {{ item.height }}
                     </div>
-                    <div class="w-60 text-sm  cursor-pointer hover:font-extrabold text-clickable "
+                    <div class="w-60 text-sm  cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 "
                         @click="toAddress(item.reward_address)">
                         {{ addressFilter(item.reward_address) }}
                     </div>
