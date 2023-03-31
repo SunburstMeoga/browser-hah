@@ -1,26 +1,35 @@
 <template>
     <div>
-        <div class="mb-2 w-11/12 mr-auto ml-auto">
+        <div class="mb-2 w-11/12 mr-auto ml-auto sm:w-10/12">
             <module-title :title="$t('Block.blockStatistics')"></module-title>
         </div>
-        <div class="w-11/12 mr-auto ml-auto rounded-lg h-auto pt-4 flex justify-center items-center shadow-lg mb-4 border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
+
+        <!-- mobile chart -->
+        <div class="sm:hidden w-11/12 mr-auto ml-auto rounded-lg h-auto pt-4 flex justify-center items-center shadow-lg sm:w-10/12 mb-4 border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
             <div id="chart" style="width: 500px; height: 300px;"></div>
         </div>
-        <div class="mb-2 w-11/12 mr-auto ml-auto">
+
+        <!-- pc chart -->
+        <div class="hidden w-11/12 mr-auto ml-auto rounded-lg h-auto pt-4 sm:flex justify-center items-center shadow-lg sm:w-10/12 mb-4 border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
+            style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
+            <div id="mobile-chart" style="width: 1000px; height: 500px;"></div>
+        </div>
+
+        <div class="mb-2 w-11/12 sm:w-10/12 mr-auto ml-auto">
             <module-title :title="$t('BlockList.newBlock')"></module-title>
         </div>
-        <div class="mb-4 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
+        <div class="mb-4 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-10/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
             <new-block-table :dataList="blockListDatas" />
             <div class="">
                 <h-pagination></h-pagination>
             </div>
         </div>
-        <div class="mb-2 w-11/12 mr-auto ml-auto">
+        <div class="mb-2 w-11/12 sm:w-10/12 mr-auto ml-auto">
             <module-title :title="$t('Pending.tx')"></module-title>
         </div>
-        <div class="mb-4 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
+        <div class="mb-4 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-10/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
             <trade-table :dataList="TXListDatas" />
             <div class="">
@@ -92,6 +101,24 @@ export default {
         },
         drawChart() {
             let myChart = this.$echarts.init(document.getElementById("chart"));
+            let mobileChart = this.$echarts.init(document.getElementById("mobile-chart"));
+            let optionPC = {
+                grid: {
+                    left: '10%',
+                    top: '6%',
+                    bottom: '10%'
+                },
+                title: {
+                    text: ""
+                },
+                tooltip: {},
+                xAxis: {
+                    data: this.xAxis
+                },
+                yAxis: {},
+                series: this.series
+            }
+
             let option = {
                 grid: {
                     left: '18%',
@@ -110,6 +137,8 @@ export default {
             };
 
             option && myChart.setOption(option);
+            option && mobileChart.setOption(option);
+
         },
         getChartData(days) {
             let params = {
