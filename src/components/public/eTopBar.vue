@@ -31,7 +31,7 @@
                         :class="isFocus ? 'focused' : ''">
                         <div class="icon iconfont icon-search pr-2 pl-3 sm:hidden text-lightword dark:text-black100" />
                         <div class="hidden relative sm:flex items-center justify-around cursor-pointer px-4 h-9 text-sm text-black dark:text-grayword"
-                            @click="shwoPCSearch = !shwoPCSearch">
+                            @mousemove="shwoPCSearch = true">
                             <div>{{ pcSearchTarget || $t('common.address') }}</div>
                             <div class="icon iconfont icon-down text-sm ml-1 text-black dark:text-grayword" />
                         </div>
@@ -105,7 +105,8 @@
         </div>
 
         <div class="show-easy hidden absolute border-t-4 border-clickable w-40 sm:block left-1/10 bg-white rounded-b-lg"
-            v-show="shwoPCSearch" style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
+            @mouseleave="shwoPCSearch = false" v-show="shwoPCSearch"
+            style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
             <div class="cursor-pointer flex justify-start items-center px-4 text-sm py-2 dark:bg-black400 dark:text-grayword hover:bg-lightborder dark:hover:bg-border100"
                 @click="pcSearchChange(item.title, item.path)" v-for="(item, index) in searchCriteriaList" :key="index">
                 <div class="icon iconfont mr-3" :class="item.icon" />
