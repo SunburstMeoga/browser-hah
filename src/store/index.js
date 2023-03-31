@@ -6,7 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     isDark: false,
-    blockInfo: {}
+    blockInfo: {},
+    txInfo: {},
+    addressInfo: {},
   },
   mutations: {
     changeTheme(state, newVal) {
@@ -14,6 +16,12 @@ export default new Vuex.Store({
     },
     getBlockInfo(state, newVal) {
       state.blockInfo = newVal
+    },
+    getTXInfo(state, newVal) {
+      state.txInfo = newVal
+    },
+    getAddressInfo(state, newVal) {
+      state.addressInfo = newVal
     }
   },
   actions: {

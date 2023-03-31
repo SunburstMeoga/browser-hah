@@ -100,6 +100,8 @@ export default {
                 this.addressInfo.locked = res.locked
                 this.addressInfo.nonce = res.nonce
                 this.addressInfo.rank = this.rank
+                this.$store.commit('getAddressInfo', this.addressInfo)
+
                 console.log('this.addressInfo', this.addressInfo);
             });
 

@@ -8,12 +8,12 @@
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4">{{ $t('Address.balance') }}:</div>
-            <div class="text-sm text-lighttable dark:text-white200">{{ addressInfo.balance }}</div>
+            <div class="text-sm text-lighttable dark:text-white200">{{ $store.state.addressInfo.balance }} HAH</div>
         </div>
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4">{{ $t('Address.locked') }}:</div>
-            <div class="text-sm text-lighttable dark:text-white200">{{ addressInfo.locked }}</div>
+            <div class="text-sm text-lighttable dark:text-white200">{{ addressInfo.locked }} HAH</div>
         </div>
 
 

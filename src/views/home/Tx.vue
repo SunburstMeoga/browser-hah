@@ -104,6 +104,7 @@ export default {
                 this.client_in = res[0].client_in
                 this.client_out = res[0].client_out
                 this.transactionInfo.transtime = res[0].transtime
+                this.$store.commit('getTXInfo', this.transactionInfo)
             });
         }
     },
