@@ -47,6 +47,10 @@ module.exports = {
 
       }
     },
+    inset: {
+      '1/10': '16%',
+      '1/5': '20%',
+    }
   },
   variants: {
     extend: {

@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full mb-2 sm:mb-4 sm:py-3 bg-white border-b border-lightborder dark:border-border100 dark:bg-black400"
+    <div class="relative w-full mb-2 sm:mb-4 sm:py-1 bg-white border-b border-lightborder dark:border-border100 dark:bg-black400"
         style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
         <div class="w-full sm:w-10/12 sm:mr-auto sm:ml-auto sm:flex sm:justify-between sm:items-center">
 
@@ -26,17 +26,27 @@
             <div class="flex w-full justify-between items-center flex-wrap py-3 ml-auto mr-auto sm:flex-nowrap ">
                 <!-- search -->
                 <div
-                    class="pb-3 mb-2 w-full border-b sm:border-none sm:mb-0 sm:pb-0 sm:order-2 sm:w-1/3 border-lightborder dark:border-border100">
+                    class="pb-3 mb-2 w-full border-b sm:flex sm:ml-4 sm:justify-start sm:items-center sm:border-none sm:mb-0 sm:pb-0 sm:order-2 sm:w-1/3 border-lightborder dark:border-border100">
                     <div class="flex rounded-lg justify-start items-center w-11/12 mr-auto ml-auto h-9 overflow-hidden border border-b border-lightborder dark:border-border100 dark:bg-black400"
                         :class="isFocus ? 'focused' : ''">
-                        <div class="icon iconfont icon-search pr-2 pl-3 text-lightword dark:text-black100" />
+                        <div class="icon iconfont icon-search pr-2 pl-3 sm:hidden text-lightword dark:text-black100" />
+                        <div class="hidden relative sm:flex items-center justify-around cursor-pointer px-4 h-9 text-sm text-black dark:text-grayword"
+                            @click="shwoPCSearch = !shwoPCSearch">
+                            <div>{{ pcSearchTarget || $t('common.address') }}</div>
+                            <div class="icon iconfont icon-down text-sm ml-1 text-black dark:text-grayword" />
+                        </div>
                         <div class="flex-1 h-full ">
                             <input type="text" :placeholder="$t('common.placeholder')" @focus="focusSearch"
-                                @blur="blurSearch" class="search w-full h-full rounded-sm dark:bg-black400"
+                                @blur="blurSearch"
+                                class="search w-full h-full text-sm rounded-sm text-black dark:text-grayword dark:bg-black400"
                                 v-model="searchContent" />
                         </div>
                     </div>
-                    <div class="w-11/12 mr-auto ml-auto mt-4 flex justify-start flex-wrap show-easy"
+                    <div class="hidden cursor-pointer text-sm sm:flex items-center justify-center w-28 h-9 border ml-4 rounded-lg border-lightborder hover:bg-lightborder text-black dark:text-grayword dark:hover:bg-border100 dark:border-border100"
+                        @click="pcToSearch">
+                        {{ $t('common.search') }}
+                    </div>
+                    <div class="w-11/12 mr-auto ml-auto mt-4 flex justify-start flex-wrap show-easy sm:hidden"
                         v-show="showSearchCriteria">
                         <div class="flex justify-start items-center text-sm px-2 mr-6 rounded-lg mb-2 text-lighttable border border-lightborder dark:border-border100 dark:bg-black300 dark:text-black100"
                             v-for="(item, index) in searchCriteriaList" :key="index" @click="handleSearch(item.path)">
@@ -53,8 +63,10 @@
                     </div>
                 </div>
 
-                <div class="hidden sm:flex sm:order-3 sm:flex-1 sm:justify-end">
-                    <div v-for="(item, index) in pagesList" :key="index">
+                <!-- pc menu router-->
+                <div class="hidden sm:mr-4 sm:flex sm:order-3 sm:flex-1 sm:justify-end text-black dark:text-grayword">
+                    <div class="sm:py-2 sm:px-5 cursor-pointer hover:text-clickable hover:font-extrabold"
+                        @click="toPage(item.path)" v-for="(item, index) in pagesList" :key="index">
                         {{ item.title }}
                     </div>
                 </div>
@@ -62,12 +74,12 @@
                 <div class="flex justify-end items-center mr-4 sm:order-4">
                     <!-- theme -->
                     <div
-                        class="rounded-lg flex items-center justify-center w-7 h-7 border border-lightborder dark:border-border100 mr-2">
+                        class="cursor-pointer rounded-lg flex items-center justify-center w-7 h-7 border border-lightborder hover:bg-lightborder dark:hover:bg-border100 dark:border-border100 mr-2">
                         <div class="icon iconfont text-2xl text-lighticon dark:text-grayicon"
                             :class="$store.state.isDark ? 'icon-night-mode' : 'icon-daytime-mode'" @click="changeTheme" />
                     </div>
                     <!-- language -->
-                    <div class="rounded-lg flex items-center justify-center w-7 h-7 border border-lightborder dark:border-border100 mr-2"
+                    <div class="cursor-pointer rounded-lg flex items-center justify-center w-7 h-7 border sm:ml-4 border-lightborder hover:bg-lightborder dark:hover:bg-border100 dark:border-border100 mr-2"
                         @click="changeLanguages">
                         <div class="icon iconfont icon-language text-2xl text-lighticon dark:text-grayicon" />
                     </div>
@@ -81,7 +93,7 @@
             </div>
 
             <!--mobile menu router -->
-            <div v-show="showMenu" class="menu bg-transparent w-full">
+            <div v-show="showMenu" class="menu bg-transparent w-full sm:hidden">
                 <div class="mr-auto ml-auto bg-white dark:bg-black400">
                     <div class="show-easy flex justify-between text-lighttable dark:text-grayword px-4 py-3 border-b-1 border100"
                         v-for="(item, index) in pagesList" :key="index" @click="toPage(item.path)">
@@ -89,6 +101,15 @@
                         <div class="icon iconfont icon-arrow-right text-sm"></div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="show-easy hidden absolute border-t-4 border-clickable w-40 sm:block left-1/10 bg-white rounded-b-lg"
+            v-show="shwoPCSearch" style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
+            <div class="cursor-pointer flex justify-start items-center px-4 text-sm py-2 dark:bg-black400 dark:text-grayword hover:bg-lightborder dark:hover:bg-border100"
+                @click="pcSearchChange(item.title, item.path)" v-for="(item, index) in searchCriteriaList" :key="index">
+                <div class="icon iconfont mr-3" :class="item.icon" />
+                <div>{{ item.title }}</div>
             </div>
         </div>
     </div>
@@ -102,7 +123,10 @@ export default {
             showSearchCriteria: false,
             isFocus: false,
             searchContent: null,
-            timer: null
+            timer: null,
+            shwoPCSearch: false,
+            pcSearchTarget: '',
+            pcSearchPath: '/address/',
         }
     },
     computed: {
@@ -135,6 +159,14 @@ export default {
         }
     },
     methods: {
+        pcToSearch() {
+            this.handleSearch(this.pcSearchPath)
+        },
+        pcSearchChange(title, path) {
+            this.pcSearchTarget = title
+            this.pcSearchPath = path
+            this.shwoPCSearch = false
+        },
         handleSearch(path) {
             if (this.searchContent) {
                 this.$router.push({
