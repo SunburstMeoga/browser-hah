@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="flex justify-start items-center">
-            <div class="font-bold text-lighttable  dark:text-white300">{{ title }}</div>
+            <div class="font-bold sm:text-xl text-lighttable  dark:text-white300">{{ title }}</div>
             <div class="pl-2 truncate text-lightword dark:text-black100"> {{ details }}</div>
         </div>
     </div>

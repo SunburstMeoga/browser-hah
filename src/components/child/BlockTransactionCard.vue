@@ -1,27 +1,30 @@
 <template>
     <div class="text-sm text-lightitemtitle dark:text-btndisable">
-        <div class="flex justify-start items-center ">
-            <div class="font-bold pr-4 ">Input:</div>
-            <div class="  text-clickable">{{ addressFilter(transactionInfo.from) }}</div>
+        <div class="flex justify-start items-center sm:mb-2">
+            <div class="font-bold pr-4 sm:w-1/4 ">Input:</div>
+            <div class="cursor-pointer text-clickable" @click="toAddress(transactionInfo.from)">{{
+                addressFilter(transactionInfo.from) }}
+            </div>
         </div>
 
-        <div class="flex justify-start items-center ">
-            <div class="font-bold pr-4 ">Output:</div>
-            <div class="text-clickable">{{ addressFilter(transactionInfo.to) }}</div>
+        <div class="flex justify-start items-center sm:mb-2">
+            <div class="font-bold pr-4 sm:w-1/4 ">Output:</div>
+            <div class="cursor-pointer text-clickable" @click="toAddress(transactionInfo.to)">{{
+                addressFilter(transactionInfo.to) }}</div>
         </div>
 
-        <div class="flex justify-start items-center ">
-            <div class="font-bold pr-4">{{ $t('dposDetail.amount') }}:</div>
+        <div class="flex justify-start items-center sm:mb-2">
+            <div class="font-bold pr-4 sm:w-1/4">{{ $t('dposDetail.amount') }}:</div>
             <div class=" ">{{ amountFormat(transactionInfo.amount) }} HAH</div>
         </div>
 
-        <div class="flex justify-start items-center ">
-            <div class="font-bold pr-4">{{ $t('Address.txFee') }}:</div>
+        <div class="flex justify-start items-center sm:mb-2">
+            <div class="font-bold pr-4 sm:w-1/4">{{ $t('Address.txFee') }}:</div>
             <div class=" ">{{ amountFormat(transactionInfo.fee) }} HAH</div>
         </div>
 
-        <div class="flex justify-start items-center ">
-            <div class="font-bold pr-4">{{ $t('Block.time') }}:</div>
+        <div class="flex justify-start items-center sm:mb-2">
+            <div class="font-bold pr-4 sm:w-1/4">{{ $t('Block.time') }}:</div>
             <div class=" ">{{ timeFormat(transactionInfo.transtime) }}</div>
         </div>
     </div>
@@ -38,8 +41,10 @@ export default {
     },
     methods: {
         addressFilter, amountFormat, timeFormat,
-        viewTransacions() {
-            this.$emit('viewTransacions')
+        toAddress(address) {
+            this.$router.push({
+                path: '/address/' + address
+            })
         }
     },
 

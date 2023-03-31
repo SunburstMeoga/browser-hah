@@ -1,10 +1,10 @@
 <template>
     <div>
-        <div class="mb-2 w-11/12 mr-auto ml-auto">
+        <div class="mb-2 w-11/12 sm:w-9/12 mr-auto ml-auto">
             <module-title title="dops"></module-title>
         </div>
         <div
-            class=" mb-4 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+            class=" mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
             <dpos-list-table :dataList="dposListDatas" />
             <div class="">
                 <h-pagination></h-pagination>

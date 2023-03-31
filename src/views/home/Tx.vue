@@ -1,14 +1,14 @@
 <template>
     <div class="w-full pb-4 bg-lightsecond dark:bg-black300">
         <div>
-            <div class="w-11/12 mr-auto ml-auto py-5 mb-4 border-b border-ligthborder dark:border-border100">
+            <div class="w-11/12 mr-auto ml-auto py-5 mb-4 sm:w-9/12 border-b border-ligthborder dark:border-border100">
                 <second-title :title="$t('Tx.txInfo')" />
             </div>
         </div>
 
         <div class="mb-4">
             <div
-                class="w-11/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+                class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
                 <div>
                     <transaction-details :transactionInfo="transactionInfo"></transaction-details>
                 </div>
@@ -18,7 +18,7 @@
         <div class="mb-4" v-if="dataDetails.length !== 0">
 
             <div
-                class="w-11/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+                class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
                 <div class="px-4 pt-4">
                     <second-title title="内部转账" />
                 </div>

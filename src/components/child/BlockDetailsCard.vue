@@ -1,7 +1,7 @@
 <template>
-    <div class="text-sm pt-2 px-4 text-lightitemtitle dark:text-btndisable">
-        <div class="flex justify-start items-center mb-2">
-            <div class="font-bold pr-4 ">{{ $t('BlockList.height') }}:</div>
+    <div class="text-sm pt-2 px-4 sm:pt-5 text-lightitemtitle dark:text-btndisable">
+        <div class="flex justify-start items-center mb-2 sm:mb-4">
+            <div class="font-bold pr-4 sm:w-1/4">{{ $t('BlockList.height') }}:</div>
             <div class="text-sm pr-2 text-lighttable dark:text-white200">{{ $store.state.blockInfo.height }}</div>
             <!-- <div class="flex justify-start items-center">
                 <div> pre </div>
@@ -9,36 +9,39 @@
             </div> -->
         </div>
 
-        <div class="flex justify-start items-center mb-2">
-            <div class="font-bold pr-4 ">{{ $t('Block.time') }}:</div>
+        <div class="flex justify-start items-center mb-2 sm:mb-4">
+            <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.time') }}:</div>
             <div class="text-sm text-lighttable dark:text-white200">{{ timeFormat(blockInfo.time) }}
             </div>
         </div>
 
-        <div class="flex justify-start items-center mb-2">
-            <div class="font-bold pr-4 ">{{ $t('Block.transactions') }}:</div>
+        <div class="flex justify-start items-center mb-2 sm:mb-4">
+            <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.transactions') }}:</div>
             <div class="text-sm text-lighttable dark:text-white200 ">{{ blockInfo.txs }}</div>
         </div>
 
-        <div class="flex justify-start items-center mb-2">
-            <div class="font-bold pr-4 ">{{ $t('Block.previousBlock') }}:</div>
-            <div class="text-sm  text-clickable">
+        <div class="flex justify-start items-center mb-2 sm:mb-4">
+            <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.previousBlock') }}:</div>
+            <div class="text-sm">
                 {{ addressFilter(blockInfo.prev_hash) }}</div>
         </div>
 
-        <div class="flex justify-start items-center mb-2">
-            <div class="font-bold pr-4 ">{{ $t('Block.address') }}:</div>
-            <div class="text-sm text-clickable">{{ addressFilter(blockInfo.reward_address) }}</div>
+        <div class="flex justify-start items-center mb-2 sm:mb-4">
+            <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.address') }}:</div>
+            <div class="text-sm cursor-pointer text-clickable" @click="toAddress(blockInfo.reward_address)">{{
+                addressFilter(blockInfo.reward_address) }}</div>
         </div>
 
-        <div class="flex justify-start items-center mb-2">
-            <div class="font-bold pr-4 ">{{ $t('Block.reward') }}:</div>
+        <div class="flex justify-start items-center mb-2 sm:mb-4">
+            <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.reward') }}:</div>
             <div class="text-sm text-lighttable dark:text-white200">{{ amountFormat(blockInfo.reward_money) }} HAH</div>
         </div>
 
-        <div class="flex justify-start items-center mb-2">
-            <div class="font-bold pr-4 ">{{ $t('Block.tx') }}:</div>
-            <div class="text-sm text-lighttable dark:text-white200 pr-4"><span class="text-clickable">{{ blockInfo.txs }}
+        <div class="flex justify-start items-center mb-2 sm:mb-4">
+            <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.tx') }}:</div>
+            <div class="text-sm text-lighttable dark:text-white200 pr-4 sm:w-1/4"><span
+                    class="text-clickable cursor-pointer">{{
+                        blockInfo.txs }}
                     transacions</span> in this block
             </div>
         </div>
@@ -56,8 +59,13 @@ export default {
     },
     methods: {
         addressFilter, amountFormat, timeFormat,
-        viewTransacions() {
-            this.$emit('viewTransacions')
+        toBlock(block) {
+
+        },
+        toAddress(address) {
+            this.$router.push({
+                path: '/address/' + address
+            })
         }
     },
 

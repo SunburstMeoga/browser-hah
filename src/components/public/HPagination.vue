@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="pt-2 pb-3 px-4 text-sm text-ligthword dark:text-black100">
+        <div class="pt-2 pb-3 px-4 text-sm text-ligthword sm:flex sm:justify-between sm:items-center dark:text-black100">
             <div class="flex justify-start mb-2 items-center">
                 <div class="pr-2">Show:</div>
                 <div class="mr-2 w-16 border border-ligthborder dark:border-border100">

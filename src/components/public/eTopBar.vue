@@ -1,5 +1,5 @@
 <template>
-    <div class="relative w-full mb-2 sm:mb-4 sm:py-1 bg-white border-b border-lightborder dark:border-border100 dark:bg-black400"
+    <div class="relative w-full mb-2 sm:mb-6 sm:py-1 bg-white border-b border-lightborder dark:border-border100 dark:bg-black400"
         style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
         <div class="w-full sm:w-10/12 sm:mr-auto sm:ml-auto sm:flex sm:justify-between sm:items-center">
 

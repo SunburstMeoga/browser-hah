@@ -16,7 +16,7 @@
                     <div class="w-20 ml-4">
                         {{ index + 1 }}
                     </div>
-                    <div class="w-60 text-clickable" @click="toTX(item.txid)">
+                    <div class="w-60 cursor-pointer hover:font-extrabold text-clickable" @click="toTX(item.txid)">
                         {{ addressFilter(item.block_hash) }}
                     </div>
                     <div class="w-60">
@@ -27,11 +27,11 @@
                         {{ item.amount }}
 
                     </div>
-                    <div class="w-60 text-clickable">
+                    <div class="w-60 cursor-pointer hover:font-extrabold text-clickable ">
                         {{ addressFilter(item.from) }}
 
                     </div>
-                    <div class="w-60 text-clickable">
+                    <div class="w-60 cursor-pointer hover:font-extrabold text-clickable ">
                         {{ addressFilter(item.to) }}
                     </div>
                 </div>

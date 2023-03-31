@@ -1,14 +1,14 @@
 <template>
     <div class="w-full pb-4 bg-lightsecond dark:bg-black300">
         <div>
-            <div class="w-11/12 mr-auto ml-auto py-5 mb-4 border-b border-ligthborder dark:border-border100">
+            <div class="w-11/12 mr-auto ml-auto py-5 mb-4 sm:w-9/12 border-b border-ligthborder dark:border-border100">
                 <second-title :title="$t('Address.addressInfo')" />
             </div>
         </div>
 
         <div class="mb-4">
             <div
-                class="w-11/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+                class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg  shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
                 <div>
                     <address-details-card :addressInfo="addressInfo"></address-details-card>
                 </div>
@@ -17,13 +17,15 @@
 
         <div>
             <div
-                class="w-11/12 mr-auto ml-auto rounded-lg pt-2 shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
-                <div class="pb-2 w-11/12 mr-auto ml-auto border-b border-ligthborder dark:border-border100">
-                    <module-title :title="$t('Block.tx')" />
+                class="w-11/12 sm:w-9/12 mr-auto ml-auto  rounded-lg pt-2 shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+                <div class="pb-2 border-b border-ligthborder dark:border-border100">
+                    <div class="pl-2">
+                        <module-title :title="$t('Block.tx')" />
+                    </div>
                 </div>
                 <div>
                     <div v-for="(item, index) in TXListDatas" :key="index"
-                        class="w-11/12 mr-auto ml-auto py-2 border-b border-ligthborder dark:border-border100">
+                        class="w-11/12 mr-auto ml-auto py-2 sm:w-full sm:px-3  border-b border-ligthborder dark:border-border100">
                         <address-transaction-card :transactionInfo="item" />
                     </div>
                 </div>
