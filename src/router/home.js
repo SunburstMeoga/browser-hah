@@ -18,5 +18,10 @@ export default [
         path: '/tx/:txid',
         name: 'tx',
         component: () => import('../views/home/Tx')
-    }
+    },
+    {
+        path: '/faucet-smart',
+        name: 'faucet-smart',
+        component: () => import('../views/home/FaucetSmart')
+    },
 ]

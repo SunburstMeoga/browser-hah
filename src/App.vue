@@ -3,17 +3,20 @@
     <e-top-bar></e-top-bar>
     <router-view></router-view>
     <e-footer-bar></e-footer-bar>
-
+    <!-- <h-loading /> -->
   </div>
 </template>
 
 <script>
-import eTopBar from '@/components/public/eTopBar.vue'
-import eFooterBar from "@/components/public/eFooterBar.vue"
+import eTopBar from '@/components/public/eTopBar'
+import eFooterBar from "@/components/public/eFooterBar"
+import HLoading from "@/components/public/HLoading"
+
 export default {
   components: {
     eTopBar,
-    eFooterBar
+    eFooterBar,
+    HLoading
   },
   mounted() {
     // console.log(window.matchMedia('(prefers-color-scheme: dark)').matches)
