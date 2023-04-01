@@ -1,5 +1,5 @@
 <template>
-    <div class="border-transparent mb-2 mr-auto ml-auto overflow-x-scroll">
+    <div class="border-transparent mb-2 mr-auto ml-auto overflow-x-scroll sm:overflow-auto">
         <div class="border-b min-w-70 border-lightborder dark:border-border100">
             <div class="py-2 flex w-full justify-start">
                 <div class="w-20 ml-4 text-sm font-black text-lighttable dark:text-white200">
@@ -28,13 +28,13 @@
                         {{ item.amount }}
 
                     </div>
-                    <div
-                        class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 ">
+                    <div class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        @click="toAddress(item.from)">
                         {{ addressFilter(item.from) }}
 
                     </div>
-                    <div
-                        class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 ">
+                    <div class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        @click="toAddress(item.to)">
                         {{ addressFilter(item.to) }}
                     </div>
                 </div>
@@ -80,6 +80,11 @@ export default {
                 path: '/tx/' + txid
             })
         },
+        toAddress(address) {
+            this.$router.push({
+                path: '/block/' + address
+            })
+        }
     },
 }
 </script>
