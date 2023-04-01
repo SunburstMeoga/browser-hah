@@ -37,7 +37,7 @@
         </div>
 
         <div class="w-11/12 sm:w-9/12 ml-auto mr-auto text-xs sm:text-sm sm:py-4 py-6 text-lighttable dark:text-white300">
-            Hash Ahead © 2022 - Block_Way
+            Hash Ahead © 2023 - Block_Way
         </div>
     </div>
 </template>
