@@ -1,6 +1,8 @@
 <template>
     <div class="border-transparent mb-2 mr-auto ml-auto overflow-x-scroll sm:overflow-auto">
-        <div class="border-b min-w-70 border-lightborder dark:border-border100">
+        <h-loading :loadStatus="loadStatus" />
+
+        <div v-if="loadStatus === 'finished'" class="border-b min-w-70 border-lightborder dark:border-border100">
             <div class="py-2 flex w-full justify-start">
                 <div class="w-20 ml-4 text-sm font-black text-lighttable dark:text-white200">
                     #
@@ -44,13 +46,20 @@
 </template>
 
 <script>
+import HLoading from "@/components/public/HLoading"
 import { timeFormat, addressFormat, addressFilter } from '@/utils/format'
 export default {
+    components: { HLoading },
+
     props: {
         dataList: {
             type: Array,
             default: () => []
         },
+        loadStatus: {
+            type: String,
+            default: 'loading'
+        }
     },
     computed: {
         tableTitleList() {

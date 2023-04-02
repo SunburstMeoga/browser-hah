@@ -21,7 +21,7 @@
         </div>
         <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
-            <new-block-table :dataList="blockListDatas" />
+            <new-block-table :dataList="blockListDatas" :loadStatus="blockTableLoadStatus" />
             <div class="">
                 <h-pagination></h-pagination>
             </div>
@@ -31,7 +31,7 @@
         </div>
         <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
-            <trade-table :dataList="TXListDatas" />
+            <trade-table :dataList="TXListDatas" :loadStatus="tradeTableLoadStatus" />
             <div class="">
                 <h-pagination></h-pagination>
             </div>
@@ -60,6 +60,8 @@ export default {
             legend: "",
             xAxis: "",
             series: "",
+            tradeTableLoadStatus: 'loading',
+            blockTableLoadStatus: 'loading'
         }
     },
     mounted() {
@@ -89,14 +91,26 @@ export default {
 
         getNewTX() {
             newTX().then(res => {
-                console.log('newTX', res)
-                this.TXListDatas = res
+                // console.log('newTX', res)
+
+                // let res = []
+                if (res.length !== 0) {
+                    this.TXListDatas = res
+                    this.tradeTableLoadStatus = 'finished'
+                } else {
+                    this.tradeTableLoadStatus = 'empty'
+                }
             })
         },
         getNewBlock() {
-            newBlock().then(response => {
-                console.log('getNewBlock', response)
-                this.blockListDatas = response
+            newBlock().then(res => {
+                console.log('getNewBlock', res)
+                if (res.length !== 0) {
+                    this.blockListDatas = res
+                    this.blockTableLoadStatus = 'finished'
+                } else {
+                    this.blockTableLoadStatus = 'empty'
+                }
             })
         },
         drawChart() {
