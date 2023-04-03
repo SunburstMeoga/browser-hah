@@ -9,7 +9,9 @@
         <div class="mb-4">
             <div
                 class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
-                <div>
+                <h-loading :loadStatus="tranInfoLoadStatus" />
+
+                <div v-if="tranInfoLoadStatus === 'finished'">
                     <transaction-details :transactionInfo="transactionInfo"></transaction-details>
                 </div>
             </div>
@@ -46,6 +48,8 @@
 </template>
 
 <script>
+import HLoading from "@/components/public/HLoading"
+
 import HPagination from '@/components/public/HPagination'
 import ModuleTitle from '@/components/public/ModuleTitle'
 import SecondTitle from '@/components/public/SecondTitle'
@@ -54,7 +58,7 @@ import { txDetails, txInfo } from '@/request/home'
 import { timeFormat, addressFormat, amountFormat } from '@/utils/format'
 
 export default {
-    components: { SecondTitle, HPagination, ModuleTitle, TransactionDetails },
+    components: { SecondTitle, HPagination, ModuleTitle, TransactionDetails, HLoading },
     name: "Tx",
     data() {
         return {
@@ -71,7 +75,8 @@ export default {
             client_in: '',
             client_out: '',
             dataDetails: [],
-            transactionInfo: {}
+            transactionInfo: {},
+            tranInfoLoadStatus: 'loading'
         }
     },
     created() {
@@ -108,6 +113,7 @@ export default {
                 this.client_in = res[0].client_in
                 this.client_out = res[0].client_out
                 this.transactionInfo.transtime = res[0].transtime
+                this.tranInfoLoadStatus = 'finished'
                 this.$store.commit('getTXInfo', this.transactionInfo)
             });
         }
@@ -119,4 +125,5 @@ export default {
 .word {
     color: #612591;
 
-}</style>
+}
+</style>

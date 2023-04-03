@@ -9,7 +9,9 @@
         <div class="mb-4">
             <div
                 class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
-                <div>
+                <h-loading :loadStatus="blockInfoLoadStatus" />
+
+                <div v-if="blockInfoLoadStatus === 'finished'">
                     <block-details-card :blockInfo="blockInfo"></block-details-card>
                 </div>
             </div>
@@ -24,9 +26,13 @@
                     </div>
                 </div>
                 <div>
-                    <div v-for="(item, index) in TxListDatas" :key="index"
-                        class="w-11/12 mr-auto ml-auto py-2 sm:w-full sm:px-3 border-b border-ligthborder dark:border-border100 ">
-                        <block-transaction-card :transactionInfo="item" />
+                    <h-loading :loadStatus="tranLoadStatus" />
+
+                    <div v-if="tranLoadStatus === 'finished'">
+                        <div v-for="(item, index) in TxListDatas" :key="index"
+                            class="w-11/12 mr-auto ml-auto py-2 sm:w-full sm:px-3 border-b border-ligthborder dark:border-border100 ">
+                            <block-transaction-card :transactionInfo="item" />
+                        </div>
                     </div>
 
                 </div>
@@ -39,6 +45,8 @@
 </template>
 
 <script>
+import HLoading from "@/components/public/HLoading"
+
 import HPagination from '@/components/public/HPagination'
 import BlockDetailsCard from '@/components/child/BlockDetailsCard'
 import BlockTransactionCard from '@/components/child/BlockTransactionCard'
@@ -49,7 +57,7 @@ import { blockInfo, TXList } from '@/request/home'
 
 export default {
     name: "Block",
-    components: { SecondTitle, HPagination, BlockDetailsCard, ModuleTitle, BlockTransactionCard },
+    components: { SecondTitle, HPagination, BlockDetailsCard, ModuleTitle, BlockTransactionCard, HLoading },
     data() {
         return {
             pageSize: 10,
@@ -57,7 +65,9 @@ export default {
             height: '',
             blockInfo: {},
             transactionInfo: {},
-            TxListDatas: []
+            TxListDatas: [],
+            tranLoadStatus: 'loading',
+            blockInfoLoadStatus: 'loading'
         }
     },
     created() {
@@ -79,11 +89,16 @@ export default {
                 block_hash: this.blockInfo.hash,
             };
             TXList(param).then(res => {
-                this.TxListDatas = res.data
                 this.pagenum = res.pagenum * 1
                 this.pageSize = res.pagesize * 1
                 this.total = res.total
                 this.blockInfo.total = res.total
+                if (res.data.length !== 0) {
+                    this.TxListDatas = res.data
+                    this.tranLoadStatus = 'finished'
+                } else {
+                    this.tranLoadStatus = 'empty'
+                }
             });
         },
         getBlockInfo() {
@@ -99,6 +114,7 @@ export default {
                 this.blockInfo.prev_hash = res[0].prev_hash
                 this.blockInfo.reward_address = res[0].reward_address
                 this.blockInfo.reward_money = res[0].reward_money
+                this.blockInfoLoadStatus = 'finished'
                 this.$store.commit('getBlockInfo', this.blockInfo)
                 this.getTXList()
             });

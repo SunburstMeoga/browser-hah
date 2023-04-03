@@ -5,7 +5,7 @@
     </div>
     <div
       class=" mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
-      <hrc-list-table :dataList="hrcListDatas" />
+      <hrc-list-table :dataList="hrcListDatas" :loadStatus="hrcListLoadStatus" />
       <div class="">
         <h-pagination></h-pagination>
       </div>
@@ -24,7 +24,8 @@ export default {
   components: { HrcListTable, ModuleTitle, HPagination, },
   data() {
     return {
-      hrcListDatas: []
+      hrcListDatas: [],
+      hrcListLoadStatus: 'loading'
     }
   },
   mounted() {
@@ -35,7 +36,12 @@ export default {
       let params = {};
       listHRC20(params).then(res => {
         console.log(res)
-        this.hrcListDatas = res
+        if (res.length !== 0) {
+          this.hrcListDatas = res
+          this.hrcListLoadStatus = 'finished'
+        } else {
+          this.hrcListLoadStatus = 'empty'
+        }
       });
       console.log('dataList', this.hrcListDatas);
     },

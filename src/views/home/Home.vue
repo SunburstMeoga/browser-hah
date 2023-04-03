@@ -80,7 +80,7 @@ export default {
         // }, 1000 * 10)
     },
     destroyed: function () {
-        // this.websocketclose();
+        this.websock.close();
     },
     methods: {
         timeFormat,
@@ -110,7 +110,6 @@ export default {
             blockObj.time = data.time
             blockObj.txs = data.tx.length
             data.tx.map(item => {
-                console.log('item', item)
                 let txObj = {}
                 txObj.block_hash = item.blockhash
                 txObj.transtime = data.time
@@ -127,18 +126,18 @@ export default {
         },
         websocketOnclose(e) {
             console.log("connection closed (" + e.code + ")");
-            this.reconnect();
+            // this.reconnect();
         },
 
-        reconnect() {
-            if (this.lockReconnect) return;
-            this.lockReconnect = true;
-            setTimeout(function () {
-                console.info("try reconnect...");
-                this.initWebSocket();
-                this.lockReconnect = false;
-            }, 5000);
-        },
+        // reconnect() {
+        //     if (this.lockReconnect) return;
+        //     this.lockReconnect = true;
+        //     setTimeout(function () {
+        //         console.info("try reconnect...");
+        //         this.initWebSocket();
+        //         this.lockReconnect = false;
+        //     }, 5000);
+        // },
 
 
         toAddress(address) {

@@ -9,7 +9,8 @@
         <div class="mb-4">
             <div
                 class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg  shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
-                <div>
+                <h-loading :loadStatus="addressInfoLoadStatus" />
+                <div v-if="addressInfoLoadStatus === 'finished'">
                     <address-details-card :addressInfo="addressInfo"></address-details-card>
                 </div>
             </div>
@@ -24,9 +25,13 @@
                     </div>
                 </div>
                 <div>
-                    <div v-for="(item, index) in TXListDatas" :key="index"
-                        class="w-11/12 mr-auto ml-auto py-2 sm:w-full sm:px-3  border-b border-ligthborder dark:border-border100">
-                        <address-transaction-card :transactionInfo="item" />
+                    <h-loading :loadStatus="addressTranListLoadStatus" />
+
+                    <div v-if="addressTranListLoadStatus === 'finished'">
+                        <div v-for="(item, index) in TXListDatas" :key="index"
+                            class="w-11/12 mr-auto ml-auto py-2 sm:w-full sm:px-3  border-b border-ligthborder dark:border-border100">
+                            <address-transaction-card :transactionInfo="item" />
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -38,6 +43,8 @@
 </template>
 
 <script>
+import HLoading from "@/components/public/HLoading"
+
 import HPagination from '@/components/public/HPagination'
 import AddressDetailsCard from '@/components/child/AddressDetailsCard'
 import AddressTransactionCard from '@/components/child/AddressTransactionCard'
@@ -48,7 +55,7 @@ import { addressInfo, balanceInfo } from '@/request/home'
 import { timeFormat } from '@/utils/format'
 
 export default {
-    components: { SecondTitle, HPagination, AddressDetailsCard, ModuleTitle, AddressTransactionCard },
+    components: { SecondTitle, HPagination, AddressDetailsCard, ModuleTitle, AddressTransactionCard, HLoading },
     name: "Address",
     data() {
         return {
@@ -59,6 +66,8 @@ export default {
             total: 0,
             addressInfo: {},
             rank: '',
+            addressInfoLoadStatus: 'loading',
+            addressTranListLoadStatus: 'loading'
         }
 
     },
@@ -84,8 +93,14 @@ export default {
 
             addressInfo(params).then(res => {
                 this.rank = res.rank
-                this.TXListDatas = res.data.data
+                // this.TXListDatas = res.data.data
                 this.total = res.data.total
+                if (res.data.data.length !== 0) {
+                    this.TXListDatas = res.data.data
+                    this.addressTranListLoadStatus = 'finished'
+                } else {
+                    this.addressTranListLoadStatus = 'empty'
+                }
                 this.getBalanceInfo()
                 console.log(this.TXListDatas)
             })
@@ -101,6 +116,7 @@ export default {
                 this.addressInfo.nonce = res.nonce
                 this.addressInfo.rank = this.rank
                 this.$store.commit('getAddressInfo', this.addressInfo)
+                this.addressInfoLoadStatus = 'finished'
 
                 console.log('this.addressInfo', this.addressInfo);
             });

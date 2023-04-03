@@ -5,7 +5,7 @@
         </div>
         <div
             class=" mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
-            <dpos-list-table :dataList="dposListDatas" />
+            <dpos-list-table :dataList="dposListDatas" :loadStatus="dposListLoadStatus" />
             <div class="">
                 <h-pagination></h-pagination>
             </div>
@@ -26,7 +26,8 @@ export default {
         return {
             dposListDatas: [],
             showa: false,
-            address: ''
+            address: '',
+            dposListLoadStatus: 'loading'
         }
     },
     created() {
@@ -38,9 +39,13 @@ export default {
                 page: this.pagenum,
                 pagesize: this.pageSize
             };
-
             listDelegate(params).then(res => {
-                this.dposListDatas = res
+                if (res.length !== 0) {
+                    this.dposListDatas = res
+                    this.dposListLoadStatus = 'finished'
+                } else {
+                    this.dposListLoadStatus = 'empty'
+                }
                 console.log(res)
             });
         },

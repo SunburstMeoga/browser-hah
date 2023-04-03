@@ -102,7 +102,7 @@ module.exports = {
     rank: '名次',
     address: '地址',
     balance: '余额',
-    yield: '收益率',
+    yield: '百分比',
   },
   Tx: {
     txInfo: '交易信息',
@@ -140,7 +140,6 @@ module.exports = {
   },
   hrc20: {
     hrc20: 'HRC20',
-
     owner: '合约作者',
     name: '合约名称',
     symbol: '合约符号',
