@@ -17,7 +17,7 @@
                         <img class="w-full h-full object-cover" src="../../assets/images/custom/logo.jpg" alt="">
                     </div>
                     <div class="pl-2 font-bold text-sm sm:text-lg text-lighttable dark:text-white200">
-                        Powered by Hash Ahead
+                        {{ $t('footBar.title') }}
                     </div>
                 </div>
                 <div class="leading-normal text-xs mb-2 text-lighttable dark:text-white200">
@@ -47,84 +47,6 @@ export default {
     name: "eFooterBar",
     data() {
         return {
-            tankList: [
-                {
-                    title: 'Company',
-                    details: [
-                        {
-                            title: 'About Us',
-                            path: 'https://blockway.io/'
-                        },
-                        // {
-                        //     title: 'Brand Assets'
-                        // },
-                        // {
-                        //     title: 'Contact Us'
-                        // },
-                        // {
-                        //     title: 'Careers'
-                        // },
-                        // {
-                        //     title: 'Terms of Service'
-                        // },
-                        // {
-                        //     title: 'Bug Bounty'
-                        // },
-                    ]
-                },
-                // {
-                //     title: 'Community',
-                //     details: [
-                //         {
-                //             title: 'API Documentation'
-                //         },
-                //         {
-                //             title: 'Knowledge Base'
-                //         },
-                //         {
-                //             title: 'Network Status'
-                //         },
-                //         {
-                //             title: 'Newsletters'
-                //         },
-                //         {
-                //             title: 'Disqus Comments'
-                //         }
-                //     ]
-                // },
-                {
-                    title: 'Product & Services',
-                    details: [
-
-                        {
-                            title: 'HashAhead',
-                            path: 'https://github.com/Block-Way'
-                        },
-                        {
-                            title: 'HAH Vote',
-                            path: 'https://test-vote.hashahead.org/ '
-                        },
-                        {
-                            title: 'HAH Faucet',
-                            path: 'https://testnet.hashahead.org/faucet-smart'
-
-                        },
-                        {
-                            title: 'HAH Browser',
-                            path: 'https://testnet.hashahead.org/'
-                        },
-                        // {
-                        //     title: 'Priority Support'
-                        // },
-                        // {
-                        //     title: 'HAH Browser'
-                        // },
-                        // {
-                        //     title: 'HAH Browser Chat'
-                        // }
-                    ]
-                }
-            ],
             socialList: [
                 {
                     path: '',
@@ -147,6 +69,44 @@ export default {
                     icon: 'icon-facebook'
                 },
 
+            ]
+        }
+    },
+    computed: {
+        tankList() {
+            return [
+                {
+                    title: this.$t('footBar.company'),
+                    details: [
+                        {
+                            title: this.$t('footBar.aboutUs'),
+                            path: 'https://blockway.io/'
+                        },
+                    ]
+                },
+                {
+                    title: this.$t('footBar.Product'),
+                    details: [
+
+                        {
+                            title: 'HashAhead',
+                            path: 'https://github.com/Block-Way'
+                        },
+                        {
+                            title: this.$t('footBar.vote'),
+                            path: 'https://test-vote.hashahead.org/ '
+                        },
+                        {
+                            title: this.$t('footBar.faucet'),
+                            path: 'https://testnet.hashahead.org/faucet-smart'
+
+                        },
+                        {
+                            title: this.$t('footBar.browser'),
+                            path: 'https://testnet.hashahead.org/'
+                        },
+                    ]
+                }
             ]
         }
     },

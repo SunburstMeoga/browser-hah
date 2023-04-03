@@ -89,6 +89,7 @@ export default {
                 block_hash: this.blockInfo.hash,
             };
             TXList(param).then(res => {
+                console.log('rse', res)
                 this.pagenum = res.pagenum * 1
                 this.pageSize = res.pagesize * 1
                 this.total = res.total
@@ -107,13 +108,13 @@ export default {
             };
             blockInfo(params).then(res => {
                 console.log('getBlockInfo', res)
-                this.blockInfo.height = res[0].height
-                this.blockInfo.hash = res[0].hash
-                this.blockInfo.time = res[0].time
-                this.blockInfo.txs = res[0].txs
-                this.blockInfo.prev_hash = res[0].prev_hash
-                this.blockInfo.reward_address = res[0].reward_address
-                this.blockInfo.reward_money = res[0].reward_money
+                this.blockInfo.height = res.height
+                this.blockInfo.hash = res.hash
+                this.blockInfo.time = res.time
+                this.blockInfo.txs = res.txs
+                this.blockInfo.prev_hash = res.prev_hash
+                this.blockInfo.reward_address = res.reward_address
+                this.blockInfo.reward_money = res.reward_money
                 this.blockInfoLoadStatus = 'finished'
                 this.$store.commit('getBlockInfo', this.blockInfo)
                 this.getTXList()

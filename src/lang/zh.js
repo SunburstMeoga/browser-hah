@@ -149,5 +149,20 @@ module.exports = {
     profileSummary: '个人资料摘要',
     quantity: '数量',
     method: '方法'
+  },
+  footBar: {
+    title: '由Hash Ahead提供支持',
+    company: '公司',
+    aboutUs: '关于我们',
+    Product: '产品与服务',
+    vote: 'HAH投票系统',
+    faucet: 'HAH水龙头',
+    browser: 'HAH浏览器',
+  },
+  pagination: {
+    show: '显示：',
+    records: '条记录',
+    first: '第一页',
+    last: '最后一页'
   }
 }

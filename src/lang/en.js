@@ -153,5 +153,20 @@ module.exports = {
     profileSummary: 'Profile Summary',
     quantity: 'Quantity',
     method: 'Method'
+  },
+  footBar: {
+    title: 'Powered by Hash Ahead',
+    company: 'Company',
+    aboutUs: 'About Us',
+    Product: 'Pruduct & Services',
+    vote: 'HAH Vote',
+    faucet: 'HAH Faucet',
+    browser: 'HAH Browser',
+  },
+  pagination: {
+    show: 'Show:',
+    records: 'Records',
+    first: 'First',
+    last: 'Last'
   }
 }
