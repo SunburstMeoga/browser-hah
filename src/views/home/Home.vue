@@ -61,8 +61,12 @@ export default {
             xAxis: "",
             series: "",
             tradeTableLoadStatus: 'loading',
-            blockTableLoadStatus: 'loading'
+            blockTableLoadStatus: 'loading',
+            websock: null
         }
+    },
+    created() {
+        this.initWebSocket();
     },
     mounted() {
         this.getNewBlock()
@@ -75,9 +79,68 @@ export default {
         //     this.getChartData(days)
         // }, 1000 * 10)
     },
+    destroyed: function () {
+        // this.websocketclose();
+    },
     methods: {
-        //to address info 
         timeFormat,
+
+        initWebSocket() {
+            let url = 'wss://testnet.hashahead.org/dev-ws/'
+            console.log(url);
+            this.websock = new WebSocket(url);
+            this.websock.onopen = this.websocketOnopen;
+            this.websock.onerror = this.websocketOnerror;
+            this.websock.onmessage = this.websocketOnmessage;
+            this.websock.onclose = this.websocketOnclose;
+        },
+
+        websocketOnerror(e) {
+            console.log("WebSocket Connect Error");
+            this.reconnect();
+        },
+        websocketOnmessage(e) {
+            console.log("-----Message-------", JSON.parse(e.data));
+            let data = JSON.parse(e.data)
+            let blockObj = {}
+            blockObj.height = data.height
+            blockObj.reward_money = data.txmint.amount
+            blockObj.reward_address = data.txmint.to
+            blockObj.prev_hash = data.prev
+            blockObj.time = data.time
+            blockObj.txs = data.tx.length
+            data.tx.map(item => {
+                console.log('item', item)
+                let txObj = {}
+                txObj.block_hash = item.blockhash
+                txObj.transtime = data.time
+                txObj.amount = item.amount
+                txObj.from = item.from
+                txObj.to = item.to
+                if (item.type !== 'certification') {
+                    this.TXListDatas.unshift(txObj)
+                    this.TXListDatas.pop()
+                }
+            })
+            this.blockListDatas.unshift(blockObj)
+            this.blockListDatas.pop()
+        },
+        websocketOnclose(e) {
+            console.log("connection closed (" + e.code + ")");
+            this.reconnect();
+        },
+
+        reconnect() {
+            if (this.lockReconnect) return;
+            this.lockReconnect = true;
+            setTimeout(function () {
+                console.info("try reconnect...");
+                this.initWebSocket();
+                this.lockReconnect = false;
+            }, 5000);
+        },
+
+
         toAddress(address) {
             this.$router.push({
                 path: '/address/' + address
@@ -179,11 +242,6 @@ export default {
                 this.drawChart();
             })
         },
-
-        _isMobile() {
-            let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
-            return flag;
-        }
     }
 }
 </script>
