@@ -23,7 +23,7 @@
                         {{ addressFilter(item.address) }}
                     </div>
                     <div class="w-60 text-sm">
-                        {{ item.balance }}
+                        {{ item.balance }} HAH
                     </div>
                     <div class="w-60">
                         {{ item.yield }}
