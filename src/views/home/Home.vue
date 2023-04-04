@@ -23,7 +23,8 @@
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
             <new-block-table :dataList="blockListDatas" :loadStatus="blockTableLoadStatus" />
             <div class="">
-                <h-pagination></h-pagination>
+                <h-pagination @changePageSize="toBlockFirstPage" @toFirstPage="toBlockFirstPage" @toPrePage="toBlockPrePage"
+                    @toNextPage="toBlockNextPage" @toLastPage="toBlockLastPage" :pageSize="blockCurrentPage"></h-pagination>
             </div>
         </div>
         <div class="mb-2 sm:mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto">
@@ -33,7 +34,8 @@
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
             <trade-table :dataList="TXListDatas" :loadStatus="tradeTableLoadStatus" />
             <div class="">
-                <h-pagination></h-pagination>
+                <h-pagination @changePageSize="toTXFirstPage" @toFirstPage="toTXFirstPage" @toPrePage="toTXPrePage"
+                    @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :pageSize="txCurrentPage"></h-pagination>
             </div>
         </div>
     </div>
@@ -46,7 +48,7 @@ import TradeTable from '@/components/child/TradeTable'
 import ModuleTitle from '@/components/public/ModuleTitle'
 import HPagination from '@/components/public/HPagination'
 
-import { newBlock, newTX, blockStatistics } from '@/request/home'
+import { blockList, TXList, blockStatistics } from '@/request/home'
 import { timeFormat } from '@/utils/format'
 export default {
     name: "index",
@@ -62,15 +64,19 @@ export default {
             series: "",
             tradeTableLoadStatus: 'loading',
             blockTableLoadStatus: 'loading',
-            websock: null
+            websock: null,
+            blockPageSize: 10,
+            blockCurrentPage: 1,
+            txPageSize: 10,
+            txCurrentPage: 1,
         }
     },
     created() {
         this.initWebSocket();
     },
     mounted() {
-        this.getNewBlock()
-        this.getNewTX()
+        this.getBlockList()
+        this.getTXList()
         let days = 31;
         this.getChartData(days)
         // this.timer = setInterval(() => {
@@ -126,19 +132,7 @@ export default {
         },
         websocketOnclose(e) {
             console.log("connection closed (" + e.code + ")");
-            // this.reconnect();
         },
-
-        // reconnect() {
-        //     if (this.lockReconnect) return;
-        //     this.lockReconnect = true;
-        //     setTimeout(function () {
-        //         console.info("try reconnect...");
-        //         this.initWebSocket();
-        //         this.lockReconnect = false;
-        //     }, 5000);
-        // },
-
 
         toAddress(address) {
             this.$router.push({
@@ -150,30 +144,96 @@ export default {
                 path: '/block/' + height
             })
         },
+        toTXFirstPage(selectedPageSize) {
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = 1
+            this.TXListDatas = []
+            this.getTXList()
+        },
+        toTXPrePage(selectedPageSize) {
+            if (this.txCurrentPage === 1) {
+                return
+            }
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = this.txCurrentPage - 1
+            this.TXListDatas = []
+            this.getTXList()
+        },
+        toTXNextPage(selectedPageSize) {
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = this.txCurrentPage + 1
+            this.TXListDatas = []
+            this.getTXList()
+            console.log('前往下一页', this.blockCurrentPage)
+        },
+        toTXLastPage() {
 
-        getNewTX() {
-            newTX().then(res => {
-                // console.log('newTX', res)
-
-                // let res = []
-                if (res.length !== 0) {
-                    this.TXListDatas = res
+        },
+        getTXList() {
+            this.tradeTableLoadStatus = 'loading'
+            TXList({ pageSize: this.txPageSize, page: this.txCurrentPage }).then(res => {
+                if (res.data.length !== 0) {
+                    this.TXListDatas = res.data
                     this.tradeTableLoadStatus = 'finished'
                 } else {
                     this.tradeTableLoadStatus = 'empty'
                 }
+                this.txCurrentPage = res.page
             })
         },
-        getNewBlock() {
-            newBlock().then(res => {
-                console.log('getNewBlock', res)
-                if (res.length !== 0) {
-                    this.blockListDatas = res
-                    this.blockTableLoadStatus = 'finished'
-                } else {
-                    this.blockTableLoadStatus = 'empty'
-                }
-            })
+        getBlockList() {
+            this.blockTableLoadStatus = 'loading',
+                blockList({ pageSize: this.blockPageSize, page: this.blockCurrentPage }).then(res => {
+                    console.log('getNewBlock', res)
+                    if (res.data.length !== 0) {
+                        this.blockListDatas = res.data
+                        this.blockTableLoadStatus = 'finished'
+                    } else {
+                        this.websock.close();
+                        this.blockTableLoadStatus = 'empty'
+                    }
+
+                    this.blockCurrentPage = res.page
+
+                })
+        },
+        toBlockFirstPage(selectedPageSize) {
+            console.log('第一页')
+            this.blockPageSize = selectedPageSize
+            this.blockCurrentPage = 1
+            this.blockListDatas = []
+            this.getBlockList()
+            this.initWebSocket();
+
+        },
+        toBlockPrePage(selectedPageSize) {
+            if (this.blockCurrentPage === 1) {
+                return
+            }
+            this.blockPageSize = selectedPageSize
+            this.blockCurrentPage = this.blockCurrentPage - 1
+            this.blockListDatas = []
+            this.getBlockList()
+            if (this.blockCurrentPage !== 1) {
+                this.websock.close();
+            } else {
+                this.initWebSocket();
+            }
+        },
+        toBlockNextPage(selectedPageSize) {
+            this.blockPageSize = selectedPageSize
+            this.blockCurrentPage = this.blockCurrentPage + 1
+            this.blockListDatas = []
+            this.getBlockList()
+            if (this.blockCurrentPage !== 1) {
+                this.websock.close();
+
+            } else {
+                this.initWebSocket();
+            }
+        },
+        toBlockLastPage() {
+
         },
         drawChart() {
             let myChart = this.$echarts.init(document.getElementById("chart"));

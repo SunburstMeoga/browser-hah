@@ -7,7 +7,8 @@
       class=" mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
       <hrc-list-table :dataList="hrcListDatas" :loadStatus="hrcListLoadStatus" />
       <div class="">
-        <h-pagination></h-pagination>
+        <h-pagination @changePageSize="toHRCFirstPage" @toFirstPage="toHRCFirstPage" @toPrePage="toHRCPrePage"
+          @toNextPage="toHRCNextPage" @toLastPage="toHRCLastPage" :pageSize="hrcCurrentPage"></h-pagination>
       </div>
     </div>
   </div>
@@ -25,7 +26,9 @@ export default {
   data() {
     return {
       hrcListDatas: [],
-      hrcListLoadStatus: 'loading'
+      hrcListLoadStatus: 'loading',
+      hrcPageSize: 10,
+      hrcCurrentPage: 1,
     }
   },
   mounted() {
@@ -33,31 +36,45 @@ export default {
   },
   methods: {
     getListHRC20() {
-      let params = {};
-      listHRC20(params).then(res => {
+      this.hrcListLoadStatus = 'loading'
+      listHRC20({ pageSize: this.hrcPageSize, page: this.hrcCurrentPage }).then(res => {
         console.log(res)
-        if (res.length !== 0) {
-          this.hrcListDatas = res
+        if (res.data.length !== 0) {
+          this.hrcListDatas = res.data
           this.hrcListLoadStatus = 'finished'
         } else {
           this.hrcListLoadStatus = 'empty'
         }
+        this.hrcCurrentPage = res.page
+
       });
       console.log('dataList', this.hrcListDatas);
     },
-    toDetails(item) {
-      console.log('item', item)
-      this.$router.push({
-        path: "/hrc/details",
-        query: {
-          address: item.addr,
-          decimals: item.decimals,
-          name: item.name,
-          owner: item.owner,
-          symbol: item.symbol,
-          totalSupply: item.totalSupply
-        }
-      })
+
+    toHRCFirstPage(selectedPageSize) {
+      console.log('第一页')
+      this.hrcPageSize = selectedPageSize
+      this.hrcCurrentPage = 1
+      this.hrcListDatas = []
+      this.getListHRC20()
+    },
+    toHRCPrePage(selectedPageSize) {
+      if (this.hrcCurrentPage === 1) {
+        return
+      }
+      this.hrcPageSize = selectedPageSize
+      this.hrcCurrentPage = this.hrcCurrentPage - 1
+      this.hrcListDatas = []
+      this.getListHRC20()
+    },
+    toHRCNextPage(selectedPageSize) {
+      this.hrcPageSize = selectedPageSize
+      this.hrcCurrentPage = this.hrcCurrentPage + 1
+      this.hrcListDatas = []
+      this.getListHRC20()
+    },
+    toHRCLastPage() {
+
     }
   }
 }

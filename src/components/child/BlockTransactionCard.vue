@@ -17,12 +17,12 @@
 
         <div class="flex justify-start items-center sm:mb-2">
             <div class="font-bold pr-4 sm:w-1/4">{{ $t('dposDetail.amount') }}:</div>
-            <div class=" ">{{ amountFormat(transactionInfo.amount) }} HAH</div>
+            <div class=" ">{{ transactionInfo.amount }} HAH</div>
         </div>
 
         <div class="flex justify-start items-center sm:mb-2">
             <div class="font-bold pr-4 sm:w-1/4">{{ $t('Address.txFee') }}:</div>
-            <div class=" ">{{ amountFormat(transactionInfo.fee) }} HAH</div>
+            <div class=" ">{{ transactionInfo.fee }} HAH</div>
         </div>
 
         <div class="flex justify-start items-center sm:mb-2">

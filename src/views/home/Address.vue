@@ -28,14 +28,15 @@
                     <h-loading :loadStatus="addressTranListLoadStatus" />
 
                     <div v-if="addressTranListLoadStatus === 'finished'">
-                        <div v-for="(item, index) in TXListDatas" :key="index"
+                        <div v-for="(item, index) in txListDatas" :key="index"
                             class="w-11/12 mr-auto ml-auto py-2 sm:w-full sm:px-3  border-b border-ligthborder dark:border-border100">
                             <address-transaction-card :transactionInfo="item" />
                         </div>
                     </div>
                 </div>
                 <div>
-                    <h-pagination></h-pagination>
+                    <h-pagination @changePageSize="toTXFirstPage" @toFirstPage="toTXFirstPage" @toPrePage="toTXPrePage"
+                        @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :pageSize="txCurrentPage"></h-pagination>
                 </div>
             </div>
         </div>
@@ -51,7 +52,7 @@ import AddressTransactionCard from '@/components/child/AddressTransactionCard'
 
 import ModuleTitle from '@/components/public/ModuleTitle'
 import SecondTitle from '@/components/public/SecondTitle'
-import { addressInfo, balanceInfo } from '@/request/home'
+import { TXList, balanceInfo } from '@/request/home'
 import { timeFormat } from '@/utils/format'
 
 export default {
@@ -60,14 +61,13 @@ export default {
     data() {
         return {
             address: '',
-            TXListDatas: [],
-            pageSize: 10,
-            pagenum: 1,
-            total: 0,
+            txListDatas: [],
             addressInfo: {},
             rank: '',
             addressInfoLoadStatus: 'loading',
-            addressTranListLoadStatus: 'loading'
+            addressTranListLoadStatus: 'loading',
+            txPageSize: 10,
+            txCurrentPage: 1,
         }
 
     },
@@ -75,7 +75,8 @@ export default {
     created() {
         this.address = this.$route.params.address
         this.addressInfo.address = this.address
-        this.getAddressInfo()
+        this.getAddressTxList()
+        this.getBalanceInfo()
     },
     methods: {
         timeFormat,
@@ -84,41 +85,60 @@ export default {
                 path: '/tx/' + txid
             })
         },
-        getAddressInfo() {
-            let params = {
+        getAddressTxList() {
+            this.addressTranListLoadStatus = 'loading'
+            TXList({
                 address: this.address,
-                page: this.pagenum,
-                pagesize: this.pageSize
-            };
-
-            addressInfo(params).then(res => {
-                this.rank = res.rank
-                // this.TXListDatas = res.data.data
-                this.total = res.data.total
-                if (res.data.data.length !== 0) {
-                    this.TXListDatas = res.data.data
+                page: this.txCurrentPage,
+                pageSize: this.txPageSize
+            }).then(res => {
+                console.log('res', res)
+                if (res.data.length !== 0) {
+                    this.txListDatas = res.data
                     this.addressTranListLoadStatus = 'finished'
                 } else {
                     this.addressTranListLoadStatus = 'empty'
                 }
-                this.getBalanceInfo()
-                console.log(this.TXListDatas)
+                console.log(this.txListDatas)
             })
         },
+        toTXFirstPage(selectedPageSize) {
+            console.log('第一页')
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = 1
+            this.txListDatas = []
+            this.getAddressTxList()
+        },
+        toTXPrePage(selectedPageSize) {
+            if (this.txCurrentPage === 1) {
+                return
+            }
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = this.txCurrentPage - 1
+            this.txListDatas = []
+            this.getAddressTxList()
+        },
+        toTXNextPage(selectedPageSize) {
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = this.txCurrentPage + 1
+            this.txListDatas = []
+            this.getAddressTxList()
+        },
+        toTXLastPage() {
+
+        },
         getBalanceInfo() {
-            let params = {
+            balanceInfo({
                 address: this.address,
                 symbol: 'HAH',
-            };
-            balanceInfo(params).then(res => {
+            }).then(res => {
                 this.addressInfo.balance = res.balance
                 this.addressInfo.locked = res.locked
                 this.addressInfo.nonce = res.nonce
-                this.addressInfo.rank = this.rank
+                this.addressInfo.rank = res.rank
                 this.$store.commit('getAddressInfo', this.addressInfo)
                 this.addressInfoLoadStatus = 'finished'
-
-                console.log('this.addressInfo', this.addressInfo);
+                console.log('this.addressInfo', res);
             });
 
         }

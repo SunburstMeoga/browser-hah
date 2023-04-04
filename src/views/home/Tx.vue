@@ -102,17 +102,17 @@ export default {
             };
             txInfo(params).then(res => {
                 console.log('tx', res)
-                this.transactionInfo.block_hash = res[0].block_hash
-                this.transactionInfo.from = res[0].from
-                this.transactionInfo.to = res[0].to
-                this.transactionInfo.amount = res[0].amount
-                this.transactionInfo.free = res[0].fee
-                this.transactionInfo.nonce = res[0].nonce
-                this.dpos_in = res[0].dpos_in
-                this.dpos_out = res[0].dpos_out
-                this.client_in = res[0].client_in
-                this.client_out = res[0].client_out
-                this.transactionInfo.transtime = res[0].transtime
+                this.transactionInfo.block_hash = res.block_hash
+                this.transactionInfo.from = res.from
+                this.transactionInfo.to = res.to
+                this.transactionInfo.amount = res.amount
+                this.transactionInfo.fee = res.fee
+                this.transactionInfo.nonce = res.nonce
+                this.dpos_in = res.dpos_in
+                this.dpos_out = res.dpos_out
+                this.client_in = res.client_in
+                this.client_out = res.client_out
+                this.transactionInfo.transtime = res.transtime
                 this.tranInfoLoadStatus = 'finished'
                 this.$store.commit('getTXInfo', this.transactionInfo)
             });

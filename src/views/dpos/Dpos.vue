@@ -7,7 +7,8 @@
             class=" mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
             <dpos-list-table :dataList="dposListDatas" :loadStatus="dposListLoadStatus" />
             <div class="">
-                <h-pagination></h-pagination>
+                <h-pagination @changePageSize="toDposFirstPage" @toFirstPage="toDposFirstPage" @toPrePage="toDposPrePage"
+                    @toNextPage="toDposNextPage" @toLastPage="toDposLastPage" :pageSize="dposCurrentPage"></h-pagination>
             </div>
         </div>
     </div>
@@ -25,9 +26,9 @@ export default {
     data() {
         return {
             dposListDatas: [],
-            showa: false,
-            address: '',
-            dposListLoadStatus: 'loading'
+            dposListLoadStatus: 'loading',
+            dposPageSize: 10,
+            dposCurrentPage: 1,
         }
     },
     created() {
@@ -35,33 +36,44 @@ export default {
     },
     methods: {
         getListDelegate() {
-            let params = {
-                page: this.pagenum,
-                pagesize: this.pageSize
-            };
-            listDelegate(params).then(res => {
-                if (res.length !== 0) {
-                    this.dposListDatas = res
+            this.dposListLoadStatus = 'loading'
+            listDelegate({ pageSize: this.dposPageSize, page: this.dposCurrentPage }).then(res => {
+                if (res.data.length !== 0) {
+                    this.dposListDatas = res.data
                     this.dposListLoadStatus = 'finished'
                 } else {
                     this.dposListLoadStatus = 'empty'
                 }
                 console.log(res)
+                this.dposCurrentPage = res.page
+
             });
         },
-        closeTip() {
-            this.showa = false
+        toDposFirstPage(selectedPageSize) {
+            console.log('第一页')
+            this.dposPageSize = selectedPageSize
+            this.dposCurrentPage = 1
+            this.dposListDatas = []
+            this.getListDelegate()
         },
-        openTip(address) {
-            this.address = address;
-            this.showa = true;
-            console.log(this.showa);
+        toDposPrePage(selectedPageSize) {
+            if (this.dposCurrentPage === 1) {
+                return
+            }
+            this.dposPageSize = selectedPageSize
+            this.dposCurrentPage = this.dposCurrentPage - 1
+            this.dposListDatas = []
+            this.getListDelegate()
         },
-        handleWindow(dposAddress) {
-            this.$router.push({
-                path: '/dpos/details/' + dposAddress
-            })
-        }
+        toDposNextPage(selectedPageSize) {
+            this.dposPageSize = selectedPageSize
+            this.dposCurrentPage = this.dposCurrentPage + 1
+            this.dposListDatas = []
+            this.getListDelegate()
+        },
+        toDposLastPage() {
+
+        },
 
 
     },

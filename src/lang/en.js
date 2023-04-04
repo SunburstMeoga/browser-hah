@@ -106,6 +106,7 @@ module.exports = {
     address: 'Address',
     balance: 'Balance',
     yield: 'Yield',
+    notRank: 'No ranking'
   },
   Tx: {
     txInfo: 'Transaction Infomation',

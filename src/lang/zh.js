@@ -103,6 +103,7 @@ module.exports = {
     address: '地址',
     balance: '余额',
     yield: '百分比',
+    notRank: '暂无排名'
   },
   Tx: {
     txInfo: '交易信息',

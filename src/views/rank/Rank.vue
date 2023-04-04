@@ -7,7 +7,8 @@
             class=" mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
             <rank-list-table :dataList="rankListDatas" :loadStatus="rankListLoadStatus" />
             <div class="">
-                <h-pagination></h-pagination>
+                <h-pagination @changePageSize="toRankFirstPage" @toFirstPage="toRankFirstPage" @toPrePage="toRankPrePage"
+                    @toNextPage="toRankNextPage" @toLastPage="toRankLastPage" :pageSize="rankCurrentPage"></h-pagination>
             </div>
         </div>
     </div>
@@ -26,10 +27,9 @@ export default {
     data() {
         return {
             rankListDatas: [],
-            pageSize: 20,
-            pagenum: 1,
-            total: 0,
-            rankListLoadStatus: 'loading'
+            rankListLoadStatus: 'loading',
+            rankPageSize: 10,
+            rankCurrentPage: 1,
         }
     },
     mounted() {
@@ -37,23 +37,42 @@ export default {
     },
     methods: {
         getRankList() {
-            let params = {
-                page: this.pagenum,
-                pagesize: this.pageSize
-            };
-            rankList(params).then(res => {
-                console.log(res)
-                // this.rankListDatas = res.data
-                this.page = res.pagenum
-                this.pageSize = res.pagesize
-                this.total = res.total
+            this.rankListLoadStatus = 'loading'
+            rankList({ pageSize: this.rankPageSize, page: this.rankCurrentPage }).then(res => {
                 if (res.data.length !== 0) {
                     this.rankListDatas = res.data
                     this.rankListLoadStatus = 'finished'
                 } else {
                     this.rankListLoadStatus = 'empty'
                 }
-            });
+                this.rankCurrentPage = res.page
+            })
+        },
+        toRankFirstPage(selectedPageSize) {
+            console.log('第一页')
+            this.rankPageSize = selectedPageSize
+            this.rankCurrentPage = 1
+            this.rankListDatas = []
+            this.getRankList()
+
+        },
+        toRankPrePage(selectedPageSize) {
+            if (this.rankCurrentPage === 1) {
+                return
+            }
+            this.rankPageSize = selectedPageSize
+            this.rankCurrentPage = this.rankCurrentPage - 1
+            this.rankListDatas = []
+            this.getRankList()
+        },
+        toRankNextPage(selectedPageSize) {
+            this.rankPageSize = selectedPageSize
+            this.rankCurrentPage = this.rankCurrentPage + 1
+            this.rankListDatas = []
+            this.getRankList()
+        },
+        toRankLastPage() {
+
         },
     }
 }

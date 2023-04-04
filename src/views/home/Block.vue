@@ -29,7 +29,7 @@
                     <h-loading :loadStatus="tranLoadStatus" />
 
                     <div v-if="tranLoadStatus === 'finished'">
-                        <div v-for="(item, index) in TxListDatas" :key="index"
+                        <div v-for="(item, index) in txListDatas" :key="index"
                             class="w-11/12 mr-auto ml-auto py-2 sm:w-full sm:px-3 border-b border-ligthborder dark:border-border100 ">
                             <block-transaction-card :transactionInfo="item" />
                         </div>
@@ -37,7 +37,8 @@
 
                 </div>
                 <div>
-                    <h-pagination></h-pagination>
+                    <h-pagination @changePageSize="toTXFirstPage" @toFirstPage="toTXFirstPage" @toPrePage="toTXPrePage"
+                        @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :pageSize="txCurrentPage"></h-pagination>
                 </div>
             </div>
         </div>
@@ -60,14 +61,15 @@ export default {
     components: { SecondTitle, HPagination, BlockDetailsCard, ModuleTitle, BlockTransactionCard, HLoading },
     data() {
         return {
-            pageSize: 10,
-            pagenum: 1,
+
             height: '',
             blockInfo: {},
             transactionInfo: {},
-            TxListDatas: [],
+            txListDatas: [],
             tranLoadStatus: 'loading',
-            blockInfoLoadStatus: 'loading'
+            blockInfoLoadStatus: 'loading',
+            txPageSize: 10,
+            txCurrentPage: 1,
         }
     },
     created() {
@@ -83,24 +85,42 @@ export default {
             })
         },
         getTXList() {
-            let param = {
-                page: this.pagenum,
-                pagesize: this.pageSize,
-                block_hash: this.blockInfo.hash,
-            };
-            TXList(param).then(res => {
-                console.log('rse', res)
-                this.pagenum = res.pagenum * 1
-                this.pageSize = res.pagesize * 1
-                this.total = res.total
-                this.blockInfo.total = res.total
-                if (res.data.length !== 0) {
-                    this.TxListDatas = res.data
-                    this.tranLoadStatus = 'finished'
-                } else {
-                    this.tranLoadStatus = 'empty'
-                }
-            });
+            this.tranLoadStatus = 'loading',
+                TXList({ pageSize: this.txPageSize, page: this.txCurrentPage, block_hash: this.blockInfo.hash }).then(res => {
+                    console.log('rse', res)
+                    if (res.data.length !== 0) {
+                        this.txListDatas = res.data
+                        this.tranLoadStatus = 'finished'
+                    } else {
+                        this.tranLoadStatus = 'empty'
+                    }
+                });
+        },
+
+        toTXFirstPage(selectedPageSize) {
+            console.log('第一页')
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = 1
+            this.txListDatas = []
+            this.getTXList()
+        },
+        toTXPrePage(selectedPageSize) {
+            if (this.txCurrentPage === 1) {
+                return
+            }
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = this.txCurrentPage - 1
+            this.txListDatas = []
+            this.getTXList()
+        },
+        toTXNextPage(selectedPageSize) {
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = this.txCurrentPage + 1
+            this.txListDatas = []
+            this.getTXList()
+        },
+        toTXLastPage() {
+
         },
         getBlockInfo() {
             let params = {

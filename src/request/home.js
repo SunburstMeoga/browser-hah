@@ -1,17 +1,17 @@
 import request from './request'
 
-export function newBlock(params) {
+export function blockList(params) {
     return request({
-        url: '/api/newblock/',
+        url: '/api/blocklist/',
         method: 'get',
         params
     })
 }
 
 
-export function newTX(params) {
+export function TXList(params) {
     return request({
-        url: '/api/newtx/',
+        url: '/api/txlist/',
         method: 'get',
         params
     })
@@ -44,14 +44,6 @@ export function balanceInfo(params) {
 export function blockInfo(params) {
     return request({
         url: '/api/block',
-        method: 'get',
-        params
-    })
-}
-
-export function TXList(params) {
-    return request({
-        url: '/api/txlist/',
         method: 'get',
         params
     })
