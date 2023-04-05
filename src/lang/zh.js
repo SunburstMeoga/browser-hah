@@ -165,5 +165,9 @@ module.exports = {
     records: '条记录',
     first: '第一页',
     last: '最后一页'
+  },
+  faucetSmart: {
+    title: 'HAH智能链水龙头',
+    button: '获取HAH测试币'
   }
 }

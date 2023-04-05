@@ -169,5 +169,9 @@ module.exports = {
     records: 'Records',
     first: 'First',
     last: 'Last'
+  },
+  faucetSmart: {
+    title: 'HAH Smart Chain Faucet',
+    button: 'Give me HAH'
   }
 }

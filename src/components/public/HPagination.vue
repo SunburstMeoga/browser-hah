@@ -5,7 +5,7 @@
                 <div class="pr-2">{{ $t('pagination.show') }}</div>
                 <div class="mr-2 w-16 border border-ligthborder dark:border-border100">
                     <select v-model="selectedPageSize"
-                        class="w-full h-6 rounded-lg bg-white border-ligthborder dark:text-white200 dark:bg-black200 dark:border-border100"
+                        class="w-full h-6 rounded-lg bg-white border border-ligthborder dark:text-white200 dark:bg-black200 dark:border-border100"
                         @change="changePageSize">
                         <option v-for="(item, index) in pageSizeList" :value="item.pageSize" v-text="item.pageSize"
                             :key="index" />
