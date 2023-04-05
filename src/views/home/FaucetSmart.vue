@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { testHAHChain } from '@/request/home'
 export default {
     data() {
         return {
@@ -28,10 +29,7 @@ export default {
     },
     methods: {
         getTestHAHChain() {
-            let params = {
-                address: this.address,
-            };
-            this.$api.getTestHAHChain(params).then(res => {
+            testHAHChain({ address: this.address, }).then(res => {
                 console.log('领取成功', res)
                 this.$message({
                     message: '已发放1HAH到该地址',

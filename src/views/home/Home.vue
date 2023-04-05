@@ -103,7 +103,7 @@ export default {
 
         websocketOnerror(e) {
             console.log("WebSocket Connect Error");
-            this.reconnect();
+            // this.reconnect();
         },
         websocketOnmessage(e) {
             console.log("-----Message-------", JSON.parse(e.data));

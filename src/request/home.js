@@ -64,3 +64,11 @@ export function txInfo(params) {
         params
     })
 }
+
+export function testHAHChain(params) {
+    return request({
+        url: '/api/faucet/',
+        method: 'get',
+        params
+    })
+}
