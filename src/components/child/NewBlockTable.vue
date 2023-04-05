@@ -1,9 +1,27 @@
 <template>
     <div class="border-transparent mr-auto ml-auto overflow-x-scroll sm:overflow-auto">
         <h-loading :loadStatus="loadStatus" />
+        <div v-if="loadStatus === 'finished'" class="w-11/12 mr-auto ml-auto text-sm sm:hidden">
+            <div class="py-3 border-b border-lightborder dark:border-border100" v-for="(item, index) in dataList"
+                :key="index">
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.height') }}: </div>
+                    <div class="text-clickable">{{ item.height }}</div>
+                </div>
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.address') }}: </div>
+                    <div class="text-clickable">{{ addressFilter(item.reward_address) }}</div>
+                </div>
+                <div class="flex justify-start item-center">
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.time') }}: </div>
+                    <div class="text-clickable">{{ timeFormat(item.time) }}</div>
+                </div>
+            </div>
+        </div>
 
-        <div v-if="loadStatus === 'finished'" class="border-b h-full min-w-100 border-lightborder dark:border-border100">
-            <div class="py-2 flex w-full justify-start">
+        <div v-if="loadStatus === 'finished'"
+            class="hidden sm:block border-b h-full min-w-100 border-lightborder dark:border-border100">
+            <div class="py-2 flex w-full justify-start sm:py-4">
                 <div class="w-20 ml-4 text-sm font-black text-lighttable dark:text-white200">
                     #
                 </div>

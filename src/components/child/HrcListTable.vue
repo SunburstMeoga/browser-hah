@@ -1,8 +1,27 @@
 <template>
-    <div class="border-transparent mb-2 mr-auto ml-auto overflow-x-scroll pl-4">
+    <div class="border-transparent mb-2 mr-auto ml-auto overflow-x-scroll sm:pl-4">
         <h-loading :loadStatus="loadStatus" />
 
-        <div v-if="loadStatus === 'finished'" class="border-b min-w-100 border-lightborder dark:border-border100">
+        <div v-if="loadStatus === 'finished'" class="w-11/12 mr-auto ml-auto text-sm sm:hidden">
+            <div class="py-3 border-b border-lightborder dark:border-border100" v-for="(item, index) in dataList"
+                :key="index">
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('dpos.address') }}: </div>
+                    <div class="text-clickable">{{ addressFilter(item.addr) }}</div>
+                </div>
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('hrc20.symbol') }}: </div>
+                    <div class="text-clickable"> {{ item.symbol }}</div>
+                </div>
+                <div class="flex justify-start item-center">
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('hrc20.totalSupply') }}: </div>
+                    <div class="text-clickable">{{ item.totalSupply }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div v-if="loadStatus === 'finished'"
+            class="hidden sm:block border-b min-w-100 border-lightborder dark:border-border100">
             <div class="py-2 flex w-full justify-start">
                 <div class="w-60 text-sm font-black text-lighttable dark:text-white200"
                     v-for="(item, index) in tableTitleList" :key="index">

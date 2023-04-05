@@ -135,7 +135,7 @@ export default {
             return [
                 { title: this.$t('eTopBar.home'), path: '/' },
                 { title: this.$t('eTopBar.rich'), path: '/rank' },
-                { title: 'dpos', path: '/dpos' },
+                { title: 'DPOS', path: '/dpos' },
                 { title: 'HRC20', path: '/hrc' }
             ]
         },

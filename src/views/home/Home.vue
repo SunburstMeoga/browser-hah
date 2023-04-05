@@ -22,7 +22,7 @@
         <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
             <new-block-table :dataList="blockListDatas" :loadStatus="blockTableLoadStatus" />
-            <div class="">
+            <div>
                 <h-pagination @changePageSize="toBlockFirstPage" @toFirstPage="toBlockFirstPage" @toPrePage="toBlockPrePage"
                     @toNextPage="toBlockNextPage" @toLastPage="toBlockLastPage" :pageSize="blockCurrentPage"></h-pagination>
             </div>
@@ -33,7 +33,7 @@
         <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
             <trade-table :dataList="TXListDatas" :loadStatus="tradeTableLoadStatus" />
-            <div class="">
+            <div>
                 <h-pagination @changePageSize="toTXFirstPage" @toFirstPage="toTXFirstPage" @toPrePage="toTXPrePage"
                     @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :pageSize="txCurrentPage"></h-pagination>
             </div>
