@@ -30,6 +30,7 @@ export default {
             rankListLoadStatus: 'loading',
             rankPageSize: 10,
             rankCurrentPage: 1,
+            totalPage: 1,
         }
     },
     mounted() {
@@ -45,6 +46,7 @@ export default {
                 } else {
                     this.rankListLoadStatus = 'empty'
                 }
+                this.totalPage = res.totalPage
                 this.rankCurrentPage = res.page
             })
         },
@@ -66,13 +68,25 @@ export default {
             this.getRankList()
         },
         toRankNextPage(selectedPageSize) {
+            console.log(this.rankCurrentPage, this.totalPage)
+
+            if (this.rankCurrentPage >= this.totalPage) {
+                return
+            }
             this.rankPageSize = selectedPageSize
             this.rankCurrentPage = this.rankCurrentPage + 1
             this.rankListDatas = []
             this.getRankList()
         },
-        toRankLastPage() {
-
+        toRankLastPage(selectedPageSize) {
+            console.log(this.rankCurrentPage, this.totalPage)
+            if (this.rankCurrentPage >= this.totalPage) {
+                return
+            }
+            this.rankPageSize = selectedPageSize
+            this.rankCurrentPage = this.rankCurrentPage + 1
+            this.rankListDatas = []
+            this.getRankList()
         },
     }
 }

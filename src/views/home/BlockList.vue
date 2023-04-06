@@ -1,180 +1,91 @@
 <template>
     <div>
-
-        <div data-v-7b0e1c95="" data-v-520cdd27="" class="content-child">
-            <h1 data-v-7b0e1c95="" class="h1">
-                {{ $t('BlockList.h1') }}</h1>
-            <h2 data-v-7b0e1c95="" class="h2">{{ $t('BlockList.h2') }}</h2>
-            <div data-v-7b0e1c95="" class="page-header">
-                <div data-v-7b0e1c95="" class="inner_content">
-                    <div data-v-7b0e1c95="" class="header">
-                        <div data-v-7b0e1c95="" class="lt"><span data-v-7b0e1c95=""
-                                class="title">{{ $t('BlockList.newBlock') }}</span></div>
-                    </div>
-
-                    <div data-v-ce118d7e="" data-v-7b0e1c95="">
-
-                        <!--                                block pc start -->
-                        <div data-v-ce118d7e="" class="block_list">
-                            <ul data-v-ce118d7e="" class="item title">
-                                <li data-v-ce118d7e="" class="inner_item miner">{{ $t('BlockList.height') }}</li>
-                                <li data-v-ce118d7e="" class="inner_item miner">{{ $t('BlockList.address') }}</li>
-                                <li data-v-ce118d7e="" class="inner_item prize">{{ $t('BlockList.reward') }}</li>
-                                <li data-v-ce118d7e="" class="inner_item miner">{{ $t('BlockList.amount') }}</li>
-                                <li data-v-ce118d7e="" class="inner_item miner">{{ $t('BlockList.previousBlock') }}</li>
-                                <li data-v-ce118d7e="" class="inner_item time">{{ $t('BlockList.time') }}</li>
-                            </ul>
-                            <span data-v-ce118d7e="">
-                                <ul data-v-ce118d7e="" class="item content" v-for="(item, index) in BlocklistDatas"
-                                    :key="index">
-                                    <li data-v-ce118d7e="" class="inner_item height">
-                                        <router-link :to="{ name: 'block', query: { hash: item.height } }">{{ item.height
-                                        }}</router-link>
-                                    </li>
-
-                                    <li data-v-ce118d7e="" class="inner_item miner">
-                                        <router-link :to="{ name: 'address', query: { hash: item.reward_address } }">{{
-                                            item.reward_address }}</router-link>
-                                    </li>
-                                    <li data-v-ce118d7e="" class="inner_item prize">{{ item.reward_money }}</li>
-                                    <li data-v-ce118d7e="" class="inner_item miner">
-                                        <a data-v-ce118d7e="" href="javascript:void(0)" class="el-tooltip"
-                                            aria-describedby="el-tooltip-6541" tabindex="0">{{ item.txs }}</a>
-                                    </li>
-                                    <li data-v-ce118d7e="" class="inner_item miner">
-                                        <a data-v-ce118d7e="" href="javascript:void(0)" class="el-tooltip"
-                                            aria-describedby="el-tooltip-6541" tabindex="0">{{ item.prev_hash }}</a>
-                                    </li>
-                                    <li data-v-ce118d7e="" class="inner_item time">
-                                        <div data-v-ce118d7e="">
-                                            <span class="el-tooltip" aria-describedby="el-tooltip-5279" tabindex="0">{{
-                                                timeformat(item.time) }}</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </span>
-                        </div>
-                        <!--                                block pc end  -->
-
-                        <!--                               block mobile start -->
-                        <div data-v-ce118d7e="" class="mobileList">
-                            <div data-v-ce118d7e="" class="items" v-for="(item, index) in BlocklistDatas" :key="index">
-                                <div data-v-ce118d7e="" class="item">
-                                    {{ $t('BlockList.height') }}
-                                    <div data-v-ce118d7e="" class="value">
-                                        <router-link :to="{ name: 'block', query: { height: item.height } }">{{ item.height
-                                        }}</router-link>
-                                    </div>
-                                </div>
-                                <div data-v-ce118d7e="" class="item">
-                                    <div data-v-ce118d7e="" class="key">{{ $t('BlockList.address') }}</div>
-                                    <div data-v-ce118d7e="" class="value"><a data-v-ce118d7e="" href="javascript:void(0)">{{
-                                        item.reward_address }}</a>
-                                    </div>
-                                </div><!---->
-                                <div data-v-ce118d7e="" class="item">
-                                    <div data-v-ce118d7e="" class="key">
-                                        {{ $t('BlockList.reward') }}
-                                    </div>
-                                    <div data-v-ce118d7e="" class="value">{{ item.reward_money }}</div>
-                                </div>
-                                <div data-v-ce118d7e="" class="item">
-                                    <div data-v-ce118d7e="" class="key">{{ $t('BlockList.amount') }}</div>
-                                    <div data-v-ce118d7e="" class="value"><a data-v-ce118d7e="" href="javascript:void(0)">{{
-                                        item.txs }}</a>
-                                    </div>
-                                </div><!---->
-                                <div data-v-ce118d7e="" class="item">
-                                    <div data-v-ce118d7e="" class="key">{{ $t('BlockList.previousBlock')}</div>
-                                        < div data - v - ce118d7e="" class="value" > <a data - v - ce118d7e="" href = "javascript:void(0)" > {{
-                                        item.prev_hash }}</a>
-                                    </div>
-                                </div><!---->
-                                <div data-v-ce118d7e="" class="item">
-                                    <div data-v-ce118d7e="" class="key">{{ $t('BlockList.time') }}</div>
-                                    <div data-v-ce118d7e="" class="value">
-                                        <div data-v-ce118d7e=""><span class="el-tooltip" aria-describedby="el-tooltip-4340"
-                                                tabindex="0">{{ timeformat(item.time) }}</span></div>
-                                    </div>
-                                </div><!----><!---->
-
-
-                            </div>
-                        </div>
-                        <!--                                block mobile end   -->
-
-                    </div>
-
-                    <div data-v-7b0e1c95="">
-                        <div data-v-5d77fed0="" data-v-7b0e1c95="" class="turn_page">
-                            <div data-v-5d77fed0="" class="page_box">
-                                <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                                    :current-page="pagenum" :page-sizes="[20, 50, 100]" :page-size="pageSize"
-                                    layout="total, sizes, prev, pager, next, jumper" :total="total">
-                                </el-pagination>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
+        <div class="mb-2 sm:mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto">
+            <module-title :title="$t('BlockList.newBlock')" />
+        </div>
+        <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
+            style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
+            <new-block-table :dataList="blockListDatas" :loadStatus="blockTableLoadStatus" />
+            <div>
+                <h-pagination @changePageSize="toBlockFirstPage" @toFirstPage="toBlockFirstPage" @toPrePage="toBlockPrePage"
+                    @toNextPage="toBlockNextPage" @toLastPage="toBlockLastPage" :pageSize="blockCurrentPage" />
             </div>
         </div>
-
     </div>
 </template>
 
 <script>
+import NewBlockTable from '@/components/child/NewBlockTable'
+import ModuleTitle from '@/components/public/ModuleTitle'
+import HPagination from '@/components/public/HPagination'
+import { blockList } from '@/request/home'
+
 export default {
-    name: "BlockList",
+    components: { NewBlockTable, ModuleTitle, HPagination },
     data() {
         return {
-            BlocklistDatas: [],
-            pageSize: 20,
-            pagenum: 1,
-            total: 0,
-        }
-    },
-    methods: {
-        getList() {
-            let params = {
-                page: this.pagenum,
-                pagesize: this.pageSize
-            };
-            let that = this
-            this.$api.blocklist(params).then(res => {
-                that.BlocklistDatas = res.data
-                that.pagenum = res.pagenum
-                that.pageSize = res.pagesize
-                that.total = res.total
-            });
-        },
-        handleSizeChange(newSzie) {
-            this.pageSize = newSzie
-            this.getList()
-        },
-        handleCurrentChange(newPage) {
-            this.pagenum = newPage
-            this.getList()
-        },
-
-        timeformat(obj) {
-            if (obj == null) {
-                return null
-            }
-            let date = new Date(obj * 1000);
-            let y = 1900 + date.getYear();
-            let m = "0" + (date.getMonth() + 1);
-            let d = "0" + date.getDate();
-            let h = "0" + date.getHours();
-            let mm = "0" + date.getMinutes();
-            let s = date.getSeconds();
-            return y + "-" + m.substring(m.length - 2, m.length) + "-" + d.substring(d.length - 2, d.length) + " " + h.substring(h.length - 2, h.length) + ":" + mm.substring(mm.length - 2, mm.length) + ":" + s;
+            blockListDatas: [],
+            blockTableLoadStatus: 'loading',
+            blockPageSize: 10,
+            blockCurrentPage: 1,
+            totalPage: 1,
         }
     },
     created() {
-        this.getList()
-    }
+        this.getBlockList()
+    },
+    methods: {
+        getBlockList() {
+            this.blockTableLoadStatus = 'loading',
+                blockList({ pageSize: this.blockPageSize, page: this.blockCurrentPage }).then(res => {
+                    console.log('getNewBlock', res)
+                    if (res.data.length !== 0) {
+                        this.blockListDatas = res.data
+                        this.blockTableLoadStatus = 'finished'
+                    } else {
+                        this.websock.close();
+                        this.blockTableLoadStatus = 'empty'
+                    }
+                    this.totalPage = res.totalPage
+                    this.blockCurrentPage = res.page
+                }).catch(err => {
+                    console.log('load fail:', err)
+                })
+        },
+        toBlockFirstPage(selectedPageSize) {
+            console.log('第一页')
+            this.blockPageSize = selectedPageSize
+            this.blockCurrentPage = 1
+            this.blockListDatas = []
+            this.getBlockList()
+
+        },
+        toBlockPrePage(selectedPageSize) {
+            if (this.blockCurrentPage === 1) {
+                return
+            }
+            this.blockPageSize = selectedPageSize
+            this.blockCurrentPage = this.blockCurrentPage - 1
+            this.blockListDatas = []
+            this.getBlockList()
+        },
+        toBlockNextPage(selectedPageSize) {
+            this.blockPageSize = selectedPageSize
+            this.blockCurrentPage = this.blockCurrentPage + 1
+            this.blockListDatas = []
+            this.getBlockList()
+        },
+        toBlockLastPage(selectedPageSize) {
+            if (this.blockCurrentPage > this.totalPage) {
+                return
+            }
+            this.blockPageSize = selectedPageSize
+            this.blockCurrentPage = this.totalPage
+            this.blockListDatas = []
+            this.getBlockList()
+        },
+    },
+
 }
 </script>
 

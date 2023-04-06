@@ -10,9 +10,19 @@ export default [
         component: () => import('../views/home/Address')
     },
     {
-        path: '/block/:height',
+        path: '/block/list',
         name: 'block',
+        component: () => import('../views/home/BlockList')
+    },
+    {
+        path: '/block/:height',
+        name: 'blockList',
         component: () => import('../views/home/Block')
+    },
+    {
+        path: '/trade/list',
+        name: 'tradeList',
+        component: () => import('../views/home/TradeList')
     },
     {
         path: '/tx/:txid',

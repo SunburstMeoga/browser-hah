@@ -23,8 +23,7 @@
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
             <new-block-table :dataList="blockListDatas" :loadStatus="blockTableLoadStatus" />
             <div>
-                <h-pagination @changePageSize="toBlockFirstPage" @toFirstPage="toBlockFirstPage" @toPrePage="toBlockPrePage"
-                    @toNextPage="toBlockNextPage" @toLastPage="toBlockLastPage" :pageSize="blockCurrentPage"></h-pagination>
+                <view-more @handleViewMore="viewMoreBlock" />
             </div>
         </div>
         <div class="mb-2 sm:mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto">
@@ -34,8 +33,7 @@
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
             <trade-table :dataList="TXListDatas" :loadStatus="tradeTableLoadStatus" />
             <div>
-                <h-pagination @changePageSize="toTXFirstPage" @toFirstPage="toTXFirstPage" @toPrePage="toTXPrePage"
-                    @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :pageSize="txCurrentPage"></h-pagination>
+                <view-more @handleViewMore="viewMoreTransation" />
             </div>
         </div>
     </div>
@@ -47,12 +45,13 @@ import NewBlockTable from '@/components/child/NewBlockTable'
 import TradeTable from '@/components/child/TradeTable'
 import ModuleTitle from '@/components/public/ModuleTitle'
 import HPagination from '@/components/public/HPagination'
+import ViewMore from '@/components/public/ViewMore'
 
 import { blockList, TXList, blockStatistics } from '@/request/home'
 import { timeFormat } from '@/utils/format'
 export default {
     name: "index",
-    components: { ModuleTitle, NewBlockTable, HPagination, TradeTable },
+    components: { ModuleTitle, NewBlockTable, HPagination, TradeTable, ViewMore },
     data() {
         return {
             blockListDatas: [],
@@ -90,7 +89,16 @@ export default {
     },
     methods: {
         timeFormat,
-
+        viewMoreTransation() {
+            this.$router.push({
+                path: '/trade/list'
+            })
+        },
+        viewMoreBlock() {
+            this.$router.push({
+                path: '/block/list'
+            })
+        },
         initWebSocket() {
             let url = 'wss://testnet.hashahead.org/dev-ws/'
             console.log(url);
@@ -144,31 +152,7 @@ export default {
                 path: '/block/' + height
             })
         },
-        toTXFirstPage(selectedPageSize) {
-            this.txPageSize = selectedPageSize
-            this.txCurrentPage = 1
-            this.TXListDatas = []
-            this.getTXList()
-        },
-        toTXPrePage(selectedPageSize) {
-            if (this.txCurrentPage === 1) {
-                return
-            }
-            this.txPageSize = selectedPageSize
-            this.txCurrentPage = this.txCurrentPage - 1
-            this.TXListDatas = []
-            this.getTXList()
-        },
-        toTXNextPage(selectedPageSize) {
-            this.txPageSize = selectedPageSize
-            this.txCurrentPage = this.txCurrentPage + 1
-            this.TXListDatas = []
-            this.getTXList()
-            console.log('前往下一页', this.blockCurrentPage)
-        },
-        toTXLastPage() {
 
-        },
         getTXList() {
             this.tradeTableLoadStatus = 'loading'
             TXList({ pageSize: this.txPageSize, page: this.txCurrentPage }).then(res => {
@@ -194,50 +178,12 @@ export default {
                         this.websock.close();
                         this.blockTableLoadStatus = 'empty'
                     }
-
                     this.blockCurrentPage = res.page
                 }).catch(err => {
                     console.log('load fail:', err)
                 })
         },
-        toBlockFirstPage(selectedPageSize) {
-            console.log('第一页')
-            this.blockPageSize = selectedPageSize
-            this.blockCurrentPage = 1
-            this.blockListDatas = []
-            this.getBlockList()
-            this.initWebSocket();
 
-        },
-        toBlockPrePage(selectedPageSize) {
-            if (this.blockCurrentPage === 1) {
-                return
-            }
-            this.blockPageSize = selectedPageSize
-            this.blockCurrentPage = this.blockCurrentPage - 1
-            this.blockListDatas = []
-            this.getBlockList()
-            if (this.blockCurrentPage !== 1) {
-                this.websock.close();
-            } else {
-                this.initWebSocket();
-            }
-        },
-        toBlockNextPage(selectedPageSize) {
-            this.blockPageSize = selectedPageSize
-            this.blockCurrentPage = this.blockCurrentPage + 1
-            this.blockListDatas = []
-            this.getBlockList()
-            if (this.blockCurrentPage !== 1) {
-                this.websock.close();
-
-            } else {
-                this.initWebSocket();
-            }
-        },
-        toBlockLastPage() {
-
-        },
         drawChart() {
             let myChart = this.$echarts.init(document.getElementById("chart"));
             let mobileChart = this.$echarts.init(document.getElementById("mobile-chart"));

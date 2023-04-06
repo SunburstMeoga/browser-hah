@@ -26,6 +26,7 @@ module.exports = {
         'lightbottom': '#edeffa',
         'lightsecond': '#fbfcfe',
         'lightitemtitle': '#111B36',
+        'lightmoreword': '#6c757d',
         // 595c5f
 
         'border100': '#222',

@@ -25,9 +25,9 @@
                         class="mr-1 w-12 h-6 text-center rounded-sm border border-ligthborder text-ligthword dark:border-border100 dark:text-btndisable">
                         {{ pageSize }}
                     </div>
-                    <div class="mr-1 h-6 w-6 rounded-sm icon iconfont flex justify-center items-center icon-arrow-right border border-ligthborder dark:border-border100 transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                    <div class="mr-1 h-6 w-6 rounded-sm icon iconfont flex justify-center items-center icon-arrow-right border border-ligthborder dark:border-border100"
                         @click="toNextPage" />
-                    <div class="h-6 border px-2 flex justify-center items-center rounded-sm transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 border-ligthborder dark:border-border100"
+                    <div class="h-6 border px-2 flex justify-center items-center rounded-sm  border-ligthborder dark:border-border100"
                         @click="toLastPage">
                         {{ $t('pagination.last') }}
                     </div>

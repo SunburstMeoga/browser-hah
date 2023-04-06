@@ -1,32 +1,31 @@
 <template>
-    <div class="border-transparent mb-2 mr-auto ml-auto overflow-x-scroll">
+    <div class="border-transparent mb-2 mr-auto ml-auto">
         <h-loading :loadStatus="loadStatus" />
 
         <div v-if="loadStatus === 'finished'" class="w-11/12 mr-auto ml-auto text-sm sm:hidden">
-            <div class="py-3 border-b border-lightborder dark:border-border100" v-for="(item, index) in dataList"
-                :key="index">
+            <div class="py-3 border-b text-lighttable dark:text-white200 border-lightborder dark:border-border100"
+                v-for="(item, index) in dataList" :key="index">
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Rank.address') }}: </div>
+                    <div class="pr-2">{{ $t('Rank.address') }}: </div>
                     <div class="text-clickable">{{ addressFilter(item.address) }}</div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Rank.balance') }}: </div>
-                    <div class="text-clickable"> {{ item.balance }}</div>
+                    <div class="pr-2 ">{{ $t('Rank.balance') }}: </div>
+                    <div class=""> {{ item.balance }} HAH</div>
                 </div>
                 <div class="flex justify-start item-center">
-                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Rank.yield') }}: </div>
-                    <div class="text-clickable">{{ item.yield }}</div>
+                    <div class="pr-2">{{ $t('Rank.yield') }}: </div>
+                    <div class="">{{ item.yield }}%</div>
                 </div>
             </div>
         </div>
 
-        <div v-if="loadStatus === 'finished'"
-            class="hidden sm:block border-b min-w-100 border-lightborder dark:border-border100">
+        <div v-if="loadStatus === 'finished'" class="hidden sm:block border-b border-lightborder dark:border-border100">
             <div class="py-2 flex w-full justify-start">
-                <div class="w-20 ml-4 text-sm font-black text-lighttable dark:text-white200">
+                <div class="w-40 ml-4 text-sm font-black text-lighttable dark:text-white200">
                     {{ $t('Rank.rank') }}
                 </div>
-                <div class="w-60 text-sm font-black text-lighttable dark:text-white200"
+                <div class="w-80 text-sm font-black text-lighttable dark:text-white200"
                     v-for="(item, index) in tableTitleList" :key="index">
                     {{ item.title }}
                 </div>
@@ -34,17 +33,17 @@
             <div class="">
                 <div v-for="(item, index) in dataList" :key="index"
                     class="flex justify-start py-3 border-b text-sm border-lightborder text-lighttable dark:text-white200 dark:border-border100">
-                    <div class="w-20 ml-4">
+                    <div class="w-40 ml-4">
                         {{ item.ranking }}
                     </div>
-                    <div class="w-60 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                    <div class="w-80 cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
                         @click="toAddress(item.address)">
                         {{ addressFilter(item.address) }}
                     </div>
-                    <div class="w-60 text-sm">
+                    <div class="w-80 text-sm">
                         {{ item.balance }} HAH
                     </div>
-                    <div class="w-60">
+                    <div class="w-80">
                         {{ item.yield }}
                     </div>
                 </div>
@@ -56,7 +55,7 @@
 <script>
 import HLoading from "@/components/public/HLoading"
 
-import { timeFormat, addressFormat, addressFilter } from '@/utils/format'
+import { addressFilter } from '@/utils/format'
 export default {
     components: { HLoading },
 
@@ -71,7 +70,7 @@ export default {
         }
     },
     methods: {
-        timeFormat, addressFormat, addressFilter,
+        addressFilter,
         toAddress(address) {
             this.$router.push({
                 path: '/address/' + address
