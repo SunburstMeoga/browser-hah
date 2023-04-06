@@ -2,7 +2,7 @@
     <div>
         <div>
             <div class="mb-2 w-11/12 mr-auto ml-auto sm:mb-4 sm:w-9/12 ">
-                <module-title :title="tokenInfo?.name"></module-title>
+                <module-title :title="tokenInfo.name"></module-title>
             </div>
         </div>
         <div
