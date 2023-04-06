@@ -1,191 +1,98 @@
 <template>
     <div>
-        <div data-v-92014c5c="" data-v-520cdd27="" class="content-child">
-            <h1 data-v-92014c5c="" class="h1">
-                {{ $t('dposDetail.h1') }}</h1>
-            <h2 data-v-92014c5c="" class="h2">{{ $t('dposDetail.h2') }}</h2>
-            <div data-v-92014c5c="" class="baseInfoCard">
-                <div data-v-92014c5c="" class="header">
-                    <div data-v-92014c5c="" id="rich_list" class="btns" style="width:95%;">
-                        <div data-v-92014c5c="" class="title ontitle">{{ $t('dposDetail.dposDetail') }} {{ dposAddress }}
-                        </div>
-                    </div>
+        <div>
+            <div class="mb-2 w-11/12 mr-auto ml-auto sm:mb-4 sm:w-9/12 ">
+                <module-title title="DPOS Details"></module-title>
+            </div>
+        </div>
+        <div class="text-sm w-11/12 mr-auto ml-auto sm:mb-8 sm:w-9/12 text-lightitemtitle dark:text-btndisable mb-4">
+            <div
+                class="mb-4 rounded-lg px-3 py-2 shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+                <div class="font-black text-base pb-2 mb-2 border-b border-ligthborder dark:border-border100">概述</div>
+                <div class="flex justify-start items-center mb-2">
+                    <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('common.address') }}</div>
+                    <div class="text-sm text-clickable">{{ addressFilter(DPOSInfo.address) }}</div>
                 </div>
-                <div data-v-18b505e9="" data-v-92014c5c="">
-                    <div data-v-18b505e9="" class="full">
-                        <div data-v-18b505e9="" class="part cp-rich">
-                            <div data-v-18b505e9="" class="content">
-                                <div data-v-18b505e9="" class="inner">
-                                    <div data-v-18b505e9="" class="rich_list">
-                                        <li data-v-18b505e9="" class="item">
-                                            <div data-v-18b505e9="" class="index dposeindex"><b data-v-18b505e9="">{{
-                                                $t('dposDetail.serialNumber') }}</b></div>
-                                            <div data-v-18b505e9="" class="address"><b data-v-18b505e9="">{{
-                                                $t('dposDetail.address') }}</b></div>
-                                            <div data-v-18b505e9="" class="type"><b data-v-18b505e9="">{{
-                                                $t('dposDetail.amount') }}</b></div>
-
-                                            <div data-v-18b505e9="" class="time"><b data-v-18b505e9="">{{
-                                                $t('dposDetail.time') }}</b></div>
-                                            <div data-v-18b505e9="" class="height"><b data-v-18b505e9="">{{
-                                                $t('dposDetail.height') }}</b></div>
-                                            <div data-v-18b505e9="" class="voteState"><b data-v-18b505e9="">{{
-                                                $t('dposDetail.voteType') }}</b></div>
-                                        </li>
-
-                                        <li data-v-18b505e9="" class="item" v-for="(item, index) in dposlistDetailDatas"
-                                            :key="index">
-                                            <div data-v-18b505e9="" class="index dposeindex">{{ index + 1 }}</div>
-                                            <div data-v-18b505e9="" class="address" :title="item.client_address">
-                                                <a data-v-18b505e9="" href="javascript:void(0)" class="hash">
-                                                    <span data-v-18b505e9="" class="el-tooltip"
-                                                        aria-describedby="el-tooltip-6004" tabindex="0">
-                                                        {{ addressFormat(item.addr) }}
-                                                    </span></a>
-
-                                            </div>
-                                            <div data-v-18b505e9="" class="type">{{ amountFormat(item.vote) }}</div>
-
-                                            <div data-v-18b505e9="" class="time">{{ timeFormat(item.ts) }}</div>
-                                            <div data-v-18b505e9="" class="height">{{ item.height }}</div>
-                                            <div data-v-18b505e9="" class="voteState">{{
-                                                getVoteType(item.vote_type, item.type) }}</div>
-
-                                        </li>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div data-v-18b505e9="" class="mobile">
-                            <div data-v-18b505e9="" class="items" v-for="(item, index) in dposlistDetailDatas" :key="index">
-                                <div data-v-18b505e9="" class="item">
-                                    <div data-v-18b505e9="" class="key">{{ $t('dposDetail.serialNumber') }}</div>
-                                    <div data-v-18b505e9="" class="value">
-                                        <div data-v-18b505e9="" class="amount">{{ index + 1 }}</div>
-                                    </div>
-                                </div>
-
-
-                                <div data-v-18b505e9="" class="item hash">
-                                    <div data-v-18b505e9="" class="key">{{ $t('dposDetail.address') }}</div>
-                                    <div data-v-18b505e9="" class="value">
-                                        <div data-v-18b505e9="" class="client_address"><a data-v-18b505e9=""
-                                                href="javascript:void(0)" class="hash">{{ addressFormat(item.addr) }}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div data-v-18b505e9="" class="item">
-                                    <div data-v-18b505e9="" class="key">{{ $t('dposDetail.amount') }}</div>
-                                    <div data-v-18b505e9="" class="value">
-                                        <div data-v-18b505e9="" class="amount">{{ amountFormat(item.vote) }}</div>
-                                    </div>
-                                </div>
-
-
-                                <div data-v-18b505e9="" class="item">
-                                    <div data-v-18b505e9="" class="key">{{ $t('dposDetail.time') }}</div>
-                                    <div data-v-18b505e9="" class="value">{{ item.ts }}</div>
-                                </div>
-
-                                <div data-v-18b505e9="" class="item">
-                                    <div data-v-18b505e9="" class="key">{{ $t('dposDetail.height') }}</div>
-                                    <div data-v-18b505e9="" class="value">{{ item.height }}</div>
-                                </div>
-
-                                <div data-v-18b505e9="" class="item">
-                                    <div data-v-18b505e9="" class="key">{{ $t('dposDetail.voteType') }}</div>
-                                    <div data-v-18b505e9="" class="value">{{ item.vote_type }}</div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div data-v-7b0e1c95="">
-                            <div data-v-5d77fed0="" data-v-7b0e1c95="" class="turn_page">
-                                <div data-v-5d77fed0="" class="page_box">
-                                    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                                        :current-page="pagenum" :page-sizes="[20]" :page-size="pageSize"
-                                        layout="total, sizes, prev, pager, next, jumper" :total="total">
-                                    </el-pagination>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="flex justify-start items-center mb-2">
+                    <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Tx.nodeName') }}</div>
+                    <div class="text-sm">{{ DPOSInfo.name }}</div>
                 </div>
+                <div class="flex justify-start items-center">
+                    <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Tx.voteAmount') }}</div>
+                    <div class="text-sm">{{ DPOSInfo.votes }}</div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="mb-2 sm:mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto">
+            <module-title title="Transfers"></module-title>
+        </div>
+        <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
+            style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
+            <dpos-vote-table :dataList="dposlistDetailDatas" :loadStatus="dposTableLoadStatus" />
+            <div>
+                <h-pagination></h-pagination>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import { listDelegateDetails } from '@/request/dpos'
-import { timeFormat, addressFormat, amountFormat } from '@/utils/format'
+
+import ModuleTitle from '@/components/public/ModuleTitle'
+import DposVoteTable from '@/components/child/DPOSVoteTable'
+import HPagination from '@/components/public/HPagination'
+import { listDelegateDetails, DPOSInfo } from '@/request/dpos'
+import { timeFormat, addressFormat, amountFormat, addressFilter } from '@/utils/format'
 export default {
-    name: "dpos",
+    components: { ModuleTitle, DposVoteTable, HPagination },
+
     data() {
         return {
             dposlistDetailDatas: [],
-            showa: false,
-            address: '',
             dposAddress: '',
-            pageSize: 20,
-            pagenum: 1,
-            total: 0,
-            res: '',
+            dposTableLoadStatus: 'loading',
+            DPOSInfo: {}
         }
     },
     created() {
         this.dposAddress = this.$route.params.dposAddress
+        this.getDPOSInfo()
         this.getDelegateDetails()
     },
     methods: {
-        timeFormat, addressFormat, amountFormat,
-        getVoteType(value, type) {
-            if (value === 1) {
-                switch (type) {
-                    case 'in': return '普通/投票'
-                    case 'out': return '普通/撤投'
-                }
-            } else {
-                switch (type) {
-                    case 'in': return '复投/投票'
-                    case 'out': return '复投/撤投'
-                }
-            }
-
+        timeFormat, addressFormat, amountFormat, addressFilter,
+        getVoteType(value) {
+            return value === 1 ? this.$t('dposDetail.ordinary') : this.$t('dposDetail.recasting')
+        },
+        getTranType(type) {
+            return type === 'in' ? this.$t('dposDetail.datavote') : this.$t('dposDetail.datawithdrawal')
+        },
+        getDPOSInfo() {
+            DPOSInfo({ address: this.dposAddress }).then(res => {
+                console.log('dpos详情', res)
+                this.DPOSInfo = res
+            }).catch(err => {
+                console.log(err)
+            })
         },
         getDelegateDetails() {
-            let params = {
-                page: this.pagenum,
-                pagesize: this.pageSize,
-                dposAddress: this.dposAddress,
-            };
-            listDelegateDetails(params).then(res => {
-                this.res = res
+            listDelegateDetails({ dposAddress: this.dposAddress, }).then(res => {
                 this.dposlistDetailDatas = res.data
-                this.page = res.pagenum
-                this.pageSize = parseInt(res.pagesize)
-                this.total = res.total
+                if (res.data.length !== 0) {
+                    this.dposlistDetailDatas = res.data
+                    this.dposlistDetailDatas.map(item => {
+                        item.voteType = this.getVoteType(item.vote_type)
+                        item.tranType = this.getTranType(item.type)
+                    })
+                    this.dposTableLoadStatus = 'finished'
+                } else {
+                    this.dposTableLoadStatus = 'empty'
+                }
                 console.log('res', res);
             });
         },
-        closeTip() {
-            this.showa = false
-        },
-        openTip(address) {
-            this.address = address;
-            this.showa = true;
-            console.log(this.showa);
-        },
-        handleSizeChange(newSzie) {
-            this.pageSize = newSzie
-            this.getDelegateDetails()
-        },
-        handleCurrentChange(newPage) {
-            this.pagenum = newPage
-            this.getDelegateDetails()
-        }
     },
 }
 </script>

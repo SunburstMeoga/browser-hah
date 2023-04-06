@@ -15,3 +15,11 @@ export function listDelegateDetails(params) {
         params
     })
 }
+
+export function DPOSInfo(params) {
+    return request({
+        url: '/api/delegate/',
+        method: 'get',
+        params
+    })
+}

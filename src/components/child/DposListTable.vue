@@ -76,7 +76,7 @@ export default {
         timeFormat, amountFormat, addressFilter,
         toAddress(address) {
             this.$router.push({
-                path: '/address/' + address
+                path: '/dpos/details/' + address
             })
         },
     },

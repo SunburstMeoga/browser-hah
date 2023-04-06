@@ -15,3 +15,11 @@ export function contractTX(params) {
         params
     })
 }
+
+export function HRC20Details(params) {
+    return request({
+        url: '/api/hrc20',
+        method: 'get',
+        params
+    })
+}

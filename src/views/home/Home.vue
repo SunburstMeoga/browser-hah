@@ -179,6 +179,8 @@ export default {
                     this.tradeTableLoadStatus = 'empty'
                 }
                 this.txCurrentPage = res.page
+            }).catch(err => {
+                console.log('load fail:', err)
             })
         },
         getBlockList() {
@@ -194,7 +196,8 @@ export default {
                     }
 
                     this.blockCurrentPage = res.page
-
+                }).catch(err => {
+                    console.log('load fail:', err)
                 })
         },
         toBlockFirstPage(selectedPageSize) {

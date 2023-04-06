@@ -5,7 +5,7 @@ export default [
         component: () => import('../views/HRC/HRC')
     },
     {
-        path: '/hrc/details',
+        path: '/token/:address',
         name: 'HRC',
         component: () => import('../views/HRC/HRCDetails')
     }

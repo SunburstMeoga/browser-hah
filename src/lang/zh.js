@@ -79,8 +79,11 @@ module.exports = {
     time: '时间',
     height: '高度',
     voteType: '投票类型',
+    tranType: '交易类型',
     datavote: '投票',
     datawithdrawal: '撤投',
+    ordinary: '普通',
+    recasting: '复投'
   },
   Index: {
     h2: '区块链浏览器是全球范围内数据最精准，速度最快速的浏览器，用户可以使用区块链浏览器搭建钱包以及使用查询和搜索链上的所有区块链数据信息。',
@@ -92,8 +95,8 @@ module.exports = {
     hash: '交易哈希',
     time: '时间',
     amount: '交易金额',
-    from: '从',
-    to: '到',
+    from: 'from地址',
+    to: 'to地址',
   },
   Rank: {
     h1: '浏览器查询区块链及代币富豪榜',
@@ -117,6 +120,8 @@ module.exports = {
     dpos_out: '撤投节点地址',
     client_in: '投票客户地址',
     client_out: '撤投客户地址',
+    nodeName: '节点名称',
+    voteAmount: '投票量'
   },
   el: {
     pagination: {

@@ -45,6 +45,9 @@ module.exports = {
         '100': '80rem',
         '70': '60rem',
 
+      },
+      width: {
+        '0.48': '48%'
       }
     },
     inset: {

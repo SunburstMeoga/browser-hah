@@ -5,20 +5,19 @@
             <div class="py-3 border-b border-lightborder dark:border-border100" v-for="(item, index) in dataList"
                 :key="index">
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.height') }}: </div>
-                    <div class="text-clickable">{{ item.height }}</div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Pending.from') }}: </div>
+                    <div class="text-clickable">{{ addressFilter(item.topics1) }}</div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.address') }}: </div>
-                    <div class="text-clickable">{{ addressFilter(item.reward_address) }}</div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Pending.to') }}: </div>
+                    <div class="text-clickable">{{ addressFilter(item.topics2) }}</div>
                 </div>
-                <div class="flex justify-start item-center">
-                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.time') }}: </div>
-                    <div class="text-clickable">{{ timeFormat(item.time) }}</div>
+                <div class="flex justify-start item-center text-lighttable dark:text-white200">
+                    <div class="pr-2">{{ $t('hrc20.quantity') }}: </div>
+                    <div class="">{{ amountFormat(item.data) }}</div>
                 </div>
             </div>
         </div>
-
         <div v-if="loadStatus === 'finished'"
             class="hidden sm:block border-b h-full min-w-100 border-lightborder dark:border-border100">
             <div class="py-2 flex w-full justify-start sm:py-4">
@@ -37,24 +36,25 @@
                         {{ index + 1 }}
                     </div>
                     <div class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 "
-                        @click="toBlock(item.height)">
-                        {{ item.height }}
+                        @click="toBlock(item.txid)">
+                        {{ addressFilter(item.txid) }}
                     </div>
                     <div class="w-60 text-sm  cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 "
-                        @click="toAddress(item.reward_address)">
-                        {{ addressFilter(item.reward_address) }}
+                        @click="toAddress(item.topics2)">
+                        {{ addressFilter(item.topics2) }}
+                    </div>
+                    <div class="w-60 text-sm  cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 "
+                        @click="toAddress(item.topics1)">
+                        {{ addressFilter(item.topics1) }}
                     </div>
                     <div class="w-60">
-                        {{ item.reward_money }}
+                        {{ item.fun }}
                     </div>
                     <div class="w-60">
-                        {{ item.txs }}
+                        {{ amountFormat(item.data) }}
                     </div>
                     <div class="w-60">
-                        {{ addressFilter(item.prev_hash) }}
-                    </div>
-                    <div class="w-60">
-                        {{ timeFormat(item.time) }}
+                        {{ timeFormat(item.ts) }}
                     </div>
                 </div>
             </div>
@@ -64,9 +64,10 @@
 
 <script>
 import HLoading from "@/components/public/HLoading"
-import { timeFormat, addressFormat, addressFilter } from '@/utils/format'
+import { timeFormat, amountFormat, addressFilter } from '@/utils/format'
 export default {
     components: { HLoading },
+
     props: {
         dataList: {
             type: Array,
@@ -78,7 +79,7 @@ export default {
         }
     },
     methods: {
-        timeFormat, addressFormat, addressFilter,
+        timeFormat, amountFormat, addressFilter,
         toAddress(address) {
             this.$router.push({
                 path: '/address/' + address
@@ -95,22 +96,22 @@ export default {
         tableTitleList() {
             return [
                 {
-                    title: this.$t('BlockList.height')
+                    title: this.$t('Address.hash')
                 },
                 {
-                    title: this.$t('BlockList.address')
+                    title: this.$t('Pending.to')
                 },
                 {
-                    title: this.$t('BlockList.reward')
+                    title: this.$t('Pending.from')
                 },
                 {
-                    title: this.$t('BlockList.amount')
+                    title: this.$t('hrc20.method')
                 },
                 {
-                    title: this.$t('BlockList.previousBlock')
+                    title: this.$t('hrc20.quantity')
                 },
                 {
-                    title: this.$t('BlockList.time')
+                    title: this.$t('Pending.time')
                 },
             ]
         }

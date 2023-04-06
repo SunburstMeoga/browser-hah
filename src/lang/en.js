@@ -81,9 +81,12 @@ module.exports = {
     amount: 'Amount',
     time: 'Time',
     height: 'Height',
-    voteType: 'Vote type',
+    voteType: 'Vote Type',
+    tranType: 'Transaction Type',
     datavote: 'Vote',
     datawithdrawal: 'Withdrawal',
+    ordinary: 'Ordinary',
+    recasting: 'Recasting'
   },
   Index: {
     h2: 'Blockchain browser is the most accurate and fast data browser in the world. Users can use the blockchain browser to build wallets and query and search all blockchain data information on the chain ',
@@ -120,6 +123,8 @@ module.exports = {
     dpos_out: 'Withdrawal Node Address',
     client_in: 'Vote customer Address',
     client_out: 'Withdrawal Customer Address',
+    nodeName: 'Node Name',
+    voteAmount: 'Vote Amount'
   },
   el: {
     pagination: {
