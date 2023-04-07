@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -e
 npm run build
 sudo ln -snf `pwd`/dist /var/www/browser

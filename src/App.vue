@@ -1,34 +1,36 @@
 <template>
-  <div id="app">
-    <router-view v-if="isRouterAlive" :key="$route.fullPath"/>
+  <div id="app" class="bg-lightsecond dark:bg-black500">
+    <e-top-bar></e-top-bar>
+    <div class="sm:min-h-screen">
+      <router-view></router-view>
+    </div>
+    <e-footer-bar></e-footer-bar>
   </div>
 </template>
 
 <script>
+import eTopBar from '@/components/public/eTopBar'
+import eFooterBar from "@/components/public/eFooterBar"
+
 export default {
-  data(){
-    return {
-      isRouterAlive:true
-    }
+  components: {
+    eTopBar,
+    eFooterBar
   },
-  methods: {
-    reload () {
-      console.log("Refresh");
-      this.isRouterAlive = false
-      this.$nextTick(function() {
-         this.isRouterAlive = true
-      })
-    }
-  },
-  provide()
-  {
-    return {
-      reload:this.reload
-    }
+  mounted() {
+    // console.log(window.matchMedia('(prefers-color-scheme: dark)').matches)
+    this.$i18n.locale = localStorage.getItem('language') || navigator.language || navigator.userLanguage
+    console.log(localStorage.getItem('language'), navigator.language || navigator.userLanguage, this.$i18n.locale)
+    console.log('this.$i18n.locale', this.$i18n.locale)
+
+    // document.documentElement.classList.add('dark');
   }
 }
 </script>
 
 <style>
-
+body {
+  height: 100vh;
+  padding-bottom: 30px;
+}
 </style>

@@ -1,10 +1,10 @@
 module.exports = {
-    publicPath: "./",
+    publicPath: "/",
     devServer: {
         proxy: {
             "/api": {
-                target: "http://192.168.3.9:7711/",
-                // target:"http://119.8.52.235/api",
+                target: "https://testnet.hashahead.org/dev-api/",
+                // target: "http://192.168.3.9:7711",
                 changeOrigin: true,
                 secure: false,
                 ws: true,

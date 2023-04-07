@@ -1,0 +1,128 @@
+@font-face {
+    font-family: "iconfont";
+    /* Project id 3976864 */
+    src: url('//at.alicdn.com/t/c/font_3976864_2dxzphb843j.woff2?t=1680447103929') format('woff2'),
+        url('//at.alicdn.com/t/c/font_3976864_2dxzphb843j.woff?t=1680447103929') format('woff'),
+        url('//at.alicdn.com/t/c/font_3976864_2dxzphb843j.ttf?t=1680447103929') format('truetype'),
+        url('//at.alicdn.com/t/c/font_3976864_2dxzphb843j.svg?t=1680447103929#iconfont') format('svg');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-loading:before {
+    content: "\e62e";
+}
+
+.icon-loading1:before {
+    content: "\e6a6";
+}
+
+.icon-loading2:before {
+    content: "\e962";
+}
+
+.icon-loading3:before {
+    content: "\e7f1";
+}
+
+.icon-loading4:before {
+    content: "\e64b";
+}
+
+.icon-wushuju:before {
+    content: "\e60b";
+}
+
+.icon-jiazailoading-A:before {
+    content: "\e8fc";
+}
+
+.icon-Loading:before {
+    content: "\e65d";
+}
+
+.icon-down:before {
+    content: "\e6da";
+}
+
+.icon-facebook:before {
+    content: "\eab7";
+}
+
+.icon-instagram-fill:before {
+    content: "\e88f";
+}
+
+.icon-tuite:before {
+    content: "\e652";
+}
+
+.icon-twitter-fill:before {
+    content: "\e63d";
+}
+
+.icon-zimuH:before {
+    content: "\e692";
+}
+
+.icon-github:before {
+    content: "\e657";
+}
+
+.icon-close:before {
+    content: "\e69a";
+}
+
+.icon-shouhuodizhi:before {
+    content: "\e64e";
+}
+
+.icon-jiaoyiguanli:before {
+    content: "\e608";
+}
+
+.icon-qukuai:before {
+    content: "\e994";
+}
+
+.icon-enter:before {
+    content: "\e75e";
+}
+
+.icon-Enter-Pin:before {
+    content: "\ee04";
+}
+
+.icon-search:before {
+    content: "\e621";
+}
+
+.icon-arrow-right:before {
+    content: "\e665";
+}
+
+.icon-right:before {
+    content: "\e667";
+}
+
+.icon-language:before {
+    content: "\e693";
+}
+
+.icon-daytime-mode:before {
+    content: "\e839";
+}
+
+.icon-night-mode:before {
+    content: "\e83e";
+}
+
+.icon-menu:before {
+    content: "\e709";
+}
