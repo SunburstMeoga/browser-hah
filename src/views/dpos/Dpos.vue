@@ -30,7 +30,7 @@ export default {
             dposListLoadStatus: 'loading',
             dposPageSize: 10,
             dposCurrentPage: 1,
-            totalAddress: ''
+            totalAddress: 0
         }
     },
     created() {

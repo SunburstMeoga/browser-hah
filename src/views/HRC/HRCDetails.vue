@@ -76,7 +76,7 @@ export default {
             address: '',
             tokenInfo: {},
             tokenTableLoadStatus: 'loading',
-            totalTrade: ''
+            totalTrade: 0
         }
     },
     created() {
