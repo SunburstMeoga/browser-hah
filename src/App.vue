@@ -1,7 +1,9 @@
 <template>
   <div id="app" class="bg-lightsecond dark:bg-black500">
     <e-top-bar></e-top-bar>
-    <router-view></router-view>
+    <div class="sm:min-h-screen">
+      <router-view></router-view>
+    </div>
     <e-footer-bar></e-footer-bar>
   </div>
 </template>

@@ -36,7 +36,7 @@
                         {{ index + 1 }}
                     </div>
                     <div class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 "
-                        @click="toBlock(item.txid)">
+                        @click="toTX(item.txid)">
                         {{ addressFilter(item.txid) }}
                     </div>
                     <div class="w-60 text-sm  cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 "
@@ -83,6 +83,12 @@ export default {
         toAddress(address) {
             this.$router.push({
                 path: '/address/' + address
+            })
+        },
+        toTX(txid) {
+            console.log('sfadfs')
+            this.$router.push({
+                path: '/tx/' + txid
             })
         },
         //to block details

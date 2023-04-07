@@ -1,5 +1,5 @@
 <template>
-    <div class="border-transparent mb-2 mr-auto ml-auto overflow-x-scroll">
+    <div class="border-transparent mb-2 mr-auto ml-auto">
         <h-loading :loadStatus="loadStatus" />
 
         <div v-if="loadStatus === 'finished'" class="w-11/12 mr-auto ml-auto text-sm sm:hidden">
