@@ -182,6 +182,7 @@ module.exports = {
     button: 'Give me HAH',
     errAddress: 'Please enter the correct address',
     released: '1 HAH has been issued to this address',
-    repeat: 'Duplicate applications cannot be made'
+    repeat: 'Duplicate applications cannot be made',
+    othererr: 'System error, please try again'
   }
 }
