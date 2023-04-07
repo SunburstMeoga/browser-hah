@@ -174,6 +174,10 @@ module.exports = {
   },
   faucetSmart: {
     title: 'HAH智能链水龙头',
-    button: '获取HAH测试币'
+    button: '获取HAH测试币',
+    errAddress: '请输入正确的地址',
+    released: '已发放 1 HAH到该地址',
+    repeat: '不能重复申请',
+    othererr: '系统错误，请重试'
   }
 }

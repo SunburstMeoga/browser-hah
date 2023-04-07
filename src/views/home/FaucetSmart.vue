@@ -48,22 +48,33 @@ export default {
         }
     },
     methods: {
-        getTestHAHChain() {
-            this.loadStatus = 'loading'
-            testHAHChain({ address: this.address, }).then(res => {
-                console.log('领取成功', res)
-                this.loadStatus = ''
 
-                this.$message({
-                    message: '已发放1HAH到该地址',
-                    type: 'success'
-                });
-            }).catch(err => {
+        getTestHAHChain() {
+            const EthereumAddress = require('ethereum-address')
+            this.loadStatus = 'loading'
+            if (!EthereumAddress.isAddress(this.address)) {
+                this.$message.error(this.$t('faucetSmart.errAddress'))
+                this.loadStatus = 'finished'
+                return
+            }
+            testHAHChain({ address: this.address, }).then(res => {
+                console.log('res', res)
                 this.loadStatus = ''
-                this.$message({
-                    message: '',
-                    type: 'fail'
-                });
+                if (res.statusCode !== 0) {
+                    if (res.statusCode === 1) {
+                        this.$message.error(this.$t('faucetSmart.errAddress'));
+                    } else if (res.statusCode === 2) {
+                        this.$message.error(this.$t('faucetSmart.repeat'));
+                    } else {
+                        this.$message.error(this.$t('faucetSmart.othererr'));
+                    }
+                } else {
+                    this.$message({
+                        message: this.$t('faucetSmart.released'),
+                        type: 'success'
+                    });
+                }
+
             })
         },
     }

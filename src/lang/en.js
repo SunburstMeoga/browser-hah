@@ -179,6 +179,9 @@ module.exports = {
   },
   faucetSmart: {
     title: 'HAH Smart Chain Faucet',
-    button: 'Give me HAH'
+    button: 'Give me HAH',
+    errAddress: 'Please enter the correct address',
+    released: '1 HAH has been issued to this address',
+    repeat: 'Duplicate applications cannot be made'
   }
 }
