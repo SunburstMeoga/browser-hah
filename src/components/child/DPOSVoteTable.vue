@@ -39,12 +39,10 @@
                         class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
                         {{ addressFilter(item.addr) }}
                     </div>
-                    <div
-                        class="w-60 text-sm  cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 ">
-                        {{ item.amount }}
+                    <div class="w-60 text-sm">
+                        {{ item.amount }} HAH
                     </div>
-                    <div
-                        class="w-60 text-sm  cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 ">
+                    <div class="w-60 text-sm">
                         {{ timeFormat(item.ts) }}
                     </div>
                     <div class="w-60">
