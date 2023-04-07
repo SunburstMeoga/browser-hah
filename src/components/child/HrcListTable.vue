@@ -7,15 +7,16 @@
                 :key="index">
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('dpos.address') }}: </div>
-                    <div class="text-clickable">{{ addressFilter(item.addr) }}</div>
+                    <div class="text-clickable" @click="toAddress(item.addr)">{{ addressFilter(item.addr) }}
+                    </div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('hrc20.symbol') }}: </div>
-                    <div class="text-clickable"> {{ item.symbol }}</div>
+                    <div class=""> {{ item.symbol }}</div>
                 </div>
                 <div class="flex justify-start item-center">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('hrc20.totalSupply') }}: </div>
-                    <div class="text-clickable">{{ item.totalSupply }}</div>
+                    <div class="">{{ item.totalSupply }}</div>
                 </div>
             </div>
         </div>
@@ -32,7 +33,7 @@
                 <div v-for="(item, index) in dataList" :key="index"
                     class="flex justify-start py-3 border-b text-sm border-lightborder text-lighttable dark:text-white200 dark:border-border100">
                     <div class="w-60 cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
-                        @click="toAddress(item.addr, item.name)">
+                        @click="toAddress(item.addr)">
                         {{ addressFilter(item.addr) }}
                     </div>
                     <div class="w-60">
@@ -72,7 +73,7 @@ export default {
     },
     methods: {
         timeFormat, amountFormat, addressFilter,
-        toAddress(address, name) {
+        toAddress(address) {
             this.$router.push({
                 path: '/token/' + address
             })

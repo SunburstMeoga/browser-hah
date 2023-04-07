@@ -6,11 +6,11 @@
                 :key="index">
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Pending.from') }}: </div>
-                    <div class="text-clickable">{{ addressFilter(item.from) }}</div>
+                    <div class="text-clickable" @click="toAddress(item.from)">{{ addressFilter(item.from) }}</div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Pending.to') }}: </div>
-                    <div class="text-clickable">{{ addressFilter(item.to) }}</div>
+                    <div class="text-clickable" @click="toAddress(item.to)">{{ addressFilter(item.to) }}</div>
                 </div>
                 <div class="flex justify-start item-center text-lighttable dark:text-white200">
                     <div class="pr-2">{{ $t('hrc20.quantity') }}: </div>

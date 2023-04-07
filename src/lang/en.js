@@ -124,7 +124,9 @@ module.exports = {
     client_in: 'Vote customer Address',
     client_out: 'Withdrawal Customer Address',
     nodeName: 'Node Name',
-    voteAmount: 'Vote Amount'
+    voteAmount: 'Vote Amount',
+    nodeDetails: 'Node Details'
+
   },
   el: {
     pagination: {

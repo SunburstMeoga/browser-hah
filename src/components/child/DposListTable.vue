@@ -7,15 +7,15 @@
                 :key="index">
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('dpos.address') }}: </div>
-                    <div class="text-clickable">{{ addressFilter(item.address) }}</div>
+                    <div class="text-clickable" @click="toAddress(item.address)">{{ addressFilter(item.address) }}</div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('dpos.vote') }}: </div>
-                    <div class="text-clickable"> {{ item.votes }}</div>
+                    <div class=""> {{ item.votes }}</div>
                 </div>
                 <div class="flex justify-start item-center">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('dpos.name') }}: </div>
-                    <div class="text-clickable">{{ item.name }}</div>
+                    <div class="">{{ item.name }}</div>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                     <div class="w-20 ml-4">
                         {{ index + 1 }}
                     </div>
-                    <div class="w-60 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                    <div class="w-60 cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
                         @click="toAddress(item.address)">
                         {{ addressFilter(item.address) }}
                     </div>

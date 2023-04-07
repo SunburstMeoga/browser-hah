@@ -2,16 +2,19 @@
     <div>
         <div>
             <div class="mb-2 w-11/12 mr-auto ml-auto sm:mb-4 sm:w-9/12 ">
-                <module-title title="DPOS Details"></module-title>
+                <module-title :title="$t('Tx.nodeDetails')"></module-title>
             </div>
         </div>
         <div class="text-sm w-11/12 mr-auto ml-auto sm:mb-8 sm:w-9/12 text-lightitemtitle dark:text-btndisable mb-4">
             <div
                 class="mb-4 rounded-lg px-3 py-2 shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
-                <div class="font-black text-base pb-2 mb-2 border-b border-ligthborder dark:border-border100">概述</div>
+                <div class="font-black text-base pb-2 mb-2 border-b border-ligthborder dark:border-border100">{{
+                    $t('hrc20.overview') }}</div>
                 <div class="flex justify-start items-center mb-2">
                     <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('common.address') }}</div>
-                    <div class="text-sm text-clickable">{{ addressFilter(DPOSInfo.address) }}</div>
+                    <div class="text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        @click="toAddress(DPOSInfo.address)">{{
+                            addressFilter(DPOSInfo.address) }}</div>
                 </div>
                 <div class="flex justify-start items-center mb-2">
                     <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Tx.nodeName') }}</div>
@@ -26,7 +29,7 @@
 
         </div>
         <div class="mb-2 sm:mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto">
-            <module-title title="Transfers"></module-title>
+            <module-title :title="$t('common.tx')"></module-title>
         </div>
         <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
@@ -63,11 +66,10 @@ export default {
     },
     methods: {
         timeFormat, addressFormat, amountFormat, addressFilter,
-        getVoteType(value) {
-            return value === 1 ? this.$t('dposDetail.ordinary') : this.$t('dposDetail.recasting')
-        },
-        getTranType(type) {
-            return type === 'in' ? this.$t('dposDetail.datavote') : this.$t('dposDetail.datawithdrawal')
+        toAddress(address) {
+            this.$router.push({
+                path: '/address/' + address
+            })
         },
         getDPOSInfo() {
             DPOSInfo({ address: this.dposAddress }).then(res => {
@@ -82,10 +84,6 @@ export default {
                 this.dposlistDetailDatas = res.data
                 if (res.data.length !== 0) {
                     this.dposlistDetailDatas = res.data
-                    this.dposlistDetailDatas.map(item => {
-                        item.voteType = this.getVoteType(item.vote_type)
-                        item.tranType = this.getTranType(item.type)
-                    })
                     this.dposTableLoadStatus = 'finished'
                 } else {
                     this.dposTableLoadStatus = 'empty'

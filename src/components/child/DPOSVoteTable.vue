@@ -6,13 +6,13 @@
                 :key="index">
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('dpos.address') }}: </div>
-                    <div class="text-clickable">{{ addressFilter(item.addr) }}</div>
+                    <div class="text-clickable" @click="toAddress(item.addr)">{{ addressFilter(item.addr) }}</div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('dposDetail.amount') }}: </div>
-                    <div class="text-clickable">{{ amountFormat(item.vote) }}</div>
+                    <div class="">{{ item.amount }} HAH</div>
                 </div>
-                <div class="flex justify-start item-center text-lighttable dark:text-white200">
+                <div class=" flex justify-start item-center text-lighttable dark:text-white200">
                     <div class="pr-2">{{ $t('dposDetail.time') }}: </div>
                     <div class="">{{ timeFormat(item.ts) }}</div>
                 </div>
@@ -35,8 +35,8 @@
                     <div class="w-20 ml-4">
                         {{ index + 1 }}
                     </div>
-                    <div class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 "
-                        @click="toBlock(item.addr)">
+                    <div @click="toAddress(item.addr)"
+                        class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
                         {{ addressFilter(item.addr) }}
                     </div>
                     <div
@@ -51,10 +51,10 @@
                         {{ item.height }}
                     </div>
                     <div class="w-60">
-                        {{ item.voteType }}
+                        {{ getVoteType(item.vote_type) }}
                     </div>
                     <div class="w-60">
-                        {{ item.tranType }}
+                        {{ getTranType(item.type) }}
                     </div>
                 </div>
             </div>
@@ -90,7 +90,13 @@ export default {
             this.$router.push({
                 path: '/block/' + height
             })
-        }
+        },
+        getVoteType(value) {
+            return value === 1 ? this.$t('dposDetail.ordinary') : this.$t('dposDetail.recasting')
+        },
+        getTranType(type) {
+            return type === 'in' ? this.$t('dposDetail.datavote') : this.$t('dposDetail.datawithdrawal')
+        },
     },
     computed: {
         tableTitleList() {
