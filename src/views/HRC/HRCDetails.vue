@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="mb-2 sm:mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto">
-            <module-title :title="$t('common.tx')"></module-title>
+            <module-title :title="'HRC20' + $t('common.tx')" :total="totalTrade"></module-title>
         </div>
         <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
@@ -67,7 +67,7 @@ import TokenTransTable from '@/components/child/TokenTransTable'
 import HPagination from '@/components/public/HPagination'
 
 import { contractTX, HRC20Details } from '@/request/hrc'
-import { amountFormat, timeFormat, addressFilter } from '@/utils/format'
+import { numberFormat, addressFilter } from '@/utils/format'
 export default {
     components: { ModuleTitle, TokenTransTable, HPagination },
     data() {
@@ -75,7 +75,8 @@ export default {
             dataList: [],
             address: '',
             tokenInfo: {},
-            tokenTableLoadStatus: 'loading'
+            tokenTableLoadStatus: 'loading',
+            totalTrade: ''
         }
     },
     created() {
@@ -86,7 +87,7 @@ export default {
         this.getHRC20Details()
     },
     methods: {
-        amountFormat, timeFormat, addressFilter,
+        numberFormat, addressFilter,
         toAddress(address) {
             this.$router.push({
                 path: '/address/' + address
@@ -109,6 +110,8 @@ export default {
                 } else {
                     this.tokenTableLoadStatus = 'empty'
                 }
+                this.totalTrade = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
+
             });
             console.log('dataList', this.dataList);
         },

@@ -21,7 +21,7 @@
                 class="w-11/12 sm:w-9/12 mr-auto ml-auto  rounded-lg pt-2 shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
                 <div class="pb-2 border-b border-ligthborder dark:border-border100">
                     <div class="pl-2">
-                        <module-title :title="$t('Block.tx')" />
+                        <module-title :title="$t('common.address') + $t('Block.tx')" :total="totalTrade" />
                     </div>
                 </div>
                 <div>
@@ -53,7 +53,7 @@ import AddressTransactionCard from '@/components/child/AddressTransactionCard'
 import ModuleTitle from '@/components/public/ModuleTitle'
 import SecondTitle from '@/components/public/SecondTitle'
 import { TXList, balanceInfo } from '@/request/home'
-import { timeFormat } from '@/utils/format'
+import { numberFormat } from '@/utils/format'
 
 export default {
     components: { SecondTitle, HPagination, AddressDetailsCard, ModuleTitle, AddressTransactionCard, HLoading },
@@ -68,6 +68,7 @@ export default {
             addressTranListLoadStatus: 'loading',
             txPageSize: 10,
             txCurrentPage: 1,
+            totalTrade: ''
         }
 
     },
@@ -79,7 +80,7 @@ export default {
         this.getBalanceInfo()
     },
     methods: {
-        timeFormat,
+        numberFormat,
         toTX(txid) {
             this.$router.push({
                 path: '/tx/' + txid
@@ -99,6 +100,8 @@ export default {
                 } else {
                     this.addressTranListLoadStatus = 'empty'
                 }
+                this.totalTrade = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
+
                 console.log(this.txListDatas)
             })
         },

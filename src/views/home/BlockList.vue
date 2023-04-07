@@ -3,8 +3,10 @@
 
         <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
-            <div class="mt-2 sm:mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto">
-                <module-title :title="$t('BlockList.newBlock')" />
+            <div class="py-2 sm:mb-4 mr-auto ml-auto border-b border-ligthborder dark:border-border100">
+                <div class="w-11/12 mr-auto ml-auto sm:w-full sm:px-2 sm:py-3">
+                    <module-title :title="$t('BlockList.newBlock')" :total="totalBlocks" />
+                </div>
             </div>
             <new-block-table :dataList="blockListDatas" :loadStatus="blockTableLoadStatus" />
             <div>
@@ -20,6 +22,7 @@ import NewBlockTable from '@/components/child/NewBlockTable'
 import ModuleTitle from '@/components/public/ModuleTitle'
 import HPagination from '@/components/public/HPagination'
 import { blockList } from '@/request/home'
+import { numberFormat } from '../../utils/format'
 
 export default {
     components: { NewBlockTable, ModuleTitle, HPagination },
@@ -30,12 +33,14 @@ export default {
             blockPageSize: 10,
             blockCurrentPage: 1,
             totalPage: 1,
+            totalBlocks: ''
         }
     },
     created() {
         this.getBlockList()
     },
     methods: {
+        numberFormat,
         getBlockList() {
             this.blockTableLoadStatus = 'loading',
                 blockList({ pageSize: this.blockPageSize, page: this.blockCurrentPage }).then(res => {
@@ -48,6 +53,7 @@ export default {
                         this.blockTableLoadStatus = 'empty'
                     }
                     this.totalPage = res.totalPage
+                    this.totalBlocks = this.$t('moduleTitle.totalBlocks', { count: numberFormat(res.total) })
                     this.blockCurrentPage = res.page
                 }).catch(err => {
                     console.log('load fail:', err)

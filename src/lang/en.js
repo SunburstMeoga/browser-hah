@@ -61,7 +61,6 @@ module.exports = {
     amount: 'Amount',
     previousBlock: 'Previous Block',
     time: 'Time',
-
   },
   dpos: {
     h1: 'dpos pow',
@@ -184,5 +183,12 @@ module.exports = {
     released: '1 HAH has been issued to this address',
     repeat: 'Duplicate applications cannot be made',
     othererr: 'System error, please try again'
+  },
+  moduleTitle: {
+    totalBlocks: 'Total of {count} blocks',
+    totalTrade: 'More than {count} transactions found',
+    totalRanks: 'Total of {count} address',
+    totalNode: 'Total of {count} DPOS node',
+    totalContract: 'Total of {count} HRC20'
   }
 }

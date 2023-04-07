@@ -22,7 +22,7 @@
                 class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg pt-2 shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
                 <div class="pb-2 border-b border-ligthborder dark:border-border100 ">
                     <div class="pl-2">
-                        <module-title :title="$t('common.block') + ' ' + $t('Block.tx')" />
+                        <module-title :title="$t('common.block') + '' + $t('Block.tx')" :total="totalTrade" />
                     </div>
                 </div>
                 <div>
@@ -56,6 +56,8 @@ import ModuleTitle from '@/components/public/ModuleTitle'
 import SecondTitle from '@/components/public/SecondTitle'
 import { blockInfo, TXList } from '@/request/home'
 
+import { numberFormat } from "../../utils/format"
+
 export default {
     name: "Block",
     components: { SecondTitle, HPagination, BlockDetailsCard, ModuleTitle, BlockTransactionCard, HLoading },
@@ -70,6 +72,7 @@ export default {
             blockInfoLoadStatus: 'loading',
             txPageSize: 10,
             txCurrentPage: 1,
+            totalTrade: ''
         }
     },
     created() {
@@ -78,6 +81,7 @@ export default {
         this.getBlockInfo()
     },
     methods: {
+        numberFormat,
         toTX(txid) {
             console.log('sfadfs')
             this.$router.push({
@@ -94,6 +98,8 @@ export default {
                     } else {
                         this.tranLoadStatus = 'empty'
                     }
+                    this.totalTrade = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
+
                 });
         },
 

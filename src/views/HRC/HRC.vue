@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mb-2 w-11/12 sm:w-9/12 mr-auto ml-auto">
-      <module-title title="HRC20"></module-title>
+      <module-title title="HRC20" :total="totalHRC20"></module-title>
     </div>
     <div
       class=" mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
@@ -21,6 +21,7 @@ import ModuleTitle from '@/components/public/ModuleTitle'
 import HPagination from '@/components/public/HPagination'
 import HrcListTable from '@/components/child/HrcListTable'
 import { listHRC20 } from '@/request/hrc';
+import { numberFormat } from '../../utils/format';
 export default {
   components: { HrcListTable, ModuleTitle, HPagination, },
   data() {
@@ -29,12 +30,14 @@ export default {
       hrcListLoadStatus: 'loading',
       hrcPageSize: 10,
       hrcCurrentPage: 1,
+      totalHRC20: ''
     }
   },
   mounted() {
     this.getListHRC20()
   },
   methods: {
+    numberFormat,
     getListHRC20() {
       this.hrcListLoadStatus = 'loading'
       listHRC20({ pageSize: this.hrcPageSize, page: this.hrcCurrentPage }).then(res => {
@@ -45,6 +48,8 @@ export default {
         } else {
           this.hrcListLoadStatus = 'empty'
         }
+        this.totalHRC20 = this.$t('moduleTitle.totalContract', { count: numberFormat(res.total) })
+
         this.hrcCurrentPage = res.page
 
       });

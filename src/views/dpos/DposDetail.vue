@@ -29,7 +29,7 @@
 
         </div>
         <div class="mb-2 sm:mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto">
-            <module-title :title="$t('common.tx')"></module-title>
+            <module-title :title="$t('Block.tx')" :total="totalTrade" />
         </div>
         <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
@@ -47,7 +47,7 @@ import ModuleTitle from '@/components/public/ModuleTitle'
 import DposVoteTable from '@/components/child/DPOSVoteTable'
 import HPagination from '@/components/public/HPagination'
 import { listDelegateDetails, DPOSInfo } from '@/request/dpos'
-import { timeFormat, addressFormat, amountFormat, addressFilter } from '@/utils/format'
+import { numberFormat, addressFilter } from '@/utils/format'
 export default {
     components: { ModuleTitle, DposVoteTable, HPagination },
 
@@ -56,7 +56,8 @@ export default {
             dposlistDetailDatas: [],
             dposAddress: '',
             dposTableLoadStatus: 'loading',
-            DPOSInfo: {}
+            DPOSInfo: {},
+            totalTrade: ''
         }
     },
     created() {
@@ -65,7 +66,7 @@ export default {
         this.getDelegateDetails()
     },
     methods: {
-        timeFormat, addressFormat, amountFormat, addressFilter,
+        numberFormat, addressFilter,
         toAddress(address) {
             this.$router.push({
                 path: '/address/' + address
@@ -88,6 +89,8 @@ export default {
                 } else {
                     this.dposTableLoadStatus = 'empty'
                 }
+                this.totalTrade = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
+
                 console.log('res', res);
             });
         },

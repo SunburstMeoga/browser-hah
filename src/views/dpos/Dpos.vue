@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="mb-2 w-11/12 sm:w-9/12 mr-auto ml-auto">
-            <module-title title="DPOS"></module-title>
+            <module-title title="DPOS" :total="totalAddress"></module-title>
         </div>
         <div
             class=" mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
@@ -20,6 +20,7 @@ import ModuleTitle from '@/components/public/ModuleTitle'
 import HPagination from '@/components/public/HPagination'
 import DposListTable from '@/components/child/DposListTable'
 import { listDelegate } from '@/request/dpos'
+import { numberFormat } from '../../utils/format'
 export default {
     components: { DposListTable, ModuleTitle, HPagination, },
     name: "dpos",
@@ -29,12 +30,14 @@ export default {
             dposListLoadStatus: 'loading',
             dposPageSize: 10,
             dposCurrentPage: 1,
+            totalAddress: ''
         }
     },
     created() {
         this.getListDelegate()
     },
     methods: {
+        numberFormat,
         getListDelegate() {
             this.dposListLoadStatus = 'loading'
             listDelegate({ pageSize: this.dposPageSize, page: this.dposCurrentPage }).then(res => {
@@ -45,6 +48,8 @@ export default {
                     this.dposListLoadStatus = 'empty'
                 }
                 console.log(res)
+                this.totalAddress = this.$t('moduleTitle.totalNode', { count: numberFormat(res.total) })
+
                 this.dposCurrentPage = res.page
 
             });

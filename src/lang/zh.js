@@ -59,6 +59,7 @@ module.exports = {
     previousBlock: '上一哈希',
     time: '时间',
 
+
   },
   dpos: {
     h1: 'dpos pow',
@@ -179,5 +180,12 @@ module.exports = {
     released: '已发放 1 HAH到该地址',
     repeat: '不能重复申请',
     othererr: '系统错误，请重试'
+  },
+  moduleTitle: {
+    totalBlocks: '共有{count}个区块',
+    totalTrade: '找到超过 {count} 笔交易',
+    totalRanks: '共有 {count} 个地址',
+    totalNode: '共有 {count} 个DPOS节点',
+    totalContract: '共有 {count} 个HRC20'
   }
 }

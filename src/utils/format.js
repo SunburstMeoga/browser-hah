@@ -45,3 +45,18 @@ export function amountFormat(str) {
     let result = (num / target).toFixed(4);// number => string.toFixed(4)
     return result
 }
+
+export function numberFormat(number) {
+    number = '' + number
+    let int = number
+    int = int.split('').reverse().join('')
+    let temp = ''
+    for (let i = 0; i < int.length; i++) {
+        temp += int[i]
+        if ((i + 1) % 3 === 0 && i !== int.length - 1) {
+            temp += ','
+        }
+    }
+    temp = temp.split('').reverse().join('')
+    return temp
+}
