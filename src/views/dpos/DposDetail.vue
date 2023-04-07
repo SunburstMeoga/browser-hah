@@ -57,7 +57,7 @@ export default {
             dposAddress: '',
             dposTableLoadStatus: 'loading',
             DPOSInfo: {},
-            totalTrade: ''
+            totalTrade: 0
         }
     },
     created() {

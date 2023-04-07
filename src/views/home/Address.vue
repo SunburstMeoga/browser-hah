@@ -68,7 +68,7 @@ export default {
             addressTranListLoadStatus: 'loading',
             txPageSize: 10,
             txCurrentPage: 1,
-            totalTrade: ''
+            totalTrade: 0
         }
 
     },

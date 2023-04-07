@@ -32,7 +32,7 @@ export default {
             rankPageSize: 10,
             rankCurrentPage: 1,
             totalPage: 1,
-            totalAddress: ''
+            totalAddress: 0
         }
     },
     mounted() {

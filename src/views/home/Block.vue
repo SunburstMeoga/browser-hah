@@ -72,7 +72,7 @@ export default {
             blockInfoLoadStatus: 'loading',
             txPageSize: 10,
             txCurrentPage: 1,
-            totalTrade: ''
+            totalTrade: 0
         }
     },
     created() {

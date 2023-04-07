@@ -32,7 +32,7 @@ export default {
             tradeTableLoadStatus: 'loading',
             txPageSize: 10,
             txCurrentPage: 1,
-            totalTrades: ''
+            totalTrades: 0
         }
     },
     created() {

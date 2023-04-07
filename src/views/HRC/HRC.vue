@@ -30,7 +30,7 @@ export default {
       hrcListLoadStatus: 'loading',
       hrcPageSize: 10,
       hrcCurrentPage: 1,
-      totalHRC20: ''
+      totalHRC20: 0
     }
   },
   mounted() {
