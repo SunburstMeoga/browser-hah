@@ -54,7 +54,7 @@ export default {
             this.loadStatus = 'loading'
             if (!EthereumAddress.isAddress(this.address)) {
                 this.$message.error(this.$t('faucetSmart.errAddress'))
-                this.loadStatus = 'finished'
+                // this.loadStatus = 'finished'
                 return
             }
             testHAHChain({ address: this.address }).then(res => {
