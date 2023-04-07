@@ -6,15 +6,15 @@
                 :key="index">
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Pending.from') }}: </div>
-                    <div class="text-clickable">{{ addressFilter(item.topics1) }}</div>
+                    <div class="text-clickable">{{ addressFilter(item.from) }}</div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Pending.to') }}: </div>
-                    <div class="text-clickable">{{ addressFilter(item.topics2) }}</div>
+                    <div class="text-clickable">{{ addressFilter(item.to) }}</div>
                 </div>
                 <div class="flex justify-start item-center text-lighttable dark:text-white200">
                     <div class="pr-2">{{ $t('hrc20.quantity') }}: </div>
-                    <div class="">{{ amountFormat(item.data) }}</div>
+                    <div class="">{{ amountFormat(item.amount) }}</div>
                 </div>
             </div>
         </div>
@@ -40,18 +40,18 @@
                         {{ addressFilter(item.txid) }}
                     </div>
                     <div class="w-60 text-sm  cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 "
-                        @click="toAddress(item.topics2)">
-                        {{ addressFilter(item.topics2) }}
+                        @click="toAddress(item.to)">
+                        {{ addressFilter(item.to) }}
                     </div>
                     <div class="w-60 text-sm  cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 "
-                        @click="toAddress(item.topics1)">
-                        {{ addressFilter(item.topics1) }}
+                        @click="toAddress(item.from)">
+                        {{ addressFilter(item.from) }}
                     </div>
                     <div class="w-60">
                         {{ item.fun }}
                     </div>
                     <div class="w-60">
-                        {{ amountFormat(item.data) }}
+                        {{ item.amount }}
                     </div>
                     <div class="w-60">
                         {{ timeFormat(item.ts) }}

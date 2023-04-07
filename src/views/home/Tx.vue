@@ -31,15 +31,15 @@
                             <span
                                 class="font-normal pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
                                 {{
-                                    addressFormat(item.topics1)
+                                    addressFormat(item.from)
                                 }}</span>
                         </div>
                         <div class="">{{ $t('Tx.to') }}: <span
                                 class="font-normal pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
                                 {{
-                                    addressFormat(item.topics2) }}</span>
+                                    addressFormat(item.to) }}</span>
                         </div>
-                        <div class="">For: {{ amountFormat(item.data) }}</div>
+                        <div class="">For: {{ item.amount }}</div>
                     </div>
                 </div>
             </div>

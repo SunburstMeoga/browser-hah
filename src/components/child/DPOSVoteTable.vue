@@ -41,7 +41,7 @@
                     </div>
                     <div
                         class="w-60 text-sm  cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 ">
-                        {{ amountFormat(item.vote) }}
+                        {{ item.amount }}
                     </div>
                     <div
                         class="w-60 text-sm  cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 ">
