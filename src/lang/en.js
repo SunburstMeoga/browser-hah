@@ -189,6 +189,7 @@ module.exports = {
     totalTrade: 'More than {count} transactions found',
     totalRanks: 'Total of {count} address',
     totalNode: 'Total of {count} DPOS node',
-    totalContract: 'Total of {count} HRC20'
+    totalContract: 'Total of {count} HRC20',
+    totalData: 'Total of {count} Data'
   }
 }

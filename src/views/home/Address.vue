@@ -100,7 +100,8 @@ export default {
                 } else {
                     this.addressTranListLoadStatus = 'empty'
                 }
-                this.totalTrade = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
+                // this.totalTrade = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
+                this.totalTrade = res.total
 
                 console.log(this.txListDatas)
             })

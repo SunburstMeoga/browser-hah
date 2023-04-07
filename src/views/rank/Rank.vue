@@ -50,7 +50,8 @@ export default {
                 } else {
                     this.rankListLoadStatus = 'empty'
                 }
-                this.totalAddress = this.$t('moduleTitle.totalRanks', { count: numberFormat(res.total) })
+                // this.totalAddress = this.$t('moduleTitle.totalRanks', { count: numberFormat(res.total) })
+                this.totalAddress = res.total
                 this.totalPage = res.totalPage
                 this.rankCurrentPage = res.page
             })

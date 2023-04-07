@@ -48,7 +48,8 @@ export default {
         } else {
           this.hrcListLoadStatus = 'empty'
         }
-        this.totalHRC20 = this.$t('moduleTitle.totalContract', { count: numberFormat(res.total) })
+        // this.totalHRC20 = this.$t('moduleTitle.totalContract', { count: numberFormat(res.total) })
+        this.totalHRC20 = res.total
 
         this.hrcCurrentPage = res.page
 

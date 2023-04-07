@@ -4,7 +4,7 @@
             {{ title }}
         </div>
         <div class="pl-2 text-sm text-lightmoreword dark:text-black100">
-            {{ total }}
+            {{ getTotal }}
         </div>
     </div>
 </template>
@@ -17,8 +17,13 @@ export default {
             default: ''
         },
         total: {
-            type: String,
-            default: ''
+            type: Number,
+            default: 0
+        }
+    },
+    computed: {
+        getTotal() {
+            return this.$t('moduleTitle.totalData', { count: this.total })
         }
     }
 }

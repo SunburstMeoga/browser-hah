@@ -48,7 +48,8 @@ export default {
                     this.dposListLoadStatus = 'empty'
                 }
                 console.log(res)
-                this.totalAddress = this.$t('moduleTitle.totalNode', { count: numberFormat(res.total) })
+                // this.totalAddress = this.$t('moduleTitle.totalNode', { count: numberFormat(res.total) })
+                this.totalAddress = res.total
 
                 this.dposCurrentPage = res.page
 

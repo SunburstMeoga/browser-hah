@@ -33,7 +33,7 @@ export default {
             blockPageSize: 10,
             blockCurrentPage: 1,
             totalPage: 1,
-            totalBlocks: ''
+            totalBlocks: 0
         }
     },
     created() {
@@ -53,7 +53,9 @@ export default {
                         this.blockTableLoadStatus = 'empty'
                     }
                     this.totalPage = res.totalPage
-                    this.totalBlocks = this.$t('moduleTitle.totalBlocks', { count: numberFormat(res.total) })
+                    // this.totalBlocks = this.$t('moduleTitle.totalBlocks', { count: numberFormat(res.total) })
+                    this.totalBlocks = res.total
+
                     this.blockCurrentPage = res.page
                 }).catch(err => {
                     console.log('load fail:', err)

@@ -110,8 +110,8 @@ export default {
                 } else {
                     this.tokenTableLoadStatus = 'empty'
                 }
-                this.totalTrade = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
-
+                // this.totalTrade = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
+                this.totalTrade = res.total
             });
             console.log('dataList', this.dataList);
         },

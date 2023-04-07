@@ -186,6 +186,7 @@ module.exports = {
     totalTrade: '找到超过 {count} 笔交易',
     totalRanks: '共有 {count} 个地址',
     totalNode: '共有 {count} 个DPOS节点',
-    totalContract: '共有 {count} 个HRC20'
+    totalContract: '共有 {count} 个HRC20',
+    totalData: '共有 {count} 条数据'
   }
 }

@@ -49,7 +49,8 @@ export default {
                 } else {
                     this.tradeTableLoadStatus = 'empty'
                 }
-                this.totalTrades = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
+                // this.totalTrades = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
+                this.totalTrades = res.total
                 this.txCurrentPage = res.page
             }).catch(err => {
                 console.log('load fail:', err)
