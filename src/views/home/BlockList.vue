@@ -1,10 +1,11 @@
 <template>
     <div>
         <div class="mb-2 sm:mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto">
-            <module-title :title="$t('BlockList.newBlock')" />
+            <!-- <module-title :title="$t('BlockList.newBlock')" /> -->
         </div>
         <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
+            <module-title :title="$t('BlockList.newBlock')" />
             <new-block-table :dataList="blockListDatas" :loadStatus="blockTableLoadStatus" />
             <div>
                 <h-pagination @changePageSize="toBlockFirstPage" @toFirstPage="toBlockFirstPage" @toPrePage="toBlockPrePage"

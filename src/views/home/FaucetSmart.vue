@@ -20,7 +20,7 @@
                 <div
                     class="rounded-md mb-5 overflow-hidden h-8 sm:mb-0 sm:w-2/3 border border-ligthborder dark:text-white200 dark:bg-black200 dark:border-border100">
                     <input class="border-none w-full h-8  dark:text-white200 dark:bg-black200 dark:border-border100"
-                        type="text">
+                        type="text" v-model="address">
                 </div>
                 <div @click="getTestHAHChain"
                     class="rounded-md border sm:px-4 sm:ml-4 cursor-pointer text-sm border-ligthborder h-8 flex justify-center items-center dark:text-white200 dark:bg-black200 dark:border-border100">
@@ -57,7 +57,7 @@ export default {
                 this.loadStatus = 'finished'
                 return
             }
-            testHAHChain({ address: this.address, }).then(res => {
+            testHAHChain({ address: this.address }).then(res => {
                 console.log('res', res)
                 this.loadStatus = ''
                 if (res.statusCode !== 0) {
