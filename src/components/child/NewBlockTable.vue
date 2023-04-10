@@ -89,7 +89,7 @@ export default {
         copyContent(content) {
             navigator.clipboard.writeText(content).then(() => {
                 this.$message({
-                    message: this.$t('message.success'),
+                    message: this.$t('messageTips.copySuccess'),
                     type: 'success'
                 });
             }, () => {
