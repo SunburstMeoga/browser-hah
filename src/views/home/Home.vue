@@ -125,7 +125,7 @@ export default {
             blockObj.txs = data.tx.length
             data.tx.map(item => {
                 let txObj = {}
-                txObj.block_hash = item.blockhash
+                txObj.txid = item.txid
                 txObj.transtime = data.time
                 txObj.amount = item.amount
                 txObj.from = item.from
