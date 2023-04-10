@@ -2,9 +2,14 @@
     <div class="text-sm pt-2 px-4 text-lightitemtitle dark:text-btndisable">
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4">{{ $t('common.address') }}:</div>
-            <div
-                class="text-sm pr-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
-                {{ addressFilter(addressInfo.address) }}</div>
+
+            <div class="flex justify-start items-center">
+                <div @click="toAddress(addressInfo.address)"
+                    class="text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                    {{ addressFilter(addressInfo.address) }}</div>
+                <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                    @click="copyContent(addressInfo.address)" />
+            </div>
 
         </div>
 
@@ -53,6 +58,22 @@ export default {
     },
     methods: {
         addressFilter, amountFormat, timeFormat,
+        copyContent(content) {
+            navigator.clipboard.writeText(content).then(() => {
+                this.$message({
+                    message: this.$t('message.success'),
+                    type: 'success'
+                });
+            }, () => {
+                this.$message.error(this.$t('message.fail'));
+
+            });
+        },
+        toAddress(address) {
+            this.$router.push({
+                path: '/address/' + address
+            })
+        },
         viewTransacions() {
             this.$emit('viewTransacions')
         }

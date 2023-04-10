@@ -2,17 +2,24 @@
     <div class="text-sm text-lightitemtitle dark:text-btndisable">
         <div class="flex justify-start items-center sm:mb-2">
             <div class="font-bold pr-4 sm:w-1/4 ">Input:</div>
-            <div class="cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
-                @click="toAddress(transactionInfo.from)">{{
-                    addressFilter(transactionInfo.from) }}
+            <div class="flex justify-start items-center">
+                <div class="cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                    @click="toAddress(transactionInfo.from)">
+                    {{ addressFilter(transactionInfo.from) }}
+                </div>
+                <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(transactionInfo.from)"></div>
             </div>
         </div>
 
         <div class="flex justify-start items-center sm:mb-2">
             <div class="font-bold pr-4 sm:w-1/4 ">Output:</div>
-            <div class="cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
-                @click="toAddress(transactionInfo.to)">{{
-                    addressFilter(transactionInfo.to) }}</div>
+            <div class="flex justify-start items-center">
+                <div class="cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                    @click="toAddress(transactionInfo.to)">
+                    {{ addressFilter(transactionInfo.to) }}
+                </div>
+                <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(transactionInfo.to)"></div>
+            </div>
         </div>
 
         <div class="flex justify-start items-center sm:mb-2">
@@ -43,6 +50,17 @@ export default {
     },
     methods: {
         addressFilter, amountFormat, timeFormat,
+        copyContent(content) {
+            navigator.clipboard.writeText(content).then(() => {
+                this.$message({
+                    message: this.$t('message.success'),
+                    type: 'success'
+                });
+            }, () => {
+                this.$message.error(this.$t('message.fail'));
+
+            });
+        },
         toAddress(address) {
             this.$router.push({
                 path: '/address/' + address

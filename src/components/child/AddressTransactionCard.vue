@@ -2,21 +2,34 @@
     <div class="text-sm text-lightitemtitle dark:text-btndisable">
         <div class="flex justify-start items-center sm:mb-2">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.block') }}:</div>
-            <div
-                class=" cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
-                {{ addressFilter(transactionInfo.block_hash) }}</div>
+
+            <div class="flex justify-start items-center">
+                <div @click="toBlock(transactionInfo.block_hash)"
+                    class="text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                    {{ addressFilter(transactionInfo.block_hash) }}</div>
+                <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                    @click="copyContent(transactionInfo.block_hash)" />
+            </div>
         </div>
         <div class="flex justify-start items-center sm:mb-2">
             <div class="font-bold pr-4 sm:w-1/4">{{ $t('Pending.to') }}:</div>
-            <div
-                class="cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
-                {{ addressFilter(transactionInfo.to) }}</div>
+            <div class="flex justify-start items-center">
+                <div @click="toAddress(transactionInfo.to)"
+                    class="text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                    {{ addressFilter(transactionInfo.to) }}</div>
+                <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                    @click="copyContent(transactionInfo.to)" />
+            </div>
         </div>
         <div class="flex justify-start items-center sm:mb-2">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Pending.from') }}:</div>
-            <div
-                class="  cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
-                {{ addressFilter(transactionInfo.from) }}</div>
+            <div class="flex justify-start items-center">
+                <div @click="toAddress(transactionInfo.from)"
+                    class="text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                    {{ addressFilter(transactionInfo.from) }}</div>
+                <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                    @click="copyContent(transactionInfo.from)" />
+            </div>
         </div>
 
         <div class="flex justify-start items-center sm:mb-2">
@@ -53,6 +66,27 @@ export default {
     },
     methods: {
         addressFilter, amountFormat, timeFormat,
+        copyContent(content) {
+            navigator.clipboard.writeText(content).then(() => {
+                this.$message({
+                    message: this.$t('message.success'),
+                    type: 'success'
+                });
+            }, () => {
+                this.$message.error(this.$t('message.fail'));
+
+            });
+        },
+        toAddress(address) {
+            this.$router.push({
+                path: '/address/' + address
+            })
+        },
+        toBlock(height) {
+            this.$router.push({
+                path: '/block/' + height
+            })
+        },
         viewTransacions() {
             this.$emit('viewTransacions')
         }

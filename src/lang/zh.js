@@ -188,5 +188,9 @@ module.exports = {
     totalNode: '共有 {count} 个DPOS节点',
     totalContract: '共有 {count} 个HRC20',
     totalData: '共有 {count} 条数据'
+  },
+  message: {
+    success: '复制成功',
+    fail: '复制失败，请重新复制'
   }
 }

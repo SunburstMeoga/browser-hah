@@ -12,9 +12,15 @@
                     $t('hrc20.overview') }}</div>
                 <div class="flex justify-start items-center mb-2">
                     <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('common.address') }}</div>
-                    <div class="text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
-                        @click="toAddress(DPOSInfo.address)">{{
-                            addressFilter(DPOSInfo.address) }}</div>
+
+                    <div class="w-80 text-sm flex justify-start items-center">
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                            @click="toAddress(DPOSInfo.address)">
+                            {{ addressFilter(DPOSInfo.address) }}
+                        </div>
+                        <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                            @click="copyContent(DPOSInfo.address)" />
+                    </div>
                 </div>
                 <div class="flex justify-start items-center mb-2">
                     <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Tx.nodeName') }}</div>
@@ -67,6 +73,17 @@ export default {
     },
     methods: {
         numberFormat, addressFilter,
+        copyContent(content) {
+            navigator.clipboard.writeText(content).then(() => {
+                this.$message({
+                    message: this.$t('message.success'),
+                    type: 'success'
+                });
+            }, () => {
+                this.$message.error(this.$t('message.fail'));
+
+            });
+        },
         toAddress(address) {
             this.$router.push({
                 path: '/address/' + address

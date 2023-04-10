@@ -191,5 +191,9 @@ module.exports = {
     totalNode: 'Total of {count} DPOS node',
     totalContract: 'Total of {count} HRC20',
     totalData: 'Total of {count} Data'
+  },
+  message: {
+    success: 'Copy Successful',
+    fail: 'Copy failed, please re-replicate'
   }
 }

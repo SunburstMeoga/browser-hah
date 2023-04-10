@@ -90,7 +90,7 @@ export default {
                 return
             }
             this.rankPageSize = selectedPageSize
-            this.rankCurrentPage = this.rankCurrentPage + 1
+            this.rankCurrentPage = this.totalPage
             this.rankListDatas = []
             this.getRankList()
         },

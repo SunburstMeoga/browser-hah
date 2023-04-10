@@ -28,9 +28,13 @@
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.address') }}:</div>
-            <div class="text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
-                @click="toAddress(blockInfo.reward_address)">{{
-                    addressFilter(blockInfo.reward_address) }}</div>
+            <div class="flex justify-start items-center">
+                <div @click="toAddress(blockInfo.reward_address)"
+                    class="text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                    {{ addressFilter(blockInfo.reward_address) }}</div>
+                <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                    @click="copyContent(blockInfo.reward_address)" />
+            </div>
         </div>
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
@@ -60,8 +64,16 @@ export default {
     },
     methods: {
         addressFilter, amountFormat, timeFormat,
-        toBlock(block) {
+        copyContent(content) {
+            navigator.clipboard.writeText(content).then(() => {
+                this.$message({
+                    message: this.$t('message.success'),
+                    type: 'success'
+                });
+            }, () => {
+                this.$message.error(this.$t('message.fail'));
 
+            });
         },
         toAddress(address) {
             this.$router.push({

@@ -6,15 +6,18 @@
                 :key="index">
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.height') }}: </div>
-                    <div class="text-clickable">{{ item.height }}</div>
+                    <div class="text-clickable" @click="toBlock(item.height)">{{ item.height }}</div>
+
                 </div>
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.address') }}: </div>
-                    <div class="text-clickable">{{ addressFilter(item.reward_address) }}</div>
+                    <div class="text-clickable" @click="toAddress(item.reward_address)">{{
+                        addressFilter(item.reward_address) }}</div>
+                    <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.reward_address)" />
                 </div>
                 <div class="flex justify-start item-center">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.time') }}: </div>
-                    <div class="text-clickable">{{ timeFormat(item.time) }}</div>
+                    <div class="text-lighttable">{{ timeFormat(item.time) }}</div>
                 </div>
             </div>
         </div>
@@ -40,9 +43,13 @@
                         @click="toBlock(item.height)">
                         {{ item.height }}
                     </div>
-                    <div class="w-60 text-sm  cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 "
-                        @click="toAddress(item.reward_address)">
-                        {{ addressFilter(item.reward_address) }}
+                    <div class="w-60 text-sm flex justify-start items-center">
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                            @click="toAddress(item.reward_address)">
+                            {{ addressFilter(item.reward_address) }}
+                        </div>
+                        <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                            @click="copyContent(item.reward_address)" />
                     </div>
                     <div class="w-60">
                         {{ item.reward_money }}
@@ -79,6 +86,17 @@ export default {
     },
     methods: {
         timeFormat, addressFormat, addressFilter,
+        copyContent(content) {
+            navigator.clipboard.writeText(content).then(() => {
+                this.$message({
+                    message: this.$t('message.success'),
+                    type: 'success'
+                });
+            }, () => {
+                this.$message.error(this.$t('message.fail'));
+
+            });
+        },
         toAddress(address) {
             this.$router.push({
                 path: '/address/' + address

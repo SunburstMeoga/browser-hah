@@ -32,6 +32,7 @@ export default {
             tradeTableLoadStatus: 'loading',
             txPageSize: 10,
             txCurrentPage: 1,
+            totalPage: 1,
             totalTrades: 0
         }
     },
@@ -51,6 +52,7 @@ export default {
                 }
                 // this.totalTrades = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
                 this.totalTrades = res.total
+                this.totalPage = res.totalPage
                 this.txCurrentPage = res.page
             }).catch(err => {
                 console.log('load fail:', err)
@@ -78,8 +80,15 @@ export default {
             this.getTXList()
             console.log('前往下一页', this.blockCurrentPage)
         },
-        toTXLastPage() {
-
+        toTXLastPage(selectedPageSize) {
+            console.log(this.txCurrentPage, this.totalPage)
+            if (this.txCurrentPage > this.totalPage) {
+                return
+            }
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = this.totalPage
+            this.TXListDatas = []
+            this.getTXList()
         },
     },
 
