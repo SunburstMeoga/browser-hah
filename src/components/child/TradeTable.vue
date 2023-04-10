@@ -129,7 +129,7 @@ export default {
         copyContent(content) {
             navigator.clipboard.writeText(content).then(() => {
                 this.$message({
-                    message: this.$t('faucetSmart.errAddress'),
+                    message: this.$t('messageTips.copySuccess'),
                     type: 'success'
                 });
             }, () => {
