@@ -45,10 +45,10 @@
                     <div class="w-60 text-sm flex justify-start items-center">
                         <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
                             @click="toTX(item.txid)">
-                            {{ addressFilter(item.block_hash) }}
+                            {{ addressFilter(item.txid) }}
                         </div>
                         <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
-                            @click="copyContent(item.block_hash)" />
+                            @click="copyContent(item.txid)" />
                     </div>
 
 
