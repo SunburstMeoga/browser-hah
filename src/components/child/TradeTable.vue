@@ -19,7 +19,7 @@
                 </div>
                 <div class="flex justify-start item-center">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Pending.amount') }}: </div>
-                    <div class="text-lighttable">{{ item.amount }}</div>
+                    <div class="text-lighttable dark:text-white200">{{ item.amount }}</div>
                 </div>
             </div>
         </div>
