@@ -192,5 +192,18 @@ module.exports = {
   messageTips: {
     copySuccess: '复制成功',
     copyFail: '复制失败，请重新复制'
+  },
+  status: {
+    success: '成功',
+    fail: '失败'
+  },
+  logs: {
+    title: '交易日志',
+    count: '交易收据事件日志（{count})',
+    address: '地址',
+    topics: '主题',
+    data: '数据',
+    executionStatus: '执行状态',
+    internalTransfers: '内部转账'
   }
 }

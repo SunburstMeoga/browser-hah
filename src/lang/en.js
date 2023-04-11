@@ -195,5 +195,18 @@ module.exports = {
   messageTips: {
     copySuccess: 'Copy Successful',
     fail: 'Copy failed, please re-replicate'
+  },
+  status: {
+    success: 'Success',
+    fail: 'Fail'
+  },
+  logs: {
+    title: 'Logs',
+    count: 'Transaction Receipt Event Logs({count})',
+    address: 'Address',
+    topics: 'Topics',
+    data: 'Data',
+    executionStatus: 'Execution Status',
+    internalTransfers: 'Internal transfers'
   }
 }

@@ -27,7 +27,7 @@
         </div>
 
         <div class="flex justify-start items-center mb-2">
-            <div class="font-bold pr-4 ">内部转账:</div>
+            <div class="font-bold pr-4 ">{{ $t('logs.internalTransfers') }}:</div>
             <div class="text-lighttable dark:text-white200">{{ $store.state.txInfo.transTotal }} </div>
         </div>
 

@@ -18,11 +18,10 @@
         </div>
 
         <div class="mb-4" v-if="dataDetails.length !== 0">
-
             <div
                 class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
                 <div class="px-4 pt-4">
-                    <second-title title="内部转账" />
+                    <second-title :title="$t('logs.internalTransfers')" />
                 </div>
                 <div class="pt-2 px-4">
                     <div v-for="(item, index) in dataDetails" :key="index"
@@ -44,21 +43,43 @@
                 </div>
             </div>
         </div>
+
+
+        <div
+            class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+            <div class="px-4 py-4 border-b border-ligthborder dark:border-border100">
+                <second-title :title="$t('logs.title')" :details="countLogs" />
+            </div>
+            <div>
+                <div class="py-2 border-b border-ligthborder dark:border-border100" v-for="(item, index) in logsList"
+                    :key="index">
+                    <trade-log-card :logInfo="item" />
+                </div>
+                <!-- <div class="py-2 border-b border-ligthborder dark:border-border100" v-for="(item, index) in logsList"
+                    :key="index">
+                    <trade-log-card :logInfo="item" />
+                </div>
+                <div class="py-2 border-b border-ligthborder dark:border-border100" v-for="(item, index) in logsList"
+                    :key="index">
+                    <trade-log-card :logInfo="item" />
+                </div> -->
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 import HLoading from "@/components/public/HLoading"
-
 import HPagination from '@/components/public/HPagination'
 import ModuleTitle from '@/components/public/ModuleTitle'
 import SecondTitle from '@/components/public/SecondTitle'
 import TransactionDetails from '@/components/child/TransactionDetails'
+import TradeLogCard from '@/components/child/TradeLogCard'
 import { txDetails, txInfo } from '@/request/home'
 import { timeFormat, addressFormat, amountFormat } from '@/utils/format'
 
 export default {
-    components: { SecondTitle, HPagination, ModuleTitle, TransactionDetails, HLoading },
+    components: { SecondTitle, HPagination, ModuleTitle, TransactionDetails, HLoading, TradeLogCard },
     name: "Tx",
     data() {
         return {
@@ -76,13 +97,19 @@ export default {
             client_out: '',
             dataDetails: [],
             transactionInfo: {},
-            tranInfoLoadStatus: 'loading'
+            tranInfoLoadStatus: 'loading',
+            logsList: []
         }
     },
     created() {
         this.txid = this.$route.params.txid
         this.getTxinfo()
         this.getTXDetails()
+    },
+    computed: {
+        countLogs() {
+            return this.$t('logs.count', { count: this.logsList.length })
+        }
     },
     methods: {
         timeFormat, addressFormat, amountFormat,
@@ -91,7 +118,6 @@ export default {
                 txid: this.txid
             };
             txDetails(params).then(res => {
-                console.log(res)
                 this.dataDetails = res
                 this.transactionInfo.transTotal = res.length
             });
@@ -113,6 +139,13 @@ export default {
                 this.client_in = res.client_in
                 this.client_out = res.client_out
                 this.transactionInfo.transtime = res.transtime
+
+                this.logsList = res.logs
+                this.logsList.map(item => {
+                    item.status = res.status
+                })
+                // this.logsList.status = res.status
+                console.log('logsList', this.logsList)
                 this.tranInfoLoadStatus = 'finished'
                 this.$store.commit('getTXInfo', this.transactionInfo)
             });
