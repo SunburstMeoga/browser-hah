@@ -41,7 +41,7 @@
                 {{ addressFilter(transactionInfo.to) }} </div>
             <div
                 class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
-                {{ transactionInfo.from }} </div>
+                {{ transactionInfo.to }} </div>
             <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                 @click="copyContent(transactionInfo.to)" />
 
