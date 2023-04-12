@@ -40,6 +40,7 @@ module.exports = {
   Block: {
     blockInfo: 'Block Information',
     returnHome: 'Return Block Home',
+    blockHASH: 'Block HASH',
     time: 'Time',
     transactions: 'Number of transactions ',
     previousBlock: 'Previous Block',

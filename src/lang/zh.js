@@ -36,6 +36,7 @@ module.exports = {
   },
   Block: {
     blockInfo: '区块信息',
+    blockHASH: '区块HASH',
     returnHome: '返回爆块首页',
     time: '时间',
     transactions: '交易数量',
