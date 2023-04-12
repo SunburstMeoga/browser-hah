@@ -59,8 +59,6 @@ module.exports = {
     amount: '交易数量',
     previousBlock: '上一哈希',
     time: '时间',
-
-
   },
   dpos: {
     h1: 'dpos pow',

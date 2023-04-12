@@ -11,7 +11,12 @@
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4">{{ $t('Block.blockHASH') }}:</div>
-            <div class="text-sm pr-2 text-lighttable dark:text-white200">{{ $store.state.blockInfo.height }}</div>
+            <div class="text-sm pr-2 hidden sm:block text-lighttable dark:text-white200">{{ $store.state.blockInfo.hash }}
+            </div>
+            <div class="text-sm pr-2 sm:hidden text-lighttable dark:text-white200">{{
+                addressFilter($store.state.blockInfo.hash) }}</div>
+            <div class="cursor-pointer icon iconfont icon-copy text-clickable"
+                @click="copyContent($store.state.blockInfo.hash)" />
         </div>
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
