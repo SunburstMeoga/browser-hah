@@ -81,8 +81,8 @@
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4">{{ $t('logs.executionStatus') }}:</div>
             <div class="bg-lightborder text-sm dark:bg-border100 py-2 px-4 rounded-lg"
-                :class="transactionInfo.status === '0x01' ? 'text-green-300' : 'text-red-600'">
-                {{ transactionInfo.status === '0x01' ? $t('status.success') : $t('status.fail') }}
+                :class="transactionInfo.status === '0x1' ? 'text-green-300' : 'text-red-600'">
+                {{ transactionInfo.status === '0x1' ? $t('status.success') : $t('status.fail') }}
             </div>
         </div>
     </div>
