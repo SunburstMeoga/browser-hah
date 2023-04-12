@@ -5,6 +5,13 @@
         <div v-if="loadStatus === 'finished'" class="w-11/12 mr-auto ml-auto text-sm sm:hidden">
             <div class="py-3 border-b border-lightborder dark:border-border100" v-for="(item, index) in dataList"
                 :key="index">
+                <div class="flex justify-start items-center">
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('dpos.name') }}: </div>
+                    <div class="">{{ item.name }}</div>
+
+                    <div class="rounded-full h-2 w-2 ml-1"
+                        :class="item.state === 1 ? 'bg-green-500 animate-pulse' : 'bg-red-600'" />
+                </div>
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('dpos.address') }}: </div>
                     <div class="text-clickable" @click="toAddress(item.address)">{{ addressFilter(item.address) }}</div>
@@ -14,34 +21,41 @@
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('dpos.vote') }}: </div>
                     <div class=""> {{ item.votes }}</div>
                 </div>
-                <div class="flex justify-start item-center">
-                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('dpos.name') }}: </div>
-                    <div class="">{{ item.name }}</div>
-                </div>
+
             </div>
         </div>
 
         <div v-if="loadStatus === 'finished'"
             class="hidden sm:block border-b min-w-100 border-lightborder dark:border-border100">
-            <div class="py-2 flex w-full justify-start">
+            <div class="py-2 flex w-full justify-between">
                 <div class="w-20 ml-4 text-sm font-black text-lighttable dark:text-white200">
                     {{ $t('dpos.serialNumber') }}
                 </div>
-                <div class="w-60 text-sm font-black text-lighttable dark:text-white200"
-                    v-for="(item, index) in tableTitleList" :key="index">
+                <div class="text-sm font-black text-lighttable dark:text-white200"
+                    :class="index === 0 ? 'w-40' : (index === 1 ? 'w-96' : 'w-60')" v-for="(item, index) in tableTitleList"
+                    :key="index">
                     {{ item.title }}
                 </div>
             </div>
             <div class="">
-
                 <div v-for="(item, index) in dataList" :key="index"
-                    class="flex justify-start py-3 border-b text-sm border-lightborder text-lighttable dark:text-white200 dark:border-border100">
+                    class="flex justify-between py-3 border-b text-sm border-lightborder text-lighttable dark:text-white200 dark:border-border100">
                     <div class="w-20 ml-4">
                         {{ index + 1 }}
                     </div>
-                    <div class="w-60 text-sm flex justify-start items-center">
-                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                    <div class="w-40 flex items-center">
+                        <div class="h-2 w-2 rounded-full mr-1"
+                            :class="item.state === 1 ? 'bg-green-500 animate-pulse' : 'bg-red-600'" />
+                        <div>
+                            {{ item.name }}
+                        </div>
+                    </div>
+                    <div class="w-96 text-sm flex justify-between items-center">
+                        <div class="hidden sm:block cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
                             @click="toAddress(item.address)">
+                            {{ item.address }}
+                        </div>
+                        <div class="text-clickable sm:hidden" @click="toAddress(item.address)">
                             {{ addressFilter(item.address) }}
                         </div>
                         <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
@@ -50,9 +64,7 @@
                     <div class="w-60">
                         {{ item.votes }}
                     </div>
-                    <div class="w-60">
-                        {{ item.name }}
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -101,14 +113,14 @@ export default {
             return [
 
                 {
+                    title: this.$t('dpos.name')
+                },
+                {
                     title: this.$t('dpos.address')
                 },
                 {
                     title: this.$t('dpos.vote')
                 },
-                {
-                    title: this.$t('dpos.name')
-                }
             ]
         }
     },
