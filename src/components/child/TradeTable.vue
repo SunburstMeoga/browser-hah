@@ -3,23 +3,28 @@
         <h-loading :loadStatus="loadStatus" />
 
         <div v-if="loadStatus === 'finished'" class="w-11/12 mr-auto ml-auto text-sm sm:hidden">
-            <div class="py-3 border-b border-lightborder dark:border-border100" v-for="(item, index) in dataList"
-                :key="index">
-                <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Pending.from') }}: </div>
-                    <div class="text-clickable" @click="toAddress(item.from)">{{ addressFilter(item.from) }}</div>
-                    <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.from)" />
+            <div class="py-3 border-b flex justify-between items-center border-lightborder dark:border-border100"
+                v-for="(item, index) in dataList" :key="index">
+                <div>
+                    <div class="flex justify-start item-center mb-1">
+                        <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Pending.from') }}: </div>
+                        <div class="text-clickable" @click="toAddress(item.from)">{{ addressFilter(item.from) }}</div>
+                        <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.from)" />
 
-                </div>
-                <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Pending.to') }}: </div>
-                    <div class="text-clickable" @click="toAddress(item.to)">{{ addressFilter(item.to) }}</div>
-                    <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.to)" />
+                    </div>
+                    <div class="flex justify-start item-center mb-1">
+                        <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Pending.to') }}: </div>
+                        <div class="text-clickable" @click="toAddress(item.to)">{{ addressFilter(item.to) }}</div>
+                        <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.to)" />
 
+                    </div>
+                    <div class="flex justify-start item-center">
+                        <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Pending.amount') }}: </div>
+                        <div class="text-lighttable dark:text-white200">{{ item.amount }}</div>
+                    </div>
                 </div>
-                <div class="flex justify-start item-center">
-                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Pending.amount') }}: </div>
-                    <div class="text-lighttable dark:text-white200">{{ item.amount }}</div>
+                <div class="flex justify-end items-center flex-1" @click="toTX(item.txid)">
+                    <div class="text-clickable text-base icon iconfont icon-arrow-right" />
                 </div>
             </div>
         </div>
@@ -78,7 +83,6 @@
                     </div>
                     <div class="w-60">
                         {{ timeFormat(item.transtime) }}
-
                     </div>
                 </div>
             </div>
