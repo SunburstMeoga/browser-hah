@@ -122,7 +122,7 @@ export default {
             blockObj.reward_address = data.txmint.to
             blockObj.prev_hash = data.prev
             blockObj.time = data.time
-            blockObj.txs = data.tx.length
+            blockObj.txs = data.tx.length + 1
             data.tx.map(item => {
                 let txObj = {}
                 txObj.txid = item.txid
