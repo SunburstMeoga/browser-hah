@@ -14,7 +14,7 @@
                 {{ addressFilter($store.state.txInfo.block_hash) || '0x00000000' }}</div>
         </div>
         <div class="flex justify-start items-center mb-2">
-            <div class="font-bold pr-4 ">{{ $t('tradeDetails.hash') }}:</div>
+            <div class="font-bold pr-4">{{ $t('tradeDetails.hash') }}:</div>
             <div class="text-lighttable dark:text-white200">{{ transactionInfo.txid }}</div>
         </div>
         <div class="flex justify-start items-center mb-2">

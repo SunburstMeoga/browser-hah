@@ -134,7 +134,6 @@ export default {
                 // this.client_out = res.client_out
                 // this.transactionInfo.transtime = res.transtime
                 this.transactionInfo = res
-                this.transactionInfo.status = res.logs[0].status
                 this.getTXDetails()
                 this.logsList = res.logs
                 // this.logsList.status = res.status
