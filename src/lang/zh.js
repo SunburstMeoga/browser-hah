@@ -204,7 +204,7 @@ module.exports = {
     topics: '主题',
     data: '数据',
     executionStatus: '执行状态',
-    internalTransfers: '内部转账'
+    internalTransfers: 'HRC20转账'
   },
   tradeDetails: {
     height: '区块高度',

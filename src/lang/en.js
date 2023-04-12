@@ -207,7 +207,7 @@ module.exports = {
     topics: 'Topics',
     data: 'Data',
     executionStatus: 'Execution Status',
-    internalTransfers: 'Internal transfers'
+    internalTransfers: 'HRC20 Transfers'
   },
   tradeDetails: {
     height: 'Block Height',

@@ -9,70 +9,73 @@
         </div>
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.block') }}:</div>
-            <div
-                class="cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+            <div class="text-clickable sm:hidden">
                 {{ addressFilter($store.state.txInfo.block_hash) || '0x00000000' }}</div>
+            <div
+                class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                {{ $store.state.txInfo.block_hash }}</div>
             <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                 @click="copyContent($store.state.txInfo.block_hash)" />
         </div>
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4">{{ $t('tradeDetails.hash') }}:</div>
-            <div class="text-lighttable dark:text-white200">{{ addressFilter(transactionInfo.txid) }}</div>
+            <div class="text-lighttable dark:text-white20 sm:hidden">{{ addressFilter(transactionInfo.txid) }}</div>
+            <div class="text-lighttable dark:text-white200 hidden sm:block">{{ transactionInfo.txid }}</div>
             <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                 @click="copyContent(transactionInfo.txid)" />
         </div>
         <div class="flex justify-start items-center mb-2">
-            <div class="font-bold pr-4 ">{{ $t('Tx.to') }}:</div>
-            <div
-                class="cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
-                {{ addressFilter(transactionInfo.to) }}</div>
-            <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
-                @click="copyContent(transactionInfo.to)" />
-
-        </div>
-
-        <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.from') }}:</div>
-            <div
-                class="cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+            <div class="text-clickable sm:hidden">
                 {{ addressFilter(transactionInfo.from) }} </div>
+            <div
+                class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                {{ transactionInfo.from }} </div>
             <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                 @click="copyContent(transactionInfo.from)" />
 
         </div>
+        <div class="flex justify-start items-center mb-2">
+            <div class="font-bold pr-4 ">{{ $t('Tx.to') }}:</div>
+            <div class="text-clickable sm:hidden">
+                {{ addressFilter(transactionInfo.to) }} </div>
+            <div
+                class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                {{ transactionInfo.from }} </div>
+            <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                @click="copyContent(transactionInfo.to)" />
 
+        </div>
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.txAmount') }}:</div>
             <div class="text-lighttable dark:text-white200">{{ transactionInfo.amount }} HAH</div>
         </div>
-
-        <div class="flex justify-start items-center mb-2">
-            <div class="font-bold pr-4 ">{{ $t('logs.internalTransfers') }}:</div>
-            <div class="text-lighttable dark:text-white200">{{ $store.state.txInfo.transTotal || 0 }} </div>
-        </div>
-
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.txFee') }}:</div>
             <div class="text-lighttable dark:text-white200">{{ $store.state.txInfo.fee }} HAH</div>
         </div>
-
         <div class="flex justify-start items-center mb-2">
-            <div class="font-bold pr-4 ">Nonce:</div>
-            <div class="text-sm text-lighttable dark:text-white200">{{ transactionInfo.nonce }} </div>
+            <div class="font-bold pr-4">{{ $t('tradeDetails.GASPrice') }}:</div>
+            <div class="text-lighttable dark:text-white200">{{ transactionInfo.gasprice }}</div>
         </div>
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('tradeDetails.GASLimit') }}:</div>
             <div class="text-sm text-lighttable dark:text-white200">{{ transactionInfo.gaslimit }} </div>
         </div>
+        <div class="flex justify-start items-start mb-2 sm:items-center" v-show="transactionInfo.data">
+            <div class="font-bold pr-4 ">Data:</div>
+            <div
+                class="text-lighttable dark:text-white200 break-all bg-lightborder text-sm dark:bg-border100 py-2 px-4 rounded-lg">
+                {{ transactionInfo.data }} </div>
+        </div>
+        <div class="flex justify-start items-center mb-2">
+            <div class="font-bold pr-4 ">Nonce:</div>
+            <div class="text-sm text-lighttable dark:text-white200">{{ transactionInfo.nonce }} </div>
+        </div>
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('tradeDetails.tradeType') }}:</div>
             <div class="bg-lightborder text-sm dark:text-white300 dark:bg-border100 py-2 px-4 rounded-lg">{{ tradeType }}
             </div>
-        </div>
-
-        <div class="flex justify-start items-center mb-2">
-            <div class="font-bold pr-4">{{ $t('tradeDetails.GASPrice') }}:</div>
-            <div class="text-lighttable dark:text-white200">{{ transactionInfo.gasprice }}</div>
         </div>
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4">{{ $t('Block.time') }}:</div>
@@ -85,6 +88,19 @@
                 {{ transactionInfo.status === '0x1' ? $t('status.success') : $t('status.fail') }}
             </div>
         </div>
+
+        <div class="flex justify-start items-center mb-2">
+            <div class="font-bold pr-4 ">{{ $t('logs.internalTransfers') }}:</div>
+            <div class="text-lighttable dark:text-white200">{{ $store.state.txInfo.transTotal || 0 }} </div>
+        </div>
+
+
+
+
+
+
+
+
     </div>
 </template>
 
