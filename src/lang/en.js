@@ -208,5 +208,19 @@ module.exports = {
     data: 'Data',
     executionStatus: 'Execution Status',
     internalTransfers: 'Internal transfers'
+  },
+  tradeDetails: {
+    height: 'Block Height',
+    hash: 'Transaction HASH',
+    GASLimit: 'GAS limit',
+    tradeType: 'Trade Type',
+    GASPrice: 'GAS Price',
+    contractCreate: 'Contract Creation',
+    contractInvoke: 'Contract Call',
+    genesis: 'Creation',
+    stake: 'DPOS Mining',
+    token: 'Ordinary',
+    voteReward: 'Earnings',
+    work: 'Pow Mining'
   }
 }

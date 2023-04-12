@@ -6,7 +6,7 @@
             </div>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-4 sm:mb-10">
             <div
                 class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
                 <h-loading :loadStatus="tranInfoLoadStatus" />
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="mb-4" v-if="dataDetails.length !== 0">
+        <div class="mb-4 sm:mb-10" v-if="dataDetails.length !== 0">
             <div
                 class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
                 <div class="px-4 pt-4">
@@ -45,7 +45,7 @@
         </div>
 
 
-        <div
+        <div v-if="logsList.length !== 0"
             class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
             <div class="px-4 py-4 border-b border-ligthborder dark:border-border100">
                 <second-title :title="$t('logs.title')" :details="countLogs" />
@@ -104,7 +104,7 @@ export default {
     created() {
         this.txid = this.$route.params.txid
         this.getTxinfo()
-        this.getTXDetails()
+        // this.getTXDetails()
     },
     computed: {
         countLogs() {
@@ -114,36 +114,29 @@ export default {
     methods: {
         timeFormat, addressFormat, amountFormat,
         getTXDetails() {
-            let params = {
-                txid: this.txid
-            };
-            txDetails(params).then(res => {
+            txDetails({ txid: this.txid, }).then(res => {
                 this.dataDetails = res
                 this.transactionInfo.transTotal = res.length
             });
         },
         getTxinfo() {
-            let params = {
-                txid: this.txid,
-            };
-            txInfo(params).then(res => {
+            txInfo({ txid: this.txid, }).then(res => {
                 console.log('tx', res)
-                this.transactionInfo.block_hash = res.block_hash
-                this.transactionInfo.from = res.from
-                this.transactionInfo.to = res.to
-                this.transactionInfo.amount = res.amount
-                this.transactionInfo.fee = res.fee
-                this.transactionInfo.nonce = res.nonce
-                this.dpos_in = res.dpos_in
-                this.dpos_out = res.dpos_out
-                this.client_in = res.client_in
-                this.client_out = res.client_out
-                this.transactionInfo.transtime = res.transtime
-
+                // this.transactionInfo.block_hash = res.block_hash
+                // this.transactionInfo.from = res.from
+                // this.transactionInfo.to = res.to
+                // this.transactionInfo.amount = res.amount
+                // this.transactionInfo.fee = res.fee
+                // this.transactionInfo.nonce = res.nonce
+                // this.dpos_in = res.dpos_in
+                // this.dpos_out = res.dpos_out
+                // this.client_in = res.client_in
+                // this.client_out = res.client_out
+                // this.transactionInfo.transtime = res.transtime
+                this.transactionInfo = res
+                this.transactionInfo.status = res.logs[0].status
+                this.getTXDetails()
                 this.logsList = res.logs
-                this.logsList.map(item => {
-                    item.status = res.status
-                })
                 // this.logsList.status = res.status
                 console.log('logsList', this.logsList)
                 this.tranInfoLoadStatus = 'finished'

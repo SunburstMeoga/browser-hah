@@ -35,12 +35,7 @@
                     {{ logInfo.data }}
                 </div>
             </div>
-            <div class="flex justify-start items-center font-black">
-                <div class="text-lightword dark:text-black100">{{ $t('logs.executionStatus') }}</div>
-                <div class="pl-2" :class="logInfo.status === '0x01' ? 'text-green-300' : 'text-red-600'">
-                    {{ logInfo.status === '0x01' ? $t('status.success') : $t('status.fail') }}
-                </div>
-            </div>
+
         </div>
     </div>
 </template>

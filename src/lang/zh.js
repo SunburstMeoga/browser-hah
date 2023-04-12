@@ -205,5 +205,19 @@ module.exports = {
     data: '数据',
     executionStatus: '执行状态',
     internalTransfers: '内部转账'
+  },
+  tradeDetails: {
+    height: '区块高度',
+    hash: '交易HASH',
+    GASLimit: 'GAS上限',
+    tradeType: '交易类型',
+    GASPrice: 'GAS价格',
+    contractCreate: '合约创建',
+    contractInvoke: '合约调用',
+    genesis: '创世',
+    stake: 'DPOS挖矿',
+    token: '普通',
+    voteReward: '收益',
+    work: 'Pow挖矿'
   }
 }
