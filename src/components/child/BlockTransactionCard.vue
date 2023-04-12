@@ -13,7 +13,7 @@
         </div>
 
         <div class="flex justify-start items-center sm:mb-2">
-            <div class="font-bold pr-4 sm:w-1/4 ">Input:</div>
+            <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Tx.from') }}:</div>
             <div class="flex justify-start items-center">
                 <div class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
                     @click="toAddress(transactionInfo.from)">
@@ -27,11 +27,11 @@
         </div>
 
         <div class="flex justify-start items-center sm:mb-2">
-            <div class="font-bold pr-4 sm:w-1/4 ">Output:</div>
+            <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Tx.to') }}:</div>
             <div class="flex justify-start items-center">
                 <div class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
                     @click="toAddress(transactionInfo.to)">
-                    {{ transactionInfo.from }}
+                    {{ transactionInfo.to }}
                 </div>
                 <div class="sm:hidden  text-clickable" @click="toAddress(transactionInfo.to)">
                     {{ addressFilter(transactionInfo.to) }}
