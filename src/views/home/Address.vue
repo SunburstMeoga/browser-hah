@@ -130,7 +130,7 @@ export default {
             this.txListDatas = []
             this.getAddressTxList()
         },
-        toTXLastPage() {
+        toTXLastPage(selectedPageSize) {
             console.log(this.txCurrentPage, this.totalPage)
             if (this.rankCurrentPage >= this.totalPage) {
                 return
