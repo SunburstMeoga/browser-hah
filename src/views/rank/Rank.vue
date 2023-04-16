@@ -9,7 +9,7 @@
             <div class="">
                 <h-pagination @changePageSize="toRankFirstPage" @toFirstPage="toRankFirstPage" @toPrePage="toRankPrePage"
                     @toNextPage="toRankNextPage" @toLastPage="toRankLastPage" :currentPage="rankCurrentPage"
-                    :totalPage="totalPage" @toTargetPage="toTradeTargetPage"></h-pagination>
+                    :totalPage="totalPage" @toTargetPage="toRankTargetPage"></h-pagination>
             </div>
         </div>
     </div>
@@ -96,7 +96,7 @@ export default {
             this.rankListDatas = []
             this.getRankList()
         },
-        toTradeTargetPage(selectedPageSize, targetPage) {
+        toRankTargetPage(selectedPageSize, targetPage) {
             console.log(targetPage)
             if (targetPage <= 0) {
                 return

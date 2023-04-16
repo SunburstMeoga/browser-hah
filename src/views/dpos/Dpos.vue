@@ -8,7 +8,8 @@
             <dpos-list-table :dataList="dposListDatas" :loadStatus="dposListLoadStatus" />
             <div class="">
                 <h-pagination @changePageSize="toDposFirstPage" @toFirstPage="toDposFirstPage" @toPrePage="toDposPrePage"
-                    @toNextPage="toDposNextPage" @toLastPage="toDposLastPage" :currentPage="dposCurrentPage"></h-pagination>
+                    @toNextPage="toDposNextPage" @toLastPage="toDposLastPage" :currentPage="dposCurrentPage"
+                    :totalPage="totalPage" @toTargetPage="toDposTargetPage"></h-pagination>
             </div>
         </div>
     </div>
@@ -30,7 +31,8 @@ export default {
             dposListLoadStatus: 'loading',
             dposPageSize: 10,
             dposCurrentPage: 1,
-            totalAddress: 0
+            totalAddress: 0,
+            totalPage: 1
         }
     },
     created() {
@@ -50,7 +52,7 @@ export default {
                 console.log(res)
                 // this.totalAddress = this.$t('moduleTitle.totalNode', { count: numberFormat(res.total) })
                 this.totalAddress = res.total
-
+                this.totalPage = res.totalPage
                 this.dposCurrentPage = res.page
 
             });
@@ -77,11 +79,26 @@ export default {
             this.dposListDatas = []
             this.getListDelegate()
         },
-        toDposLastPage() {
-
+        toDposLastPage(selectedPageSize) {
+            console.log(this.dposCurrentPage, this.totalPage)
+            if (this.dposCurrentPage >= this.totalPage) {
+                return
+            }
+            this.dposPageSize = selectedPageSize
+            this.dposCurrentPage = this.totalPage
+            this.dposListDatas = []
+            this.getListDelegate()
         },
-
-
+        toDposTargetPage(selectedPageSize, targetPage) {
+            console.log(targetPage)
+            if (targetPage <= 0) {
+                return
+            }
+            this.dposPageSize = selectedPageSize
+            this.dposCurrentPage = targetPage
+            this.dposListDatas = []
+            this.getListDelegate()
+        }
     },
 }
 </script>
