@@ -167,7 +167,7 @@ module.exports = {
     browser: 'HAH浏览器',
   },
   pagination: {
-    show: '显示：',
+    show: '每页显示',
     records: '条记录',
     first: '第一页',
     last: '最后一页'
@@ -190,7 +190,8 @@ module.exports = {
   },
   messageTips: {
     copySuccess: '复制成功',
-    copyFail: '复制失败，请重新复制'
+    copyFail: '复制失败，请重新复制',
+    noMore: '无更多数据'
   },
   status: {
     success: '成功',

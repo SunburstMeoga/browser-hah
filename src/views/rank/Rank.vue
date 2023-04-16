@@ -8,7 +8,7 @@
             <rank-list-table :dataList="rankListDatas" :loadStatus="rankListLoadStatus" />
             <div class="">
                 <h-pagination @changePageSize="toRankFirstPage" @toFirstPage="toRankFirstPage" @toPrePage="toRankPrePage"
-                    @toNextPage="toRankNextPage" @toLastPage="toRankLastPage" :pageSize="rankCurrentPage"></h-pagination>
+                    @toNextPage="toRankNextPage" @toLastPage="toRankLastPage" :currentPage="rankCurrentPage"></h-pagination>
             </div>
         </div>
     </div>

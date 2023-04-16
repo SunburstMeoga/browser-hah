@@ -2,26 +2,6 @@
     <div class="relative w-full mb-2 sm:mb-6 sm:py-1 bg-white border-b border-lightborder dark:border-border100 dark:bg-black400"
         style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
         <div class="w-full sm:w-10/12 sm:mr-auto sm:ml-auto sm:flex sm:justify-between sm:items-center">
-
-            <!-- <div class="py-2 border-b sm:order-1 sm:border-none border-lightborder dark:border-border100">
-                <div class="flex rounded-lg justify-start items-center w-11/12 mr-auto ml-auto h-9 overflow-hidden border border-b border-lightborder dark:border-border100 dark:bg-black400"
-                    :class="isFocus ? 'focused' : ''">
-                    <div class="icon iconfont icon-search pr-2 pl-3 text-lightword dark:text-black100" />
-                    <div class="flex-1 h-full ">
-                        <input type="text" :placeholder="$t('common.placeholder')" @focus="focusSearch" @blur="blurSearch"
-                            class="search w-full h-full rounded-sm dark:bg-black400" v-model="searchContent" />
-                    </div>
-                </div>
-                <div class="w-11/12 mr-auto ml-auto mt-4 flex justify-start flex-wrap show-easy"
-                    v-show="showSearchCriteria">
-                    <div class="flex justify-start items-center text-sm px-2 mr-6 rounded-lg mb-2 text-lighttable  dark:bg-black300 dark:text-black100"
-                        v-for="(item, index) in searchCriteriaList" :key="index" @click="handleSearch(item.path)">
-                        <div class="icon iconfont text-lg" :class="item.icon"></div>
-                        <div class="pl-1">{{ item.title }}</div>
-
-                    </div>
-                </div>
-            </div> -->
             <!--  logo and theme language menu -->
             <div class="flex w-full justify-between items-center flex-wrap py-3 ml-auto mr-auto sm:flex-nowrap ">
                 <!-- search -->

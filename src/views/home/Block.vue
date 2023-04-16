@@ -38,7 +38,8 @@
                 </div>
                 <div>
                     <h-pagination @changePageSize="toTXFirstPage" @toFirstPage="toTXFirstPage" @toPrePage="toTXPrePage"
-                        @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :pageSize="txCurrentPage"></h-pagination>
+                        @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :totalPage="totalPage"
+                        :currentPage="txCurrentPage" />
                 </div>
             </div>
         </div>
@@ -72,7 +73,8 @@ export default {
             blockInfoLoadStatus: 'loading',
             txPageSize: 10,
             txCurrentPage: 1,
-            totalTrade: 0
+            totalTrade: 0,
+            totalPage: 0
         }
     },
     created() {
@@ -100,7 +102,7 @@ export default {
                     }
                     // this.totalTrade = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
                     this.totalTrade = res.total
-
+                    this.totalPage = res.totalPage
                 });
         },
 

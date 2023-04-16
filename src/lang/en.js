@@ -172,7 +172,7 @@ module.exports = {
     browser: 'HAH Browser',
   },
   pagination: {
-    show: 'Show:',
+    show: 'Per page:',
     records: 'Records',
     first: 'First',
     last: 'Last'
@@ -195,7 +195,8 @@ module.exports = {
   },
   messageTips: {
     copySuccess: 'Copy Successful',
-    fail: 'Copy failed, please re-replicate'
+    fail: 'Copy failed, please re-replicate',
+    noMore: 'No more data'
   },
   status: {
     success: 'Success',

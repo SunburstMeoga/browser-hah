@@ -8,7 +8,7 @@
       <hrc-list-table :dataList="hrcListDatas" :loadStatus="hrcListLoadStatus" />
       <div class="">
         <h-pagination @changePageSize="toHRCFirstPage" @toFirstPage="toHRCFirstPage" @toPrePage="toHRCPrePage"
-          @toNextPage="toHRCNextPage" @toLastPage="toHRCLastPage" :pageSize="hrcCurrentPage"></h-pagination>
+          @toNextPage="toHRCNextPage" @toLastPage="toHRCLastPage" :currentPage="hrcCurrentPage"></h-pagination>
       </div>
     </div>
   </div>

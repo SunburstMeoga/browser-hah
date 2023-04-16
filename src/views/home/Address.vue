@@ -36,7 +36,7 @@
                 </div>
                 <div>
                     <h-pagination @changePageSize="toTXFirstPage" @toFirstPage="toTXFirstPage" @toPrePage="toTXPrePage"
-                        @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :pageSize="txCurrentPage"></h-pagination>
+                        @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :currentPage="txCurrentPage"></h-pagination>
                 </div>
             </div>
         </div>

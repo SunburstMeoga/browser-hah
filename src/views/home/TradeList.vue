@@ -11,7 +11,8 @@
             <trade-table :dataList="TXListDatas" :loadStatus="tradeTableLoadStatus" />
             <div>
                 <h-pagination @changePageSize="toTXFirstPage" @toFirstPage="toTXFirstPage" @toPrePage="toTXPrePage"
-                    @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :pageSize="txCurrentPage"></h-pagination>
+                    @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :currentPage="txCurrentPage"
+                    :totalPage="totalPage" @toTargetPage="toTradeTargetPage"></h-pagination>
             </div>
         </div>
     </div>
@@ -44,11 +45,13 @@ export default {
         getTXList() {
             this.tradeTableLoadStatus = 'loading'
             TXList({ pageSize: this.txPageSize, page: this.txCurrentPage }).then(res => {
+                console.log('getTXList', res)
                 if (res.data.length !== 0) {
                     this.TXListDatas = res.data
                     this.tradeTableLoadStatus = 'finished'
                 } else {
                     this.tradeTableLoadStatus = 'empty'
+                    this.$message.error(this.$t('messageTips.noMore'))
                 }
                 // this.totalTrades = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
                 this.totalTrades = res.total
@@ -90,6 +93,16 @@ export default {
             this.TXListDatas = []
             this.getTXList()
         },
+        toTradeTargetPage(selectedPageSize, targetPage) {
+            console.log(targetPage)
+            if (targetPage <= 0) {
+                return
+            }
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = targetPage
+            this.TXListDatas = []
+            this.getTXList()
+        }
     },
 
 }

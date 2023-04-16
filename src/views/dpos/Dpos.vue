@@ -8,7 +8,7 @@
             <dpos-list-table :dataList="dposListDatas" :loadStatus="dposListLoadStatus" />
             <div class="">
                 <h-pagination @changePageSize="toDposFirstPage" @toFirstPage="toDposFirstPage" @toPrePage="toDposPrePage"
-                    @toNextPage="toDposNextPage" @toLastPage="toDposLastPage" :pageSize="dposCurrentPage"></h-pagination>
+                    @toNextPage="toDposNextPage" @toLastPage="toDposLastPage" :currentPage="dposCurrentPage"></h-pagination>
             </div>
         </div>
     </div>

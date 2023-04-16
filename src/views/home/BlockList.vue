@@ -11,7 +11,8 @@
             <new-block-table :dataList="blockListDatas" :loadStatus="blockTableLoadStatus" />
             <div>
                 <h-pagination @changePageSize="toBlockFirstPage" @toFirstPage="toBlockFirstPage" @toPrePage="toBlockPrePage"
-                    @toNextPage="toBlockNextPage" @toLastPage="toBlockLastPage" :pageSize="blockCurrentPage" />
+                    @toNextPage="toBlockNextPage" @toLastPage="toBlockLastPage" :currentPage="blockCurrentPage"
+                    :totalPage="totalPage" @toTargetPage="toBlockTargetPage" />
             </div>
         </div>
     </div>
@@ -32,8 +33,8 @@ export default {
             blockTableLoadStatus: 'loading',
             blockPageSize: 10,
             blockCurrentPage: 1,
-            totalPage: 1,
-            totalBlocks: 0
+            totalBlocks: 0,
+            totalPage: 0
         }
     },
     created() {
@@ -49,13 +50,11 @@ export default {
                         this.blockListDatas = res.data
                         this.blockTableLoadStatus = 'finished'
                     } else {
-                        this.websock.close();
                         this.blockTableLoadStatus = 'empty'
+                        this.$message.error(this.$t('messageTips.noMore'))
                     }
                     this.totalPage = res.totalPage
-                    // this.totalBlocks = this.$t('moduleTitle.totalBlocks', { count: numberFormat(res.total) })
                     this.totalBlocks = res.total
-
                     this.blockCurrentPage = res.page
                 }).catch(err => {
                     console.log('load fail:', err)
@@ -93,6 +92,19 @@ export default {
             this.blockListDatas = []
             this.getBlockList()
         },
+        // toBlockTargetPage() {
+
+        // }
+        toBlockTargetPage(selectedPageSize, targetPage) {
+            console.log(targetPage)
+            if (targetPage <= 0) {
+                return
+            }
+            this.blockPageSize = selectedPageSize
+            this.blockCurrentPage = targetPage
+            this.blockListDatas = []
+            this.getBlockList()
+        }
     },
 
 }
