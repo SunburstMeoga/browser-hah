@@ -32,10 +32,11 @@
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.previousBlock') }}:</div>
-            <div class="text-sm sm:hidden">
+            <div class="text-sm pr-2 sm:hidden">
                 {{ addressFilter(blockInfo.prev_hash) }}</div>
-            <div class="text-sm hidden sm:block">
+            <div class="text-sm pr-2 hidden sm:block">
                 {{ blockInfo.prev_hash }}</div>
+            <div class="cursor-pointer icon iconfont icon-copy text-clickable" @click="copyContent(blockInfo.prev_hash)" />
         </div>
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">

@@ -8,7 +8,8 @@
       <hrc-list-table :dataList="hrcListDatas" :loadStatus="hrcListLoadStatus" />
       <div class="">
         <h-pagination @changePageSize="toHRCFirstPage" @toFirstPage="toHRCFirstPage" @toPrePage="toHRCPrePage"
-          @toNextPage="toHRCNextPage" @toLastPage="toHRCLastPage" :currentPage="hrcCurrentPage"></h-pagination>
+          @toNextPage="toHRCNextPage" @toLastPage="toHRCLastPage" :currentPage="hrcCurrentPage" :totalPage="totalPage"
+          @toTargetPage="toTradeTargetPage"></h-pagination>
       </div>
     </div>
   </div>
@@ -30,7 +31,8 @@ export default {
       hrcListLoadStatus: 'loading',
       hrcPageSize: 10,
       hrcCurrentPage: 1,
-      totalHRC20: 0
+      totalHRC20: 0,
+      totalPage: 1
     }
   },
   mounted() {
@@ -50,7 +52,7 @@ export default {
         }
         // this.totalHRC20 = this.$t('moduleTitle.totalContract', { count: numberFormat(res.total) })
         this.totalHRC20 = res.total
-
+        this.totalPage = res.totalPage
         this.hrcCurrentPage = res.page
 
       });
@@ -79,9 +81,26 @@ export default {
       this.hrcListDatas = []
       this.getListHRC20()
     },
-    toHRCLastPage() {
-
-    }
+    toHRCLastPage(selectedPageSize) {
+      console.log(this.hrcCurrentPage, this.totalPage)
+      if (this.hrcCurrentPage >= this.totalPage) {
+        return
+      }
+      this.hrcPageSize = selectedPageSize
+      this.hrcCurrentPage = this.totalPage
+      this.hrcListDatas = []
+      this.getListHRC20()
+    },
+    toTradeTargetPage(selectedPageSize, targetPage) {
+      console.log(targetPage)
+      if (targetPage <= 0) {
+        return
+      }
+      this.hrcPageSize = selectedPageSize
+      this.hrcCurrentPage = targetPage
+      this.hrcListDatas = []
+      this.getListHRC20()
+    },
   }
 }
 </script>

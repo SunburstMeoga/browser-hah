@@ -10,7 +10,7 @@
                         前往
                     </div>
                     <div
-                        class="w-8 rounded-sm h-6 overflow-hidden mx-1 border border-ligthborder text-ligthword dark:border-border100 dark:text-btndisable">
+                        class="w-20 rounded-sm h-6 overflow-hidden mx-1 border border-ligthborder text-ligthword dark:border-border100 dark:text-btndisable">
                         <input type="text" class="w-full border-none h-full bg-transparent text-center"
                             v-model="currentPage">
                     </div>
