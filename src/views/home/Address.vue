@@ -36,7 +36,8 @@
                 </div>
                 <div>
                     <h-pagination @changePageSize="toTXFirstPage" @toFirstPage="toTXFirstPage" @toPrePage="toTXPrePage"
-                        @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :currentPage="txCurrentPage"></h-pagination>
+                        @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :currentPage="txCurrentPage"
+                        :totalPage="totalPage" @toTargetPage="toTradeTargetPage"></h-pagination>
                 </div>
             </div>
         </div>
@@ -68,7 +69,8 @@ export default {
             addressTranListLoadStatus: 'loading',
             txPageSize: 10,
             txCurrentPage: 1,
-            totalTrade: 0
+            totalTrade: 0,
+            totalPage: 0
         }
 
     },
@@ -102,7 +104,7 @@ export default {
                 }
                 // this.totalTrade = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
                 this.totalTrade = res.total
-
+                this.totalPage = res.totalPage
                 console.log(this.txListDatas)
             })
         },
@@ -129,7 +131,24 @@ export default {
             this.getAddressTxList()
         },
         toTXLastPage() {
-
+            console.log(this.txCurrentPage, this.totalPage)
+            if (this.rankCurrentPage >= this.totalPage) {
+                return
+            }
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = this.totalPage
+            this.txListDatas = []
+            this.getAddressTxList()
+        },
+        toTradeTargetPage(selectedPageSize, targetPage) {
+            console.log(targetPage)
+            if (targetPage <= 0) {
+                return
+            }
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = targetPage
+            this.txListDatas = []
+            this.getAddressTxList()
         },
         getBalanceInfo() {
             balanceInfo({
