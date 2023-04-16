@@ -39,7 +39,7 @@
                 <div>
                     <h-pagination @changePageSize="toTXFirstPage" @toFirstPage="toTXFirstPage" @toPrePage="toTXPrePage"
                         @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :totalPage="totalPage"
-                        :currentPage="txCurrentPage" />
+                        :currentPage="txCurrentPage" @toTargetPage="toTradeTargetPage" />
                 </div>
             </div>
         </div>
@@ -128,8 +128,25 @@ export default {
             this.txListDatas = []
             this.getTXList()
         },
-        toTXLastPage() {
-
+        toTXLastPage(selectedPageSize) {
+            console.log(this.txCurrentPage, this.totalPage)
+            if (this.rankCurrentPage >= this.totalPage) {
+                return
+            }
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = this.totalPage
+            this.txListDatas = []
+            this.getTXList()
+        },
+        toTradeTargetPage(selectedPageSize, targetPage) {
+            console.log(targetPage)
+            if (targetPage <= 0) {
+                return
+            }
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = targetPage
+            this.txListDatas = []
+            this.getTXList()
         },
         getBlockInfo() {
             let params = {
