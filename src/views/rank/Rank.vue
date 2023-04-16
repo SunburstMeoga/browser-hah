@@ -8,7 +8,8 @@
             <rank-list-table :dataList="rankListDatas" :loadStatus="rankListLoadStatus" />
             <div class="">
                 <h-pagination @changePageSize="toRankFirstPage" @toFirstPage="toRankFirstPage" @toPrePage="toRankPrePage"
-                    @toNextPage="toRankNextPage" @toLastPage="toRankLastPage" :currentPage="rankCurrentPage"></h-pagination>
+                    @toNextPage="toRankNextPage" @toLastPage="toRankLastPage" :currentPage="rankCurrentPage"
+                    :totalPage="totalPage" @toTargetPage="toTradeTargetPage"></h-pagination>
             </div>
         </div>
     </div>
@@ -49,6 +50,7 @@ export default {
                     this.rankListLoadStatus = 'finished'
                 } else {
                     this.rankListLoadStatus = 'empty'
+                    this.$message.error(this.$t('messageTips.noMore'))
                 }
                 // this.totalAddress = this.$t('moduleTitle.totalRanks', { count: numberFormat(res.total) })
                 this.totalAddress = res.total
@@ -94,6 +96,16 @@ export default {
             this.rankListDatas = []
             this.getRankList()
         },
+        toTradeTargetPage(selectedPageSize, targetPage) {
+            console.log(targetPage)
+            if (targetPage <= 0) {
+                return
+            }
+            this.rankPageSize = selectedPageSize
+            this.rankCurrentPage = targetPage
+            this.rankListDatas = []
+            this.getRankList()
+        }
     }
 }
 </script>
