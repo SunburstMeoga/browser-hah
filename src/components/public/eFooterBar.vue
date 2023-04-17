@@ -87,7 +87,10 @@ export default {
                 {
                     title: this.$t('footBar.Product'),
                     details: [
-
+                        {
+                            title: this.$t('footBar.browser'),
+                            path: 'https://testnet.hashahead.org/'
+                        },
                         {
                             title: 'HashAhead',
                             path: 'https://github.com/Block-Way'
@@ -100,11 +103,8 @@ export default {
                             title: this.$t('footBar.faucet'),
                             path: 'https://testnet.hashahead.org/faucet-smart'
 
-                        },
-                        {
-                            title: this.$t('footBar.browser'),
-                            path: 'https://testnet.hashahead.org/'
-                        },
+                        }
+
                     ]
                 }
             ]
