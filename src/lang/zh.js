@@ -33,6 +33,7 @@ module.exports = {
     block: '所在块',
     txFee: '交易费',
     locked: '锁定余额',
+    hidden: '收起'
   },
   Block: {
     blockInfo: '区块信息',

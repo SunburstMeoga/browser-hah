@@ -50,8 +50,9 @@
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4">Token:</div>
             <div class="text-sm text-lighttable dark:text-white200 pr-2">{{ addressInfo.token.length }} </div>
-            <div class="text-clickable cursor-pointer underline" @click="showTokens = !showTokens">{{ showTokens ? 'Hidden'
-                : 'Click to view more' }}</div>
+            <div class="text-clickable cursor-pointer underline" @click="showTokens = !showTokens">{{ showTokens ?
+                $t('Address.hidden')
+                : $t('common.more') }}</div>
         </div>
 
         <div v-show="showTokens">

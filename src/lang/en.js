@@ -36,6 +36,7 @@ module.exports = {
     block: 'Block',
     txFee: 'Transaction Fee',
     locked: 'Locked',
+    hidden: 'Collapse'
   },
   Block: {
     blockInfo: 'Block Information',
