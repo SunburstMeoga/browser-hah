@@ -46,6 +46,31 @@
             <div class="font-bold pr-4 sm:w-1/4">Nonce:</div>
             <div class="text-sm text-lighttable dark:text-white200">{{ addressInfo.nonce }} </div>
         </div>
+
+        <div class="flex justify-start items-center mb-2 sm:mb-4">
+            <div class="font-bold pr-4 sm:w-1/4">Token:</div>
+            <div class="text-sm text-lighttable dark:text-white200 pr-2">{{ addressInfo.token.length }} </div>
+            <div class="text-clickable cursor-pointer underline" @click="showTokens = !showTokens">{{ showTokens ? 'Hidden'
+                : 'Click to view more' }}</div>
+        </div>
+
+        <div v-show="showTokens">
+            <div class="cursor-pointer flex justify-between items-center border-t rounded-lg bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow py-2 px-1"
+                v-for="(item, index) in addressInfo.token" :key="index" @click="toToken(item.con_addr)">
+                <div class="flex flex-col justify-center items-start">
+                    <div>{{ item.symbol }}</div>
+                    <div class="flex justify-start items-center">
+                        <div class="text-clickable sm:hidden">{{ addressFilter(item.con_addr) }}</div>
+                        <div class="text-clickable hidden sm:block">{{ item.con_addr }}</div>
+                        <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                            @click="copyContent(item.con_addr)" />
+                    </div>
+                </div>
+                <div>
+                    {{ item.balance }} HAH
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -56,6 +81,11 @@ export default {
         addressInfo: {
             type: Object,
             default: () => { }
+        }
+    },
+    data() {
+        return {
+            showTokens: false
         }
     },
     methods: {
@@ -70,6 +100,11 @@ export default {
                 this.$message.error(this.$t('message.fail'));
 
             });
+        },
+        toToken(address) {
+            this.$router.push({
+                path: '/token/' + address
+            })
         },
         toAddress(address) {
             this.$router.push({

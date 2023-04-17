@@ -21,13 +21,9 @@
                     <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('hrc20.name') }}:</div>
                     <div class="text-sm">{{ tokenInfo.name }}</div>
                 </div>
-                <div class="flex justify-start items-center mb-2">
+                <div class="flex justify-start items-center">
                     <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('hrc20.decimals') }}:</div>
                     <div class="text-sm">{{ tokenInfo.decimals }}</div>
-                </div>
-                <div class="flex justify-start items-center mb-2">
-                    <div class="font-bold pr-4 sm:w-1/4 ">Token:</div>
-                    <div class="text-sm">{{ tokenInfo.otherToken }}</div>
                 </div>
             </div>
             <div
@@ -51,6 +47,9 @@
                 </div>
             </div>
         </div>
+
+
+
         <div class="mb-2 sm:mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto">
             <module-title :title="'HRC20' + $t('common.tx')" :total="totalTrade"></module-title>
         </div>
@@ -84,7 +83,7 @@ export default {
             txPageSize: 10,
             txCurrentPage: 1,
             totalTrade: 0,
-            totalPage: 0
+            totalPage: 0,
         }
     },
     created() {

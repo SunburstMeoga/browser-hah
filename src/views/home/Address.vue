@@ -78,8 +78,9 @@ export default {
     created() {
         this.address = this.$route.params.address
         this.addressInfo.address = this.address
-        this.getAddressTxList()
         this.getBalanceInfo()
+
+        this.getAddressTxList()
     },
     methods: {
         numberFormat,
@@ -87,6 +88,22 @@ export default {
             this.$router.push({
                 path: '/tx/' + txid
             })
+        },
+        getBalanceInfo() {
+            balanceInfo({
+                address: this.address,
+                symbol: 'HAH',
+            }).then(res => {
+                this.addressInfo.balance = res.balance
+                this.addressInfo.locked = res.locked
+                this.addressInfo.nonce = res.nonce
+                this.addressInfo.rank = res.rank
+                this.addressInfo.token = res.token
+                this.$store.commit('getAddressInfo', this.addressInfo)
+                this.addressInfoLoadStatus = 'finished'
+                console.log('this.addressInfo', res);
+            });
+
         },
         getAddressTxList() {
             this.addressTranListLoadStatus = 'loading'
@@ -149,21 +166,6 @@ export default {
             this.txCurrentPage = targetPage
             this.txListDatas = []
             this.getAddressTxList()
-        },
-        getBalanceInfo() {
-            balanceInfo({
-                address: this.address,
-                symbol: 'HAH',
-            }).then(res => {
-                this.addressInfo.balance = res.balance
-                this.addressInfo.locked = res.locked
-                this.addressInfo.nonce = res.nonce
-                this.addressInfo.rank = res.rank
-                this.$store.commit('getAddressInfo', this.addressInfo)
-                this.addressInfoLoadStatus = 'finished'
-                console.log('this.addressInfo', res);
-            });
-
         }
     },
 }
