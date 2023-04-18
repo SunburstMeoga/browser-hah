@@ -17,6 +17,14 @@ export function TXList(params) {
     })
 }
 
+export function allStatistics(params) {
+    return request({
+        url: '/api/stat',
+        method: 'get',
+        params
+    })
+}
+
 export function blockStatistics(params) {
     return request({
         url: '/api/blockstatistics/',

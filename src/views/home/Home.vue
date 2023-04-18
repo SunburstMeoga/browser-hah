@@ -47,7 +47,7 @@ import ModuleTitle from '@/components/public/ModuleTitle'
 import HPagination from '@/components/public/HPagination'
 import ViewMore from '@/components/public/ViewMore'
 
-import { blockList, TXList, blockStatistics } from '@/request/home'
+import { blockList, TXList, blockStatistics, allStatistics } from '@/request/home'
 import { timeFormat } from '@/utils/format'
 export default {
     name: "index",
@@ -59,7 +59,7 @@ export default {
             timer: null,  // timer
             chartInfo: [],
             legend: "",
-            xAxis: "",
+            xAxis: [],
             series: "",
             tradeTableLoadStatus: 'loading',
             blockTableLoadStatus: 'loading',
@@ -68,6 +68,8 @@ export default {
             blockCurrentPage: 1,
             txPageSize: 10,
             txCurrentPage: 1,
+            amountChart: [],
+            countChart: []
         }
     },
     created() {
@@ -76,13 +78,8 @@ export default {
     mounted() {
         this.getBlockList()
         this.getTXList()
-        let days = 31;
-        this.getChartData(days)
-        // this.timer = setInterval(() => {
-        //     this.getNewBlock()
-        //     this.getNewTX()
-        //     this.getChartData(days)
-        // }, 1000 * 10)
+        this.getAllStatData()
+        // this.getChartData(31)
     },
     destroyed: function () {
         this.websock.close();
@@ -114,7 +111,7 @@ export default {
             // this.reconnect();
         },
         websocketOnmessage(e) {
-            console.log("-----Message-------", JSON.parse(e.data));
+            // console.log("-----Message-------", JSON.parse(e.data));
             let data = JSON.parse(e.data)
             let blockObj = {}
             blockObj.height = data.height
@@ -188,43 +185,150 @@ export default {
             let myChart = this.$echarts.init(document.getElementById("chart"));
             let mobileChart = this.$echarts.init(document.getElementById("mobile-chart"));
             let optionPC = {
-                grid: {
-                    // left: '10%',
-                    // right: '5%',
-                    bottom: '5%',
-                    top: '5%'
-                },
                 title: {
-                    text: ""
+                    text: '交易金额和交易次数',
+                    subtext: '近10天数据'
                 },
-                tooltip: {},
-                xAxis: {
-                    data: this.xAxis
+                tooltip: {
+                    trigger: 'axis'
                 },
-                yAxis: {},
-                series: this.series
+                legend: {
+                    data: ['Rainfall', 'Evaporation']
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        dataView: { show: false, readOnly: false },
+                        magicType: { show: true, type: ['line', 'bar'] },
+                        restore: { show: true },
+                        saveAsImage: { show: false }
+                    }
+                },
+                calculable: true,
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: this.xAxis
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '交易金额',
+                        type: 'bar',
+                        data: this.amountChart,
+                        markPoint: {
+                            data: [
+                                { type: 'max', name: 'Max' },
+                                { type: 'min', name: 'Min' }
+                            ]
+                        },
+                        markLine: {
+                            data: [{ type: 'average', name: 'Avg' }]
+                        }
+                    },
+                    {
+                        name: '交易次数',
+                        type: 'bar',
+                        data: this.countChart,
+                        markPoint: {
+                            data: [
+                                { name: 'Max', value: 182.2, xAxis: 7, yAxis: 183 },
+                                { name: 'Min', value: 2.3, xAxis: 11, yAxis: 3 }
+                            ]
+                        },
+                        markLine: {
+                            data: [{ type: 'average', name: 'Avg' }]
+                        }
+                    }
+                ]
             }
 
             let option = {
-                grid: {
-                    left: '18%',
-                    top: '6%',
-                    bottom: '12%'
-                },
                 title: {
-                    text: ""
+                    text: '交易金额和交易次数',
+                    subtext: '近10天数据'
                 },
-                tooltip: {},
-                xAxis: {
-                    data: this.xAxis
+                tooltip: {
+                    trigger: 'axis'
                 },
-                yAxis: {},
-                series: this.series
+                legend: {
+                    data: ['Rainfall', 'Evaporation']
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        dataView: { show: false, readOnly: false },
+                        magicType: { show: true, type: ['line', 'bar'] },
+                        restore: { show: true },
+                        saveAsImage: { show: false }
+                    }
+                },
+                calculable: true,
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: this.xAxis
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '交易金额',
+                        type: 'bar',
+                        data: this.amountChart,
+                        markPoint: {
+                            data: [
+                                { type: 'max', name: 'Max' },
+                                { type: 'min', name: 'Min' }
+                            ]
+                        },
+                        markLine: {
+                            data: [{ type: 'average', name: 'Avg' }]
+                        }
+                    },
+                    {
+                        name: '交易次数',
+                        type: 'bar',
+                        data: this.countChart,
+                        markPoint: {
+                            data: [
+                                { name: 'Max', value: 182.2, xAxis: 7, yAxis: 183 },
+                                { name: 'Min', value: 2.3, xAxis: 11, yAxis: 3 }
+                            ]
+                        },
+                        markLine: {
+                            data: [{ type: 'average', name: 'Avg' }]
+                        }
+                    }
+                ]
             };
 
             option && myChart.setOption(option);
             optionPC && mobileChart.setOption(optionPC);
 
+        },
+        getAllStatData() {
+            allStatistics().then(res => {
+                console.log(res)
+                res[0].days.map(item => {
+                    this.xAxis.push(item.date)
+                    this.amountChart.push(item.amount)
+                    this.countChart.push(item.count)
+                })
+                console.log('所有统计数据', res, this.xAxis, this.amountChart, this.countChart)
+                this.drawChart()
+            }).catch(err => {
+                console.log(err)
+            })
         },
         getChartData(days) {
             let params = {
