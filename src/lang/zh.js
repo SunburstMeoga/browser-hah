@@ -222,6 +222,7 @@ module.exports = {
     work: 'Pow挖矿'
   },
   overview: {
-    out: '输出金额'
+    out: '输出金额',
+    trade: '交易数'
   }
 }

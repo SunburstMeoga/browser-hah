@@ -5,37 +5,7 @@
             <!--  logo and theme language menu -->
             <div class="flex w-full justify-between items-center flex-wrap py-3 ml-auto mr-auto sm:flex-nowrap ">
                 <!-- search -->
-                <div
-                    class="pb-3 mb-2 w-full border-b sm:flex sm:ml-4 sm:justify-start sm:items-center sm:border-none sm:mb-0 sm:pb-0 sm:order-2 sm:w-1/3 border-lightborder dark:border-border100">
-                    <div class="flex rounded-lg justify-start items-center w-11/12 mr-auto ml-auto h-9 overflow-hidden border border-b border-lightborder dark:border-border100 dark:bg-black400"
-                        :class="isFocus ? 'focused' : ''">
-                        <div class="icon iconfont icon-search pr-2 pl-3 sm:hidden text-lightword dark:text-black100" />
-                        <div class="hidden relative sm:flex items-center justify-around cursor-pointer px-4 h-9 text-sm text-black dark:text-grayword"
-                            @mousemove="shwoPCSearch = true">
-                            <div>{{ pcSearchTarget || $t('common.address') }}</div>
-                            <div class="icon iconfont icon-down text-sm ml-1 text-black dark:text-grayword" />
-                        </div>
-                        <div class="flex-1 h-full ">
-                            <input type="text" :placeholder="$t('common.placeholder')" @focus="focusSearch"
-                                @blur="blurSearch"
-                                class="search w-full h-full text-sm rounded-sm text-black dark:text-grayword dark:bg-black400"
-                                v-model="searchContent" />
-                        </div>
-                    </div>
-                    <div class="hidden cursor-pointer text-sm sm:flex items-center justify-center w-28 h-9 border ml-4 rounded-lg border-lightborder hover:bg-lightborder text-black dark:text-grayword dark:hover:bg-border100 dark:border-border100"
-                        @click="pcToSearch">
-                        {{ $t('common.search') }}
-                    </div>
-                    <div class="w-11/12 mr-auto ml-auto mt-4 flex justify-start flex-wrap show-easy sm:hidden"
-                        v-show="showSearchCriteria">
-                        <div class="flex justify-start items-center text-sm px-2 mr-6 rounded-lg mb-2 text-lighttable border border-lightborder dark:border-border100 dark:bg-black300 dark:text-black100"
-                            v-for="(item, index) in searchCriteriaList" :key="index" @click="handleSearch(item.path)">
-                            <div class="icon iconfont text-lg" :class="item.icon"></div>
-                            <div class="pl-1">{{ item.title }}</div>
 
-                        </div>
-                    </div>
-                </div>
 
                 <div class="flex items-center ml-3 sm:order-1">
                     <div class="w-32">
@@ -68,6 +38,38 @@
                         class="rounded-lg flex items-center justify-center w-7 h-7 border sm:hidden border-lightborder dark:border-border100">
                         <div class="icon iconfont text-lighticon text-2xl dark:text-grayicon"
                             :class="!showMenu ? 'icon-menu' : 'icon-close'" @click="clickMenu" />
+                    </div>
+                </div>
+
+                <div
+                    class="pt-3 mt-2 w-full border-t sm:flex sm:ml-4 sm:justify-start sm:items-center sm:border-none sm:mt-0 sm:pt-0 sm:order-2 sm:w-1/3 border-lightborder dark:border-border100">
+                    <div class="flex rounded-lg justify-start items-center w-11/12 mr-auto ml-auto h-9 overflow-hidden border border-b border-lightborder dark:border-border100 dark:bg-black400"
+                        :class="isFocus ? 'focused' : ''">
+                        <div class="icon iconfont icon-search pr-2 pl-3 sm:hidden text-lightword dark:text-black100" />
+                        <div class="hidden relative sm:flex items-center justify-around cursor-pointer px-4 h-9 text-sm text-black dark:text-grayword"
+                            @mousemove="shwoPCSearch = true">
+                            <div>{{ pcSearchTarget || $t('common.address') }}</div>
+                            <div class="icon iconfont icon-down text-sm ml-1 text-black dark:text-grayword" />
+                        </div>
+                        <div class="flex-1 h-full ">
+                            <input type="text" :placeholder="$t('common.placeholder')" @focus="focusSearch"
+                                @blur="blurSearch"
+                                class="search w-full h-full text-sm rounded-sm text-black dark:text-grayword dark:bg-black400"
+                                v-model="searchContent" />
+                        </div>
+                    </div>
+                    <div class="hidden cursor-pointer text-sm sm:flex items-center justify-center w-28 h-9 border ml-4 rounded-lg border-lightborder hover:bg-lightborder text-black dark:text-grayword dark:hover:bg-border100 dark:border-border100"
+                        @click="pcToSearch">
+                        {{ $t('common.search') }}
+                    </div>
+                    <div class="w-11/12 mr-auto ml-auto mt-4 flex justify-start flex-wrap show-easy sm:hidden"
+                        v-show="showSearchCriteria">
+                        <div class="flex justify-start items-center text-sm px-2 mr-6 rounded-lg mb-2 text-lighttable border border-lightborder dark:border-border100 dark:bg-black300 dark:text-black100"
+                            v-for="(item, index) in searchCriteriaList" :key="index" @click="handleSearch(item.path)">
+                            <div class="icon iconfont text-lg" :class="item.icon"></div>
+                            <div class="pl-1">{{ item.title }}</div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -197,7 +199,11 @@ export default {
                 localStorage.setItem('language', 'en-US')
             }
             this.$i18n.locale = localStorage.getItem('language')
+            if (this.$route.path === '/') {
+                this.$router.replace({ path: '/empty' })
+            }
             console.log(this.$i18n.locale)
+            console.log(this.$route.path)
         },
         beforeDestroy() {
             clearTimeout(this.timer);

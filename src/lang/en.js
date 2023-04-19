@@ -227,6 +227,7 @@ module.exports = {
     work: 'Pow Mining'
   },
   overview: {
-    out: 'Output Amount'
+    out: 'Output Amount',
+    trade: 'Number of transactions'
   }
 }

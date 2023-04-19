@@ -221,7 +221,7 @@ export default {
                 ],
                 series: [
                     {
-                        name: 'Direct',
+                        name: this.$t('overview.trade'),
                         type: 'bar',
                         barWidth: '60%',
                         data: this.countChart
@@ -259,7 +259,7 @@ export default {
                 ],
                 series: [
                     {
-                        name: 'Direct',
+                        name: this.$t('overview.trade'),
                         type: 'bar',
                         barWidth: '60%',
                         data: this.countChart
