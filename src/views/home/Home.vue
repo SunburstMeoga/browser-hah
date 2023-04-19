@@ -1,7 +1,12 @@
 <template>
     <div class="pb-10">
+        <div v-if="showOverview"
+            class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+            <overview-card :overInfo="overInfo" />
+        </div>
+
         <div class="mb-2 w-11/12 mr-auto ml-auto sm:mb-4 sm:w-9/12">
-            <module-title :title="$t('Block.blockStatistics')"></module-title>
+            <module-title :title="$t('Block.transactions')"></module-title>
         </div>
 
         <!-- mobile chart -->
@@ -46,12 +51,13 @@ import TradeTable from '@/components/child/TradeTable'
 import ModuleTitle from '@/components/public/ModuleTitle'
 import HPagination from '@/components/public/HPagination'
 import ViewMore from '@/components/public/ViewMore'
+import OverviewCard from '@/components/child/OverviewCard'
 
 import { blockList, TXList, blockStatistics, allStatistics } from '@/request/home'
 import { timeFormat } from '@/utils/format'
 export default {
     name: "index",
-    components: { ModuleTitle, NewBlockTable, HPagination, TradeTable, ViewMore },
+    components: { ModuleTitle, NewBlockTable, HPagination, TradeTable, ViewMore, OverviewCard },
     data() {
         return {
             blockListDatas: [],
@@ -69,7 +75,9 @@ export default {
             txPageSize: 10,
             txCurrentPage: 1,
             amountChart: [],
-            countChart: []
+            countChart: [],
+            overInfo: {},
+            showOverview: false
         }
     },
     created() {
@@ -216,7 +224,7 @@ export default {
                         name: 'Direct',
                         type: 'bar',
                         barWidth: '60%',
-                        data: this.amountChart
+                        data: this.countChart
 
                     }
                 ]
@@ -254,7 +262,7 @@ export default {
                         name: 'Direct',
                         type: 'bar',
                         barWidth: '60%',
-                        data: this.amountChart
+                        data: this.countChart
                     }
                 ]
             };
@@ -266,41 +274,46 @@ export default {
         getAllStatData() {
             allStatistics().then(res => {
                 console.log(res)
-                res[0].days.map(item => {
+                res.days.map(item => {
                     this.xAxis.push(item.date)
                     this.amountChart.push(item.amount)
                     this.countChart.push(item.count)
                 })
-                console.log('所有统计数据', res, this.xAxis, this.amountChart, this.countChart)
+                this.overInfo.height = res.height
+                this.overInfo.tx_c = res.tx_c
+                this.overInfo.amount = res.amount
+                this.overInfo.addr_c = res.addr_c
+                console.log(this.overInfo)
+                this.showOverview = true
                 this.drawChart()
             }).catch(err => {
                 console.log(err)
             })
         },
-        getChartData(days) {
-            let params = {
-                days: days,
-            };
-            blockStatistics(params).then(res => {
-                console.log('blockStatistics', res)
-                this.ranklistDatas = res
-                this.legend = res.length
-                this.xAxis = res.xAxis;
-                let series = [];
-                for (let serieIndex = 0; serieIndex < res.series.length; serieIndex++) {
-                    let serie =
-                    {
-                        name: res.series[serieIndex].name,
-                        type: "line",
-                        data: res.series[serieIndex].data,
-                        smooth: true
-                    }
-                    series.push(serie)
-                }
-                this.series = series;
-                this.drawChart();
-            })
-        },
+        // getChartData(days) {
+        //     let params = {
+        //         days: days,
+        //     };
+        //     blockStatistics(params).then(res => {
+        //         console.log('blockStatistics', res)
+        //         this.ranklistDatas = res
+        //         this.legend = res.length
+        //         this.xAxis = res.xAxis;
+        //         let series = [];
+        //         for (let serieIndex = 0; serieIndex < res.series.length; serieIndex++) {
+        //             let serie =
+        //             {
+        //                 name: res.series[serieIndex].name,
+        //                 type: "line",
+        //                 data: res.series[serieIndex].data,
+        //                 smooth: true
+        //             }
+        //             series.push(serie)
+        //         }
+        //         this.series = series;
+        //         this.drawChart();
+        //     })
+        // },
     }
 }
 </script>
