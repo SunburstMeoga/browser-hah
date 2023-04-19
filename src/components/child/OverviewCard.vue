@@ -21,7 +21,7 @@
                 class="w-full flex justify-start items-center py-2 sm:w-3/12 border-b border-lightborder dark:border-border100 sm:border-none sm:cursor-pointer">
                 <div class="icon iconfont icon-jiaoyijine px-6 text-2xl" />
                 <div class="flex flex-col items-start justify-center">
-                    <div class="mb-1 font-black">{{ this.$t('Pending.amount') }}</div>
+                    <div class="mb-1 font-black">{{ this.$t('overview.out') }}</div>
                     <div>{{ numberFormat(overInfo.amount) }}</div>
                 </div>
             </div>

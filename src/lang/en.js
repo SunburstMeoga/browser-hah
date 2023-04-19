@@ -225,5 +225,8 @@ module.exports = {
     token: 'Ordinary',
     voteReward: 'Earnings',
     work: 'Pow Mining'
+  },
+  overview: {
+    out: '输出金额'
   }
 }

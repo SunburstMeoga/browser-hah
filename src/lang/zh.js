@@ -220,5 +220,8 @@ module.exports = {
     token: '普通',
     voteReward: '收益',
     work: 'Pow挖矿'
+  },
+  overview: {
+    out: '输出金额'
   }
 }
