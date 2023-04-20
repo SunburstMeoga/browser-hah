@@ -47,9 +47,21 @@
                 </div>
             </div>
         </div>
+        <div v-if="tokenInfo.balance">
+            <div>
+                <div class="mb-2 w-11/12 mr-auto ml-auto sm:mb-4 sm:w-9/12">
+                    <module-title :title="tokenInfo.symbol"></module-title>
+                </div>
+            </div>
+            <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
+                style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
+                <div class="flex justify-between items-center sm:justify-start px-2 py-2">
+                    <div class="font-bold text-lightitemtitle dark:text-btndisable sm:pr-4">{{ $t('Rank.balance') }}:</div>
+                    <div class="text-lighttable dark:text-white200">{{ tokenInfo.balance }} HAH</div>
 
-
-
+                </div>
+            </div>
+        </div>
         <div class="mb-2 sm:mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto">
             <module-title :title="'HRC20' + $t('common.tx')" :total="totalTrade"></module-title>
         </div>
