@@ -90,7 +90,7 @@ export default {
             })
         },
         getVoteType(value) {
-            return value === 1 ? this.$t('dposDetail.ordinary') : this.$t('dposDetail.recasting')
+            return value === '1' ? this.$t('dposDetail.ordinary') : this.$t('dposDetail.recasting')
         },
         getTranType(type) {
             return type === 'in' ? this.$t('dposDetail.datavote') : this.$t('dposDetail.datawithdrawal')
