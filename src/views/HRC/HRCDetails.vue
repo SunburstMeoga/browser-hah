@@ -84,10 +84,12 @@ export default {
             txCurrentPage: 1,
             totalTrade: 0,
             totalPage: 0,
+            conAddress: ''
         }
     },
     created() {
         this.address = this.$route.params.address
+        this.conAddress = this.$route.query.a
     },
     mounted() {
         this.getContractTX()
@@ -101,7 +103,7 @@ export default {
             })
         },
         getHRC20Details() {
-            HRC20Details({ address: this.address }).then(res => {
+            HRC20Details({ address: this.address, a: this.conAddress }).then(res => {
                 console.log('hrc20详情', res)
                 this.tokenInfo = res
             }).catch(err => {

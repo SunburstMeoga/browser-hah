@@ -5,8 +5,6 @@
             <!--  logo and theme language menu -->
             <div class="flex w-full justify-between items-center flex-wrap py-3 ml-auto mr-auto sm:flex-nowrap ">
                 <!-- search -->
-
-
                 <div class="flex items-center ml-3 sm:order-1">
                     <div class="w-32">
                         <img class="object-contain" src="../../assets/images/custom/logo.png" alt="$t('common.browser')">
@@ -46,7 +44,7 @@
                     <div class="flex rounded-lg justify-start items-center w-11/12 mr-auto ml-auto h-9 overflow-hidden border border-b border-lightborder dark:border-border100 dark:bg-black400"
                         :class="isFocus ? 'focused' : ''">
                         <div class="icon iconfont icon-search pr-2 pl-3 sm:hidden text-lightword dark:text-black100" />
-                        <div class="hidden relative sm:flex items-center justify-around cursor-pointer px-4 h-9 text-sm text-black dark:text-grayword"
+                        <div class="sm:h-20 sm:z-50 hidden relative sm:flex items-center justify-around cursor-pointer px-4 h-9 text-sm text-black dark:text-grayword"
                             @click="shwoPCSearch = true">
                             <div>{{ pcSearchTarget || $t('common.address') }}</div>
                             <div class="icon iconfont icon-down text-sm ml-1 text-black dark:text-grayword" />
