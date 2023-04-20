@@ -44,6 +44,40 @@
             </div>
         </div>
 
+        <div v-if="transactionInfo.vote"
+            class="w-11/12 sm:w-9/12 mb-4 sm:mb-10 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+            <div class="px-4 py-4 border-b border-ligthborder dark:border-border100">
+                <second-title :title="$t('dpos.vote')" />
+            </div>
+            <div>
+                <div
+                    class="py-2 px-4 text-sm text-lightitemtitle dark:text-btndisable border-b border-ligthborder dark:border-border100">
+                    <div class="flex justify-start items-center mb-2">
+                        <div class="font-bold pr-4 ">{{ $t('Tx.nodeAddress') }}:</div>
+                        <div class="text-clickable sm:hidden">
+                            {{ addressFilter(transactionInfo.vote.dpos_addr) }} </div>
+                        <div
+                            class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                            {{ transactionInfo.vote.dpos_addr }} </div>
+                        <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                            @click="copyContent(transactionInfo.vote.dpos_addr)" />
+                    </div>
+                    <div class="flex justify-start items-center mb-2">
+                        <div class="font-bold pr-4 ">{{ $t('Pending.amount') }}:</div>
+                        <div class="text-lighttable dark:text-white200">{{ transactionInfo.vote.amount }} </div>
+                    </div>
+                    <div class="flex justify-start items-center mb-2">
+                        <div class="font-bold pr-4 ">{{ $t('dposDetail.tranType') }}:</div>
+                        <div class="text-lighttable dark:text-white200">{{ getTranType(transactionInfo.vote.type) }} </div>
+                    </div>
+                    <div class="flex justify-start items-center mb-2">
+                        <div class="font-bold pr-4 ">{{ $t('dposDetail.voteType') }}:</div>
+                        <div class="text-lighttable dark:text-white200">{{ getVoteType(transactionInfo.vote.vote_type) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div v-if="logsList.length !== 0"
             class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
@@ -65,6 +99,8 @@
                 </div> -->
             </div>
         </div>
+
+
     </div>
 </template>
 
@@ -76,7 +112,7 @@ import SecondTitle from '@/components/public/SecondTitle'
 import TransactionDetails from '@/components/child/TransactionDetails'
 import TradeLogCard from '@/components/child/TradeLogCard'
 import { txDetails, txInfo } from '@/request/home'
-import { timeFormat, addressFormat, amountFormat } from '@/utils/format'
+import { timeFormat, addressFormat, amountFormat, addressFilter } from '@/utils/format'
 
 export default {
     components: { SecondTitle, HPagination, ModuleTitle, TransactionDetails, HLoading, TradeLogCard },
@@ -112,7 +148,24 @@ export default {
         }
     },
     methods: {
-        timeFormat, addressFormat, amountFormat,
+        timeFormat, addressFormat, amountFormat, addressFilter,
+        getVoteType(value) {
+            return value === '1' ? this.$t('dposDetail.ordinary') : this.$t('dposDetail.recasting')
+        },
+        getTranType(type) {
+            return type === 'in' ? this.$t('dposDetail.datavote') : this.$t('dposDetail.datawithdrawal')
+        },
+        copyContent(content) {
+            navigator.clipboard.writeText(content).then(() => {
+                this.$message({
+                    message: this.$t('messageTips.copySuccess'),
+                    type: 'success'
+                });
+            }, () => {
+                this.$message.error(this.$t('message.fail'));
+
+            });
+        },
         getTXDetails() {
             txDetails({ txid: this.txid, }).then(res => {
                 this.dataDetails = res
