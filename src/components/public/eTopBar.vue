@@ -47,7 +47,7 @@
                         :class="isFocus ? 'focused' : ''">
                         <div class="icon iconfont icon-search pr-2 pl-3 sm:hidden text-lightword dark:text-black100" />
                         <div class="hidden relative sm:flex items-center justify-around cursor-pointer px-4 h-9 text-sm text-black dark:text-grayword"
-                            @mousemove="shwoPCSearch = true">
+                            @click="shwoPCSearch = true">
                             <div>{{ pcSearchTarget || $t('common.address') }}</div>
                             <div class="icon iconfont icon-down text-sm ml-1 text-black dark:text-grayword" />
                         </div>
