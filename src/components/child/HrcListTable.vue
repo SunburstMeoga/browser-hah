@@ -22,7 +22,7 @@
         </div>
 
         <div v-if="loadStatus === 'finished'"
-            class="hidden sm:block border-b min-w-100 border-lightborder dark:border-border100">
+            class="hidden sm:block border-b min-w-100 border-lightborder dark:border-border100 sm:overflow-x-scroll sm:min-w-full">
             <div class="py-2 flex w-full justify-start">
                 <div class="w-60 text-sm font-black text-lighttable dark:text-white200"
                     v-for="(item, index) in tableTitleList" :key="index">

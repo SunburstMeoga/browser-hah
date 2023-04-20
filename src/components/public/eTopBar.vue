@@ -63,7 +63,7 @@
                     <div class="w-11/12 mr-auto ml-auto mt-4 flex justify-start flex-wrap show-easy sm:hidden"
                         v-show="showSearchCriteria">
                         <div class="flex justify-start items-center text-sm px-2 mr-6 rounded-lg mb-2 text-lighttable border border-lightborder dark:border-border100 dark:bg-black300 dark:text-black100"
-                            v-for="(item, index) in searchCriteriaList" :key="index" @click="handleSearch(item.path)">
+                            v-for="(item, index) in searchCriteriaList" :key="index" @click="handleSearch(item)">
                             <div class="icon iconfont text-lg" :class="item.icon"></div>
                             <div class="pl-1">{{ item.title }}</div>
 
@@ -148,10 +148,13 @@ export default {
             this.pcSearchPath = path
             this.shwoPCSearch = false
         },
-        handleSearch(path) {
+        handleSearch(item) {
+            console.log(item)
+            console.log(this.$route)
+            // return
             if (this.searchContent) {
                 this.$router.push({
-                    path: path + this.searchContent
+                    path: item.path + this.searchContent
                 })
             } else {
                 console.log('no data')
