@@ -123,7 +123,8 @@ module.exports = {
     client_out: '撤投客户地址',
     nodeName: '节点名称',
     voteAmount: '投票量',
-    nodeDetails: '节点详情'
+    nodeDetails: '节点详情',
+    nodeAddress: '节点地址'
   },
   el: {
     pagination: {

@@ -62,6 +62,30 @@
             <div class="font-bold pr-4 ">{{ $t('tradeDetails.GASLimit') }}:</div>
             <div class="text-sm text-lighttable dark:text-white200">{{ transactionInfo.gaslimit }} </div>
         </div>
+        <div v-if="transactionInfo.vote">
+            <div class="flex justify-start items-center mb-2">
+                <div class="font-bold pr-4 ">{{ $t('Tx.nodeAddress') }}:</div>
+                <div class="text-clickable sm:hidden">
+                    {{ addressFilter(transactionInfo.vote.dpos_addr) }} </div>
+                <div
+                    class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                    {{ transactionInfo.vote.dpos_addr }} </div>
+                <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                    @click="copyContent(transactionInfo.vote.dpos_addr)" />
+            </div>
+            <div class="flex justify-start items-center mb-2">
+                <div class="font-bold pr-4 ">{{ $t('Pending.amount') }}:</div>
+                <div class="text-lighttable dark:text-white200">{{ transactionInfo.vote.amount }} </div>
+            </div>
+            <div class="flex justify-start items-center mb-2">
+                <div class="font-bold pr-4 ">{{ $t('dposDetail.tranType') }}:</div>
+                <div class="text-lighttable dark:text-white200">{{ getTranType(transactionInfo.vote.type) }} </div>
+            </div>
+            <div class="flex justify-start items-center mb-2">
+                <div class="font-bold pr-4 ">{{ $t('dposDetail.voteType') }}:</div>
+                <div class="text-lighttable dark:text-white200">{{ getVoteType(transactionInfo.vote.vote_type) }} </div>
+            </div>
+        </div>
         <div class="flex justify-start items-start mb-2 sm:items-center" v-show="transactionInfo.data">
             <div class="font-bold pr-4 ">Data:</div>
             <div
@@ -101,6 +125,7 @@
 
 
 
+
     </div>
 </template>
 
@@ -129,6 +154,12 @@ export default {
     },
     methods: {
         addressFilter, amountFormat, timeFormat,
+        getVoteType(value) {
+            return value === '1' ? this.$t('dposDetail.ordinary') : this.$t('dposDetail.recasting')
+        },
+        getTranType(type) {
+            return type === 'in' ? this.$t('dposDetail.datavote') : this.$t('dposDetail.datawithdrawal')
+        },
         copyContent(content) {
             navigator.clipboard.writeText(content).then(() => {
                 this.$message({

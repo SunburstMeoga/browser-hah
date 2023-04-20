@@ -1,3 +1,4 @@
+
 module.exports = {
   common: {
     browser: 'HAH Browser',
@@ -126,8 +127,8 @@ module.exports = {
     client_out: 'Withdrawal Customer Address',
     nodeName: 'Node Name',
     voteAmount: 'Vote Amount',
-    nodeDetails: 'Node Details'
-
+    nodeDetails: 'Node Details',
+    nodeAddress: 'Node Address'
   },
   el: {
     pagination: {
