@@ -82,6 +82,16 @@ export default {
 
         this.getAddressTxList()
     },
+    watch: {
+        $route(to, from) {
+            this.address = this.$route.params.address
+            this.addressInfo.address = this.address
+
+            this.getBalanceInfo()
+
+            this.getAddressTxList()
+        }
+    },
     methods: {
         numberFormat,
         toTX(txid) {
@@ -90,6 +100,7 @@ export default {
             })
         },
         getBalanceInfo() {
+            this.addressInfoLoadStatus = 'loading'
             balanceInfo({
                 address: this.address,
                 symbol: 'HAH',

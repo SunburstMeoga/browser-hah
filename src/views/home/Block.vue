@@ -82,6 +82,12 @@ export default {
         console.log('height', this.height)
         this.getBlockInfo()
     },
+    watch: {
+        $route(to, from) {
+            this.height = this.$route.params.height
+            this.getBlockInfo()
+        }
+    },
     methods: {
         numberFormat,
         toTX(txid) {
@@ -149,6 +155,8 @@ export default {
             this.getTXList()
         },
         getBlockInfo() {
+            this.blockInfoLoadStatus = 'loading'
+            this.tranLoadStatus = 'loading'
             let params = {
                 param: this.height.toString()
             };

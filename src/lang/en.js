@@ -52,7 +52,8 @@ module.exports = {
     block: 'block',
     txFee: 'Transaction Fee',
     hash: 'Hash',
-    blockStatistics: 'Block Statistics'
+    blockStatistics: 'Block Statistics',
+    blockTrade: '{count} transacions in this block'
   },
   BlockList: {
     h1: 'Hah browser queries the latest burst block on the chain, burst time, block size and broadcaster.',

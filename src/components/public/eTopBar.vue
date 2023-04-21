@@ -150,11 +150,10 @@ export default {
         },
         handleSearch(item) {
             console.log(item)
-            console.log(this.$route)
-            // return
+            console.log(this.searchContent)
             if (this.searchContent) {
-                this.$router.push({
-                    path: item.path + this.searchContent
+                this.$router.replace({
+                    path: item + this.searchContent
                 })
             } else {
                 console.log('no data')
@@ -188,7 +187,7 @@ export default {
             this.toggleMenu()
         },
         toPage(path) {
-            this.$router.push({
+            this.$router.replace({
                 path: path
             })
             this.toggleMenu()

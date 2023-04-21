@@ -142,6 +142,12 @@ export default {
         this.getTxinfo()
         // this.getTXDetails()
     },
+    watch: {
+        $route(to, from) {
+            this.txid = this.$route.params.txid
+            this.getTxinfo()
+        }
+    },
     computed: {
         countLogs() {
             return this.$t('logs.count', { count: this.logsList.length })
@@ -173,6 +179,7 @@ export default {
             });
         },
         getTxinfo() {
+            this.tranInfoLoadStatus = 'loading'
             txInfo({ txid: this.txid, }).then(res => {
                 console.log('tx', res)
                 // this.transactionInfo.block_hash = res.block_hash

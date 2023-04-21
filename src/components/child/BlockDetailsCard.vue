@@ -70,7 +70,7 @@
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.tx') }}:</div>
             <div class="text-sm text-lighttable dark:text-white200 pr-4 sm:w-1/4">
-                {{ blockInfo.txs }} transacions in this block
+                {{ $t('Block.blockTrade', { count: blockInfo.txs }) }}
             </div>
         </div>
     </div>
