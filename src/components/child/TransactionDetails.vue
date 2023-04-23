@@ -3,7 +3,7 @@
 
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('tradeDetails.height') }}:</div>
-            <div
+            <div @click="toBlock(transactionInfo.height)"
                 class="cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
                 {{ transactionInfo.height }}</div>
         </div>
@@ -26,9 +26,9 @@
         </div>
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.from') }}:</div>
-            <div class="text-clickable sm:hidden">
+            <div class="text-clickable sm:hidden" @click="toAddress(transactionInfo.from)">
                 {{ addressFilter(transactionInfo.from) }} </div>
-            <div
+            <div @click="toAddress(transactionInfo.from)"
                 class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
                 {{ transactionInfo.from }} </div>
             <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
@@ -37,9 +37,9 @@
         </div>
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.to') }}:</div>
-            <div class="text-clickable sm:hidden">
+            <div class="text-clickable sm:hidden" @click="toAddress(transactionInfo.to)">
                 {{ addressFilter(transactionInfo.to) }} </div>
-            <div
+            <div @click="toAddress(transactionInfo.to)"
                 class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
                 {{ transactionInfo.to }} </div>
             <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
@@ -138,6 +138,11 @@ export default {
         toAddress(address) {
             this.$router.push({
                 path: '/address/' + address
+            })
+        },
+        toBlock(height) {
+            this.$router.push({
+                path: '/block/' + height
             })
         },
     }

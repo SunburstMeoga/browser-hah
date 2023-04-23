@@ -27,7 +27,7 @@
                     <div v-for="(item, index) in dataDetails" :key="index"
                         class="text-sm font-bold py-2 border-b border-ligthborder  text-lightitemtitle dark:text-btndisable dark:border-border100">
                         <div class="hidden sm:flex justify-start items-center">{{ $t('Tx.from') }}:
-                            <span
+                            <span @click="toAddress(item.from)"
                                 class="font-normal curpor-pointer pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
                                 {{
                                     item.from
@@ -36,6 +36,7 @@
                                 @click="copyContent(item.from)" />
                         </div>
                         <div class="hidden sm:flex justify-start items-center">{{ $t('Tx.to') }}: <span
+                                @click="toAddress(item.to)"
                                 class="font-normal curpor-pointer pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
                                 {{
                                     item.to }}</span>
@@ -43,18 +44,16 @@
                                 @click="copyContent(item.to)" />
                         </div>
                         <div class="sm:hidden">{{ $t('Tx.from') }}:
-                            <span
+                            <span @click="toAddress(item.from)"
                                 class="font-normal pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
-                                {{
-                                    addressFilter(item.from)
-                                }}</span>
+                                {{ addressFilter(item.from) }}
+                            </span>
                             <span class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                                 @click="copyContent(item.from)" />
                         </div>
-                        <div class="sm:hidden">{{ $t('Tx.to') }}: <span
+                        <div class="sm:hidden">{{ $t('Tx.to') }}: <span @click="toAddress(item.to)"
                                 class="font-normal pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
-                                {{
-                                    addressFilter(item.to) }}</span>
+                                {{ addressFilter(item.to) }}</span>
                             <span class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                                 @click="copyContent(item.to)" />
                         </div>
@@ -175,6 +174,11 @@ export default {
     },
     methods: {
         timeFormat, addressFormat, amountFormat, addressFilter,
+        toAddress(address) {
+            this.$router.push({
+                path: '/address/' + address
+            })
+        },
         getVoteType(value) {
             return value === '1' ? this.$t('dposDetail.ordinary') : this.$t('dposDetail.recasting')
         },

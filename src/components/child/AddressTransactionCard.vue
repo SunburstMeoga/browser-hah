@@ -113,7 +113,7 @@ export default {
             })
         },
         toAddress(address) {
-            this.$router.push({
+            this.$router.replace({
                 path: '/address/' + address
             })
         },

@@ -7,8 +7,9 @@
                 :key="index">
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('dpos.address') }}: </div>
-                    <div class="text-clickable" @click="toToken(item.addr)">{{ addressFilter(item.addr) }}
-                    </div>
+                    <div class="text-clickable" @click="toToken(item.addr)">{{ addressFilter(item.addr) }} </div>
+                    <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                        @click="copyContent(item.addr)" />
                 </div>
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('hrc20.symbol') }}: </div>
@@ -32,9 +33,13 @@
             <div class="">
                 <div v-for="(item, index) in dataList" :key="index"
                     class="flex justify-start py-3 border-b text-sm border-lightborder text-lighttable dark:text-white200 dark:border-border100">
-                    <div class="w-60 cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
-                        @click="toToken(item.addr)">
-                        {{ addressFilter(item.addr) }}
+                    <div class="w-60  flex justify-start items-center">
+                        <div class="cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                            @click="toToken(item.addr)">
+                            {{ addressFilter(item.addr) }}
+                        </div>
+                        <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                            @click="copyContent(item.addr)" />
                     </div>
                     <div class="w-60">
                         {{ item.symbol }}
@@ -77,6 +82,17 @@ export default {
             this.$router.push({
                 path: '/token/' + address
             })
+        },
+        copyContent(content) {
+            navigator.clipboard.writeText(content).then(() => {
+                this.$message({
+                    message: this.$t('messageTips.copySuccess'),
+                    type: 'success'
+                });
+            }, () => {
+                this.$message.error(this.$t('message.fail'));
+
+            });
         },
     },
     computed: {
