@@ -18,15 +18,20 @@
 
         <div>
             <div
-                class="w-11/12 sm:w-9/12 mr-auto ml-auto  rounded-lg pt-2 shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
-                <div class="pb-2 border-b border-ligthborder dark:border-border100">
-                    <div class="pl-2">
+                class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg pt-2 shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+                <div class="border-b border-ligthborder dark:border-border100">
+                    <!-- <div class="pl-2">
                         <module-title :title="$t('common.address') + $t('Block.tx')" :total="totalTrade" />
+                    </div> -->
+                    <div class="flex justify-start items-center">
+                        <div class="cursor-pointer border-clickable py-2 px-2 mr-2 text-black dark:text-white300 transition duration-300 ease-in-out transform hover:text-clickable font-bold sm:text-xl"
+                            :class="currentData === index ? 'border-b-4' : ''" @click="handleTab(item, index)"
+                            v-for="(item, index) in 2" :key="index">{{ index === 0 ? 'Transaction' :
+                                'HRC20-Token Txns' }}</div>
                     </div>
                 </div>
                 <div>
                     <h-loading :loadStatus="addressTranListLoadStatus" />
-
                     <div v-if="addressTranListLoadStatus === 'finished'">
                         <div v-for="(item, index) in txListDatas" :key="index"
                             class="w-11/12 mr-auto ml-auto py-2 sm:w-full sm:px-3  border-b border-ligthborder dark:border-border100">
@@ -53,7 +58,7 @@ import AddressTransactionCard from '@/components/child/AddressTransactionCard'
 
 import ModuleTitle from '@/components/public/ModuleTitle'
 import SecondTitle from '@/components/public/SecondTitle'
-import { TXList, balanceInfo } from '@/request/home'
+import { TXList, balanceInfo, hrc20txns } from '@/request/home'
 import { numberFormat } from '@/utils/format'
 
 export default {
@@ -70,7 +75,8 @@ export default {
             txPageSize: 10,
             txCurrentPage: 1,
             totalTrade: 0,
-            totalPage: 0
+            totalPage: 0,
+            currentData: 0
         }
 
     },
@@ -79,17 +85,17 @@ export default {
         this.address = this.$route.params.address
         this.addressInfo.address = this.address
         this.getBalanceInfo()
-
         this.getAddressTxList()
+        this.getHRC20Txns()
     },
+
     watch: {
         $route(to, from) {
             this.address = this.$route.params.address
             this.addressInfo.address = this.address
-
             this.getBalanceInfo()
-
             this.getAddressTxList()
+            this.getHRC20Txns()
         }
     },
     methods: {
@@ -98,6 +104,9 @@ export default {
             this.$router.push({
                 path: '/tx/' + txid
             })
+        },
+        handleTab(item, index) {
+            this.currentData = index
         },
         getBalanceInfo() {
             this.addressInfoLoadStatus = 'loading'
@@ -115,6 +124,13 @@ export default {
                 console.log('this.addressInfo', res);
             });
 
+        },
+        getHRC20Txns() {
+            hrc20txns({ address: this.address }).then(res => {
+                console.log('hrc20交易', res)
+            }).catch(err => {
+                console.log('err', err)
+            })
         },
         getAddressTxList() {
             this.addressTranListLoadStatus = 'loading'

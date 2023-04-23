@@ -5,7 +5,7 @@
             <!--  logo and theme language menu -->
             <div class="flex w-full justify-between items-center flex-wrap py-3 ml-auto mr-auto sm:flex-nowrap ">
                 <!-- search -->
-                <div class="flex items-center ml-3 sm:order-1">
+                <div class="flex items-center ml-3 sm:order-1 cursor-pointer" @click="toHome">
                     <div class="w-32">
                         <img class="object-contain" src="../../assets/images/custom/logo.png" alt="$t('common.browser')">
                     </div>
@@ -140,6 +140,11 @@ export default {
         }
     },
     methods: {
+        toHome() {
+            this.$router.replace({
+                path: '/'
+            })
+        },
         pcToSearch() {
             this.handleSearch(this.pcSearchPath)
         },

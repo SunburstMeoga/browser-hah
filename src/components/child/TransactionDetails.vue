@@ -135,6 +135,11 @@ export default {
 
             });
         },
+        toAddress(address) {
+            this.$router.push({
+                path: '/address/' + address
+            })
+        },
     }
 }
 </script>

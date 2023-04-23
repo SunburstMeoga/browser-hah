@@ -39,13 +39,14 @@
                         @click="toTX(item.txid)">
                         {{ addressFilter(item.txid) }}
                     </div>
-                    <div class="w-60 text-sm  cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 "
-                        @click="toAddress(item.to)">
-                        {{ addressFilter(item.to) }}
-                    </div>
+
                     <div class="w-60 text-sm  cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 "
                         @click="toAddress(item.from)">
                         {{ addressFilter(item.from) }}
+                    </div>
+                    <div class="w-60 text-sm  cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 "
+                        @click="toAddress(item.to)">
+                        {{ addressFilter(item.to) }}
                     </div>
                     <div class="w-60">
                         {{ item.fun }}
@@ -105,11 +106,12 @@ export default {
                     title: this.$t('Address.hash')
                 },
                 {
-                    title: this.$t('Pending.to')
-                },
-                {
                     title: this.$t('Pending.from')
                 },
+                {
+                    title: this.$t('Pending.to')
+                },
+
                 {
                     title: this.$t('hrc20.method')
                 },

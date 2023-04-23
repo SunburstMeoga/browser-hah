@@ -216,7 +216,7 @@ module.exports = {
     tradeType: '交易类型',
     GASPrice: 'GAS价格',
     contractCreate: '合约创建',
-    contractInvoke: 'ETH调用',
+    contractInvoke: '合约调用',
     genesis: '创世',
     stake: 'DPOS挖矿',
     token: '普通',

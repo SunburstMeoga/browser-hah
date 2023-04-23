@@ -80,3 +80,11 @@ export function testHAHChain(params) {
         params
     })
 }
+
+export function hrc20txns(params) {
+    return request({
+        url: '/api/hrc20tx/',
+        method: 'get',
+        params
+    })
+}

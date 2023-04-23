@@ -221,7 +221,7 @@ module.exports = {
     tradeType: 'Trade Type',
     GASPrice: 'GAS Price',
     contractCreate: 'Contract Creation',
-    contractInvoke: 'Contract ETH',
+    contractInvoke: 'Contract Call',
     genesis: 'Creation',
     stake: 'DPOS Mining',
     token: 'Ordinary',

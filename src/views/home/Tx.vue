@@ -26,17 +26,37 @@
                 <div class="pt-2 px-4">
                     <div v-for="(item, index) in dataDetails" :key="index"
                         class="text-sm font-bold py-2 border-b border-ligthborder  text-lightitemtitle dark:text-btndisable dark:border-border100">
-                        <div class="">{{ $t('Tx.from') }}:
+                        <div class="hidden sm:flex justify-start items-center">{{ $t('Tx.from') }}:
+                            <span
+                                class="font-normal curpor-pointer pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                                {{
+                                    item.from
+                                }}</span>
+                            <span class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                                @click="copyContent(item.from)" />
+                        </div>
+                        <div class="hidden sm:flex justify-start items-center">{{ $t('Tx.to') }}: <span
+                                class="font-normal curpor-pointer pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                                {{
+                                    item.to }}</span>
+                            <span class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                                @click="copyContent(item.to)" />
+                        </div>
+                        <div class="sm:hidden">{{ $t('Tx.from') }}:
                             <span
                                 class="font-normal pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
                                 {{
-                                    addressFormat(item.from)
+                                    addressFilter(item.from)
                                 }}</span>
+                            <span class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                                @click="copyContent(item.from)" />
                         </div>
-                        <div class="">{{ $t('Tx.to') }}: <span
+                        <div class="sm:hidden">{{ $t('Tx.to') }}: <span
                                 class="font-normal pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
                                 {{
-                                    addressFormat(item.to) }}</span>
+                                    addressFilter(item.to) }}</span>
+                            <span class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                                @click="copyContent(item.to)" />
                         </div>
                         <div class="">For: {{ item.amount }}</div>
                     </div>

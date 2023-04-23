@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div>
-                    {{ item.balance }} HAH
+                    {{ item.balance }} {{ item.symbol }}
                 </div>
             </div>
         </div>
