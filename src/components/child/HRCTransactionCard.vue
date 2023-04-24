@@ -25,7 +25,7 @@
         </div>
         <div class="flex justify-start items-center sm:mb-2">
             <div class="item-title sm:w-1/4">{{ $t('dposDetail.amount') }}:</div>
-            <div class="text-lighttable dark:text-white200">{{ transactionInfo.amount }} HAH</div>
+            <div class="text-lighttable dark:text-white200">{{ transactionInfo.amount }} {{ transactionInfo.symbol }}</div>
         </div>
         <div class="flex justify-start items-center sm:mb-2">
             <div class="item-title sm:w-1/4 ">{{ $t('hrc20.decimals') }}:</div>
@@ -36,7 +36,7 @@
             <div class="flex justify-start items-center">
                 <div @click="toAddress(transactionInfo.from)"
                     class="hidden sm:block text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
-                    {{ transactionInfo.to }}</div>
+                    {{ transactionInfo.from }}</div>
                 <div @click="toAddress(transactionInfo.from)" class=" sm:hidden text-sm text-clickable">
                     {{ addressFilter(transactionInfo.from) }}</div>
                 <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
@@ -63,10 +63,7 @@
             <div class="item-title sm:w-1/4">{{ $t('hrc20.name') }}:</div>
             <div class="text-lighttable dark:text-white200">{{ transactionInfo.name }}</div>
         </div>
-        <div class="flex justify-start items-center sm:mb-2">
-            <div class="item-title sm:w-1/4">{{ $t('hrc20.symbol') }}:</div>
-            <div class="text-lighttable dark:text-white200">{{ transactionInfo.symbol }}</div>
-        </div>
+
 
         <div class="flex justify-start items-center sm:mb-2">
             <div class="item-title sm:w-1/4">{{ $t('Block.time') }}:</div>
