@@ -25,17 +25,30 @@
                     </div> -->
                     <div class="flex justify-start items-center">
                         <div class="cursor-pointer border-clickable py-2 px-2 mr-2 text-black dark:text-white300 transition duration-300 ease-in-out transform hover:text-clickable font-bold sm:text-xl"
-                            :class="currentData === index ? 'border-b-4' : ''" @click="handleTab(item, index)"
-                            v-for="(item, index) in 2" :key="index">{{ index === 0 ? 'Transaction' :
-                                'HRC20-Token Txns' }}</div>
+                            :class="currentData === index ? 'border-b-4 text-clickable' : ''"
+                            @click="handleTab(item, index)" v-for="(item, index) in 2" :key="index">{{ index === 0 ?
+                                $t('Address.transactions') :
+                                'HRC20-Token' + $t('Block.tx') }}</div>
+                    </div>
+                    <div class="pl-2 py-1 text-sm text-lightmoreword dark:text-black100">
+                        {{ $t('moduleTitle.totalData', { count: totalTrade }) }}
                     </div>
                 </div>
-                <div>
+                <div v-show="currentData === 0">
                     <h-loading :loadStatus="addressTranListLoadStatus" />
                     <div v-if="addressTranListLoadStatus === 'finished'">
                         <div v-for="(item, index) in txListDatas" :key="index"
                             class="w-11/12 mr-auto ml-auto py-2 sm:w-full sm:px-3  border-b border-ligthborder dark:border-border100">
                             <address-transaction-card :transactionInfo="item" />
+                        </div>
+                    </div>
+                </div>
+                <div v-show="currentData === 1">
+                    <h-loading :loadStatus="addressTranListLoadStatus" />
+                    <div v-if="addressTranListLoadStatus === 'finished'">
+                        <div v-for="(item, index) in txListDatas" :key="index"
+                            class="w-11/12 mr-auto ml-auto py-2 sm:w-full sm:px-3  border-b border-ligthborder dark:border-border100">
+                            <HRC-transaction-card :transactionInfo="item" />
                         </div>
                     </div>
                 </div>
@@ -55,6 +68,7 @@ import HLoading from "@/components/public/HLoading"
 import HPagination from '@/components/public/HPagination'
 import AddressDetailsCard from '@/components/child/AddressDetailsCard'
 import AddressTransactionCard from '@/components/child/AddressTransactionCard'
+import HRCTransactionCard from "@/components/child/HRCTransactionCard"
 
 import ModuleTitle from '@/components/public/ModuleTitle'
 import SecondTitle from '@/components/public/SecondTitle'
@@ -62,7 +76,7 @@ import { TXList, balanceInfo, hrc20txns } from '@/request/home'
 import { numberFormat } from '@/utils/format'
 
 export default {
-    components: { SecondTitle, HPagination, AddressDetailsCard, ModuleTitle, AddressTransactionCard, HLoading },
+    components: { SecondTitle, HPagination, AddressDetailsCard, ModuleTitle, AddressTransactionCard, HLoading, HRCTransactionCard },
     name: "Address",
     data() {
         return {
@@ -86,16 +100,17 @@ export default {
         this.addressInfo.address = this.address
         this.getBalanceInfo()
         this.getAddressTxList()
-        this.getHRC20Txns()
+        // this.getHRC20Txns()
     },
 
     watch: {
         $route(to, from) {
             this.address = this.$route.params.address
             this.addressInfo.address = this.address
+            this.currentData = 0
             this.getBalanceInfo()
             this.getAddressTxList()
-            this.getHRC20Txns()
+            // this.getHRC20Txns()
         }
     },
     methods: {
@@ -106,7 +121,17 @@ export default {
             })
         },
         handleTab(item, index) {
+            // if (this.addressInfoLoadStatus === 'loading') return
             this.currentData = index
+            this.txCurrentPage = 1
+            this.totalTrade = 0
+            this.totalPage = 0
+            if (index === 0) {
+                this.getAddressTxList()
+            } else {
+                this.getHRC20Txns()
+            }
+            console.log('currentData', this.currentData)
         },
         getBalanceInfo() {
             this.addressInfoLoadStatus = 'loading'
@@ -126,8 +151,21 @@ export default {
 
         },
         getHRC20Txns() {
-            hrc20txns({ address: this.address }).then(res => {
+            this.addressTranListLoadStatus = 'loading'
+            hrc20txns({
+                address: this.address,
+                page: this.txCurrentPage,
+                pageSize: this.txPageSize
+            }).then(res => {
                 console.log('hrc20交易', res)
+                if (res.data.length !== 0) {
+                    this.txListDatas = res.data
+                    this.addressTranListLoadStatus = 'finished'
+                } else {
+                    this.addressTranListLoadStatus = 'empty'
+                }
+                this.totalTrade = res.total
+                this.totalPage = res.totalPage
             }).catch(err => {
                 console.log('err', err)
             })
@@ -157,7 +195,11 @@ export default {
             this.txPageSize = selectedPageSize
             this.txCurrentPage = 1
             this.txListDatas = []
-            this.getAddressTxList()
+            if (this.currentData === 0) {
+                this.getAddressTxList()
+            } else {
+                this.getHRC20Txns()
+            }
         },
         toTXPrePage(selectedPageSize) {
             if (this.txCurrentPage === 1) {
@@ -166,13 +208,21 @@ export default {
             this.txPageSize = selectedPageSize
             this.txCurrentPage = this.txCurrentPage - 1
             this.txListDatas = []
-            this.getAddressTxList()
+            if (this.currentData === 0) {
+                this.getAddressTxList()
+            } else {
+                this.getHRC20Txns()
+            }
         },
         toTXNextPage(selectedPageSize) {
             this.txPageSize = selectedPageSize
             this.txCurrentPage = this.txCurrentPage + 1
             this.txListDatas = []
-            this.getAddressTxList()
+            if (this.currentData === 0) {
+                this.getAddressTxList()
+            } else {
+                this.getHRC20Txns()
+            }
         },
         toTXLastPage(selectedPageSize) {
             console.log(this.txCurrentPage, this.totalPage)
@@ -182,7 +232,11 @@ export default {
             this.txPageSize = selectedPageSize
             this.txCurrentPage = this.totalPage
             this.txListDatas = []
-            this.getAddressTxList()
+            if (this.currentData === 0) {
+                this.getAddressTxList()
+            } else {
+                this.getHRC20Txns()
+            }
         },
         toTradeTargetPage(selectedPageSize, targetPage) {
             console.log(targetPage)
@@ -192,7 +246,11 @@ export default {
             this.txPageSize = selectedPageSize
             this.txCurrentPage = targetPage
             this.txListDatas = []
-            this.getAddressTxList()
+            if (this.currentData === 0) {
+                this.getAddressTxList()
+            } else {
+                this.getHRC20Txns()
+            }
         }
     },
 }
