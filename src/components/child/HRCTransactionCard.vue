@@ -27,10 +27,10 @@
             <div class="item-title sm:w-1/4">{{ $t('dposDetail.amount') }}:</div>
             <div class="text-lighttable dark:text-white200">{{ transactionInfo.amount }} {{ transactionInfo.symbol }}</div>
         </div>
-        <div class="flex justify-start items-center sm:mb-2">
+        <!-- <div class="flex justify-start items-center sm:mb-2">
             <div class="item-title sm:w-1/4 ">{{ $t('hrc20.decimals') }}:</div>
             <div class="text-lighttable dark:text-white200">{{ transactionInfo.decimals }}</div>
-        </div>
+        </div> -->
         <div class="flex justify-start items-center sm:mb-2">
             <div class="item-title sm:w-1/4 ">{{ $t('Pending.from') }}:</div>
             <div class="flex justify-start items-center">
