@@ -1,12 +1,23 @@
 <template>
-    <div v-if="loadStatus !== 'finished'"
-        class="text-lighticon dark:text-grayicon w-full h-full flex flex-col justify-center items-center pt-10 pb-10">
-        <div>
-            <div class="icon iconfont mb-2 text-4xl sm:text-6xl"
-                :class="loadStatus === 'loading' ? 'icon-loading2 animate-spin' : 'icon-wushuju'" />
+    <div v-if="loadStatus !== 'finished'">
+        <div v-if="loadStatus !== 'error'"
+            class="flex flex-col justify-center items-center pt-10 pb-10 text-lighticon dark:text-grayicon w-full h-full">
+            <div>
+                <div class="icon iconfont mb-2 text-4xl sm:text-6xl"
+                    :class="loadStatus === 'loading' ? 'icon-loading2 animate-spin' : 'icon-wushuju'" />
+            </div>
+            <div>
+                {{ loadStatus === 'loading' ? $t('loadSatus.loading') : $t('loadSatus.notData') }}
+            </div>
         </div>
-        <div>
-            {{ loadStatus === 'loading' ? 'Loading' : 'Not data' }}
+        <div v-else @click="reload"
+            class="flex flex-col justify-center pt-10 pb-10 items-center text-lighticon dark:text-grayicon w-full h-full">
+            <div>
+                <div class="icon iconfont mb-2 text-4xl sm:text-6xl icon iconfont icon-error" />
+            </div>
+            <div>
+                {{ $t('loadSatus.error') }}
+            </div>
         </div>
     </div>
 </template>
@@ -17,6 +28,11 @@ export default {
         loadStatus: {
             type: String,
             default: 'loading'
+        },
+    },
+    methods: {
+        reload() {
+            this.$emit('reload')
         }
     }
 }

@@ -168,6 +168,7 @@ export default {
                 this.totalPage = res.totalPage
             }).catch(err => {
                 console.log('err', err)
+                // this.addressTranListLoadStatus = 'error'
             })
         },
         getAddressTxList() {
@@ -188,6 +189,7 @@ export default {
                 this.totalTrade = res.total
                 this.totalPage = res.totalPage
                 console.log(this.txListDatas)
+                // this.addressTranListLoadStatus = 'error'
             })
         },
         toTXFirstPage(selectedPageSize) {
