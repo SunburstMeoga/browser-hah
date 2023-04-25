@@ -7,7 +7,7 @@
                     :class="loadStatus === 'loading' ? 'icon-loading2 animate-spin' : 'icon-wushuju'" />
             </div>
             <div>
-                {{ loadStatus === 'loading' ? $t('loadSatus.loading') : $t('loadSatus.notData') }}
+                {{ loadStatus === 'loading' ? $t('loadStatus.loading') : $t('loadStatus.notData') }}
             </div>
         </div>
         <div v-else @click="reload"
@@ -16,7 +16,7 @@
                 <div class="icon iconfont mb-2 text-4xl sm:text-6xl icon iconfont icon-error" />
             </div>
             <div>
-                {{ $t('loadSatus.error') }}
+                {{ $t('loadStatus.error') }}
             </div>
         </div>
     </div>

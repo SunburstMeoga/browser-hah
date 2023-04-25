@@ -226,5 +226,10 @@ module.exports = {
   overview: {
     out: '输出金额',
     trade: '交易数'
-  }
+  },
+  loadStatus: {
+    loading: '正在加载...',
+    notData: '无数据',
+    error: '网络错误，请点击此处重载'
+  },
 }

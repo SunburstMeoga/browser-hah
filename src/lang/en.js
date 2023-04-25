@@ -231,5 +231,10 @@ module.exports = {
   overview: {
     out: 'Output Amount',
     trade: 'Number of transactions'
-  }
+  },
+  loadStatus: {
+    loading: 'Loading...',
+    notData: 'No data',
+    error: 'Network error, click here to reload'
+  },
 }
