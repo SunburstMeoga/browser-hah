@@ -50,10 +50,6 @@ export default {
         return {
             socialList: [
                 {
-                    path: 'https://testnet.hashahead.org/',
-                    icon: 'icon-zimuH'
-                },
-                {
                     path: 'https://twitter.com/home',
                     icon: 'icon-twitter-fill'
                 },
@@ -64,6 +60,14 @@ export default {
                 {
                     path: 'https://www.instagram.com/hashahead/',
                     icon: 'icon-instagram-fill'
+                },
+                {
+                    path: 'https://www.linkedin.com/in/hashahead/',
+                    icon: 'icon-icon_linkdin'
+                },
+                {
+                    path: '',
+                    icon: 'icon-gmail'
                 },
                 {
                     path: '',
