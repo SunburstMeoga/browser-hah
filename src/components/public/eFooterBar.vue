@@ -67,7 +67,7 @@ export default {
                 },
                 {
                     path: '',
-                    icon: 'icon-gmail'
+                    icon: 'icon-dicord'
                 },
                 {
                     path: '',
