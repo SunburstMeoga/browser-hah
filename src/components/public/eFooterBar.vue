@@ -63,11 +63,11 @@ export default {
                 },
                 {
                     path: 'https://www.linkedin.com/in/hashahead/',
-                    icon: 'icon-icon_linkdin'
+                    icon: 'icon-a-ziyuan5'
                 },
                 {
                     path: '',
-                    icon: 'icon-dicord'
+                    icon: 'icon-discord3'
                 },
                 {
                     path: '',
