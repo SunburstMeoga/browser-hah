@@ -4,20 +4,87 @@
         <div v-if="loadStatus === 'finished'" class="w-11/12 mr-auto ml-auto text-sm sm:hidden">
             <div class="py-3 border-b border-lightborder dark:border-border100" v-for="(item, index) in dataList"
                 :key="index">
+                <div class="flex justify-start item-center">
+                    <div class="pr-2 text-lighttable dark:text-white200">链ID: </div>
+                    <div class="text-lighttable">{{ item.chainid }}</div>
+                </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.height') }}: </div>
-                    <div class="text-clickable" @click="toBlock(item.height)">{{ item.height }}</div>
+                    <div class="pr-2 text-lighttable dark:text-white200">链HASH: </div>
+                    <div class="text-clickable" @click="toBlock(item.fork)">{{ addressFilter(item.fork) }}</div>
+                    <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.fork)" />
+                </div>
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">链名称: </div>
+                    <div class="text-lighttable">{{ item.name }}</div>
+                </div>
+                <div class="flex justify-start item-center">
+                    <div class="pr-2 text-lighttable dark:text-white200">链符号: </div>
+                    <div class="text-lighttable">{{ item.symbol }}</div>
+                </div>
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">首发数量: </div>
+                    <div class="text-lighttable">{{ item.amount }}</div>
+                </div>
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">出块奖励: </div>
+                    <div class="text-lighttable">{{ item.reward }}</div>
+                </div>
+                <div class="flex justify-start item-center">
+                    <div class="pr-2 text-lighttable dark:text-white200">衰减周期: </div>
+                    <div class="text-lighttable">{{ item.halvecycle }}</div>
+                </div>
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">创建者地址: </div>
+                    <div class="text-clickable" @click="toAddress(item.symbol)">{{
+                        addressFilter(item.owner) }}</div>
+                    <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.owner)" />
 
                 </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.address') }}: </div>
-                    <div class="text-clickable" @click="toAddress(item.reward_address)">{{
-                        addressFilter(item.reward_address) }}</div>
-                    <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.reward_address)" />
+                    <div class="pr-2 text-lighttable dark:text-white200">创建交易HASH: </div>
+                    <div class="text-clickable" @click="toAddress(item.createtxid)">{{
+                        addressFilter(item.createtxid) }}</div>
+                    <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.createtxid)" />
                 </div>
                 <div class="flex justify-start item-center">
-                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.time') }}: </div>
-                    <div class="text-lighttable">{{ timeFormat(item.time) }}</div>
+                    <div class="pr-2 text-lighttable dark:text-white200">创建时高度: </div>
+                    <div class="text-lighttable">{{ item.createforkheight }}</div>
+                </div>
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">上级链HASH: </div>
+                    <div class="text-clickable" @click="toAddress(item.createtxid)">{{
+                        addressFilter(item.parentfork) }}</div>
+                    <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.parentfork)" />
+
+                </div>
+                <div class="flex justify-start item-center">
+                    <div class="pr-2 text-lighttable dark:text-white200">当前高度: </div>
+                    <div class="text-lighttable">{{ timeFormat(item.forkheight) }}</div>
+                </div>
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">区块数量: </div>
+                    <div class="text-clickable" @click="toBlock(item.symbol)">{{ item.lastnumber }}</div>
+
+                </div>
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">最后区块HASH: </div>
+                    <div class="text-clickable" @click="toAddress(item.lastblock)">{{
+                        addressFilter(item.lastblock) }}</div>
+                    <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.lastblock)" />
+                </div>
+                <div class="flex justify-start item-center">
+                    <div class="pr-2 text-lighttable dark:text-white200">交易总数: </div>
+                    <div class="text-lighttable">{{ item.totaltxcount }}</div>
+                </div>
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">发行总量: </div>
+                    <div class="text-lighttable">{{ item.moneysupply }}</div>
+
+                </div>
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">销毁总量: </div>
+                    <div class="text-lighttable">{{ item.moneydestroy }}</div>
+
                 </div>
             </div>
         </div>
@@ -35,10 +102,15 @@
                 <div v-for="(item, index) in dataList" :key="index"
                     class="flex flex-nowrap w-full justify-start py-3 border-b text-sm border-lightborder text-lighttable dark:text-white200 dark:border-border100">
                     <div class="flex-1">
-                        {{ addressFilter(item.fork) }}
-                    </div>
-                    <div class="flex-1">
                         {{ item.chainid }}
+                    </div>
+                    <div class="flex-1 flex items-center justify-start">
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                            @click="toAddress(item.fork)">
+                            {{ addressFilter(item.fork) }}
+                        </div>
+                        <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-1"
+                            @click="copyContent(item.fork)" />
                     </div>
                     <div class="flex-1">
                         {{ item.name }}
@@ -55,18 +127,32 @@
                     <div class="flex-1">
                         {{ item.halvecycle }}
                     </div>
-                    <div class="flex-1">
-                        {{ addressFilter(item.owner) }}
+                    <div class="flex-1 flex items-center justify-start">
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                            @click="toAddress(item.owner)">
+                            {{ addressFilter(item.owner) }}
+                        </div>
+                        <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-1"
+                            @click="copyContent(item.owner)" />
                     </div>
-                    <div class="flex-1">
-                        {{ addressFilter(item.createtxid) }}
+                    <div class="flex-1 flex items-center justify-start">
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                            @click="toAddress(item.createtxid)">
+                            {{ addressFilter(item.createtxid) }}
+                        </div>
+                        <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-1"
+                            @click="copyContent(item.createtxid)" />
                     </div>
                     <div class="flex-1">
                         {{ item.createforkheight }}
                     </div>
-                    <div class="flex-1">
-                        {{ addressFilter(item.parentfork) }}
-
+                    <div class="flex-1 flex items-center justify-start">
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                            @click="toAddress(item.parentfork)">
+                            {{ addressFilter(item.parentfork) }}
+                        </div>
+                        <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-1"
+                            @click="copyContent(item.parentfork)" />
                     </div>
                     <div class="flex-1">
                         {{ item.forkheight }}
@@ -74,16 +160,20 @@
                     <div class="flex-1">
                         {{ item.lastnumber }}
                     </div>
-                    <div class="flex-1">
-                        {{ addressFilter(item.lastblock) }}
-
+                    <div class="flex-1 flex items-center justify-start">
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                            @click="toAddress(item.lastblock)">
+                            {{ addressFilter(item.lastblock) }}
+                        </div>
+                        <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-1"
+                            @click="copyContent(item.lastblock)" />
                     </div>
                     <div class="flex-1">
                         {{ item.totaltxcount }}
 
                     </div>
                     <div class="flex-1">
-                        {{ addressFilter(item.moneysupply) }}
+                        {{ item.moneysupply }}
 
                     </div>
                     <div class="flex-1">
@@ -139,11 +229,12 @@ export default {
     computed: {
         tableTitleList() {
             return [
-                {
-                    title: '链HASH'
-                },
+
                 {
                     title: '链ID'
+                },
+                {
+                    title: '链HASH'
                 },
                 {
                     title: '链名称'
