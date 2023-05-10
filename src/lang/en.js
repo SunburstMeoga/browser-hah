@@ -21,6 +21,7 @@ module.exports = {
   eTopBar: {
     home: 'Home',
     rich: 'Rich List',
+    branch: 'Branch',
     alt: 'The browser can query all the information on the chain, including the latest burst block, the latest transaction information, transactions in the block, etc',
 
   },

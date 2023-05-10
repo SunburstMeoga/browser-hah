@@ -18,6 +18,7 @@ module.exports = {
   eTopBar: {
     home: '首页',
     rich: '富豪榜',
+    branch: '分支信息',
     alt: '浏览器可查询链上的所有所有信息包括最新爆块，最新交易信息等，区块内的交易等等',
   },
   Address: {
