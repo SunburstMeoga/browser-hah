@@ -5,7 +5,7 @@
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
             <div class="py-2 sm:mb-4 mr-auto ml-auto border-b border-ligthborder dark:border-border100">
                 <div class="w-11/12 mr-auto ml-auto sm:w-full sm:px-2 sm:py-3">
-                    <module-title title="分支信息" :total="totalBlocks" />
+                    <module-title :title="$t('branch.infor')" :total="totalBlocks" />
                 </div>
             </div>
             <branch-info-table :dataList="branchList" :loadStatus="blockTableLoadStatus" />

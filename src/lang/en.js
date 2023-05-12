@@ -239,6 +239,7 @@ module.exports = {
     error: 'Network error, click here to reload'
   },
   branch: {
+    infor: 'Branch Information',
     fork: 'Chain HASH',
     chainid: 'Chain ID',
     name: 'Chain Name',

@@ -234,6 +234,7 @@ module.exports = {
     error: '网络错误，请点击此处重载'
   },
   branch: {
+    infor: '分支信息',
     fork: '链HASH',
     chainid: '链ID',
     name: '链名称',
