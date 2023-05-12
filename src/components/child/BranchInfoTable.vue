@@ -5,84 +5,84 @@
             <div class="py-3 border-b border-lightborder dark:border-border100" v-for="(item, index) in dataList"
                 :key="index">
                 <div class="flex justify-start item-center">
-                    <div class="pr-2 text-lighttable dark:text-white200">链ID: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.chainid') }}: </div>
                     <div class="text-lighttable">{{ item.chainid }}</div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">链HASH: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.fork') }}: </div>
                     <div class="text-clickable" @click="toBlock(item.fork)">{{ addressFilter(item.fork) }}</div>
                     <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.fork)" />
                 </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">链名称: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.name') }}: </div>
                     <div class="text-lighttable">{{ item.name }}</div>
                 </div>
                 <div class="flex justify-start item-center">
-                    <div class="pr-2 text-lighttable dark:text-white200">链符号: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.symbol') }}: </div>
                     <div class="text-lighttable">{{ item.symbol }}</div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">首发数量: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.amount') }}: </div>
                     <div class="text-lighttable">{{ item.amount }}</div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">出块奖励: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.reward') }}: </div>
                     <div class="text-lighttable">{{ item.reward }}</div>
                 </div>
                 <div class="flex justify-start item-center">
-                    <div class="pr-2 text-lighttable dark:text-white200">衰减周期: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.halvecycle') }}: </div>
                     <div class="text-lighttable">{{ item.halvecycle }}</div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">创建者地址: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.owner') }}: </div>
                     <div class="text-clickable" @click="toAddress(item.symbol)">{{
                         addressFilter(item.owner) }}</div>
                     <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.owner)" />
 
                 </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">创建交易HASH: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.createtxid') }}: </div>
                     <div class="text-clickable" @click="toAddress(item.createtxid)">{{
                         addressFilter(item.createtxid) }}</div>
                     <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.createtxid)" />
                 </div>
                 <div class="flex justify-start item-center">
-                    <div class="pr-2 text-lighttable dark:text-white200">创建时高度: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.createforkheight') }}: </div>
                     <div class="text-lighttable">{{ item.createforkheight }}</div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">上级链HASH: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.parentfork') }}: </div>
                     <div class="text-clickable" @click="toAddress(item.createtxid)">{{
                         addressFilter(item.parentfork) }}</div>
                     <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.parentfork)" />
 
                 </div>
                 <div class="flex justify-start item-center">
-                    <div class="pr-2 text-lighttable dark:text-white200">当前高度: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.forkheight') }}: </div>
                     <div class="text-lighttable">{{ timeFormat(item.forkheight) }}</div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">区块数量: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.lastnumber') }}: </div>
                     <div class="text-clickable" @click="toBlock(item.symbol)">{{ item.lastnumber }}</div>
 
                 </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">最后区块HASH: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.lastblock') }}: </div>
                     <div class="text-clickable" @click="toAddress(item.lastblock)">{{
                         addressFilter(item.lastblock) }}</div>
                     <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.lastblock)" />
                 </div>
                 <div class="flex justify-start item-center">
-                    <div class="pr-2 text-lighttable dark:text-white200">交易总数: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.totaltxcount') }}: </div>
                     <div class="text-lighttable">{{ item.totaltxcount }}</div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">发行总量: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.moneysupply') }}: </div>
                     <div class="text-lighttable">{{ item.moneysupply }}</div>
 
                 </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">销毁总量: </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.moneydestroy') }}: </div>
                     <div class="text-lighttable">{{ item.moneydestroy }}</div>
 
                 </div>
@@ -231,55 +231,55 @@ export default {
             return [
 
                 {
-                    title: '链ID'
+                    title: this.$t('branch.chainid')
                 },
                 {
-                    title: '链HASH'
+                    title: this.$t('branch.fork')
                 },
                 {
-                    title: '链名称'
+                    title: this.$t('branch.name')
                 },
                 {
-                    title: '链符号'
+                    title: this.$t('branch.symbol')
                 },
                 {
-                    title: '首发数量'
+                    title: this.$t('branch.amount')
                 },
                 {
-                    title: '出块奖励'
+                    title: this.$t('branch.reward')
                 },
                 {
-                    title: '衰减周期'
+                    title: this.$t('branch.halvecycle')
                 },
                 {
-                    title: '创建者地址'
+                    title: this.$t('branch.owner')
                 },
                 {
-                    title: '创建交易HASH'
+                    title: this.$t('branch.createtxid')
                 },
                 {
-                    title: '创建时高度'
+                    title: this.$t('branch.createforkheight')
                 },
                 {
-                    title: '上级链HASH'
+                    title: this.$t('branch.parentfork')
                 },
                 {
-                    title: '当前高度'
+                    title: this.$t('branch.forkheight')
                 },
                 {
-                    title: '区块数量'
+                    title: this.$t('branch.lastnumber')
                 },
                 {
-                    title: '最后区块HASH'
+                    title: this.$t('branch.lastblock')
                 },
                 {
-                    title: '交易总数'
+                    title: this.$t('branch.totaltxcount')
                 },
                 {
-                    title: '发行总量'
+                    title: this.$t('branch.moneysupply')
                 },
                 {
-                    title: '销毁总量'
+                    title: this.$t('branch.moneydestroy')
                 },
             ]
         }

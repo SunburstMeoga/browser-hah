@@ -48,13 +48,13 @@ export default {
                     this.blockTableLoadStatus = 'finished'
                     console.log('sdfsdf', res)
                     this.branchList = res
-                    // if (res.data.length !== 0) {
-                    //     this.blockListDatas = res.data
-                    //     this.blockTableLoadStatus = 'finished'
-                    // } else {
-                    //     this.blockTableLoadStatus = 'empty'
-                    //     this.$message.error(this.$t('messageTips.noMore'))
-                    // }
+                    if (res.data.length !== 0) {
+                        this.branchList = res.data
+                        this.blockTableLoadStatus = 'finished'
+                    } else {
+                        this.blockTableLoadStatus = 'empty'
+                        this.$message.error(this.$t('messageTips.noMore'))
+                    }
                     this.totalPage = res.totalPage
                     this.totalBlocks = res.total
                     this.blockCurrentPage = res.page
@@ -66,8 +66,8 @@ export default {
             console.log('第一页')
             this.blockPageSize = selectedPageSize
             this.blockCurrentPage = 1
-            this.blockListDatas = []
-            this.getBlockList()
+            this.branchList = []
+            this.getBranchList()
 
         },
         toBlockPrePage(selectedPageSize) {
@@ -76,14 +76,14 @@ export default {
             }
             this.blockPageSize = selectedPageSize
             this.blockCurrentPage = this.blockCurrentPage - 1
-            this.blockListDatas = []
-            this.getBlockList()
+            this.branchList = []
+            this.getBranchList()
         },
         toBlockNextPage(selectedPageSize) {
             this.blockPageSize = selectedPageSize
             this.blockCurrentPage = this.blockCurrentPage + 1
-            this.blockListDatas = []
-            this.getBlockList()
+            this.branchList = []
+            this.getBranchList()
         },
         toBlockLastPage(selectedPageSize) {
             if (this.blockCurrentPage > this.totalPage) {
@@ -91,8 +91,8 @@ export default {
             }
             this.blockPageSize = selectedPageSize
             this.blockCurrentPage = this.totalPage
-            this.blockListDatas = []
-            this.getBlockList()
+            this.branchList = []
+            this.getBranchList()
         },
         // toBlockTargetPage() {
 
@@ -104,8 +104,8 @@ export default {
             }
             this.blockPageSize = selectedPageSize
             this.blockCurrentPage = targetPage
-            this.blockListDatas = []
-            this.getBlockList()
+            this.branchList = []
+            this.getBranchList()
         }
     },
 

@@ -233,4 +233,23 @@ module.exports = {
     notData: '无数据',
     error: '网络错误，请点击此处重载'
   },
+  branch: {
+    fork: '链HASH',
+    chainid: '链ID',
+    name: '链名称',
+    symbol: '链符号',
+    amount: '首发数量',
+    reward: '出块奖励',
+    halvecycle: '衰减周期',
+    owner: '创建者地址',
+    createtxid: '创建交易HASH',
+    createforkheight: '创建时高度',
+    parentfork: '上级链HASH',
+    forkheight: '当前高度',
+    lastnumber: '区块数量',
+    lastblock: '最后区块HASH',
+    totaltxcount: '交易总数',
+    moneysupply: '发行总量',
+    moneydestroy: '销毁总量'
+  }
 }

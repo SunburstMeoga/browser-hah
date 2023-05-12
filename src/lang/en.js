@@ -238,4 +238,23 @@ module.exports = {
     notData: 'No data',
     error: 'Network error, click here to reload'
   },
+  branch: {
+    fork: 'Chain HASH',
+    chainid: 'Chain ID',
+    name: 'Chain Name',
+    symbol: 'Chain Symbol',
+    amount: 'number of starters',
+    reward: 'Block Reward',
+    halvecycle: 'Decay Period',
+    owner: 'Creator Address',
+    createtxid: 'Create Transaction HASH',
+    createforkheight: 'Height at Creation',
+    parentfork: 'Parent Chain HASH',
+    forkheight: 'Current Height',
+    lastnumber: 'Number of Blocks',
+    lastblock: 'last block HASH',
+    totaltxcount: 'total number of transactions',
+    moneysupply: 'total issuance',
+    moneydestroy: 'total amount destroyed'
+  }
 }
