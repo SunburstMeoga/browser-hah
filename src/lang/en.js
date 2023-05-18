@@ -240,6 +240,7 @@ module.exports = {
   },
   branch: {
     infor: 'Branch Information',
+    currentBranch: 'Current Branch',
     fork: 'Chain HASH',
     chainid: 'Chain ID',
     name: 'Chain Name',

@@ -235,6 +235,7 @@ module.exports = {
   },
   branch: {
     infor: '分支信息',
+    currentBranch: '当前分支',
     fork: '链HASH',
     chainid: '链ID',
     name: '链名称',

@@ -1,5 +1,21 @@
 <template>
     <div>
+        <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
+            style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
+            <div class="py-3 px-2 mr-auto ml-auto">
+                <div class="flex justify-start items-center flex-wrap sm:flex-nowrap px-2">
+                    <div class="text-black dark:text-white300 text-base font-bold sm:text-xl pr-3">{{
+                        $t('branch.currentBranch')
+                    }}:</div>
+                    <div class="flex justify-start items-center">
+                        <div :class="index === 1 ? 'ml-4' : ''" v-for="(item, index) in branchList" :key="index">
+                            <el-radio @input="enabled(item)" v-model="chainid" :label="item.chainid">{{ item.name
+                            }}</el-radio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
             style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
@@ -34,7 +50,8 @@ export default {
             blockPageSize: 10,
             blockCurrentPage: 1,
             totalBlocks: 0,
-            totalPage: 0
+            totalPage: 0,
+            chainid: 0
         }
     },
     created() {
@@ -57,6 +74,10 @@ export default {
                             // branchList[0].chedked = true
                             this.$store.commit('getChainId', branchList[0].name.chainid)
                             this.$store.commit('getChainName', branchList[0].name.name)
+                            this.chainid = branchList[0].name
+                        } else {
+                            this.chainid = parseInt(localStorage.getItem('chainID'))
+
                         }
                     } else {
                         this.blockTableLoadStatus = 'empty'
@@ -68,6 +89,14 @@ export default {
                 }).catch(err => {
                     console.log('load fail:', err)
                 })
+        },
+        enabled(item) {
+            console.log(item)
+            localStorage.setItem('chainName', item.name)
+            localStorage.setItem('chainID', item.chainid)
+            this.$store.commit('getChainId', item.chainid)
+            this.$store.commit('getChainName', item.name)
+            console.log(item.chainid, parseInt(localStorage.getItem('chainID')), this.$store.state.chainName, item.checked)
         },
         toBlockFirstPage(selectedPageSize) {
             console.log('第一页')
