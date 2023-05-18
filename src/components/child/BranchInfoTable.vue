@@ -101,10 +101,11 @@
             <div class="sm:pl-2 sm:pt-2">
                 <div v-for="(item, index) in dataList" :key="index"
                     class="flex flex-nowrap w-full justify-start py-3 border-b text-sm border-lightborder text-lighttable dark:text-white200 dark:border-border100">
-                    <div class="flex-1">
-                        <el-switch v-model="item.checked" @change="enabled(item)" active-color="#13ce66"
+                    <div class="flex-1 text-clickable cursor-pointer" @click="enabled(item)">
+                        <!-- <el-switch v-model="item.checked" @change="enabled(item)" active-color="#13ce66"
                             inactive-color="#ff4949">
-                        </el-switch>
+                        </el-switch> -->
+                        启用
                     </div>
                     <div class="flex-1">
                         {{ item.chainid }}
@@ -229,8 +230,7 @@ export default {
             localStorage.setItem('chainID', item.chainid)
             this.$store.commit('getChainId', item.chainid)
             this.$store.commit('getChainName', item.name)
-            item.checked = !item.checked
-            console.log(item.chainid, parseInt(localStorage.getItem('chainID')), this.$store.state.chainID, item.checked)
+            console.log(item.chainid, parseInt(localStorage.getItem('chainID')), this.$store.state.chainName, item.checked)
         },
         copyContent(content) {
             navigator.clipboard.writeText(content).then(() => {
