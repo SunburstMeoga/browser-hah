@@ -102,6 +102,11 @@
                 <div v-for="(item, index) in dataList" :key="index"
                     class="flex flex-nowrap w-full justify-start py-3 border-b text-sm border-lightborder text-lighttable dark:text-white200 dark:border-border100">
                     <div class="flex-1">
+                        <el-switch v-model="item.checked" @change="enabled(item)" active-color="#13ce66"
+                            inactive-color="#ff4949">
+                        </el-switch>
+                    </div>
+                    <div class="flex-1">
                         {{ item.chainid }}
                     </div>
                     <div class="flex-1 flex items-center justify-start">
@@ -178,7 +183,6 @@
                     </div>
                     <div class="flex-1">
                         {{ item.moneydestroy }}
-
                     </div>
                 </div>
             </div>
@@ -201,8 +205,33 @@ export default {
             default: 'loading'
         }
     },
+    data() {
+        return {
+            checked: false
+        }
+    },
+    computed: {
+        isChecked() {
+            this.dataList.map(item => {
+                if (this.$store.state.chainID === item.chainid) {
+                    return true
+                } else {
+                    return false
+                }
+            })
+        }
+    },
     methods: {
         timeFormat, addressFormat, addressFilter,
+        enabled(item) {
+            console.log(item)
+            localStorage.setItem('chainName', item.name)
+            localStorage.setItem('chainID', item.chainid)
+            this.$store.commit('getChainId', item.chainid)
+            this.$store.commit('getChainName', item.name)
+            item.checked = !item.checked
+            console.log(item.chainid, parseInt(localStorage.getItem('chainID')), this.$store.state.chainID, item.checked)
+        },
         copyContent(content) {
             navigator.clipboard.writeText(content).then(() => {
                 this.$message({
@@ -229,7 +258,9 @@ export default {
     computed: {
         tableTitleList() {
             return [
-
+                {
+                    title: '设为启用'
+                },
                 {
                     title: this.$t('branch.chainid')
                 },
@@ -280,7 +311,7 @@ export default {
                 },
                 {
                     title: this.$t('branch.moneydestroy')
-                },
+                }
             ]
         }
     },

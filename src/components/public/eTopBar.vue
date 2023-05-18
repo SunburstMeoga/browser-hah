@@ -117,7 +117,7 @@ export default {
                 { title: this.$t('eTopBar.rich'), path: '/rank' },
                 { title: 'DPOS', path: '/dpos' },
                 { title: 'HRC20', path: '/hrc' },
-                { title: this.$t('eTopBar.branch'), path: '/branch' }
+                { title: localStorage.getItem('chainName'), path: '/branch' }
             ]
         },
         searchCriteriaList() {

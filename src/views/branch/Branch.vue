@@ -51,6 +51,13 @@ export default {
                     if (res.data.length !== 0) {
                         this.branchList = res.data
                         this.blockTableLoadStatus = 'finished'
+                        if (!localStorage.getItem('chainID')) {
+                            localStorage.setItem('chainName', branchList[0].name)
+                            localStorage.setItem('chainID', branchList[0].name.chainid)
+                            // branchList[0].chedked = true
+                            this.$store.commit('getChainId', branchList[0].name.chainid)
+                            this.$store.commit('getChainName', branchList[0].name.name)
+                        }
                     } else {
                         this.blockTableLoadStatus = 'empty'
                         this.$message.error(this.$t('messageTips.noMore'))
