@@ -117,7 +117,9 @@ export default {
                 { title: this.$t('eTopBar.rich'), path: '/rank' },
                 { title: 'DPOS', path: '/dpos' },
                 { title: 'HRC20', path: '/hrc' },
-                { title: this.$store.state.chainName || localStorage.getItem('chainName'), path: '/branch' }
+                // { title: localStorage.getItem('chainName') || this.$store.state.chainName ? this.$t('branch.infor') + '(' + (localStorage.getItem('chainName') || this.$store.state.chainName) + ')' : this.$t('branch.infor'), path: '/branch' }
+
+                { title: (this.$store.state.chainName || localStorage.getItem('chainName')) ? this.$t('branch.infor') + `(${localStorage.getItem('chainName')})` : this.$t('branch.infor'), path: '/branch' },
             ]
         },
         searchCriteriaList() {
