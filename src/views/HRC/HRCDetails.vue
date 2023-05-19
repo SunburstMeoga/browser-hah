@@ -111,7 +111,7 @@ export default {
             })
         },
         getHRC20Details() {
-            HRC20Details({ address: this.address, a: this.conAddress }).then(res => {
+            HRC20Details({ address: this.address, a: this.conAddress, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                 console.log('hrc20详情', res)
                 this.tokenInfo = res
             }).catch(err => {
@@ -119,7 +119,7 @@ export default {
             })
         },
         getContractTX() {
-            contractTX({ address: this.address, page: this.txCurrentPage }).then(res => {
+            contractTX({ address: this.address, page: this.txCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                 console.log(res)
                 if (res.data.length !== 0) {
                     this.dataList = res.data

@@ -61,7 +61,7 @@ export default {
         numberFormat,
         getBranchList() {
             this.blockTableLoadStatus = 'loading',
-                branchList({ pageSize: this.blockPageSize, page: this.blockCurrentPage }).then(res => {
+                branchList({ pageSize: this.blockPageSize, page: this.blockCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                     this.blockTableLoadStatus = 'finished'
                     console.log('sdfsdf', res)
                     this.branchList = res

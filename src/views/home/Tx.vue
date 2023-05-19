@@ -197,14 +197,14 @@ export default {
             });
         },
         getTXDetails() {
-            txDetails({ txid: this.txid, }).then(res => {
+            txDetails({ txid: this.txid, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                 this.dataDetails = res
                 this.transactionInfo.transTotal = res.length
             });
         },
         getTxinfo() {
             this.tranInfoLoadStatus = 'loading'
-            txInfo({ txid: this.txid, }).then(res => {
+            txInfo({ txid: this.txid, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                 console.log('tx', res)
                 // this.transactionInfo.block_hash = res.block_hash
                 // this.transactionInfo.from = res.from

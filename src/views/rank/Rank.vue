@@ -44,7 +44,7 @@ export default {
 
         getRankList() {
             this.rankListLoadStatus = 'loading'
-            rankList({ pageSize: this.rankPageSize, page: this.rankCurrentPage }).then(res => {
+            rankList({ pageSize: this.rankPageSize, page: this.rankCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                 if (res.data.length !== 0) {
                     this.rankListDatas = res.data
                     this.rankListLoadStatus = 'finished'

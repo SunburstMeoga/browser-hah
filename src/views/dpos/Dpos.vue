@@ -42,7 +42,7 @@ export default {
         numberFormat,
         getListDelegate() {
             this.dposListLoadStatus = 'loading'
-            listDelegate({ pageSize: this.dposPageSize, page: this.dposCurrentPage }).then(res => {
+            listDelegate({ pageSize: this.dposPageSize, page: this.dposCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                 if (res.data.length !== 0) {
                     this.dposListDatas = res.data
                     this.dposListLoadStatus = 'finished'

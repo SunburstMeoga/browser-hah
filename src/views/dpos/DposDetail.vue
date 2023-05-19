@@ -90,7 +90,7 @@ export default {
             })
         },
         getDPOSInfo() {
-            DPOSInfo({ address: this.dposAddress }).then(res => {
+            DPOSInfo({ address: this.dposAddress, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                 console.log('dpos详情', res)
                 this.DPOSInfo = res
             }).catch(err => {
@@ -98,7 +98,7 @@ export default {
             })
         },
         getDelegateDetails() {
-            listDelegateDetails({ dposAddress: this.dposAddress, }).then(res => {
+            listDelegateDetails({ dposAddress: this.dposAddress, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                 this.dposlistDetailDatas = res.data
                 if (res.data.length !== 0) {
                     this.dposlistDetailDatas = res.data

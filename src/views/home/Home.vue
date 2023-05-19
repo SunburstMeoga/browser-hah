@@ -119,7 +119,7 @@ export default {
             // this.reconnect();
         },
         websocketOnmessage(e) {
-            // console.log("-----Message-------", JSON.parse(e.data));
+            console.log("-----Message-------", JSON.parse(e.data));
             let data = JSON.parse(e.data)
             let blockObj = {}
             blockObj.height = data.height
@@ -127,21 +127,24 @@ export default {
             blockObj.reward_address = data.txmint.to
             blockObj.prev_hash = data.prev
             blockObj.time = data.time
+            blockObj.chainid = data.chainid
             blockObj.txs = data.tx.length + 1
-            data.tx.map(item => {
-                let txObj = {}
-                txObj.txid = item.txid
-                txObj.transtime = data.time
-                txObj.amount = item.amount
-                txObj.from = item.from
-                txObj.to = item.to
-                if (item.type !== 'certification') {
-                    this.TXListDatas.unshift(txObj)
-                    this.TXListDatas.pop()
-                }
-            })
-            this.blockListDatas.unshift(blockObj)
-            this.blockListDatas.pop()
+            if (blockObj.chainid === parseInt(localStorage.getItem('chainID')) || blockObj.chainid === this.$store.state.chainID) {
+                data.tx.map(item => {
+                    let txObj = {}
+                    txObj.txid = item.txid
+                    txObj.transtime = data.time
+                    txObj.amount = item.amount
+                    txObj.from = item.from
+                    txObj.to = item.to
+                    if (item.type !== 'certification') {
+                        this.TXListDatas.unshift(txObj)
+                        this.TXListDatas.pop()
+                    }
+                    this.blockListDatas.unshift(blockObj)
+                    this.blockListDatas.pop()
+                })
+            }
         },
         websocketOnclose(e) {
             console.log("connection closed (" + e.code + ")");
@@ -160,7 +163,7 @@ export default {
 
         getTXList() {
             this.tradeTableLoadStatus = 'loading'
-            TXList({ pageSize: this.txPageSize, page: this.txCurrentPage }).then(res => {
+            TXList({ pageSize: this.txPageSize, page: this.txCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                 if (res.data.length !== 0) {
                     this.TXListDatas = res.data
                     this.tradeTableLoadStatus = 'finished'
@@ -174,7 +177,7 @@ export default {
         },
         getBlockList() {
             this.blockTableLoadStatus = 'loading',
-                blockList({ pageSize: this.blockPageSize, page: this.blockCurrentPage }).then(res => {
+                blockList({ pageSize: this.blockPageSize, page: this.blockCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                     console.log('getNewBlock', res)
                     if (res.data.length !== 0) {
                         this.blockListDatas = res.data

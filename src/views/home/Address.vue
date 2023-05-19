@@ -138,6 +138,7 @@ export default {
             balanceInfo({
                 address: this.address,
                 symbol: 'HAH',
+                chainid: parseInt(localStorage.getItem('chainID'))
             }).then(res => {
                 this.addressInfo.balance = res.balance
                 this.addressInfo.locked = res.locked
@@ -155,7 +156,8 @@ export default {
             hrc20txns({
                 address: this.address,
                 page: this.txCurrentPage,
-                pageSize: this.txPageSize
+                pageSize: this.txPageSize,
+                chainid: parseInt(localStorage.getItem('chainID'))
             }).then(res => {
                 console.log('hrc20交易', res)
                 if (res.data.length !== 0) {
@@ -176,7 +178,8 @@ export default {
             TXList({
                 address: this.address,
                 page: this.txCurrentPage,
-                pageSize: this.txPageSize
+                pageSize: this.txPageSize,
+                chainid: parseInt(localStorage.getItem('chainID'))
             }).then(res => {
                 console.log('res', res)
                 if (res.data.length !== 0) {

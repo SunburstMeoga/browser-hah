@@ -44,7 +44,7 @@ export default {
         numberFormat,
         getBlockList() {
             this.blockTableLoadStatus = 'loading',
-                blockList({ pageSize: this.blockPageSize, page: this.blockCurrentPage }).then(res => {
+                blockList({ pageSize: this.blockPageSize, page: this.blockCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                     console.log('getNewBlock', res)
                     if (res.data.length !== 0) {
                         this.blockListDatas = res.data
