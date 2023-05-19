@@ -36,7 +36,7 @@ module.exports = {
     hash: 'Hash',
     time: 'Time',
     block: 'Block',
-    txFee: 'Transaction Fee',
+    txFee: 'Force Fee',
     locked: 'Locked',
     hidden: 'Collapse'
   },
@@ -51,7 +51,7 @@ module.exports = {
     reward: 'Block Reward',
     tx: 'Transaction',
     block: 'block',
-    txFee: 'Transaction Fee',
+    txFee: 'Force Fee',
     hash: 'Hash',
     blockStatistics: 'Block Statistics',
     blockTrade: '{count} transacions in this block'
@@ -96,7 +96,7 @@ module.exports = {
     h2: 'Blockchain browser is the most accurate and fast data browser in the world. Users can use the blockchain browser to build wallets and query and search all blockchain data information on the chain ',
   },
   Pending: {
-    h1: 'The browser queries the transactions to be confirmed on the chain, the number of transactions to be confirmed and the transaction fee ',
+    h1: 'The browser queries the transactions to be confirmed on the chain, the number of transactions to be confirmed and the Force Fee ',
     h2: 'The browser can query the transactions to be confirmed, including the number of transactions, transaction volume, token transactions, total contract transactions, etc. ',
     tx: 'Transaction',
     hash: 'Hash',
@@ -122,7 +122,7 @@ module.exports = {
     from: 'From',
     to: 'To',
     txAmount: 'Transaction Amount',
-    txFee: 'Transaction Fee',
+    txFee: 'Force Fee',
     dpos_in: 'Vote Node Address',
     dpos_out: 'Withdrawal Node Address',
     client_in: 'Vote customer Address',

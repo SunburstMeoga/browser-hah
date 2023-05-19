@@ -32,7 +32,7 @@ module.exports = {
     hash: '交易哈希',
     time: '时间',
     block: '所在块',
-    txFee: '交易费',
+    txFee: '原力',
     locked: '锁定余额',
     hidden: '收起'
   },
@@ -47,7 +47,7 @@ module.exports = {
     reward: '爆块奖励',
     tx: '交易',
     block: '所在块',
-    txFee: '交易费',
+    txFee: '原力',
     hash: '交易哈希',
     blockStatistics: '区块统计',
     blockTrade: '当前区块有 {count} 笔交易'
@@ -92,7 +92,7 @@ module.exports = {
     h2: '区块链浏览器是全球范围内数据最精准，速度最快速的浏览器，用户可以使用区块链浏览器搭建钱包以及使用查询和搜索链上的所有区块链数据信息。',
   },
   Pending: {
-    h1: '浏览器查询链上待确认交易，待确认交易数量，交易费。',
+    h1: '浏览器查询链上待确认交易，待确认交易数量，原力。',
     h2: '浏览器可查询待确认交易，包括交易的交易数，交易额，Token交易笔数，总合约交易笔数等。',
     tx: '交易',
     hash: '交易哈希',
@@ -118,7 +118,7 @@ module.exports = {
     from: 'from地址',
     to: 'to地址',
     txAmount: '转账金额',
-    txFee: '交易费',
+    txFee: '原力',
     dpos_in: '投票节点地址',
     dpos_out: '撤投节点地址',
     client_in: '投票客户地址',
