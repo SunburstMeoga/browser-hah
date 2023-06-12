@@ -37,10 +37,10 @@
                 {{ $store.state.isDark }}</div>
         </div> -->
 
-        <div class="flex justify-start items-center mb-2 sm:mb-4">
+        <!-- <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4">{{ $t('Address.rank') }}:</div>
             <div class="text-sm ">{{ addressInfo.rank === -1 ? $t('Rank.notRank') : addressInfo.rank }}</div>
-        </div>
+        </div> -->
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4">Nonce:</div>

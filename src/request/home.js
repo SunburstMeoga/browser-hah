@@ -11,7 +11,7 @@ export function blockList(params) {
 
 export function TXList(params) {
     return request({
-        url: '/api/txlist/',
+        url: '/api/txlist',
         method: 'get',
         params
     })
