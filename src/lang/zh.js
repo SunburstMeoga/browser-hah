@@ -21,8 +21,6 @@ module.exports = {
     alt: '浏览器可查询链上的所有所有信息包括最新爆块，最新交易信息等，区块内的交易等等',
   },
   Address: {
-    testOne: '负利率时间累计值',
-    testTwo: '上次交易时间',
     addressInfo: '地址信息',
     address: '普通地址',
     balance: '余额',

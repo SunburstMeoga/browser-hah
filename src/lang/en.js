@@ -21,8 +21,6 @@ module.exports = {
     alt: 'The browser can query all the information on the chain, including the latest burst block, the latest transaction information, transactions in the block, etc',
   },
   Address: {
-    testOne: 'Negative interest rate time cumulative value',
-    testTwo: 'Last Trade',
     addressInfo: 'Address Information',
     address: 'Address',
     balance: 'Balance',

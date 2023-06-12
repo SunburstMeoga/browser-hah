@@ -56,12 +56,12 @@
         </div>
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
-            <div class="font-bold pr-4 sm:w-1/4">{{ $t('Address.testOne') }}:</div>
+            <div class="font-bold pr-4 sm:w-1/4">{{ $t('Address.timeVault') }}:</div>
             <div class="text-sm text-lighttable dark:text-white200">{{ addressInfo.tv.timevault }} </div>
         </div>
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
-            <div class="font-bold pr-4 sm:w-1/4">{{ $t('Address.testTwo') }}:</div>
+            <div class="font-bold pr-4 sm:w-1/4">{{ $t('Address.preVaultTime') }}:</div>
             <div class="text-sm text-lighttable dark:text-white200">{{ addressInfo.tv.prevsettlementtime !== 0 ?
                 timeFormat(addressInfo.tv.prevsettlementtime) : $t('loadStatus.notData') }}
             </div>
