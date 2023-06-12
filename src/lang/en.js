@@ -1,4 +1,3 @@
-
 module.exports = {
   common: {
     browser: 'HAH Browser',
@@ -7,25 +6,23 @@ module.exports = {
     tx: 'Transaction',
     placeholder: 'Search address / block / transaction',
     search: 'Search',
-    more: 'More',
-
-
+    more: 'More'
   },
   eFooterBar: {
     link: 'We are social',
     fork: 'Fork me on GitHub',
     power: 'Powered by',
     webService: 'Web Services',
-
   },
   eTopBar: {
     home: 'Home',
     rich: 'Rich List',
     branch: 'Branch',
     alt: 'The browser can query all the information on the chain, including the latest burst block, the latest transaction information, transactions in the block, etc',
-
   },
   Address: {
+    testOne: 'Negative interest rate time cumulative value',
+    testTwo: 'Last Trade',
     addressInfo: 'Address Information',
     address: 'Address',
     balance: 'Balance',
@@ -40,7 +37,7 @@ module.exports = {
     locked: 'Locked',
     hidden: 'Collapse',
     timeVault: 'Negative interest rate time cumulative value',
-    preVaultTime: 'Last Trade',
+    preVaultTime: 'Last Trade'
   },
   Block: {
     blockInfo: 'Block Information',
@@ -145,7 +142,6 @@ module.exports = {
       pagesize: ' pcs/page',
       total: 'total {total}',
       pageClassifier: 'page'
-
     }
   },
   routes: {

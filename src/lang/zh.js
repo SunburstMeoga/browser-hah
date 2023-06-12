@@ -7,7 +7,6 @@ module.exports = {
     placeholder: '搜索地址 / 区块 / 交易',
     search: '搜索',
     more: '查看更多',
-
   },
   eFooterBar: {
     link: '链接',
@@ -22,6 +21,8 @@ module.exports = {
     alt: '浏览器可查询链上的所有所有信息包括最新爆块，最新交易信息等，区块内的交易等等',
   },
   Address: {
+    testOne: '负利率时间累计值',
+    testTwo: '上次交易时间',
     addressInfo: '地址信息',
     address: '普通地址',
     balance: '余额',
@@ -36,7 +37,7 @@ module.exports = {
     locked: '锁定余额',
     hidden: '收起',
     timeVault: '负利率时间累计值',
-    preVaultTime: '上次交易时间',
+    preVaultTime: '上次交易时间'
   },
   Block: {
     blockInfo: '区块信息',
