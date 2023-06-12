@@ -50,13 +50,13 @@
             <div class="font-bold pr-4 ">{{ $t('Tx.txAmount') }}:</div>
             <div class="text-lighttable dark:text-white200">{{ transactionInfo.amount }} HAH</div>
         </div>
-        <div class="flex justify-start items-center mb-2">
+        <!-- <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.blockDeplete') }}:</div>
             <div class="text-lighttable dark:text-white200">{{ transactionInfo.cumulativeGasUsed }} HAH</div>
-        </div>
+        </div> -->
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.effectiveGasPrice') }}:</div>
-            <div class="text-lighttable dark:text-white200">{{ transactionInfo.effectiveGasPrice }} HAH</div>
+            <div class="text-lighttable dark:text-white200">{{ transactionInfo.effectiveGasPrice }}</div>
         </div>
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.effectiveGasFee') }}:</div>
@@ -64,11 +64,11 @@
         </div>
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.gasUsed') }}:</div>
-            <div class="text-lighttable dark:text-white200">{{ transactionInfo.gasUsed }} HAH</div>
+            <div class="text-lighttable dark:text-white200">{{ transactionInfo.gasUsed }}</div>
         </div>
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.gasTv') }}:</div>
-            <div class="text-lighttable dark:text-white200">{{ transactionInfo.gasTv }} HAH</div>
+            <div class="text-lighttable dark:text-white200">{{ transactionInfo.gasTv }}</div>
         </div>
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.txFee') }}:</div>
