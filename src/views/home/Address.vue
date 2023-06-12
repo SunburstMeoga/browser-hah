@@ -145,6 +145,7 @@ export default {
                 this.addressInfo.nonce = res.nonce
                 this.addressInfo.rank = res.rank
                 this.addressInfo.token = res.token
+                this.addressInfo.tv = res.tv
                 this.$store.commit('getAddressInfo', this.addressInfo)
                 this.addressInfoLoadStatus = 'finished'
                 console.log('this.addressInfo', res);

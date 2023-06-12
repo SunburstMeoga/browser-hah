@@ -38,7 +38,9 @@ module.exports = {
     block: 'Block',
     txFee: 'Force Fee',
     locked: 'Locked',
-    hidden: 'Collapse'
+    hidden: 'Collapse',
+    timeVault: 'Negative interest rate time cumulative value',
+    preVaultTime: 'Last Trade',
   },
   Block: {
     blockInfo: 'Block Information',
@@ -130,7 +132,12 @@ module.exports = {
     nodeName: 'Node Name',
     voteAmount: 'Vote Amount',
     nodeDetails: 'Node Details',
-    nodeAddress: 'Node Address'
+    nodeAddress: 'Node Address',
+    blockDeplete: 'Block Deplete',
+    effectiveGasPrice: 'Actual gas price',
+    effectiveGasFee: 'Actual cost consumed',
+    gasUsed: 'The actual gas consumed',
+    gasTv: 'The negative interest rate time value paid'
   },
   el: {
     pagination: {

@@ -34,7 +34,9 @@ module.exports = {
     block: '所在块',
     txFee: '原力',
     locked: '锁定余额',
-    hidden: '收起'
+    hidden: '收起',
+    timeVault: '负利率时间累计值',
+    preVaultTime: '上次交易时间',
   },
   Block: {
     blockInfo: '区块信息',
@@ -126,7 +128,12 @@ module.exports = {
     nodeName: '节点名称',
     voteAmount: '投票量',
     nodeDetails: '节点详情',
-    nodeAddress: '节点地址'
+    nodeAddress: '节点地址',
+    blockDeplete: '区块消耗累计',
+    effectiveGasPrice: '实际gas价格',
+    effectiveGasFee: '实际消耗的费用',
+    gasUsed: '实际消耗的gas',
+    gasTv: '支付的负利率时间值'
   },
   el: {
     pagination: {
