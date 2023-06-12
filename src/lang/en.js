@@ -137,7 +137,7 @@ module.exports = {
     effectiveGasPrice: 'Actual gas price',
     effectiveGasFee: 'Actual cost consumed',
     gasUsed: 'The actual gas consumed',
-    gasTv: 'The negative interest rate time value paid'
+    gasTv: 'The negative time value paid'
   },
   el: {
     pagination: {
