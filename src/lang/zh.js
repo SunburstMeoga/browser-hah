@@ -132,7 +132,7 @@ module.exports = {
     effectiveGasPrice: '实际gas价格',
     effectiveGasFee: '实际消耗的费用',
     gasUsed: '实际消耗的gas',
-    gasTv: '支付的负利率时间值'
+    gasTv: '支付负利率GAS'
   },
   el: {
     pagination: {
