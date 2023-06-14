@@ -129,9 +129,9 @@ module.exports = {
     nodeDetails: '节点详情',
     nodeAddress: '节点地址',
     blockDeplete: '区块消耗累计',
-    effectiveGasPrice: '实际gas价格',
+    effectiveGasPrice: '实际GAS价格',
     effectiveGasFee: '实际消耗的费用',
-    gasUsed: '实际消耗的gas',
+    gasUsed: '实际消耗的GAS',
     gasTv: '支付负利率GAS'
   },
   el: {

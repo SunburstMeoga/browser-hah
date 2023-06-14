@@ -129,9 +129,9 @@ module.exports = {
     nodeDetails: 'Node Details',
     nodeAddress: 'Node Address',
     blockDeplete: 'Block Deplete',
-    effectiveGasPrice: 'Actual gas price',
+    effectiveGasPrice: 'Actual GAS price',
     effectiveGasFee: 'Actual cost consumed',
-    gasUsed: 'The actual gas consumed',
+    gasUsed: 'The actual GAS consumed',
     gasTv: 'Pay Rate GAS'
   },
   el: {
