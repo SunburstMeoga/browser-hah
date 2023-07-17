@@ -58,10 +58,10 @@
                         {{ item.txs }}
                     </div>
                     <div class="w-60">
-                        {{ addressFilter(item.prev_hash) }}
+                        {{ timeFormat(item.time) }}
                     </div>
                     <div class="w-60">
-                        {{ timeFormat(item.time) }}
+                        {{ addressFilter(item.prev_hash) }}
                     </div>
                 </div>
             </div>
@@ -125,10 +125,10 @@ export default {
                     title: this.$t('BlockList.amount')
                 },
                 {
-                    title: this.$t('BlockList.previousBlock')
+                    title: this.$t('BlockList.time')
                 },
                 {
-                    title: this.$t('BlockList.time')
+                    title: this.$t('BlockList.previousBlock')
                 },
             ]
         }
