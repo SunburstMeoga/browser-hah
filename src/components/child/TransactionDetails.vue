@@ -54,18 +54,18 @@
             <div class="font-bold pr-4 ">{{ $t('Tx.blockDeplete') }}:</div>
             <div class="text-lighttable dark:text-white200">{{ transactionInfo.cumulativeGasUsed }} HAH</div>
         </div> -->
-        <div class="flex justify-start items-center mb-2">
+        <!-- <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.effectiveGasPrice') }}:</div>
             <div class="text-lighttable dark:text-white200">{{ transactionInfo.effectiveGasPrice }}</div>
-        </div>
-        <div class="flex justify-start items-center mb-2">
+        </div> -->
+        <!-- <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.effectiveGasFee') }}:</div>
             <div class="text-lighttable dark:text-white200">{{ transactionInfo.effectiveGasFee }} HAH</div>
         </div>
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.gasUsed') }}:</div>
             <div class="text-lighttable dark:text-white200">{{ transactionInfo.gasUsed }}</div>
-        </div>
+        </div> -->
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('Tx.gasTv') }}:</div>
             <div class="text-lighttable dark:text-white200">{{ transactionInfo.gasTv }}</div>
