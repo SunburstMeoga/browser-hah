@@ -48,9 +48,9 @@
                         @click="toAddress(item.to)">
                         {{ addressFilter(item.to) }}
                     </div>
-                    <div class="w-60">
+                    <!-- <div class="w-60">
                         {{ item.fun }}
-                    </div>
+                    </div> -->
                     <div class="w-60">
                         {{ item.amount }}
                     </div>
@@ -66,6 +66,7 @@
 <script>
 import HLoading from "@/components/public/HLoading"
 import { timeFormat, amountFormat, addressFilter } from '@/utils/format'
+
 export default {
     components: { HLoading },
 
@@ -112,9 +113,9 @@ export default {
                     title: this.$t('Pending.to')
                 },
 
-                {
-                    title: this.$t('hrc20.method')
-                },
+                // {
+                //     title: this.$t('hrc20.method')
+                // },
                 {
                     title: this.$t('hrc20.quantity')
                 },
