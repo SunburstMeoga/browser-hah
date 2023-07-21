@@ -225,10 +225,10 @@ module.exports = {
     contractCreate: 'Contract Creation',
     contractInvoke: 'Contract Call',
     genesis: 'Creation',
-    stake: 'DPOS Mining',
+    stake: 'POS Mining',
     token: 'Ordinary',
     voteReward: 'Earnings',
-    work: 'Pow Mining'
+    work: 'POA Mining'
   },
   overview: {
     out: 'Output Amount',

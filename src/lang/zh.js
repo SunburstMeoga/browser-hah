@@ -225,10 +225,10 @@ module.exports = {
     contractCreate: '合约创建',
     contractInvoke: '合约调用',
     genesis: '创世',
-    stake: 'DPOS挖矿',
+    stake: 'POS挖矿',
     token: '普通',
     voteReward: '收益',
-    work: 'Pow挖矿'
+    work: 'POA挖矿'
   },
   overview: {
     out: '输出金额',
