@@ -41,7 +41,10 @@
             <div class="font-bold pr-4 sm:w-1/4">{{ $t('Address.rank') }}:</div>
             <div class="text-sm ">{{ addressInfo.rank === -1 ? $t('Rank.notRank') : addressInfo.rank }}</div>
         </div> -->
-
+        <div class="flex justify-start items-center mb-2 sm:mb-4">
+            <div class="font-bold pr-4 sm:w-1/4">负利率:</div>
+            <div class="text-sm text-lighttable dark:text-white200">{{ addressInfo.tv.timevault }} </div>
+        </div>
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4">Nonce:</div>
             <div class="text-sm text-lighttable dark:text-white200">{{ addressInfo.nonce }} </div>
@@ -55,10 +58,7 @@
                 : $t('common.more') }}</div>
         </div>
 
-        <div class="flex justify-start items-center mb-2 sm:mb-4">
-            <div class="font-bold pr-4 sm:w-1/4">{{ $t('Address.timeVault') }}:</div>
-            <div class="text-sm text-lighttable dark:text-white200">{{ addressInfo.tv.timevault }} </div>
-        </div>
+
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4">{{ $t('Address.preVaultTime') }}:</div>
