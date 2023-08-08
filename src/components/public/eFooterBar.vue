@@ -66,13 +66,13 @@ export default {
                     icon: 'icon-a-ziyuan5'
                 },
                 {
-                    path: '',
+                    path: 'https://discord.gg/2VCU4tB8',
                     icon: 'icon-discord3'
                 },
-                {
-                    path: '',
-                    icon: 'icon-facebook'
-                },
+                // {
+                //     path: '',
+                //     icon: 'icon-facebook'
+                // },
 
             ]
         }
