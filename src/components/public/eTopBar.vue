@@ -115,7 +115,7 @@ export default {
             return [
                 { title: this.$t('eTopBar.home'), path: '/' },
                 { title: this.$t('eTopBar.rich'), path: '/rank' },
-                { title: 'DPOS', path: '/dpos' },
+                { title: 'Nodes', path: '/dpos' },
                 { title: 'HRC20', path: '/hrc' },
                 // { title: localStorage.getItem('chainName') || this.$store.state.chainName ? this.$t('branch.infor') + '(' + (localStorage.getItem('chainName') || this.$store.state.chainName) + ')' : this.$t('branch.infor'), path: '/branch' }
 

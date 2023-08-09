@@ -105,7 +105,7 @@ module.exports = {
   Rank: {
     h1: 'Browser query blockchain and token rich list',
     h2: 'The browser displays the rich list, including the rich ranking, rich address and transaction amount.',
-    rich: 'Rich List',
+    rich: 'Accounts',
     rank: 'Ranking',
     address: 'Address',
     balance: 'Balance',
@@ -240,7 +240,7 @@ module.exports = {
     error: 'Network error, click here to reload'
   },
   branch: {
-    infor: 'Branch Information',
+    infor: 'Cryptex & Codex Chain',
     currentBranch: 'Current Branch',
     fork: 'Chain HASH',
     chainid: 'Chain ID',
