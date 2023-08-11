@@ -50,11 +50,11 @@ export default {
         return {
             socialList: [
                 {
-                    path: 'https://twitter.com/home',
+                    path: 'https://twitter.com/hashahead',
                     icon: 'icon-twitter-fill'
                 },
                 {
-                    path: 'https://github.com/Block-Way',
+                    path: 'https://github.com/hashahead',
                     icon: 'icon-github'
                 },
                 {
