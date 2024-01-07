@@ -10,6 +10,16 @@
         </div>
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
+            <div class="font-bold pr-4 sm:w-1/4">{{ $t('Block.blockHASH') }}:</div>
+            <div class="text-sm pr-2 hidden sm:block text-lighttable dark:text-white200">{{ $store.state.blockInfo.hash }}
+            </div>
+            <div class="text-sm pr-2 sm:hidden text-lighttable dark:text-white200">{{
+                addressFilter($store.state.blockInfo.hash) }}</div>
+            <div class="cursor-pointer icon iconfont icon-copy text-clickable"
+                @click="copyContent($store.state.blockInfo.hash)" />
+        </div>
+
+        <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.time') }}:</div>
             <div class="text-sm text-lighttable dark:text-white200">{{ timeFormat(blockInfo.time) }}
             </div>
@@ -22,15 +32,24 @@
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.previousBlock') }}:</div>
-            <div class="text-sm">
+            <div class="text-sm pr-2 sm:hidden">
                 {{ addressFilter(blockInfo.prev_hash) }}</div>
+            <div class="text-sm pr-2 hidden sm:block">
+                {{ blockInfo.prev_hash }}</div>
+            <div class="cursor-pointer icon iconfont icon-copy text-clickable" @click="copyContent(blockInfo.prev_hash)" />
         </div>
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.address') }}:</div>
-            <div class="text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
-                @click="toAddress(blockInfo.reward_address)">{{
-                    addressFilter(blockInfo.reward_address) }}</div>
+            <div class="flex justify-start items-center">
+                <div @click="toAddress(blockInfo.reward_address)"
+                    class="hidden sm:block text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
+                    {{ blockInfo.reward_address }}</div>
+                <div @click="toAddress(blockInfo.reward_address)" class="sm:hidden text-sm text-clickable">
+                    {{ addressFilter(blockInfo.reward_address) }}</div>
+                <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                    @click="copyContent(blockInfo.reward_address)" />
+            </div>
         </div>
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
@@ -39,11 +58,19 @@
         </div>
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
+            <div class="font-bold pr-4 sm:w-1/4 ">gasUsed:</div>
+            <div class="text-sm text-lighttable dark:text-white200">{{ blockInfo.gasUsed }}</div>
+        </div>
+        <div class="flex justify-start items-center mb-2 sm:mb-4">
+            <div class="font-bold pr-4 sm:w-1/4 ">gasLimit:</div>
+            <div class="text-sm text-lighttable dark:text-white200">{{ blockInfo.gasLimit }}</div>
+        </div>
+
+
+        <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.tx') }}:</div>
-            <div class="text-sm text-lighttable dark:text-white200 pr-4 sm:w-1/4"><span
-                    class="text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 cursor-pointer">{{
-                        blockInfo.txs }}
-                    transacions</span> in this block
+            <div class="text-sm text-lighttable dark:text-white200 pr-4 sm:w-1/4">
+                {{ $t('Block.blockTrade', { count: blockInfo.txs }) }}
             </div>
         </div>
     </div>
@@ -60,8 +87,16 @@ export default {
     },
     methods: {
         addressFilter, amountFormat, timeFormat,
-        toBlock(block) {
+        copyContent(content) {
+            navigator.clipboard.writeText(content).then(() => {
+                this.$message({
+                    message: this.$t('messageTips.copySuccess'),
+                    type: 'success'
+                });
+            }, () => {
+                this.$message.error(this.$t('message.fail'));
 
+            });
         },
         toAddress(address) {
             this.$router.push({

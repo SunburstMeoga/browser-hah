@@ -1,7 +1,12 @@
 <template>
     <div class="pb-10">
+        <div v-if="showOverview"
+            class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+            <overview-card :overInfo="overInfo" />
+        </div>
+
         <div class="mb-2 w-11/12 mr-auto ml-auto sm:mb-4 sm:w-9/12">
-            <module-title :title="$t('Block.blockStatistics')"></module-title>
+            <module-title :title="$t('Block.transactions')"></module-title>
         </div>
 
         <!-- mobile chart -->
@@ -46,12 +51,13 @@ import TradeTable from '@/components/child/TradeTable'
 import ModuleTitle from '@/components/public/ModuleTitle'
 import HPagination from '@/components/public/HPagination'
 import ViewMore from '@/components/public/ViewMore'
+import OverviewCard from '@/components/child/OverviewCard'
 
-import { blockList, TXList, blockStatistics } from '@/request/home'
+import { blockList, TXList, blockStatistics, allStatistics } from '@/request/home'
 import { timeFormat } from '@/utils/format'
 export default {
     name: "index",
-    components: { ModuleTitle, NewBlockTable, HPagination, TradeTable, ViewMore },
+    components: { ModuleTitle, NewBlockTable, HPagination, TradeTable, ViewMore, OverviewCard },
     data() {
         return {
             blockListDatas: [],
@@ -59,7 +65,7 @@ export default {
             timer: null,  // timer
             chartInfo: [],
             legend: "",
-            xAxis: "",
+            xAxis: [],
             series: "",
             tradeTableLoadStatus: 'loading',
             blockTableLoadStatus: 'loading',
@@ -68,6 +74,10 @@ export default {
             blockCurrentPage: 1,
             txPageSize: 10,
             txCurrentPage: 1,
+            amountChart: [],
+            countChart: [],
+            overInfo: {},
+            showOverview: false
         }
     },
     created() {
@@ -76,13 +86,8 @@ export default {
     mounted() {
         this.getBlockList()
         this.getTXList()
-        let days = 31;
-        this.getChartData(days)
-        // this.timer = setInterval(() => {
-        //     this.getNewBlock()
-        //     this.getNewTX()
-        //     this.getChartData(days)
-        // }, 1000 * 10)
+        this.getAllStatData()
+        // this.getChartData(31)
     },
     destroyed: function () {
         this.websock.close();
@@ -122,21 +127,24 @@ export default {
             blockObj.reward_address = data.txmint.to
             blockObj.prev_hash = data.prev
             blockObj.time = data.time
-            blockObj.txs = data.tx.length
-            data.tx.map(item => {
-                let txObj = {}
-                txObj.block_hash = item.blockhash
-                txObj.transtime = data.time
-                txObj.amount = item.amount
-                txObj.from = item.from
-                txObj.to = item.to
-                if (item.type !== 'certification') {
-                    this.TXListDatas.unshift(txObj)
-                    this.TXListDatas.pop()
-                }
-            })
-            this.blockListDatas.unshift(blockObj)
-            this.blockListDatas.pop()
+            blockObj.chainid = data.chainid
+            blockObj.txs = data.tx.length + 1
+            if (blockObj.chainid === parseInt(localStorage.getItem('chainID')) || blockObj.chainid === this.$store.state.chainID) {
+                data.tx.map(item => {
+                    let txObj = {}
+                    txObj.txid = item.txid
+                    txObj.transtime = data.time
+                    txObj.amount = item.amount
+                    txObj.from = item.from
+                    txObj.to = item.to
+                    if (item.type !== 'certification') {
+                        this.TXListDatas.unshift(txObj)
+                        this.TXListDatas.pop()
+                    }
+                    this.blockListDatas.unshift(blockObj)
+                    this.blockListDatas.pop()
+                })
+            }
         },
         websocketOnclose(e) {
             console.log("connection closed (" + e.code + ")");
@@ -155,7 +163,7 @@ export default {
 
         getTXList() {
             this.tradeTableLoadStatus = 'loading'
-            TXList({ pageSize: this.txPageSize, page: this.txCurrentPage }).then(res => {
+            TXList({ pageSize: this.txPageSize, page: this.txCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                 if (res.data.length !== 0) {
                     this.TXListDatas = res.data
                     this.tradeTableLoadStatus = 'finished'
@@ -169,7 +177,7 @@ export default {
         },
         getBlockList() {
             this.blockTableLoadStatus = 'loading',
-                blockList({ pageSize: this.blockPageSize, page: this.blockCurrentPage }).then(res => {
+                blockList({ pageSize: this.blockPageSize, page: this.blockCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                     console.log('getNewBlock', res)
                     if (res.data.length !== 0) {
                         this.blockListDatas = res.data
@@ -188,68 +196,130 @@ export default {
             let myChart = this.$echarts.init(document.getElementById("chart"));
             let mobileChart = this.$echarts.init(document.getElementById("mobile-chart"));
             let optionPC = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
                 grid: {
-                    // left: '10%',
-                    // right: '5%',
-                    bottom: '5%',
-                    top: '5%'
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
                 },
-                title: {
-                    text: ""
-                },
-                tooltip: {},
-                xAxis: {
-                    data: this.xAxis
-                },
-                yAxis: {},
-                series: this.series
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: this.xAxis,
+                        axisTick: {
+                            alignWithLabel: true
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: this.$t('overview.trade'),
+                        type: 'bar',
+                        barWidth: '60%',
+                        data: this.countChart
+
+                    }
+                ]
             }
 
             let option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
                 grid: {
-                    left: '18%',
-                    top: '6%',
-                    bottom: '12%'
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
                 },
-                title: {
-                    text: ""
-                },
-                tooltip: {},
-                xAxis: {
-                    data: this.xAxis
-                },
-                yAxis: {},
-                series: this.series
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: this.xAxis,
+                        axisTick: {
+                            alignWithLabel: true
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: this.$t('overview.trade'),
+                        type: 'bar',
+                        barWidth: '60%',
+                        data: this.countChart
+                    }
+                ]
             };
 
             option && myChart.setOption(option);
             optionPC && mobileChart.setOption(optionPC);
 
         },
-        getChartData(days) {
-            let params = {
-                days: days,
-            };
-            blockStatistics(params).then(res => {
-                console.log('blockStatistics', res)
-                this.ranklistDatas = res
-                this.legend = res.length
-                this.xAxis = res.xAxis;
-                let series = [];
-                for (let serieIndex = 0; serieIndex < res.series.length; serieIndex++) {
-                    let serie =
-                    {
-                        name: res.series[serieIndex].name,
-                        type: "line",
-                        data: res.series[serieIndex].data,
-                        smooth: true
-                    }
-                    series.push(serie)
-                }
-                this.series = series;
-                this.drawChart();
+
+        getAllStatData() {
+            allStatistics({
+                chainid: localStorage.getItem('chainID')
+            }).then(res => {
+                console.log(res)
+                res.days.map(item => {
+                    this.xAxis.push(item.date)
+                    this.amountChart.push(item.amount)
+                    this.countChart.push(item.count)
+                })
+                this.overInfo.height = res.height
+                this.overInfo.tx_c = res.tx_c
+                this.overInfo.amount = res.amount
+                this.overInfo.addr_c = res.addr_c
+                console.log(this.overInfo)
+                this.showOverview = true
+                this.drawChart()
+            }).catch(err => {
+                console.log(err)
             })
         },
+        // getChartData(days) {
+        //     let params = {
+        //         days: days,
+        //     };
+        //     blockStatistics(params).then(res => {
+        //         console.log('blockStatistics', res)
+        //         this.ranklistDatas = res
+        //         this.legend = res.length
+        //         this.xAxis = res.xAxis;
+        //         let series = [];
+        //         for (let serieIndex = 0; serieIndex < res.series.length; serieIndex++) {
+        //             let serie =
+        //             {
+        //                 name: res.series[serieIndex].name,
+        //                 type: "line",
+        //                 data: res.series[serieIndex].data,
+        //                 smooth: true
+        //             }
+        //             series.push(serie)
+        //         }
+        //         this.series = series;
+        //         this.drawChart();
+        //     })
+        // },
     }
 }
 </script>

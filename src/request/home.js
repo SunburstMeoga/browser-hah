@@ -11,7 +11,15 @@ export function blockList(params) {
 
 export function TXList(params) {
     return request({
-        url: '/api/txlist/',
+        url: '/api/txlist',
+        method: 'get',
+        params
+    })
+}
+
+export function allStatistics(params) {
+    return request({
+        url: '/api/stat',
         method: 'get',
         params
     })
@@ -68,6 +76,14 @@ export function txInfo(params) {
 export function testHAHChain(params) {
     return request({
         url: '/api/faucet/',
+        method: 'get',
+        params
+    })
+}
+
+export function hrc20txns(params) {
+    return request({
+        url: '/api/hrc20tx/',
         method: 'get',
         params
     })

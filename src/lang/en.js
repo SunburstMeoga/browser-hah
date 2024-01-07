@@ -6,22 +6,19 @@ module.exports = {
     tx: 'Transaction',
     placeholder: 'Search address / block / transaction',
     search: 'Search',
-    more: 'More',
-
-
+    more: 'More'
   },
   eFooterBar: {
     link: 'We are social',
     fork: 'Fork me on GitHub',
     power: 'Powered by',
     webService: 'Web Services',
-
   },
   eTopBar: {
     home: 'Home',
     rich: 'Rich List',
+    branch: 'Branch',
     alt: 'The browser can query all the information on the chain, including the latest burst block, the latest transaction information, transactions in the block, etc',
-
   },
   Address: {
     addressInfo: 'Address Information',
@@ -34,12 +31,16 @@ module.exports = {
     hash: 'Hash',
     time: 'Time',
     block: 'Block',
-    txFee: 'Transaction Fee',
+    txFee: 'Force Fee',
     locked: 'Locked',
+    hidden: 'Collapse',
+    timeVault: 'Negative interest rate time cumulative value',
+    preVaultTime: 'Last Trade'
   },
   Block: {
     blockInfo: 'Block Information',
     returnHome: 'Return Block Home',
+    blockHASH: 'Block HASH',
     time: 'Time',
     transactions: 'Number of transactions ',
     previousBlock: 'Previous Block',
@@ -47,9 +48,10 @@ module.exports = {
     reward: 'Block Reward',
     tx: 'Transaction',
     block: 'block',
-    txFee: 'Transaction Fee',
+    txFee: 'Force Fee',
     hash: 'Hash',
-    blockStatistics: 'Block Statistics'
+    blockStatistics: 'Block Statistics',
+    blockTrade: '{count} transacions in this block'
   },
   BlockList: {
     h1: 'Hah browser queries the latest burst block on the chain, burst time, block size and broadcaster.',
@@ -91,7 +93,7 @@ module.exports = {
     h2: 'Blockchain browser is the most accurate and fast data browser in the world. Users can use the blockchain browser to build wallets and query and search all blockchain data information on the chain ',
   },
   Pending: {
-    h1: 'The browser queries the transactions to be confirmed on the chain, the number of transactions to be confirmed and the transaction fee ',
+    h1: 'The browser queries the transactions to be confirmed on the chain, the number of transactions to be confirmed and the Force Fee ',
     h2: 'The browser can query the transactions to be confirmed, including the number of transactions, transaction volume, token transactions, total contract transactions, etc. ',
     tx: 'Transaction',
     hash: 'Hash',
@@ -103,7 +105,7 @@ module.exports = {
   Rank: {
     h1: 'Browser query blockchain and token rich list',
     h2: 'The browser displays the rich list, including the rich ranking, rich address and transaction amount.',
-    rich: 'Rich List',
+    rich: 'Accounts',
     rank: 'Ranking',
     address: 'Address',
     balance: 'Balance',
@@ -117,15 +119,20 @@ module.exports = {
     from: 'From',
     to: 'To',
     txAmount: 'Transaction Amount',
-    txFee: 'Transaction Fee',
+    txFee: 'Force Fee',
     dpos_in: 'Vote Node Address',
     dpos_out: 'Withdrawal Node Address',
     client_in: 'Vote customer Address',
     client_out: 'Withdrawal Customer Address',
     nodeName: 'Node Name',
     voteAmount: 'Vote Amount',
-    nodeDetails: 'Node Details'
-
+    nodeDetails: 'Node Details',
+    nodeAddress: 'Node Address',
+    blockDeplete: 'Block Deplete',
+    effectiveGasPrice: 'Actual GAS price',
+    effectiveGasFee: 'Actual cost consumed',
+    gasUsed: 'The actual GAS consumed',
+    gasTv: 'Pay Rate GAS'
   },
   el: {
     pagination: {
@@ -133,7 +140,6 @@ module.exports = {
       pagesize: ' pcs/page',
       total: 'total {total}',
       pageClassifier: 'page'
-
     }
   },
   routes: {
@@ -171,7 +177,7 @@ module.exports = {
     browser: 'HAH Browser',
   },
   pagination: {
-    show: 'Show:',
+    show: 'Per page:',
     records: 'Records',
     first: 'First',
     last: 'Last'
@@ -191,5 +197,67 @@ module.exports = {
     totalNode: 'Total of {count} DPOS node',
     totalContract: 'Total of {count} HRC20',
     totalData: 'Total of {count} Data'
+  },
+  messageTips: {
+    copySuccess: 'Copy Successful',
+    fail: 'Copy failed, please re-replicate',
+    noMore: 'No more data'
+  },
+  status: {
+    success: 'Success',
+    fail: 'Fail'
+  },
+  logs: {
+    title: 'Logs',
+    count: 'Transaction Receipt Event Logs({count})',
+    address: 'Address',
+    topics: 'Topics',
+    data: 'Data',
+    executionStatus: 'Execution Status',
+    internalTransfers: 'HRC20 Transfers'
+  },
+  tradeDetails: {
+    height: 'Block Height',
+    hash: 'Transaction HASH',
+    GASLimit: 'GAS limit',
+    tradeType: 'Trade Type',
+    GASPrice: 'GAS Price',
+    contractCreate: 'Contract Creation',
+    contractInvoke: 'Contract Call',
+    genesis: 'Creation',
+    stake: 'POS Mining',
+    token: 'Ordinary',
+    voteReward: 'Earnings',
+    work: 'POA Mining'
+  },
+  overview: {
+    out: 'Output Amount',
+    trade: 'Number of transactions'
+  },
+  loadStatus: {
+    loading: 'Loading...',
+    notData: 'No data',
+    error: 'Network error, click here to reload'
+  },
+  branch: {
+    infor: 'Cryptex & Codex Chain',
+    currentBranch: 'Current Branch',
+    fork: 'Chain HASH',
+    chainid: 'Chain ID',
+    name: 'Chain Name',
+    symbol: 'Chain Symbol',
+    amount: 'number of starters',
+    reward: 'Block Reward',
+    halvecycle: 'Decay Period',
+    owner: 'Creator Address',
+    createtxid: 'Create Transaction HASH',
+    createforkheight: 'Height at Creation',
+    parentfork: 'Parent Chain HASH',
+    forkheight: 'Current Height',
+    lastnumber: 'Number of Blocks',
+    lastblock: 'last block HASH',
+    totaltxcount: 'total number of transactions',
+    moneysupply: 'total issuance',
+    moneydestroy: 'total amount destroyed'
   }
 }

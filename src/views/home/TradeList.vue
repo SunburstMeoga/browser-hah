@@ -11,7 +11,8 @@
             <trade-table :dataList="TXListDatas" :loadStatus="tradeTableLoadStatus" />
             <div>
                 <h-pagination @changePageSize="toTXFirstPage" @toFirstPage="toTXFirstPage" @toPrePage="toTXPrePage"
-                    @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :pageSize="txCurrentPage"></h-pagination>
+                    @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :currentPage="txCurrentPage"
+                    :totalPage="totalPage" @toTargetPage="toTradeTargetPage"></h-pagination>
             </div>
         </div>
     </div>
@@ -32,6 +33,7 @@ export default {
             tradeTableLoadStatus: 'loading',
             txPageSize: 10,
             txCurrentPage: 1,
+            totalPage: 1,
             totalTrades: 0
         }
     },
@@ -42,15 +44,18 @@ export default {
         numberFormat,
         getTXList() {
             this.tradeTableLoadStatus = 'loading'
-            TXList({ pageSize: this.txPageSize, page: this.txCurrentPage }).then(res => {
+            TXList({ pageSize: this.txPageSize, page: this.txCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
+                console.log('getTXList', res)
                 if (res.data.length !== 0) {
                     this.TXListDatas = res.data
                     this.tradeTableLoadStatus = 'finished'
                 } else {
                     this.tradeTableLoadStatus = 'empty'
+                    this.$message.error(this.$t('messageTips.noMore'))
                 }
                 // this.totalTrades = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
                 this.totalTrades = res.total
+                this.totalPage = res.totalPage
                 this.txCurrentPage = res.page
             }).catch(err => {
                 console.log('load fail:', err)
@@ -78,9 +83,26 @@ export default {
             this.getTXList()
             console.log('前往下一页', this.blockCurrentPage)
         },
-        toTXLastPage() {
-
+        toTXLastPage(selectedPageSize) {
+            console.log(this.txCurrentPage, this.totalPage)
+            if (this.txCurrentPage > this.totalPage) {
+                return
+            }
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = this.totalPage
+            this.TXListDatas = []
+            this.getTXList()
         },
+        toTradeTargetPage(selectedPageSize, targetPage) {
+            console.log(targetPage)
+            if (targetPage <= 0) {
+                return
+            }
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = targetPage
+            this.TXListDatas = []
+            this.getTXList()
+        }
     },
 
 }

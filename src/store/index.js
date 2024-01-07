@@ -9,6 +9,8 @@ export default new Vuex.Store({
     blockInfo: {},
     txInfo: {},
     addressInfo: {},
+    chainID: "",
+    chainName: "",
   },
   mutations: {
     changeTheme(state, newVal) {
@@ -22,6 +24,12 @@ export default new Vuex.Store({
     },
     getAddressInfo(state, newVal) {
       state.addressInfo = newVal
+    },
+    getChainId(state, newVal) {
+      state.chainID = newVal
+    },
+    getChainName(state, newVal) {
+      state.chainName = newVal
     }
   },
   actions: {

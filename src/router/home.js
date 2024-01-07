@@ -5,6 +5,11 @@ export default [
         component: () => import('../views/home/Home')
     },
     {
+        path: '/empty',
+        name: 'home',
+        component: () => import('../views/home/Empty')
+    },
+    {
         path: '/address/:address',
         name: 'address',
         component: () => import('../views/home/Address')

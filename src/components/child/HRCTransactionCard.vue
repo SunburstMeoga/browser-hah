@@ -1,17 +1,17 @@
 <template>
     <div class="text-sm text-lightitemtitle dark:text-btndisable">
         <div class="flex justify-start items-center sm:mb-2">
-            <div class="item-title sm:w-1/4">{{ $t('Block.block') }}:</div>
+            <div class="item-title sm:w-1/4">{{ $t('logs.address') }}:</div>
 
             <div class="flex justify-start items-center">
-                <div @click="toBlock(transactionInfo.block_hash)"
+                <div @click="toAddress(transactionInfo.addr)"
                     class="hidden sm:block text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
-                    {{ transactionInfo.block_hash }}</div>
-                <div class="sm:hidden text-clickable" @click="toBlock(transactionInfo.block_hash)">{{
-                    addressFilter(transactionInfo.block_hash)
+                    {{ transactionInfo.addr }}</div>
+                <div class="sm:hidden text-clickable" @click="toAddress(transactionInfo.addr)">{{
+                    addressFilter(transactionInfo.addr)
                 }} </div>
                 <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
-                    @click="copyContent(transactionInfo.block_hash)" />
+                    @click="copyContent(transactionInfo.addr)" />
             </div>
         </div>
         <div class="flex justify-start items-center sm:mb-2">
@@ -22,6 +22,14 @@
             <div class="sm:hidden text-clickable" @click="toTX(transactionInfo.txid)">{{ addressFilter(transactionInfo.txid)
             }} </div>
             <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(transactionInfo.txid)"></div>
+        </div>
+        <div class="flex justify-start items-center sm:mb-2">
+            <div class="item-title sm:w-1/4">{{ $t('dposDetail.amount') }}:</div>
+            <div class="text-lighttable dark:text-white200">{{ transactionInfo.amount }} {{ transactionInfo.symbol }}</div>
+        </div>
+        <div class="flex justify-start items-center sm:mb-2">
+            <div class="item-title sm:w-1/4 ">{{ $t('Address.txFee') }}:</div>
+            <div class="text-lighttable dark:text-white200">{{ transactionInfo.fee }} HAH</div>
         </div>
         <div class="flex justify-start items-center sm:mb-2">
             <div class="item-title sm:w-1/4 ">{{ $t('Pending.from') }}:</div>
@@ -48,26 +56,18 @@
             </div>
         </div>
         <div class="flex justify-start items-center sm:mb-2">
-            <div class="item-title sm:w-1/4">{{ $t('Pending.amount') }}:</div>
-            <div class="text-lighttable dark:text-white200">{{ transactionInfo.amount }} HAH</div>
+            <div class="item-title sm:w-1/4">{{ $t('hrc20.method') }}:</div>
+            <div class="text-lighttable dark:text-white200">{{ transactionInfo.fun }}</div>
         </div>
         <div class="flex justify-start items-center sm:mb-2">
-            <div class="item-title sm:w-1/4">{{ $t('Block.txFee') }}:</div>
-            <div class="text-lighttable dark:text-white200">{{ transactionInfo.fee }} HAH</div>
+            <div class="item-title sm:w-1/4">{{ $t('hrc20.name') }}:</div>
+            <div class="text-lighttable dark:text-white200">{{ transactionInfo.name }}</div>
         </div>
-        <div class="flex justify-start items-center sm:mb-2">
-            <div class="item-title sm:w-1/4">Nonce:</div>
-            <div class="text-lighttable dark:text-white200">{{ transactionInfo.nonce }}</div>
-        </div>
-        <div class="flex justify-start items-center sm:mb-2">
-            <div class="item-title sm:w-1/4">{{ $t('tradeDetails.tradeType') }}:</div>
-            <div class="bg-lightborder text-sm dark:text-white300 dark:bg-border100 py-1 px-2 rounded-lg">{{ tradeType }}
-            </div>
-        </div>
+
 
         <div class="flex justify-start items-center sm:mb-2">
             <div class="item-title sm:w-1/4">{{ $t('Block.time') }}:</div>
-            <div class="text-lighttable dark:text-white200">{{ timeFormat(transactionInfo.transtime) }}</div>
+            <div class="text-lighttable dark:text-white200">{{ timeFormat(transactionInfo.ts) }}</div>
         </div>
     </div>
 </template>
@@ -113,7 +113,7 @@ export default {
             })
         },
         toAddress(address) {
-            this.$router.replace({
+            this.$router.push({
                 path: '/address/' + address
             })
         },
@@ -130,12 +130,8 @@ export default {
 }
 </script>
 
-<<<<<<< HEAD
-<style></style>
-=======
 <style scoped>
 .item-title {
     @apply font-bold pr-4;
 }
 </style>
->>>>>>> test

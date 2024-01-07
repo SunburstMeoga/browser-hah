@@ -57,7 +57,7 @@ export default {
                 // this.loadStatus = 'finished'
                 return
             }
-            testHAHChain({ address: this.address }).then(res => {
+            testHAHChain({ address: this.address, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                 console.log('res', res)
                 this.loadStatus = ''
                 if (res.statusCode !== 0) {

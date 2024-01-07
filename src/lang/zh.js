@@ -7,7 +7,6 @@ module.exports = {
     placeholder: '搜索地址 / 区块 / 交易',
     search: '搜索',
     more: '查看更多',
-
   },
   eFooterBar: {
     link: '链接',
@@ -18,6 +17,7 @@ module.exports = {
   eTopBar: {
     home: '首页',
     rich: '富豪榜',
+    branch: '分支信息',
     alt: '浏览器可查询链上的所有所有信息包括最新爆块，最新交易信息等，区块内的交易等等',
   },
   Address: {
@@ -31,11 +31,15 @@ module.exports = {
     hash: '交易哈希',
     time: '时间',
     block: '所在块',
-    txFee: '交易费',
+    txFee: '原力',
     locked: '锁定余额',
+    hidden: '收起',
+    timeVault: '负利率时间累计值',
+    preVaultTime: '上次交易时间'
   },
   Block: {
     blockInfo: '区块信息',
+    blockHASH: '区块HASH',
     returnHome: '返回爆块首页',
     time: '时间',
     transactions: '交易数量',
@@ -44,22 +48,21 @@ module.exports = {
     reward: '爆块奖励',
     tx: '交易',
     block: '所在块',
-    txFee: '交易费',
+    txFee: '原力',
     hash: '交易哈希',
-    blockStatistics: '区块统计'
+    blockStatistics: '区块统计',
+    blockTrade: '当前区块有 {count} 笔交易'
   },
   BlockList: {
     h1: '浏览器查询链上最新爆块，爆块时间，区块大小，播报方。',
     h2: '浏览器展示最新爆块，包括最新爆块时间，tps, 平均出块时间，区块高度，播报方，大小，奖励，交易笔数，交易总额。',
-    newBlock: '最新暴块',
+    newBlock: '最新出块',
     height: '区块高度',
     address: '播报方',
     reward: '爆块奖励',
     amount: '交易数量',
     previousBlock: '上一哈希',
     time: '时间',
-
-
   },
   dpos: {
     h1: 'dpos pow',
@@ -90,7 +93,7 @@ module.exports = {
     h2: '区块链浏览器是全球范围内数据最精准，速度最快速的浏览器，用户可以使用区块链浏览器搭建钱包以及使用查询和搜索链上的所有区块链数据信息。',
   },
   Pending: {
-    h1: '浏览器查询链上待确认交易，待确认交易数量，交易费。',
+    h1: '浏览器查询链上待确认交易，待确认交易数量，原力。',
     h2: '浏览器可查询待确认交易，包括交易的交易数，交易额，Token交易笔数，总合约交易笔数等。',
     tx: '交易',
     hash: '交易哈希',
@@ -116,14 +119,20 @@ module.exports = {
     from: 'from地址',
     to: 'to地址',
     txAmount: '转账金额',
-    txFee: '交易费',
+    txFee: '原力',
     dpos_in: '投票节点地址',
     dpos_out: '撤投节点地址',
     client_in: '投票客户地址',
     client_out: '撤投客户地址',
     nodeName: '节点名称',
     voteAmount: '投票量',
-    nodeDetails: '节点详情'
+    nodeDetails: '节点详情',
+    nodeAddress: '节点地址',
+    blockDeplete: '区块消耗累计',
+    effectiveGasPrice: '实际GAS价格',
+    effectiveGasFee: '实际消耗的费用',
+    gasUsed: '实际消耗的GAS',
+    gasTv: '支付负利率GAS'
   },
   el: {
     pagination: {
@@ -168,7 +177,7 @@ module.exports = {
     browser: 'HAH浏览器',
   },
   pagination: {
-    show: '显示：',
+    show: '每页显示',
     records: '条记录',
     first: '第一页',
     last: '最后一页'
@@ -188,5 +197,67 @@ module.exports = {
     totalNode: '共有 {count} 个DPOS节点',
     totalContract: '共有 {count} 个HRC20',
     totalData: '共有 {count} 条数据'
+  },
+  messageTips: {
+    copySuccess: '复制成功',
+    copyFail: '复制失败，请重新复制',
+    noMore: '无更多数据'
+  },
+  status: {
+    success: '成功',
+    fail: '失败'
+  },
+  logs: {
+    title: '交易日志',
+    count: '交易收据事件日志（{count})',
+    address: '地址',
+    topics: '主题',
+    data: '数据',
+    executionStatus: '执行状态',
+    internalTransfers: 'HRC20转账'
+  },
+  tradeDetails: {
+    height: '区块高度',
+    hash: '交易HASH',
+    GASLimit: 'GAS上限',
+    tradeType: '交易类型',
+    GASPrice: 'GAS价格',
+    contractCreate: '合约创建',
+    contractInvoke: '合约调用',
+    genesis: '创世',
+    stake: 'POS挖矿',
+    token: '普通',
+    voteReward: '收益',
+    work: 'POA挖矿'
+  },
+  overview: {
+    out: '输出金额',
+    trade: '交易数'
+  },
+  loadStatus: {
+    loading: '正在加载...',
+    notData: '无数据',
+    error: '网络错误，请点击此处重载'
+  },
+  branch: {
+    infor: '分支信息',
+    currentBranch: '当前分支',
+    fork: '链HASH',
+    chainid: '链ID',
+    name: '链名称',
+    symbol: '链符号',
+    amount: '首发数量',
+    reward: '出块奖励',
+    halvecycle: '衰减周期',
+    owner: '创建者地址',
+    createtxid: '创建交易HASH',
+    createforkheight: '创建时高度',
+    parentfork: '上级链HASH',
+    forkheight: '当前高度',
+    lastnumber: '区块数量',
+    lastblock: '最后区块HASH',
+    totaltxcount: '交易总数',
+    moneysupply: '发行总量',
+    moneydestroy: '销毁总量'
   }
 }

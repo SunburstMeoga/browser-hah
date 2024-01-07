@@ -36,7 +36,7 @@
                         {{ index + 1 }}
                     </div>
                     <div @click="toAddress(item.addr)"
-                        class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                        class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                         {{ addressFilter(item.addr) }}
                     </div>
                     <div class="w-60 text-sm">
@@ -90,7 +90,7 @@ export default {
             })
         },
         getVoteType(value) {
-            return value === 1 ? this.$t('dposDetail.ordinary') : this.$t('dposDetail.recasting')
+            return value === '1' ? this.$t('dposDetail.ordinary') : this.$t('dposDetail.recasting')
         },
         getTranType(type) {
             return type === 'in' ? this.$t('dposDetail.datavote') : this.$t('dposDetail.datawithdrawal')

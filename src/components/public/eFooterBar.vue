@@ -3,7 +3,8 @@
         <div class="w-11/12 sm:w-9/12 mr-auto ml-auto mb-10">
             <div class="py-6 border-b border-lightbottom dark:border-border100">
                 <div class="flex justify-start items-center">
-                    <div class="flex justify-center items-center w-8 h-8 rounded-full icon iconfont mr-2 bg-lightborder dark:text-white300 dark:bg-border100"
+                    <div @click="openPage(item.path)"
+                        class="flex justify-center items-center w-8 h-8 rounded-full icon iconfont mr-2 bg-lightborder dark:text-white300 dark:bg-border100"
                         :class="item.icon" v-for="(item, index) in socialList" :key="index" />
                 </div>
             </div>
@@ -28,7 +29,7 @@
                 <div class="w-6/12 text-sm sm:w-1/4 mb-6 text-lighttable dark:text-white300"
                     v-for="(item, index) in tankList" :key="index">
                     <div class="font-bold text-sm mb-4">{{ item.title }}</div>
-                    <div class="font-normal mb-4 cursor-pointer transition duration-300 ease-in-out transform hover:text-clickable hover:-translate-y-0.5 hover:scale-110"
+                    <div class="font-normal mb-4 cursor-pointer transition duration-300 ease-in-out transform hover:text-clickable hover:-translate-y-0.5 "
                         @click="openPage(_item.path)" v-for="(_item, _index) in item.details" :key="_index">
                         {{ _item.title }}
                     </div>
@@ -37,7 +38,7 @@
         </div>
 
         <div class="w-11/12 sm:w-9/12 ml-auto mr-auto text-xs sm:text-sm sm:py-4 py-6 text-lighttable dark:text-white300">
-            Hash Ahead © 2023 - Block_Way
+            Hash Ahead © 2023
         </div>
     </div>
 </template>
@@ -49,25 +50,29 @@ export default {
         return {
             socialList: [
                 {
-                    path: '',
-                    icon: 'icon-zimuH'
-                },
-                {
-                    path: '',
+                    path: 'https://twitter.com/hashahead',
                     icon: 'icon-twitter-fill'
                 },
                 {
-                    path: '',
+                    path: 'https://github.com/hashahead',
                     icon: 'icon-github'
                 },
                 {
-                    path: '',
+                    path: 'https://www.instagram.com/hashahead/',
                     icon: 'icon-instagram-fill'
                 },
                 {
-                    path: '',
-                    icon: 'icon-facebook'
+                    path: 'https://www.linkedin.com/in/hashahead/',
+                    icon: 'icon-a-ziyuan5'
                 },
+                {
+                    path: 'https://discord.gg/2VCU4tB8',
+                    icon: 'icon-discord3'
+                },
+                // {
+                //     path: '',
+                //     icon: 'icon-facebook'
+                // },
 
             ]
         }
@@ -87,7 +92,10 @@ export default {
                 {
                     title: this.$t('footBar.Product'),
                     details: [
-
+                        {
+                            title: this.$t('footBar.browser'),
+                            path: 'https://testnet.hashahead.org/'
+                        },
                         {
                             title: 'HashAhead',
                             path: 'https://github.com/Block-Way'
@@ -100,11 +108,8 @@ export default {
                             title: this.$t('footBar.faucet'),
                             path: 'https://testnet.hashahead.org/faucet-smart'
 
-                        },
-                        {
-                            title: this.$t('footBar.browser'),
-                            path: 'https://testnet.hashahead.org/'
-                        },
+                        }
+
                     ]
                 }
             ]

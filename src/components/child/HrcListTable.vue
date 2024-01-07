@@ -7,8 +7,9 @@
                 :key="index">
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('dpos.address') }}: </div>
-                    <div class="text-clickable" @click="toAddress(item.addr)">{{ addressFilter(item.addr) }}
-                    </div>
+                    <div class="text-clickable" @click="toToken(item.addr)">{{ addressFilter(item.addr) }} </div>
+                    <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                        @click="copyContent(item.addr)" />
                 </div>
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('hrc20.symbol') }}: </div>
@@ -22,7 +23,7 @@
         </div>
 
         <div v-if="loadStatus === 'finished'"
-            class="hidden sm:block border-b min-w-100 border-lightborder dark:border-border100">
+            class="hidden sm:block border-b min-w-100 border-lightborder dark:border-border100 sm:overflow-x-scroll sm:min-w-full">
             <div class="py-2 flex w-full justify-start">
                 <div class="w-60 text-sm font-black text-lighttable dark:text-white200"
                     v-for="(item, index) in tableTitleList" :key="index">
@@ -32,9 +33,13 @@
             <div class="">
                 <div v-for="(item, index) in dataList" :key="index"
                     class="flex justify-start py-3 border-b text-sm border-lightborder text-lighttable dark:text-white200 dark:border-border100">
-                    <div class="w-60 cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
-                        @click="toAddress(item.addr)">
-                        {{ addressFilter(item.addr) }}
+                    <div class="w-60  flex justify-start items-center">
+                        <div class="cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
+                            @click="toToken(item.addr)">
+                            {{ addressFilter(item.addr) }}
+                        </div>
+                        <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                            @click="copyContent(item.addr)" />
                     </div>
                     <div class="w-60">
                         {{ item.symbol }}
@@ -73,10 +78,21 @@ export default {
     },
     methods: {
         timeFormat, amountFormat, addressFilter,
-        toAddress(address) {
+        toToken(address) {
             this.$router.push({
                 path: '/token/' + address
             })
+        },
+        copyContent(content) {
+            navigator.clipboard.writeText(content).then(() => {
+                this.$message({
+                    message: this.$t('messageTips.copySuccess'),
+                    type: 'success'
+                });
+            }, () => {
+                this.$message.error(this.$t('message.fail'));
+
+            });
         },
     },
     computed: {

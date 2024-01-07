@@ -8,6 +8,7 @@
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2">{{ $t('Rank.address') }}: </div>
                     <div class="text-clickable">{{ addressFilter(item.address) }}</div>
+                    <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.address)" />
                 </div>
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 ">{{ $t('Rank.balance') }}: </div>
@@ -20,7 +21,8 @@
             </div>
         </div>
 
-        <div v-if="loadStatus === 'finished'" class="hidden sm:block border-b border-lightborder dark:border-border100">
+        <div v-if="loadStatus === 'finished'"
+            class="hidden sm:block border-b border-lightborder dark:border-border100 sm:overflow-x-scroll sm:min-w-full">
             <div class="py-2 flex w-full justify-start">
                 <div class="w-40 ml-4 text-sm font-black text-lighttable dark:text-white200">
                     {{ $t('Rank.rank') }}
@@ -36,9 +38,13 @@
                     <div class="w-40 ml-4">
                         {{ item.ranking }}
                     </div>
-                    <div class="w-80 cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
-                        @click="toAddress(item.address)">
-                        {{ addressFilter(item.address) }}
+                    <div class="w-80 text-sm flex justify-start items-center">
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
+                            @click="toAddress(item.address)">
+                            {{ addressFilter(item.address) }}
+                        </div>
+                        <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
+                            @click="copyContent(item.address)" />
                     </div>
                     <div class="w-80 text-sm">
                         {{ item.balance }} HAH
@@ -75,6 +81,17 @@ export default {
             this.$router.push({
                 path: '/address/' + address
             })
+        },
+        copyContent(content) {
+            navigator.clipboard.writeText(content).then(() => {
+                this.$message({
+                    message: this.$t('messageTips.copySuccess'),
+                    type: 'success'
+                });
+            }, () => {
+                this.$message.error(this.$t('message.fail'));
+
+            });
         },
     },
     computed: {

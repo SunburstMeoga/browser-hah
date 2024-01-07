@@ -8,7 +8,8 @@
             <rank-list-table :dataList="rankListDatas" :loadStatus="rankListLoadStatus" />
             <div class="">
                 <h-pagination @changePageSize="toRankFirstPage" @toFirstPage="toRankFirstPage" @toPrePage="toRankPrePage"
-                    @toNextPage="toRankNextPage" @toLastPage="toRankLastPage" :pageSize="rankCurrentPage"></h-pagination>
+                    @toNextPage="toRankNextPage" @toLastPage="toRankLastPage" :currentPage="rankCurrentPage"
+                    :totalPage="totalPage" @toTargetPage="toRankTargetPage"></h-pagination>
             </div>
         </div>
     </div>
@@ -43,12 +44,13 @@ export default {
 
         getRankList() {
             this.rankListLoadStatus = 'loading'
-            rankList({ pageSize: this.rankPageSize, page: this.rankCurrentPage }).then(res => {
+            rankList({ pageSize: this.rankPageSize, page: this.rankCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                 if (res.data.length !== 0) {
                     this.rankListDatas = res.data
                     this.rankListLoadStatus = 'finished'
                 } else {
                     this.rankListLoadStatus = 'empty'
+                    this.$message.error(this.$t('messageTips.noMore'))
                 }
                 // this.totalAddress = this.$t('moduleTitle.totalRanks', { count: numberFormat(res.total) })
                 this.totalAddress = res.total
@@ -90,10 +92,20 @@ export default {
                 return
             }
             this.rankPageSize = selectedPageSize
-            this.rankCurrentPage = this.rankCurrentPage + 1
+            this.rankCurrentPage = this.totalPage
             this.rankListDatas = []
             this.getRankList()
         },
+        toRankTargetPage(selectedPageSize, targetPage) {
+            console.log(targetPage)
+            if (targetPage <= 0) {
+                return
+            }
+            this.rankPageSize = selectedPageSize
+            this.rankCurrentPage = targetPage
+            this.rankListDatas = []
+            this.getRankList()
+        }
     }
 }
 </script>

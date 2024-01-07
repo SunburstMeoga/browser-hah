@@ -38,7 +38,8 @@
                 </div>
                 <div>
                     <h-pagination @changePageSize="toTXFirstPage" @toFirstPage="toTXFirstPage" @toPrePage="toTXPrePage"
-                        @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :pageSize="txCurrentPage"></h-pagination>
+                        @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :totalPage="totalPage"
+                        :currentPage="txCurrentPage" @toTargetPage="toTradeTargetPage" />
                 </div>
             </div>
         </div>
@@ -72,13 +73,20 @@ export default {
             blockInfoLoadStatus: 'loading',
             txPageSize: 10,
             txCurrentPage: 1,
-            totalTrade: 0
+            totalTrade: 0,
+            totalPage: 0
         }
     },
     created() {
         this.height = this.$route.params.height
         console.log('height', this.height)
         this.getBlockInfo()
+    },
+    watch: {
+        $route(to, from) {
+            this.height = this.$route.params.height
+            this.getBlockInfo()
+        }
     },
     methods: {
         numberFormat,
@@ -100,7 +108,7 @@ export default {
                     }
                     // this.totalTrade = this.$t('moduleTitle.totalTrade', { count: numberFormat(res.total) })
                     this.totalTrade = res.total
-
+                    this.totalPage = res.totalPage
                 });
         },
 
@@ -126,10 +134,29 @@ export default {
             this.txListDatas = []
             this.getTXList()
         },
-        toTXLastPage() {
-
+        toTXLastPage(selectedPageSize) {
+            console.log(this.txCurrentPage, this.totalPage)
+            if (this.rankCurrentPage >= this.totalPage) {
+                return
+            }
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = this.totalPage
+            this.txListDatas = []
+            this.getTXList()
+        },
+        toTradeTargetPage(selectedPageSize, targetPage) {
+            console.log(targetPage)
+            if (targetPage <= 0) {
+                return
+            }
+            this.txPageSize = selectedPageSize
+            this.txCurrentPage = targetPage
+            this.txListDatas = []
+            this.getTXList()
         },
         getBlockInfo() {
+            this.blockInfoLoadStatus = 'loading'
+            this.tranLoadStatus = 'loading'
             let params = {
                 param: this.height.toString()
             };
@@ -142,6 +169,8 @@ export default {
                 this.blockInfo.prev_hash = res.prev_hash
                 this.blockInfo.reward_address = res.reward_address
                 this.blockInfo.reward_money = res.reward_money
+                this.blockInfo.gasUsed = res.gasUsed
+                this.blockInfo.gasLimit = res.gasLimit
                 this.blockInfoLoadStatus = 'finished'
                 this.$store.commit('getBlockInfo', this.blockInfo)
                 this.getTXList()
