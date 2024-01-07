@@ -39,7 +39,7 @@
                         {{ item.ranking }}
                     </div>
                     <div class="w-80 text-sm flex justify-start items-center">
-                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                             @click="toAddress(item.address)">
                             {{ addressFilter(item.address) }}
                         </div>

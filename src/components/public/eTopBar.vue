@@ -13,7 +13,7 @@
 
                 <!-- pc menu router-->
                 <div class="hidden sm:mr-4 sm:flex sm:order-3 sm:flex-1 sm:justify-end text-black dark:text-grayword">
-                    <div class="sm:py-2 sm:px-5 cursor-pointer hover:text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 hover:font-extrabold"
+                    <div class="sm:py-2 sm:px-5 cursor-pointer hover:text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5  hover:font-extrabold"
                         @click="toPage(item.path)" v-for="(item, index) in pagesList" :key="index">
                         {{ item.title }}
                     </div>

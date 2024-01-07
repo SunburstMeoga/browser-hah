@@ -7,7 +7,7 @@
                 <div @click="toAddress(addressInfo.address)" class="sm:hidden text-sm text-clickable">
                     {{ addressFilter(addressInfo.address) }}</div>
                 <div @click="toAddress(addressInfo.address)"
-                    class="hidden sm:block text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                    class="hidden sm:block text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                     {{ addressInfo.address }}</div>
                 <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                     @click="copyContent(addressInfo.address)" />

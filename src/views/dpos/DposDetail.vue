@@ -14,7 +14,7 @@
                     <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('common.address') }}</div>
 
                     <div class="w-80 text-sm flex justify-start items-center">
-                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                             @click="toAddress(DPOSInfo.address)">
                             {{ addressFilter(DPOSInfo.address) }}
                         </div>

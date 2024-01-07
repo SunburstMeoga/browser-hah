@@ -39,12 +39,12 @@
                     <div class="w-20 ml-4">
                         {{ index + 1 }}
                     </div>
-                    <div class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110 "
+                    <div class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5  "
                         @click="toBlock(item.height)">
                         {{ item.height }}
                     </div>
                     <div class="w-60 text-sm flex justify-start items-center">
-                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                             @click="toAddress(item.reward_address)">
                             {{ addressFilter(item.reward_address) }}
                         </div>

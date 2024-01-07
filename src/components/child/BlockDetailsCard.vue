@@ -43,7 +43,7 @@
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.address') }}:</div>
             <div class="flex justify-start items-center">
                 <div @click="toAddress(blockInfo.reward_address)"
-                    class="hidden sm:block text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                    class="hidden sm:block text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                     {{ blockInfo.reward_address }}</div>
                 <div @click="toAddress(blockInfo.reward_address)" class="sm:hidden text-sm text-clickable">
                     {{ addressFilter(blockInfo.reward_address) }}</div>

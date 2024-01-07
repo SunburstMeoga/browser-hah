@@ -13,7 +13,7 @@
                     {{ $t('hrc20.overview') }}</div>
                 <div class="flex justify-start items-center mb-2">
                     <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('common.address') }}:</div>
-                    <div class="text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                    <div class="text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                         @click="toAddress(tokenInfo.addr)">{{ addressFilter(tokenInfo.addr)
                         }}</div>
                 </div>
@@ -33,7 +33,7 @@
 
                 <div class=" flex justify-start items-center mb-2">
                     <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('hrc20.owner') }}:</div>
-                    <div class="text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                    <div class="text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                         @click="toAddress(tokenInfo.owner)">{{
                             addressFilter(tokenInfo.owner) }}</div>
                 </div>

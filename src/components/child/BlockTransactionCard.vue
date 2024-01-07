@@ -4,7 +4,7 @@
         <div class="flex justify-start items-center sm:mb-2">
             <div class="font-bold pr-4 sm:w-1/4">{{ $t('tradeDetails.hash') }}:</div>
             <div @click="toTX(transactionInfo.txid)"
-                class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                 {{ transactionInfo.txid }} </div>
             <div class="sm:hidden text-clickable" @click="toTX(transactionInfo.txid)">{{ addressFilter(transactionInfo.txid)
             }} </div>
@@ -15,7 +15,7 @@
         <div class="flex justify-start items-center sm:mb-2">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Tx.from') }}:</div>
             <div class="flex justify-start items-center">
-                <div class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                <div class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                     @click="toAddress(transactionInfo.from)">
                     {{ transactionInfo.from }}
                 </div>
@@ -29,7 +29,7 @@
         <div class="flex justify-start items-center sm:mb-2">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Tx.to') }}:</div>
             <div class="flex justify-start items-center">
-                <div class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                <div class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                     @click="toAddress(transactionInfo.to)">
                     {{ transactionInfo.to }}
                 </div>

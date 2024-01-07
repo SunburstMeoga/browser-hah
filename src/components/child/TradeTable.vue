@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="w-60 text-sm flex justify-start items-center">
-                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                             @click="toTX(item.txid)">
                             {{ addressFilter(item.txid) }}
                         </div>
@@ -59,7 +59,7 @@
 
 
                     <div class="w-60 text-sm flex justify-start items-center">
-                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                             @click="toAddress(item.from)">
                             {{ addressFilter(item.from) }}
                         </div>
@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="w-60 text-sm flex justify-start items-center">
-                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                             @click="toAddress(item.to)">
                             {{ addressFilter(item.to) }}
                         </div>

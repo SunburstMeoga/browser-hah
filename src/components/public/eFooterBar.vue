@@ -29,7 +29,7 @@
                 <div class="w-6/12 text-sm sm:w-1/4 mb-6 text-lighttable dark:text-white300"
                     v-for="(item, index) in tankList" :key="index">
                     <div class="font-bold text-sm mb-4">{{ item.title }}</div>
-                    <div class="font-normal mb-4 cursor-pointer transition duration-300 ease-in-out transform hover:text-clickable hover:-translate-y-0.5 hover:scale-110"
+                    <div class="font-normal mb-4 cursor-pointer transition duration-300 ease-in-out transform hover:text-clickable hover:-translate-y-0.5 "
                         @click="openPage(_item.path)" v-for="(_item, _index) in item.details" :key="_index">
                         {{ _item.title }}
                     </div>

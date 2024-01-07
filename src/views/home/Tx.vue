@@ -28,7 +28,7 @@
                         class="text-sm font-bold py-2 border-b border-ligthborder  text-lightitemtitle dark:text-btndisable dark:border-border100">
                         <div class="hidden sm:flex justify-start items-center">{{ $t('Tx.from') }}:
                             <span @click="toAddress(item.from)"
-                                class="font-normal curpor-pointer pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                                class="font-normal curpor-pointer pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                                 {{
                                     item.from
                                 }}</span>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="hidden sm:flex justify-start items-center">{{ $t('Tx.to') }}: <span
                                 @click="toAddress(item.to)"
-                                class="font-normal curpor-pointer pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                                class="font-normal curpor-pointer pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                                 {{
                                     item.to }}</span>
                             <span class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
@@ -45,14 +45,14 @@
                         </div>
                         <div class="sm:hidden">{{ $t('Tx.from') }}:
                             <span @click="toAddress(item.from)"
-                                class="font-normal pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                                class="font-normal pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                                 {{ addressFilter(item.from) }}
                             </span>
                             <span class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                                 @click="copyContent(item.from)" />
                         </div>
                         <div class="sm:hidden">{{ $t('Tx.to') }}: <span @click="toAddress(item.to)"
-                                class="font-normal pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                                class="font-normal pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                                 {{ addressFilter(item.to) }}</span>
                             <span class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                                 @click="copyContent(item.to)" />
@@ -76,7 +76,7 @@
                         <div class="text-clickable sm:hidden">
                             {{ addressFilter(transactionInfo.vote.dpos_addr) }} </div>
                         <div
-                            class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                            class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                             {{ transactionInfo.vote.dpos_addr }} </div>
                         <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                             @click="copyContent(transactionInfo.vote.dpos_addr)" />

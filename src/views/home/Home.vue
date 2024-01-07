@@ -274,8 +274,11 @@ export default {
             optionPC && mobileChart.setOption(optionPC);
 
         },
+
         getAllStatData() {
-            allStatistics().then(res => {
+            allStatistics({
+                chainid: localStorage.getItem('chainID')
+            }).then(res => {
                 console.log(res)
                 res.days.map(item => {
                     this.xAxis.push(item.date)

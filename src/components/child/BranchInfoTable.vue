@@ -106,7 +106,7 @@
                         {{ item.chainid }}
                     </div>
                     <div class="flex-1 flex items-center justify-start">
-                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                             @click="toAddress(item.fork)">
                             {{ addressFilter(item.fork) }}
                         </div>
@@ -129,7 +129,7 @@
                         {{ item.halvecycle }}
                     </div>
                     <div class="flex-1 flex items-center justify-start">
-                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                             @click="toAddress(item.owner)">
                             {{ addressFilter(item.owner) }}
                         </div>
@@ -137,7 +137,7 @@
                             @click="copyContent(item.owner)" />
                     </div>
                     <div class="flex-1 flex items-center justify-start">
-                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                             @click="toAddress(item.createtxid)">
                             {{ addressFilter(item.createtxid) }}
                         </div>
@@ -148,7 +148,7 @@
                         {{ item.createforkheight }}
                     </div>
                     <div class="flex-1 flex items-center justify-start">
-                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                             @click="toAddress(item.parentfork)">
                             {{ addressFilter(item.parentfork) }}
                         </div>
@@ -162,7 +162,7 @@
                         {{ item.lastnumber }}
                     </div>
                     <div class="flex-1 flex items-center justify-start">
-                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110"
+                        <div class="cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                             @click="toAddress(item.lastblock)">
                             {{ addressFilter(item.lastblock) }}
                         </div>

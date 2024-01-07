@@ -4,7 +4,7 @@
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('tradeDetails.height') }}:</div>
             <div @click="toBlock(transactionInfo.height)"
-                class="cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                class="cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                 {{ transactionInfo.height }}</div>
         </div>
         <div class="flex justify-start items-center mb-2">
@@ -12,7 +12,7 @@
             <div class="text-clickable sm:hidden">
                 {{ addressFilter($store.state.txInfo.block_hash) || '0x00000000' }}</div>
             <div
-                class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                 {{ $store.state.txInfo.block_hash }}</div>
             <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                 @click="copyContent($store.state.txInfo.block_hash)" />
@@ -29,7 +29,7 @@
             <div class="text-clickable sm:hidden" @click="toAddress(transactionInfo.from)">
                 {{ addressFilter(transactionInfo.from) }} </div>
             <div @click="toAddress(transactionInfo.from)"
-                class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                 {{ transactionInfo.from }} </div>
             <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                 @click="copyContent(transactionInfo.from)" />
@@ -40,7 +40,7 @@
             <div class="text-clickable sm:hidden" @click="toAddress(transactionInfo.to)">
                 {{ addressFilter(transactionInfo.to) }} </div>
             <div @click="toAddress(transactionInfo.to)"
-                class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-110">
+                class="hidden sm:block cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                 {{ transactionInfo.to }} </div>
             <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                 @click="copyContent(transactionInfo.to)" />
