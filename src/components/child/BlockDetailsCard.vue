@@ -19,6 +19,18 @@
                 @click="copyContent($store.state.blockInfo.hash)" />
         </div>
 
+        <div class="flex justify-start items-center mb-2 sm:mb-4" style="border: 1px solid red;">
+            <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.blockNumber') }}:</div>
+            <div class="text-sm text-lighttable dark:text-white200">{{ blockInfo.number }}
+            </div>
+        </div>
+
+        <div class="flex justify-start items-center mb-2 sm:mb-4" style="border: 1px solid red;">
+            <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.blockSlot') }}:</div>
+            <div class="text-sm text-lighttable dark:text-white200">{{ blockInfo.slot }}
+            </div>
+        </div>
+
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.time') }}:</div>
             <div class="text-sm text-lighttable dark:text-white200">{{ timeFormat(blockInfo.time) }}
