@@ -6,7 +6,7 @@
                 :key="index">
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.height') }}: </div>
-                    <div class="text-clickable" @click="toBlock(item.height)">{{ item.height }}</div>
+                    <div class="text-clickable" @click="toBlock(item.height, item.hash)">{{ item.height }}</div>
 
                 </div>
                 <div class="flex justify-start item-center mb-1">
@@ -40,7 +40,7 @@
                         {{ index + 1 }}
                     </div>
                     <div class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5  "
-                        @click="toBlock(item.height)">
+                        @click="toBlock(item.height, item.hash)">
                         {{ item.height }}
                     </div>
                     <div class="w-60 text-sm flex justify-start items-center">
@@ -103,9 +103,12 @@ export default {
             })
         },
         //to block details
-        toBlock(height) {
+        toBlock(height, hash) {
             this.$router.push({
-                path: '/block/' + height
+                path: '/block/' + height,
+                query: {
+                    hash: hash
+                }
             })
         }
     },
