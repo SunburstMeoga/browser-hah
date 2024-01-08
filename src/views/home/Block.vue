@@ -175,6 +175,9 @@ export default {
                 this.blockInfo.reward_money = res.reward_money
                 this.blockInfo.gasUsed = res.gasUsed
                 this.blockInfo.gasLimit = res.gasLimit
+                this.blockInfo.number = res.number
+                this.blockInfo.slot = res.slot
+
                 this.blockInfoLoadStatus = 'finished'
                 this.$store.commit('getBlockInfo', this.blockInfo)
                 this.getTXList()

@@ -8,10 +8,15 @@
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.height') }}: </div>
                     <div class="text-clickable" @click="toBlock(item.height, item.hash)">{{ item.height }}</div>
                 </div>
-                <div class="flex justify-start item-center">
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Block.blockNumber') }}: </div>
+                    <div class="text-lighttable">{{ item.number }} </div>
+                </div>
+                <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Block.blockHASH') }}: </div>
                     <div class="text-lighttable">{{ addressFilter(item.hash) }}</div>
                 </div>
+
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.address') }}: </div>
                     <div class="text-clickable" @click="toAddress(item.reward_address)">{{
@@ -45,6 +50,9 @@
                     <div class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5  "
                         @click="toBlock(item.height, item.hash)">
                         {{ item.height }}
+                    </div>
+                    <div class="w-60">
+                        {{ item.number }}
                     </div>
                     <div class="w-60">
                         {{ addressFilter(item.hash) }}
@@ -123,6 +131,9 @@ export default {
             return [
                 {
                     title: this.$t('BlockList.height')
+                },
+                {
+                    title: this.$t('Block.blockNumber')
                 },
                 {
                     title: this.$t('Block.blockHASH')

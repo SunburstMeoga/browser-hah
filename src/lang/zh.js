@@ -51,7 +51,9 @@ module.exports = {
     txFee: '原力',
     hash: '交易哈希',
     blockStatistics: '区块统计',
-    blockTrade: '当前区块有 {count} 笔交易'
+    blockTrade: '当前区块有 {count} 笔交易',
+    blockNumber: '区块编号',
+    blockSlot: '区块时隙'
   },
   BlockList: {
     h1: '浏览器查询链上最新爆块，爆块时间，区块大小，播报方。',
