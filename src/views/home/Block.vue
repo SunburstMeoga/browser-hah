@@ -101,7 +101,7 @@ export default {
         },
         getTXList() {
             this.tranLoadStatus = 'loading',
-                TXList({ pageSize: this.txPageSize, page: this.txCurrentPage, block_hash: this.blockInfo.hash }).then(res => {
+                TXList({ pageSize: this.txPageSize, page: this.txCurrentPage, block_hash: this.blockInfo.hash, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
                     console.log('rse', res)
                     if (res.data.length !== 0) {
                         this.txListDatas = res.data
