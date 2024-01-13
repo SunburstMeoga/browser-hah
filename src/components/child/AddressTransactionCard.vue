@@ -7,7 +7,7 @@
                 <div @click="toBlock(transactionInfo.block_hash)"
                     class="hidden sm:block text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                     {{ transactionInfo.block_hash }}</div>
-                <div class="sm:hidden text-clickable" @click="toBlock(transactionInfo.block_hash)">{{
+                <div class="sm:hidden text-clickable" @click="toBlock(transactionInfo.height,transactionInfo.block_hash)">{{
                     addressFilter(transactionInfo.block_hash)
                 }} </div>
                 <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
@@ -117,9 +117,12 @@ export default {
                 path: '/address/' + address
             })
         },
-        toBlock(height) {
+        toBlock(height,hash) {
             this.$router.push({
-                path: '/block/' + height
+                path: '/block/' + height,
+                query: {
+                    hash: hash
+                }
             })
         },
         viewTransacions() {
@@ -130,12 +133,8 @@ export default {
 }
 </script>
 
-<<<<<<< HEAD
-<style></style>
-=======
 <style scoped>
 .item-title {
     @apply font-bold pr-4;
 }
 </style>
->>>>>>> test

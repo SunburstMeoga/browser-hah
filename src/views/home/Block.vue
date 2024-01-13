@@ -161,7 +161,8 @@ export default {
             this.blockInfoLoadStatus = 'loading'
             this.tranLoadStatus = 'loading'
             let params = {
-                param: this.hash,
+                param: this.height,
+                hash: this.hash,
                 chainid: parseInt(localStorage.getItem('chainID'))
             };
             blockInfo(params).then(res => {

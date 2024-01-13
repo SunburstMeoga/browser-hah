@@ -161,7 +161,10 @@ export default {
         },
         toBlock(height) {
             this.$router.push({
-                path: '/block/' + height
+                path: '/block/' + height,
+                query: {
+                    hash: this.transactionInfo.block_hash
+                }
             })
         },
     }
