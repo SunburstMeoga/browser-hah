@@ -260,6 +260,8 @@ module.exports = {
     lastblock: 'last block HASH',
     totaltxcount: 'total number of transactions',
     moneysupply: 'total issuance',
-    moneydestroy: 'total amount destroyed'
+    moneydestroy: 'total amount destroyed',
+    rewardtxcount: 'Number of reward transactions',
+    usertxcount: 'User Transactions'
   }
 }

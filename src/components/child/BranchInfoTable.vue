@@ -72,10 +72,10 @@
                         addressFilter(item.lastblock) }}</div>
                     <div class="icon iconfont icon-copy text-clickable pl-2" @click="copyContent(item.lastblock)" />
                 </div>
-                <div class="flex justify-start item-center">
+                <!-- <div class="flex justify-start item-center">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.totaltxcount') }}: </div>
                     <div class="text-lighttable">{{ item.totaltxcount }}</div>
-                </div>
+                </div> -->
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.moneysupply') }}: </div>
                     <div class="text-lighttable">{{ item.moneysupply }}</div>
@@ -84,7 +84,14 @@
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.moneydestroy') }}: </div>
                     <div class="text-lighttable">{{ item.moneydestroy }}</div>
-
+                </div>
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.rewardtxcount') }}: </div>
+                    <div class="text-lighttable">{{ item.rewardtxcount }}</div>
+                </div>
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('branch.usertxcount') }}: </div>
+                    <div class="text-lighttable">{{ item.usertxcount }}</div>
                 </div>
             </div>
         </div>
@@ -169,10 +176,10 @@
                         <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-1"
                             @click="copyContent(item.lastblock)" />
                     </div>
-                    <div class="flex-1">
+                    <!-- <div class="flex-1">
                         {{ item.totaltxcount }}
 
-                    </div>
+                    </div> -->
                     <div class="flex-1">
                         {{ item.moneysupply }}
 
@@ -180,6 +187,13 @@
                     <div class="flex-1">
                         {{ item.moneydestroy }}
                     </div>
+                     <div class="flex-1">
+                        {{ item.rewardtxcount }}
+                    </div>
+                     <div class="flex-1">
+                        {{ item.usertxcount }}
+                    </div>
+                     
                 </div>
             </div>
         </div>
@@ -288,14 +302,20 @@ export default {
                 {
                     title: this.$t('branch.lastblock')
                 },
-                {
-                    title: this.$t('branch.totaltxcount')
-                },
+                // {
+                //     title: this.$t('branch.totaltxcount')
+                // },
                 {
                     title: this.$t('branch.moneysupply')
                 },
                 {
                     title: this.$t('branch.moneydestroy')
+                },
+                {
+                    title: this.$t('branch.rewardtxcount')
+                },
+                {
+                    title: this.$t('branch.usertxcount')
                 }
             ]
         }

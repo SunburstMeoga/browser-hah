@@ -260,6 +260,8 @@ module.exports = {
     lastblock: '最后区块HASH',
     totaltxcount: '交易总数',
     moneysupply: '发行总量',
-    moneydestroy: '销毁总量'
+    moneydestroy: '销毁总量',
+    rewardtxcount: '奖励交易数',
+    usertxcount: '用户交易数'
   }
 }
