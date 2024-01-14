@@ -1,6 +1,5 @@
 <template>
     <div class="text-sm pt-2 px-4 text-lightitemtitle dark:text-btndisable">
-
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4 ">{{ $t('tradeDetails.height') }}:</div>
             <div @click="toBlock(transactionInfo.height)"
@@ -17,6 +16,18 @@
             <div class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                 @click="copyContent($store.state.txInfo.block_hash)" />
         </div>
+
+         <div class="flex justify-start items-center mb-2">
+            <div class="font-bold pr-4">{{ $t('Block.blockNumber') }}:</div>
+            <div class="text-lighttable dark:text-white20">{{ transactionInfo.number}}</div>
+            
+        </div>
+        <div class="flex justify-start items-center mb-2">
+            <div class="font-bold pr-4">{{ $t('Block.blockSlot') }}:</div>
+            <div class="text-lighttable dark:text-white20">{{ transactionInfo.slot}}</div>
+            
+        </div>
+
         <div class="flex justify-start items-center mb-2">
             <div class="font-bold pr-4">{{ $t('tradeDetails.hash') }}:</div>
             <div class="text-lighttable dark:text-white20 sm:hidden">{{ addressFilter(transactionInfo.txid) }}</div>
