@@ -1,44 +1,50 @@
 <template>
-<div class="w-full pb-4 bg-lightsecond dark:bg-black300">
-    <div>
-        <div class="w-11/12 mr-auto ml-auto py-5 mb-4 sm:w-9/12 border-b border-ligthborder dark:border-border100">
-            <second-title :title="$t('common.block')" :details="'#' + (blockInfo.number || '')" />
-        </div>
-    </div>
-
-    <div class="mb-4">
-        <div class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
-            <h-loading :loadStatus="blockInfoLoadStatus" />
-
-            <div v-if="blockInfoLoadStatus === 'finished'">
-                <block-details-card @clickPre="clickPre" @clickNext="clickNext" :blockInfo="blockInfo"></block-details-card>
+    <div class="w-full pb-4 bg-lightsecond dark:bg-black300">
+        <div>
+            <div class="w-11/12 mr-auto ml-auto py-5 mb-4 sm:w-9/12 border-b border-ligthborder dark:border-border100">
+                <second-title :title="$t('common.block')" :details="'#' + (blockInfo.number || '')" />
             </div>
         </div>
-    </div>
 
-    <div>
-        <div class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg pt-2 shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
-            <div class="pb-2 border-b border-ligthborder dark:border-border100 ">
-                <div class="pl-2">
-                    <module-title :title="$t('common.block') + '' + $t('Block.tx')" :total="totalTrade" />
+        <div class="mb-4">
+            <div
+                class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+                <h-loading :loadStatus="blockInfoLoadStatus" />
+
+                <div v-if="blockInfoLoadStatus === 'finished'">
+                    <block-details-card @clickPre="clickPre" @clickNext="clickNext"
+                        :blockInfo="blockInfo"></block-details-card>
                 </div>
             </div>
-            <div>
-                <h-loading :loadStatus="tranLoadStatus" />
+        </div>
 
-                <div v-if="tranLoadStatus === 'finished'">
-                    <div v-for="(item, index) in txListDatas" :key="index" class="w-11/12 mr-auto ml-auto py-2 sm:w-full sm:px-3 border-b border-ligthborder dark:border-border100 ">
-                        <block-transaction-card :transactionInfo="item" />
+        <div>
+            <div
+                class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg pt-2 shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
+                <div class="pb-2 border-b border-ligthborder dark:border-border100 ">
+                    <div class="pl-2">
+                        <module-title :title="$t('common.block') + '' + $t('Block.tx')" :total="totalTrade" />
                     </div>
                 </div>
+                <div>
+                    <h-loading :loadStatus="tranLoadStatus" />
 
-            </div>
-            <div>
-                <h-pagination @changePageSize="toTXFirstPage" @toFirstPage="toTXFirstPage" @toPrePage="toTXPrePage" @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :totalPage="totalPage" :currentPage="txCurrentPage" @toTargetPage="toTradeTargetPage" />
+                    <div v-if="tranLoadStatus === 'finished'">
+                        <div v-for="(item, index) in txListDatas" :key="index"
+                            class="w-11/12 mr-auto ml-auto py-2 sm:w-full sm:px-3 border-b border-ligthborder dark:border-border100 ">
+                            <block-transaction-card :transactionInfo="item" />
+                        </div>
+                    </div>
+
+                </div>
+                <div>
+                    <h-pagination @changePageSize="toTXFirstPage" @toFirstPage="toTXFirstPage" @toPrePage="toTXPrePage"
+                        @toNextPage="toTXNextPage" @toLastPage="toTXLastPage" :totalPage="totalPage"
+                        :currentPage="txCurrentPage" @toTargetPage="toTradeTargetPage" />
+                </div>
             </div>
         </div>
     </div>
-</div>
 </template>
 
 <script>
@@ -89,7 +95,7 @@ export default {
         this.height = this.$route.params.height
 
         this.hash = this.$route.query.number
-        console.log('height', this.height,this.hash)
+        console.log('height', this.height, this.hash)
         this.getBlockInfo()
     },
     watch: {
@@ -111,7 +117,7 @@ export default {
             this.$router.replace({
                 path: '/block/' + this.height,
                 query: {
-                    number:  Number(this.hash) - 1
+                    number: Number(this.hash) - 1
                 }
 
             });
@@ -206,7 +212,7 @@ export default {
                 this.blockInfo.prev_hash = res.prev_hash
                 this.blockInfo.reward_address = res.reward_address
                 this.blockInfo.reward_money = res.reward_money
-                this.blockInfo.gasUsed = res.gasUsed
+                this.blockInfo.gasUsed = res.gasUsedy
                 this.blockInfo.gasLimit = res.gasLimit
                 this.blockInfo.number = res.number
                 this.blockInfo.slot = res.slot
