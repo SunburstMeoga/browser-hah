@@ -1,5 +1,11 @@
 <template>
     <div class="text-sm pt-2 px-4 sm:pt-5 text-lightitemtitle dark:text-btndisable">
+     <div class="flex justify-start items-center mb-2 sm:mb-4">
+            <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.blockNumber') }}:</div>
+            <div class="text-sm text-lighttable dark:text-white200">{{ blockInfo.number }}
+            </div>
+        </div>
+
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4">{{ $t('BlockList.height') }}:</div>
             <div class="text-sm pr-2 text-lighttable dark:text-white200">{{ $store.state.blockInfo.height }}</div>
@@ -8,7 +14,11 @@
                 <div> next </div>
             </div> -->
         </div>
-
+    <div class="flex justify-start items-center mb-2 sm:mb-4">
+            <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.blockSlot') }}:</div>
+            <div class="text-sm text-lighttable dark:text-white200">{{ blockInfo.slot }}
+            </div>
+        </div>
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4">{{ $t('Block.blockHASH') }}:</div>
             <div class="text-sm pr-2 hidden sm:block text-lighttable dark:text-white200">{{ $store.state.blockInfo.hash }}
@@ -19,17 +29,8 @@
                 @click="copyContent($store.state.blockInfo.hash)" />
         </div>
 
-        <div class="flex justify-start items-center mb-2 sm:mb-4">
-            <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.blockNumber') }}:</div>
-            <div class="text-sm text-lighttable dark:text-white200">{{ blockInfo.number }}
-            </div>
-        </div>
-
-        <div class="flex justify-start items-center mb-2 sm:mb-4">
-            <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.blockSlot') }}:</div>
-            <div class="text-sm text-lighttable dark:text-white200">{{ blockInfo.slot }}
-            </div>
-        </div>
+       
+        
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.time') }}:</div>

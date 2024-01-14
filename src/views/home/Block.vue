@@ -80,14 +80,14 @@ export default {
     },
     created() {
         this.height = this.$route.params.height
-        this.hash = this.$route.query.hash
+        this.hash = this.$route.query.number
         console.log('height', this.height)
         this.getBlockInfo()
     },
     watch: {
         $route(to, from) {
             this.height = this.$route.params.height
-            this.hash = this.$route.query.hash
+            this.hash = this.$route.query.number
             this.getBlockInfo()
         }
     },
@@ -161,8 +161,8 @@ export default {
             this.blockInfoLoadStatus = 'loading'
             this.tranLoadStatus = 'loading'
             let params = {
-                param: this.height,
-                hash: this.hash,
+                param: this.hash,
+                // hash: this.hash,
                 chainid: parseInt(localStorage.getItem('chainID'))
             };
             blockInfo(params).then(res => {

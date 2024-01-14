@@ -5,12 +5,16 @@
             <div class="py-3 border-b border-lightborder dark:border-border100" v-for="(item, index) in dataList"
                 :key="index">
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.height') }}: </div>
-                    <div class="text-clickable" @click="toBlock(item.height, item.hash)">{{ item.height }}</div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Block.blockNumber') }}: </div>
+                    <div class="text-clickable" @click="toBlock(item.height, item.number)">{{ item.number }}</div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
-                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Block.blockNumber') }}: </div>
-                    <div class="text-lighttable">{{ item.number }} </div>
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('BlockList.height') }}: </div>
+                    <div class="text-lighttable">{{ item.height }} </div>
+                </div>
+                <div class="flex justify-start item-center mb-1">
+                    <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Block.blockSlot') }}: </div>
+                    <div class="text-lighttable">{{ item.slot }} </div>
                 </div>
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('Block.blockHASH') }}: </div>
@@ -48,11 +52,14 @@
                         {{ index + 1 }}
                     </div>
                     <div class="w-60 cursor-pointer hover:font-extrabold text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5  "
-                        @click="toBlock(item.height, item.hash)">
+                        @click="toBlock(item.height, item.number)">
+                        {{ item.number }}
+                    </div>
+                    <div class="w-60">
                         {{ item.height }}
                     </div>
                     <div class="w-60">
-                        {{ item.number }}
+                        {{ item.slot }}
                     </div>
                     <div class="w-60">
                         {{ addressFilter(item.hash) }}
@@ -117,11 +124,11 @@ export default {
             })
         },
         //to block details
-        toBlock(height, hash) {
+        toBlock(height, number) {
             this.$router.push({
                 path: '/block/' + height,
                 query: {
-                    hash: hash
+                    number: number
                 }
             })
         }
@@ -130,10 +137,13 @@ export default {
         tableTitleList() {
             return [
                 {
+                    title: this.$t('Block.blockNumber')
+                },
+                {
                     title: this.$t('BlockList.height')
                 },
                 {
-                    title: this.$t('Block.blockNumber')
+                    title: this.$t('Block.blockSlot')
                 },
                 {
                     title: this.$t('Block.blockHASH')
