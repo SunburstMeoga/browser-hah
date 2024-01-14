@@ -218,6 +218,31 @@ export default {
                 this.blockInfo.slot = res.slot
 
                 this.blockInfoLoadStatus = 'finished'
+                if (res.status === 0) {
+                    this.$confirm('暂无更多区块编号数据', '提示', {
+                        confirmButtonText: '确定',
+                        // cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        // this.$message({
+                        //     type: 'success',
+                        //     message: '删除成功!'
+                        // });
+                        this.$router.replace({
+                            path: '/block/' + this.height,
+                            query: {
+                                number: Number(this.hash) - 1
+                            }
+
+                        });
+                    }).catch(() => {
+                        // this.$message({
+                        //     type: 'info',
+                        //     message: '已取消删除'
+                        // });
+                    });
+                    return
+                }
                 this.$store.commit('getBlockInfo', this.blockInfo)
                 this.getTXList()
             });
