@@ -217,6 +217,27 @@ export default {
                 // this.client_in = res.client_in
                 // this.client_out = res.client_out
                 // this.transactionInfo.transtime = res.transtime
+                if (res.ret === 0) {
+                    this.$confirm('查询交易信息出错，请重新查询', '提示', {
+                        confirmButtonText: '确定',
+                        // cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        // this.$message({
+                        //     type: 'success',
+                        //     message: '删除成功!'
+                        // });
+                        this.$router.go(0)
+                    }).catch(() => {
+                        // this.$message({
+                        //     type: 'info',
+                        //     message: '已取消删除'
+                        // });
+                        this.$router.go(-1)
+
+                    });
+                    return
+                }
                 this.transactionInfo = res
                 this.getTXDetails()
                 this.logsList = res.logs

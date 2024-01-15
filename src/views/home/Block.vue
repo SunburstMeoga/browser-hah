@@ -236,10 +236,8 @@ export default {
 
                         });
                     }).catch(() => {
-                        // this.$message({
-                        //     type: 'info',
-                        //     message: '已取消删除'
-                        // });
+                        this.$router.go(-1)
+
                     });
                     return
                 }
