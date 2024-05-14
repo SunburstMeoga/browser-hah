@@ -22,16 +22,7 @@
         </div>
 
         <div>
-            
-    
             <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
-                style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
-                <div class="py-2 sm:mb-4 mr-auto ml-auto border-b border-ligthborder dark:border-border100">
-                    <div class="w-11/12 mr-auto ml-auto sm:w-full sm:px-2 sm:py-3">
-                        <module-title :title="$t('branch.infor')" :total="totalBlocks" />
-                    </div>
-                </div>
-                <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
                 style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
                 <div class="py-3 px-2 mr-auto ml-auto">
                     <div class="flex justify-start items-center flex-wrap sm:flex-nowrap px-2">
@@ -47,6 +38,14 @@
                     </div>
                 </div>
             </div>
+    
+            <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
+                style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
+                <div class="py-2 sm:mb-4 mr-auto ml-auto border-b border-ligthborder dark:border-border100">
+                    <div class="w-11/12 mr-auto ml-auto sm:w-full sm:px-2 sm:py-3">
+                        <module-title :title="$t('branch.infor')" :total="totalBlocks" />
+                    </div>
+                </div>
                 <branch-info-table :dataList="branchList" :loadStatus="blockTableLoadStatus" />
                 <div>
                     <h-pagination @changePageSize="toBlockFirstPage" @toFirstPage="toBlockFirstPage" @toPrePage="toBlockPrePage"
