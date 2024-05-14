@@ -41,7 +41,8 @@
                 style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
                 <div class="py-3 px-2 mr-auto ml-auto">
                     <div class="flex justify-start items-center flex-wrap sm:flex-nowrap">
-                        <div class="text-black dark:text-white300 text-base font-bold sm:text-xl pr-3">{{ $t('branch.currentBranch')}}:</div>
+                        <div class="text-black dark:text-white300 text-base font-bold sm:text-xl pr-3">{{
+            $t('branch.currentBranch') }}:</div>
                         <div class="flex justify-start items-center">
                             <div :class="index === 1 ? 'ml-4' : ''" v-for="(item, index) in branchList" :key="index">
                                 <el-radio @input="enabled(item)" v-model="chainid" :label="item.chainid">{{ item.name
