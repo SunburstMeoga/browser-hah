@@ -10,7 +10,6 @@
             <div
                 class="w-11/12 sm:w-9/12 mr-auto ml-auto rounded-lg shadow-lg border bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow">
                 <h-loading :loadStatus="blockInfoLoadStatus" />
-
                 <div v-if="blockInfoLoadStatus === 'finished'">
                     <block-details-card @clickPre="clickPre" @clickNext="clickNext"
                         :blockInfo="blockInfo"></block-details-card>
