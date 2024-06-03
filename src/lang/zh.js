@@ -1,6 +1,6 @@
 module.exports = {
   common: {
-    browser: 'HAH浏览器',
+    browser: 'PGChain浏览器',
     address: '地址',
     block: '区块',
     tx: '交易',
@@ -170,13 +170,13 @@ module.exports = {
     method: '方法'
   },
   footBar: {
-    title: '由Hash Ahead提供支持',
+    title: '由PGChain提供支持',
     company: '公司',
     aboutUs: '关于我们',
     Product: '产品与服务',
-    vote: 'HAH投票系统',
-    faucet: 'HAH水龙头',
-    browser: 'HAH浏览器',
+    vote: 'PGChain投票系统',
+    faucet: 'PGChain水龙头',
+    browser: 'PGChain浏览器',
   },
   pagination: {
     show: '每页显示',
@@ -185,10 +185,10 @@ module.exports = {
     last: '最后一页'
   },
   faucetSmart: {
-    title: 'HAH智能链水龙头',
-    button: '获取HAH测试币',
+    title: 'PGChain智能链水龙头',
+    button: '获取PGChain测试币',
     errAddress: '请输入正确的地址',
-    released: '已发放 1 HAH到该地址',
+    released: '已发放 1 PGChain到该地址',
     repeat: '不能重复申请',
     othererr: '系统错误，请重试'
   },

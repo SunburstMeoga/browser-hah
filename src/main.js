@@ -8,6 +8,7 @@ import i18n from './lang'
 import * as echarts from 'echarts';
 import '@/assets/css/iconfont.css';
 import 'tailwindcss/tailwind.css'
+import '@/assets/font/font.css';
 
 Vue.prototype.$echarts = echarts
 

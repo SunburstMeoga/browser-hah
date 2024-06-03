@@ -37,7 +37,8 @@ module.exports = {
 
         'btndisable': '#888',
 
-        'clickable': '#6ab5db'
+        'clickable': '#da251d',
+        
       },
       spacing: {
         '100': '100rem'

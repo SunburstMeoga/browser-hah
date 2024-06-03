@@ -1,6 +1,6 @@
 module.exports = {
   common: {
-    browser: 'HAH Browser',
+    browser: 'PGChain Browser',
     address: 'Address',
     block: 'Block',
     tx: 'Transaction',
@@ -56,8 +56,8 @@ module.exports = {
     blockSlot: 'Block Time Slot'
   },
   BlockList: {
-    h1: 'Hah browser queries the latest burst block on the chain, burst time, block size and broadcaster.',
-    h2: 'Hah browser displays the latest block explosion, including the latest block explosion time, TPS, average block out time, block height, broadcaster, size, reward, number of transactions and total transaction amount. ',
+    h1: 'PGChain browser queries the latest burst block on the chain, burst time, block size and broadcaster.',
+    h2: 'PGChain browser displays the latest block explosion, including the latest block explosion time, TPS, average block out time, block height, broadcaster, size, reward, number of transactions and total transaction amount. ',
     newBlock: 'New Block',
     height: 'Height',
     address: 'Address',
@@ -170,13 +170,13 @@ module.exports = {
     method: 'Method'
   },
   footBar: {
-    title: 'Powered by Hash Ahead',
+    title: 'Powered by PGChain',
     company: 'Company',
     aboutUs: 'About Us',
     Product: 'Pruduct & Services',
-    vote: 'HAH Vote',
-    faucet: 'HAH Faucet',
-    browser: 'HAH Browser',
+    vote: 'PGChain Vote',
+    faucet: 'PGChain Faucet',
+    browser: 'PGChain Browser',
   },
   pagination: {
     show: 'Per page:',
@@ -185,10 +185,10 @@ module.exports = {
     last: 'Last'
   },
   faucetSmart: {
-    title: 'HAH Smart Chain Faucet',
-    button: 'Give me HAH',
+    title: 'PGChain Smart Chain Faucet',
+    button: 'Give me PGChain',
     errAddress: 'Please enter the correct address',
-    released: '1 HAH has been issued to this address',
+    released: '1 PGChain has been issued to this address',
     repeat: 'Duplicate applications cannot be made',
     othererr: 'System error, please try again'
   },

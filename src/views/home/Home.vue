@@ -21,7 +21,7 @@
             <div id="mobile-chart" style="width: 1000px; height: 500px;"></div>
         </div>
 
-        <div>
+        <!-- <div>
             <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
                 style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
                 <div class="py-3 px-2 mr-auto ml-auto">
@@ -53,7 +53,7 @@
                         :totalPage="totalPage" @toTargetPage="toBlockTargetPage" />
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="mb-2 sm:mb-4 w-11/12 sm:w-9/12 mr-auto ml-auto">
             <module-title :title="$t('BlockList.newBlock')"></module-title>
@@ -160,6 +160,8 @@ export default {
                             this.chainid = parseInt(localStorage.getItem('chainID'))
 
                         }
+                        console.log(this.chainid)
+
                     } else {
                         this.blockTableLoadStatus = 'empty'
                         this.$message.error(this.$t('messageTips.noMore'))

@@ -22,7 +22,7 @@ export default {
     this.$i18n.locale = localStorage.getItem('language') || navigator.language || navigator.userLanguage
     console.log(localStorage.getItem('language'), navigator.language || navigator.userLanguage, this.$i18n.locale)
     console.log('this.$i18n.locale', this.$i18n.locale)
-
+    localStorage.setItem('chainID','1688288')
     // document.documentElement.classList.add('dark');
   }
 }
@@ -32,5 +32,8 @@ export default {
 body {
   height: 100vh;
   padding-bottom: 30px;
+}
+* {
+  font-family: 'Comfortaa';
 }
 </style>

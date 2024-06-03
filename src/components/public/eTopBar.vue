@@ -7,7 +7,7 @@
                 <!-- search -->
                 <div class="flex items-center ml-3 sm:order-1 cursor-pointer" @click="toHome">
                     <div class="w-32">
-                        <img class="object-contain" src="../../assets/images/custom/logo.png" alt="$t('common.browser')">
+                        <img class="object-contain" src="../../assets/images/custom/pglogo@60.png" alt="$t('common.browser')">
                     </div>
                 </div>
 
@@ -60,7 +60,7 @@
                         @click="pcToSearch">
                         {{ $t('common.search') }}
                     </div>
-                    <div class="w-11/12 mr-auto ml-auto mt-4 flex justify-start flex-wrap show-easy sm:hidden"
+                    <div class="w-11/12 mr-auto ml-auto mt-4  flex justify-start flex-wrap show-easy sm:hidden"
                         v-show="showSearchCriteria">
                         <div class="flex justify-start items-center text-sm px-2 mr-6 rounded-lg mb-2 text-lighttable border border-lightborder dark:border-border100 dark:bg-black300 dark:text-black100"
                             v-for="(item, index) in searchCriteriaList" :key="index" @click="handleSearch(item)">
@@ -83,7 +83,7 @@
                 </div>
             </div>
 
-            <div class="show-easy hidden absolute border-t-4 border-clickable w-40 sm:block left-1/10 bg-white rounded-b-lg"
+            <div class="show-easy hidden absolute border-t-4 border-clickable w-40 mt-40 sm:block left-1/10 bg-white rounded-b-lg"
                 @mouseleave="shwoPCSearch = false" v-show="shwoPCSearch"
                 style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
                 <div class="cursor-pointer flex justify-start items-center px-4 text-sm py-2 dark:bg-black400 dark:text-grayword hover:bg-lightborder dark:hover:bg-border100"
@@ -119,7 +119,7 @@ export default {
                 { title: 'HRC20', path: '/hrc' },
                 // { title: localStorage.getItem('chainName') || this.$store.state.chainName ? this.$t('branch.infor') + '(' + (localStorage.getItem('chainName') || this.$store.state.chainName) + ')' : this.$t('branch.infor'), path: '/branch' }
 
-                { title: (this.$store.state.chainName || localStorage.getItem('chainName')) ? this.$t('branch.infor') + `(${localStorage.getItem('chainName')})` : this.$t('branch.infor'), path: '/branch' },
+                // { title: (this.$store.state.chainName || localStorage.getItem('chainName')) ? this.$t('branch.infor') + `(${localStorage.getItem('chainName')})` : this.$t('branch.infor'), path: '/branch' },
             ]
         },
         searchCriteriaList() {

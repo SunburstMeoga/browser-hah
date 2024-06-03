@@ -3,6 +3,7 @@ import { Message } from 'element-ui'
 
 const service = axios.create({
     baseURL: process.env.VUE_APP_BASE_API,
+    // baseURL: 'https://scan.pgchain.org/',
     timeout: 30000
 })
 

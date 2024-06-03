@@ -79,6 +79,7 @@ export default {
                             this.chainid = parseInt(localStorage.getItem('chainID'))
 
                         }
+                        console.log(this.chainid)
                     } else {
                         this.blockTableLoadStatus = 'empty'
                         this.$message.error(this.$t('messageTips.noMore'))

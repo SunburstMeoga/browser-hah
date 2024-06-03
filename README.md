@@ -1,4 +1,4 @@
-# HAH-BROWSER
+# PGC-BROWSER
 
 ## Project setup
 ```

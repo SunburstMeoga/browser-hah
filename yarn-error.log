@@ -21,7 +21,7 @@ Trace:
 
 npm manifest: 
   {
-    "name": "HAH-BROWSER",
+    "name": "PGC-BROWSER",
     "version": "0.1.0",
     "private": true,
     "scripts": {

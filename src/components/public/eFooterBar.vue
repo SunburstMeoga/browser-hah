@@ -15,7 +15,7 @@
             <div class="mb-10 sm:w-2/5">
                 <div class="flex justify-start items-center mb-2">
                     <div class="w-8 h-8 overflow-hidden rounded">
-                        <img class="w-full h-full object-cover" src="../../assets/images/custom/logo.jpg" alt="">
+                        <img class="w-full h-full object-cover" src="../../assets/images/custom/pglogo@60.png" alt="">
                     </div>
                     <div class="pl-2 font-bold text-sm sm:text-lg text-lighttable dark:text-white200">
                         {{ $t('footBar.title') }}
@@ -38,7 +38,7 @@
         </div>
 
         <div class="w-11/12 sm:w-9/12 ml-auto mr-auto text-xs sm:text-sm sm:py-4 py-6 text-lighttable dark:text-white300">
-            Hash Ahead © 2023
+            PGChain © 2023
         </div>
     </div>
 </template>
@@ -50,25 +50,25 @@ export default {
         return {
             socialList: [
                 {
-                    path: 'https://twitter.com/hashahead',
+                    path: 'https://twitter.com/osk_labs',
                     icon: 'icon-twitter-fill'
                 },
                 {
-                    path: 'https://github.com/hashahead',
+                    path: 'https://github.com/pgchain',
                     icon: 'icon-github'
                 },
-                {
-                    path: 'https://www.instagram.com/hashahead/',
-                    icon: 'icon-instagram-fill'
-                },
-                {
-                    path: 'https://www.linkedin.com/in/hashahead/',
-                    icon: 'icon-a-ziyuan5'
-                },
-                {
-                    path: 'https://discord.gg/2VCU4tB8',
-                    icon: 'icon-discord3'
-                },
+                // {
+                //     path: 'https://www.instagram.com/hashahead/',
+                //     icon: 'icon-instagram-fill'
+                // },
+                // {
+                //     path: 'https://www.linkedin.com/in/hashahead/',
+                //     icon: 'icon-a-ziyuan5'
+                // },
+                // {
+                //     path: 'https://discord.gg/2VCU4tB8',
+                //     icon: 'icon-discord3'
+                // },
                 // {
                 //     path: '',
                 //     icon: 'icon-facebook'
@@ -97,7 +97,7 @@ export default {
                             path: 'https://testnet.hashahead.org/'
                         },
                         {
-                            title: 'HashAhead',
+                            title: 'PGChain',
                             path: 'https://github.com/Block-Way'
                         },
                         {
