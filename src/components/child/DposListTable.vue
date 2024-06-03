@@ -19,7 +19,8 @@
                 </div>
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('dpos.vote') }}: </div>
-                    <div class=""> {{ item.votes }}</div>
+                    <!-- <div class=""> {{ item.votes }}</div> -->
+                    <div>0</div>
                 </div>
             </div>
         </div>
@@ -61,7 +62,8 @@
                             @click="copyContent(item.address)" />
                     </div>
                     <div class="w-60">
-                        {{ item.votes }}
+                        <!-- {{ item.votes }} -->
+                        0
                     </div>
 
                 </div>
@@ -91,9 +93,9 @@ export default {
     methods: {
         timeFormat, amountFormat, addressFilter,
         toAddress(address) {
-            this.$router.push({
-                path: '/dpos/details/' + address
-            })
+            // this.$router.push({
+            //     path: '/dpos/details/' + address
+            // })
         },
         copyContent(content) {
             navigator.clipboard.writeText(content).then(() => {
