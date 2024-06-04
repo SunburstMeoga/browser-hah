@@ -137,7 +137,7 @@ export default {
             this.addressInfoLoadStatus = 'loading'
             balanceInfo({
                 address: this.address,
-                symbol: 'HAH',
+                symbol: 'PGC',
                 chainid: parseInt(localStorage.getItem('chainID'))
             }).then(res => {
                 this.addressInfo.balance = res.balance

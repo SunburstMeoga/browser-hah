@@ -10,7 +10,7 @@
                 </div>
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 text-lighttable dark:text-white200">{{ $t('dposDetail.amount') }}: </div>
-                    <div class="">{{ item.amount }} HAH</div>
+                    <div class="">{{ item.amount }} PGC</div>
                 </div>
                 <div class=" flex justify-start item-center text-lighttable dark:text-white200">
                     <div class="pr-2">{{ $t('dposDetail.time') }}: </div>
@@ -40,7 +40,7 @@
                         {{ addressFilter(item.addr) }}
                     </div>
                     <div class="w-60 text-sm">
-                        {{ item.amount }} HAH
+                        {{ item.amount }} PGC
                     </div>
                     <div class="w-60 text-sm">
                         {{ timeFormat(item.ts) }}

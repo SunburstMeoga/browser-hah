@@ -29,7 +29,7 @@
         </div>
         <div class="flex justify-start items-center sm:mb-2">
             <div class="item-title sm:w-1/4 ">{{ $t('Address.txFee') }}:</div>
-            <div class="text-lighttable dark:text-white200">{{ transactionInfo.fee }} HAH</div>
+            <div class="text-lighttable dark:text-white200">{{ transactionInfo.fee }} PGC</div>
         </div>
         <div class="flex justify-start items-center sm:mb-2">
             <div class="item-title sm:w-1/4 ">{{ $t('Pending.from') }}:</div>

@@ -12,7 +12,7 @@
                 </div>
                 <div class="flex justify-start item-center mb-1">
                     <div class="pr-2 ">{{ $t('Rank.balance') }}: </div>
-                    <div class=""> {{ item.balance }} HAH</div>
+                    <div class=""> {{ item.balance }} PGC</div>
                 </div>
                 <div class="flex justify-start item-center">
                     <div class="pr-2">{{ $t('Rank.yield') }}: </div>
@@ -47,7 +47,7 @@
                             @click="copyContent(item.address)" />
                     </div>
                     <div class="w-80 text-sm">
-                        {{ item.balance }} HAH
+                        {{ item.balance }} PGC
                     </div>
                     <div class="w-80">
                         {{ item.yield }}

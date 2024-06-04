@@ -69,7 +69,7 @@
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">
             <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('Block.reward') }}:</div>
-            <div class="text-sm text-lighttable dark:text-white200">{{ blockInfo.reward_money }} HAH</div>
+            <div class="text-sm text-lighttable dark:text-white200">{{ blockInfo.reward_money }} PGC</div>
         </div>
 
         <div class="flex justify-start items-center mb-2 sm:mb-4">

@@ -329,39 +329,46 @@ export default {
             let myChart = this.$echarts.init(document.getElementById("chart"));
             let mobileChart = this.$echarts.init(document.getElementById("mobile-chart"));
             let optionPC = {
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'shadow'
-                    }
-                },
-                grid: {
-                    left: '3%',
-                    right: '4%',
-                    bottom: '3%',
-                    containLabel: true
-                },
+                // tooltip: {
+                //     trigger: 'axis',
+                //     axisPointer: {
+                //         type: 'shadow'
+                //     }
+                // },
+                // grid: {
+                //     left: '3%',
+                //     right: '4%',
+                //     bottom: '3%',
+                //     containLabel: true
+                // },
                 xAxis: [
                     {
                         type: 'category',
                         data: this.xAxis,
-                        axisTick: {
-                            alignWithLabel: true
-                        }
+                        // axisTick: {
+                        //     alignWithLabel: true
+                        // }
                     }
                 ],
-                yAxis: [
-                    {
-                        type: 'value'
-                    }
-                ],
+                yAxis: {
+                    type: 'value'
+                },
                 series: [
                     {
                         name: this.$t('overview.trade'),
-                        type: 'bar',
-                        barWidth: '60%',
-                        data: this.countChart
-
+                        type: 'line',
+                        // barWidth: '60%',
+                        data: this.countChart,
+                        symbolSize: 8,
+                        itemStyle: {
+                                color: '#da251d',
+                            },
+                        lineStyle: {
+                            width: 4, // 线条宽度
+                            color: '#da251d',
+                            
+                            symbol: 'circle',
+                        },
                     }
                 ]
             }
@@ -396,9 +403,18 @@ export default {
                 series: [
                     {
                         name: this.$t('overview.trade'),
-                        type: 'bar',
-                        barWidth: '60%',
-                        data: this.countChart
+                        type: 'line',
+                        // barWidth: '60%',
+                        data: this.countChart,
+                        itemStyle: {
+                                color: '#da251d',
+                            },
+                        lineStyle: {
+                            width: 4, // 线条宽度
+                            color: '#da251d',
+                            symbolSize: 8,
+                            symbol: 'circle',
+                        },
                     }
                 ]
             };
@@ -457,8 +473,3 @@ export default {
 }
 </script>
 <style></style>
-
-
-
-
-

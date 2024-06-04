@@ -5,7 +5,7 @@
         </div>
         <div class="content">
             <div style="margin-top: 15px;">
-                <el-input placeholder="Input your HAH Smart Chain address..." v-model="address" class="input-with-select">
+                <el-input placeholder="Input your PGC Smart Chain address..." v-model="address" class="input-with-select">
                    
                     <el-button slot="append" icon="el-icon-search" @click="getTestHAHChain">
                         {{ $t('faucetSmart.button') }}

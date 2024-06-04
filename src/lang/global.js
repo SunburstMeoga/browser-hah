@@ -1,4 +1,4 @@
-const virtualCurrencyUnit="HAH"
+const virtualCurrencyUnit="PGC"
 const githubLink="https://github.com/Block-Way"
 const githubBrowserLink="https://github.com/Block-Way/Browser"
 const company="Block_Way"
