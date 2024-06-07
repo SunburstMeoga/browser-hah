@@ -34,6 +34,6 @@ body {
   padding-bottom: 30px;
 }
 * {
-  font-family: 'Comfortaa';
+  font-family: Nunito, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 </style>
