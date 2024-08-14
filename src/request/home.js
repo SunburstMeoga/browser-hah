@@ -18,6 +18,7 @@ export function TXList(params) {
 }
 
 export function allStatistics(params) {
+    console.log('allstatistics', params)
     return request({
         url: '/api/stat',
         method: 'get',
