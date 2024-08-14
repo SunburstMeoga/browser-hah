@@ -428,7 +428,7 @@ export default {
             allStatistics({
                 chainid: localStorage.getItem('chainID')
             }).then(res => {
-                console.log(res)
+                console.log(res, localStorage.getItem('chainID'))
                 res.days.map(item => {
                     this.xAxis.push(item.date)
                     this.amountChart.push(item.amount)
