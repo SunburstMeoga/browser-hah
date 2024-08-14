@@ -10,7 +10,7 @@
                     <div class="flex justify-start items-center">
                         <div :class="index === 1 ? 'ml-4' : ''" v-for="(item, index) in branchList" :key="index">
                             <el-radio @input="enabled(item)" v-model="chainid" :label="item.chainid">{{ item.name
-                            }}</el-radio>
+                                }}</el-radio>
                         </div>
                     </div>
                 </div>
@@ -26,9 +26,9 @@
             </div>
             <branch-info-table :dataList="branchList" :loadStatus="blockTableLoadStatus" />
             <div>
-                <h-pagination @changePageSize="toBlockFirstPage" @toFirstPage="toBlockFirstPage" @toPrePage="toBlockPrePage"
-                    @toNextPage="toBlockNextPage" @toLastPage="toBlockLastPage" :currentPage="blockCurrentPage"
-                    :totalPage="totalPage" @toTargetPage="toBlockTargetPage" />
+                <h-pagination @changePageSize="toBlockFirstPage" @toFirstPage="toBlockFirstPage"
+                    @toPrePage="toBlockPrePage" @toNextPage="toBlockNextPage" @toLastPage="toBlockLastPage"
+                    :currentPage="blockCurrentPage" :totalPage="totalPage" @toTargetPage="toBlockTargetPage" />
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@ export default {
         numberFormat,
         getBranchList() {
             this.blockTableLoadStatus = 'loading',
-                branchList({ pageSize: this.blockPageSize, page: this.blockCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
+                branchList({ pageSize: this.blockPageSize, page: this.blockCurrentPage, chainid: localStorage.getItem('chainID') }).then(res => {
                     this.blockTableLoadStatus = 'finished'
                     console.log('sdfsdf', res)
                     this.branchList = res
@@ -76,7 +76,7 @@ export default {
                             this.$store.commit('getChainName', branchList[0].name.name)
                             this.chainid = branchList[0].name
                         } else {
-                            this.chainid = parseInt(localStorage.getItem('chainID'))
+                            this.chainid = localStorage.getItem('chainID')
 
                         }
                         console.log(this.chainid)
@@ -97,7 +97,7 @@ export default {
             localStorage.setItem('chainID', item.chainid)
             this.$store.commit('getChainId', item.chainid)
             this.$store.commit('getChainName', item.name)
-            console.log(item.chainid, parseInt(localStorage.getItem('chainID')), this.$store.state.chainName, item.checked)
+            console.log(item.chainid, localStorage.getItem('chainID'), this.$store.state.chainName, item.checked)
         },
         toBlockFirstPage(selectedPageSize) {
             console.log('第一页')

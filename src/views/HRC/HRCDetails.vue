@@ -35,7 +35,7 @@
                     <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('hrc20.owner') }}:</div>
                     <div class="text-sm cursor-pointer text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 "
                         @click="toAddress(tokenInfo.owner)">{{
-                            addressFilter(tokenInfo.owner) }}</div>
+                    addressFilter(tokenInfo.owner) }}</div>
                 </div>
                 <div class="flex justify-start items-center mb-2">
                     <div class="font-bold pr-4 sm:w-1/4 ">{{ $t('hrc20.symbol') }}:</div>
@@ -52,7 +52,8 @@
             <div class="mb-4 sm:mb-6 w-11/12 mr-auto ml-auto rounded-lg shadow-lg border sm:w-9/12 bg-white border-ligthborder dark:bg-black200 dark:border-border100 dark:shadow"
                 style="box-shadow:0 0.5rem 1.2rem rgba(82, 85, 92, .15);">
                 <div class="flex justify-between items-center sm:justify-start px-2 py-2">
-                    <div class="font-bold text-lightitemtitle dark:text-btndisable sm:pr-4">{{ $t('Rank.balance') }}:</div>
+                    <div class="font-bold text-lightitemtitle dark:text-btndisable sm:pr-4">{{ $t('Rank.balance') }}:
+                    </div>
                     <div class="text-lighttable dark:text-white200">{{ tokenInfo.balance }} {{ tokenInfo.symbol }}</div>
 
                 </div>
@@ -111,7 +112,7 @@ export default {
             })
         },
         getHRC20Details() {
-            HRC20Details({ address: this.address, a: this.conAddress, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
+            HRC20Details({ address: this.address, a: this.conAddress, chainid: localStorage.getItem('chainID') }).then(res => {
                 console.log('hrc20详情', res)
                 this.tokenInfo = res
             }).catch(err => {
@@ -119,7 +120,7 @@ export default {
             })
         },
         getContractTX() {
-            contractTX({ address: this.address, page: this.txCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
+            contractTX({ address: this.address, page: this.txCurrentPage, chainid: localStorage.getItem('chainID') }).then(res => {
                 console.log(res)
                 if (res.data.length !== 0) {
                     this.dataList = res.data

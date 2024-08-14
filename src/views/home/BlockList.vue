@@ -10,9 +10,9 @@
             </div>
             <new-block-table :dataList="blockListDatas" :loadStatus="blockTableLoadStatus" />
             <div>
-                <h-pagination @changePageSize="toBlockFirstPage" @toFirstPage="toBlockFirstPage" @toPrePage="toBlockPrePage"
-                    @toNextPage="toBlockNextPage" @toLastPage="toBlockLastPage" :currentPage="blockCurrentPage"
-                    :totalPage="totalPage" @toTargetPage="toBlockTargetPage" />
+                <h-pagination @changePageSize="toBlockFirstPage" @toFirstPage="toBlockFirstPage"
+                    @toPrePage="toBlockPrePage" @toNextPage="toBlockNextPage" @toLastPage="toBlockLastPage"
+                    :currentPage="blockCurrentPage" :totalPage="totalPage" @toTargetPage="toBlockTargetPage" />
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@ export default {
         numberFormat,
         getBlockList() {
             this.blockTableLoadStatus = 'loading',
-                blockList({ pageSize: this.blockPageSize, page: this.blockCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
+                blockList({ pageSize: this.blockPageSize, page: this.blockCurrentPage, chainid: localStorage.getItem('chainID') }).then(res => {
                     console.log('getNewBlock', res)
                     if (res.data.length !== 0) {
                         this.blockListDatas = res.data

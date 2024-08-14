@@ -42,7 +42,7 @@ export default {
     numberFormat,
     getListHRC20() {
       this.hrcListLoadStatus = 'loading'
-      listHRC20({ pageSize: this.hrcPageSize, page: this.hrcCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
+      listHRC20({ pageSize: this.hrcPageSize, page: this.hrcCurrentPage, chainid: localStorage.getItem('chainID') }).then(res => {
         console.log(res)
         if (res.data.length !== 0) {
           this.hrcListDatas = res.data

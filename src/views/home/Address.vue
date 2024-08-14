@@ -27,8 +27,8 @@
                         <div class="cursor-pointer border-clickable py-2 px-2 mr-2 text-black dark:text-white300 transition duration-300 ease-in-out transform hover:text-clickable font-bold sm:text-xl"
                             :class="currentData === index ? 'border-b-4 text-clickable' : ''"
                             @click="handleTab(item, index)" v-for="(item, index) in 2" :key="index">{{ index === 0 ?
-                                $t('Address.transactions') :
-                                'HRC20-Token' + $t('Block.tx') }}</div>
+                    $t('Address.transactions') :
+                    'HRC20-Token' + $t('Block.tx') }}</div>
                     </div>
                     <div class="pl-2 py-1 text-sm text-lightmoreword dark:text-black100">
                         {{ $t('moduleTitle.totalData', { count: totalTrade }) }}
@@ -138,7 +138,7 @@ export default {
             balanceInfo({
                 address: this.address,
                 symbol: 'PGC',
-                chainid: parseInt(localStorage.getItem('chainID'))
+                chainid: localStorage.getItem('chainID')
             }).then(res => {
                 this.addressInfo.balance = res.balance
                 this.addressInfo.locked = res.locked
@@ -158,7 +158,7 @@ export default {
                 address: this.address,
                 page: this.txCurrentPage,
                 pageSize: this.txPageSize,
-                chainid: parseInt(localStorage.getItem('chainID'))
+                chainid: localStorage.getItem('chainID')
             }).then(res => {
                 console.log('hrc20交易', res)
                 if (res.data.length !== 0) {
@@ -180,7 +180,7 @@ export default {
                 address: this.address,
                 page: this.txCurrentPage,
                 pageSize: this.txPageSize,
-                chainid: parseInt(localStorage.getItem('chainID'))
+                chainid: localStorage.getItem('chainID')
             }).then(res => {
                 console.log('res', res)
                 if (res.data.length !== 0) {

@@ -44,7 +44,7 @@ export default {
         numberFormat,
         getTXList() {
             this.tradeTableLoadStatus = 'loading'
-            TXList({ pageSize: this.txPageSize, page: this.txCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
+            TXList({ pageSize: this.txPageSize, page: this.txCurrentPage, chainid: localStorage.getItem('chainID') }).then(res => {
                 console.log('getTXList', res)
                 if (res.data.length !== 0) {
                     this.TXListDatas = res.data

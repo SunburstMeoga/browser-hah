@@ -137,7 +137,7 @@ export default {
                     pageSize: this.txPageSize,
                     page: this.txCurrentPage,
                     block_hash: this.blockInfo.hash,
-                    chainid: parseInt(localStorage.getItem('chainID'))
+                    chainid: localStorage.getItem('chainID')
                 }).then(res => {
                     console.log('rse', res)
                     if (res.data.length !== 0) {
@@ -200,7 +200,7 @@ export default {
             let params = {
                 param: this.hash,
                 // hash: this.hash,
-                chainid: parseInt(localStorage.getItem('chainID'))
+                chainid: localStorage.getItem('chainID')
             };
             blockInfo(params).then(res => {
                 console.log('getBlockInfo', res)

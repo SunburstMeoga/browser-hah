@@ -30,8 +30,8 @@
                             <span @click="toAddress(item.from)"
                                 class="font-normal curpor-pointer pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                                 {{
-                                    item.from
-                                }}</span>
+                    item.from
+                }}</span>
                             <span class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                                 @click="copyContent(item.from)" />
                         </div>
@@ -39,7 +39,7 @@
                                 @click="toAddress(item.to)"
                                 class="font-normal curpor-pointer pl-2 text-clickable transition duration-300 ease-in-out transform hover:-translate-y-0.5 ">
                                 {{
-                                    item.to }}</span>
+                    item.to }}</span>
                             <span class="cursor-pointer icon iconfont icon-copy text-clickable pl-2"
                                 @click="copyContent(item.to)" />
                         </div>
@@ -87,11 +87,13 @@
                     </div>
                     <div class="flex justify-start items-center mb-2">
                         <div class="font-bold pr-4 ">{{ $t('dposDetail.tranType') }}:</div>
-                        <div class="text-lighttable dark:text-white200">{{ getTranType(transactionInfo.vote.type) }} </div>
+                        <div class="text-lighttable dark:text-white200">{{ getTranType(transactionInfo.vote.type) }}
+                        </div>
                     </div>
                     <div class="flex justify-start items-center mb-2">
                         <div class="font-bold pr-4 ">{{ $t('dposDetail.voteType') }}:</div>
-                        <div class="text-lighttable dark:text-white200">{{ getVoteType(transactionInfo.vote.vote_type) }}
+                        <div class="text-lighttable dark:text-white200">{{ getVoteType(transactionInfo.vote.vote_type)
+                            }}
                         </div>
                     </div>
                 </div>
@@ -197,14 +199,14 @@ export default {
             });
         },
         getTXDetails() {
-            txDetails({ txid: this.txid, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
+            txDetails({ txid: this.txid, chainid: localStorage.getItem('chainID') }).then(res => {
                 this.dataDetails = res
                 this.transactionInfo.transTotal = res.length
             });
         },
         getTxinfo() {
             this.tranInfoLoadStatus = 'loading'
-            txInfo({ txid: this.txid, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
+            txInfo({ txid: this.txid, chainid: localStorage.getItem('chainID') }).then(res => {
                 console.log('tx', res)
                 // this.transactionInfo.block_hash = res.block_hash
                 // this.transactionInfo.from = res.from

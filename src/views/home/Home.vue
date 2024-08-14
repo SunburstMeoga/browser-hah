@@ -142,7 +142,7 @@ export default {
         numberFormat,
         getBranchList() {
             this.blockTableLoadStatus = 'loading',
-                branchList({ pageSize: this.blockPageSize, page: this.blockCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
+                branchList({ pageSize: this.blockPageSize, page: this.blockCurrentPage, chainid: localStorage.getItem('chainID') }).then(res => {
                     this.blockTableLoadStatus = 'finished'
                     console.log('sdfsdf', res)
                     this.branchList = res
@@ -157,7 +157,7 @@ export default {
                             this.$store.commit('getChainName', branchList[0].name.name)
                             this.chainid = branchList[0].name
                         } else {
-                            this.chainid = parseInt(localStorage.getItem('chainID'))
+                            this.chainid = localStorage.getItem('chainID')
 
                         }
                         console.log(this.chainid)
@@ -179,7 +179,7 @@ export default {
             localStorage.setItem('chainID', item.chainid)
             this.$store.commit('getChainId', item.chainid)
             this.$store.commit('getChainName', item.name)
-            console.log(item.chainid, parseInt(localStorage.getItem('chainID')), this.$store.state.chainName, item.checked)
+            console.log(item.chainid, localStorage.getItem('chainID'), this.$store.state.chainName, item.checked)
             this.$router.replace({ path: '/empty' })
         },
         toBlockFirstPage(selectedPageSize) {
@@ -262,7 +262,7 @@ export default {
             blockObj.time = data.time
             blockObj.chainid = data.chainid
             blockObj.txs = data.tx.length + 1
-            if (blockObj.chainid === parseInt(localStorage.getItem('chainID')) || blockObj.chainid === this.$store.state.chainID) {
+            if (blockObj.chainid === localStorage.getItem('chainID') || blockObj.chainid === this.$store.state.chainID) {
                 data.tx.map(item => {
                     let txObj = {}
                     txObj.txid = item.txid
@@ -296,7 +296,7 @@ export default {
 
         getTXList() {
             this.tradeTableLoadStatus = 'loading'
-            TXList({ pageSize: this.txPageSize, page: this.txCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
+            TXList({ pageSize: this.txPageSize, page: this.txCurrentPage, chainid: localStorage.getItem('chainID') }).then(res => {
                 if (res.data.length !== 0) {
                     this.TXListDatas = res.data
                     this.tradeTableLoadStatus = 'finished'
@@ -310,7 +310,7 @@ export default {
         },
         getBlockList() {
             this.blockTableLoadStatus = 'loading',
-                blockList({ pageSize: this.blockPageSize, page: this.blockCurrentPage, chainid: parseInt(localStorage.getItem('chainID')) }).then(res => {
+                blockList({ pageSize: this.blockPageSize, page: this.blockCurrentPage, chainid: localStorage.getItem('chainID') }).then(res => {
                     console.log('getNewBlock', res)
                     if (res.data.length !== 0) {
                         this.blockListDatas = res.data
@@ -361,12 +361,12 @@ export default {
                         data: this.countChart,
                         symbolSize: 8,
                         itemStyle: {
-                                color: '#da251d',
-                            },
+                            color: '#da251d',
+                        },
                         lineStyle: {
                             width: 4, // 线条宽度
                             color: '#da251d',
-                            
+
                             symbol: 'circle',
                         },
                     }
@@ -407,8 +407,8 @@ export default {
                         // barWidth: '60%',
                         data: this.countChart,
                         itemStyle: {
-                                color: '#da251d',
-                            },
+                            color: '#da251d',
+                        },
                         lineStyle: {
                             width: 4, // 线条宽度
                             color: '#da251d',
